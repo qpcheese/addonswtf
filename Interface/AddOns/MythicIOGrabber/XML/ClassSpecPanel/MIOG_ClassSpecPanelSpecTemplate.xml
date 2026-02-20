@@ -1,0 +1,54 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+    <Frame name="MIOG_ClassSpecPanelSpecTemplate" inherits="BackdropTemplate" virtual="true" frameLevel="100">
+        <Size x="22" y="22" />
+
+        <KeyValues>
+			<KeyValue key="align" value="bottom" type="string"/>"
+        </KeyValues>
+
+        <Layers>
+            <Layer level="ARTWORK" textureSubLevel="-1">
+                <Texture parentKey="Icon">
+                    <Anchors>
+                        <Anchor point="TOPLEFT"/>
+                        <Anchor point="BOTTOMRIGHT"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+
+            <Layer level="ARTWORK" textureSubLevel="1">
+                <Texture>
+                    <Color r="0.3" g="0.3" b="0.3" a="0.4" />
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.Icon" />
+                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.Icon" />
+                    </Anchors>
+                </Texture>
+            </Layer>
+
+            <Layer level="OVERLAY">
+                <FontString parentKey="FontString" font="GameFontHighlightLarge2" justifyH="CENTER" justifyV="MIDDLE" outline="NORMAL">
+                    <Anchors>
+                        <Anchor point="CENTER" relativeKey="$parent.Icon" y="-1"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+
+        <Scripts>
+            <OnLoad>
+                local thickness = 2
+
+                self:SetBackdrop({
+                    edgeFile="Interface\\ChatFrame\\ChatFrameBackground",
+                    edgeSize=thickness}
+                )
+                self:SetBackdropColor(0, 0, 0, 0)
+
+                self.Icon:SetPoint("TOPLEFT", thickness, -thickness)
+                self.Icon:SetPoint("BOTTOMRIGHT", -thickness, thickness)
+            </OnLoad>
+        </Scripts>
+    </Frame>
+</Ui>

@@ -1,0 +1,3 @@
+
+MinArchDB = nil
+MinArchDigsitesGlobalDB = nil

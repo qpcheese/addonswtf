@@ -1,0 +1,15 @@
+## Interface: 120001, 120000
+
+## Title: |cff00d9ffLoadout Summary|r
+## Version: v2.1
+## Author: Aurs
+## Description: Displays your current loadout, stats, and gear summary in a clean, minimal panel.
+## DefaultState: Enable
+## Category: Aurs UI
+## IconTexture: Interface\AddOns\Loadout_Summary\Media\icon.png
+## SavedVariables: AursUI_TLNDB
+
+libs\LibStub\LibStub.lua
+libs\LibEditMode\embed.xml
+
+Loadout_Summary.lua

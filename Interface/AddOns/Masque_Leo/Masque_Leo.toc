@@ -1,0 +1,13 @@
+﻿## Interface: 120000, 120001, 120002
+## Title: Masque: |cff4dc48aLeo|r
+## Author: Leo
+## Version: 12.0.0
+## DefaultState: enabled
+## Dependencies: Masque
+## OptionalDeps: XLoot
+## X-Copyright: This addon is released into the Public Domain and may be modified and redistributed in any way.
+## Category: Masque
+## X-Category: Interface Enhancements
+## IconTexture: 4200124
+
+Masque_Leo.lua

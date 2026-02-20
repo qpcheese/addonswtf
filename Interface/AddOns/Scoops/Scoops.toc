@@ -1,0 +1,8 @@
+## Interface: 120001
+## Title: Scoops
+## Notes: Spielt den Scoops Sound von https://www.twitch.tv/vassilly ab.
+## Author: VVoidWalkerr
+## Version: 3.8
+## SavedVariables: ScoopsDB
+
+Scoops.lua

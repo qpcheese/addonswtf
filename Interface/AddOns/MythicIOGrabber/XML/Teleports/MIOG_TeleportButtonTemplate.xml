@@ -1,0 +1,25 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+    <Button name="MIOG_TeleportButtonTemplate" inherits="SecureActionButtonTemplate" mixin="TeleportButtonMixin" virtual="true">
+        <Size x="32" y="32" />
+
+        <Layers>
+            <Layer level="OVERLAY">
+                <FontString parentKey="Text" font="GameFontHighlight" justifyH="CENTER" justifyV="MIDDLE" outline="NORMAL">
+                    <Anchors>
+                        <Anchor point="CENTER" relativeKey="$parent" relativePoint="TOP" y="4"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+
+        <Frames>
+            <Cooldown parentKey="Cooldown" inherits="CooldownFrameTemplate" setAllPoints="true" frameStrata="MEDIUM"/>
+        </Frames>
+
+        <Scripts>
+            <OnShow method="OnShow" />
+            <OnLeave function="GameTooltip_Hide" />
+        </Scripts>
+    </Button>
+</Ui>

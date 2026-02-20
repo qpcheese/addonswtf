@@ -1,0 +1,65 @@
+
+Quartz3DB = {
+["namespaces"] = {
+["Swing"] = {
+},
+["Buff"] = {
+},
+["LibDualSpec-1.0"] = {
+},
+["Flight"] = {
+},
+["Pet"] = {
+["profiles"] = {
+["Default"] = {
+["x"] = 860,
+},
+},
+},
+["Range"] = {
+},
+["EnemyCasts"] = {
+},
+["Player"] = {
+["profiles"] = {
+["Default"] = {
+["w"] = 470,
+["y"] = 198.9999084472656,
+["point"] = "BOTTOM",
+["texture"] = "You Are Beautiful!",
+["x"] = 0,
+},
+},
+},
+["GCD"] = {
+},
+["Focus"] = {
+["profiles"] = {
+["Default"] = {
+["x"] = 860,
+},
+},
+},
+["Target"] = {
+["profiles"] = {
+["Default"] = {
+["x"] = 860,
+},
+},
+},
+["Interrupt"] = {
+},
+["Mirror"] = {
+},
+["Latency"] = {
+},
+},
+["profileKeys"] = {
+["Qpaladin - Ragnaros"] = "Default",
+["Gammelemil - Grim Batol"] = "Default",
+},
+["profiles"] = {
+["Default"] = {
+},
+},
+}

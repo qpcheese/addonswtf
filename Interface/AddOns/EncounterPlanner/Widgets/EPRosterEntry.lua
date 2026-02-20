@@ -1,0 +1,156 @@
+local _, Namespace = ...
+
+---@class Private
+local Private = Namespace
+local L = Private.L
+
+local Type = "EPRosterEntry"
+local Version = 1
+
+local AceGUI = LibStub("AceGUI-3.0")
+local UIParent = UIParent
+local CreateFrame = CreateFrame
+local max = math.max
+
+local k = {
+	CloseTexture = Private.constants.textures.kClose,
+	MainFrameWidth = 400,
+	MainFrameHeight = 400,
+	ContentFramePadding = { x = 4, y = 4 },
+	WidgetHeight = 20,
+}
+
+---@param self EPRosterEntry
+local function OnAcquire(self)
+	self.frame:SetParent(UIParent)
+	self.frame:Show()
+
+	self:SetLayout("EPHorizontalLayout")
+
+	self.nameLineEdit = AceGUI:Create("EPLineEdit")
+	self.nameLineEdit:SetHeight(k.WidgetHeight)
+	self.nameLineEdit:SetMaxLetters(36)
+	self.nameLineEdit:SetCallback("OnTextSubmitted", function(_, _, value)
+		self:Fire("NameChanged", value)
+	end)
+
+	self.classDropdown = AceGUI:Create("EPDropdown")
+	self.classDropdown:SetDropdownItemHeight(k.WidgetHeight)
+	self.classDropdown:SetCallback("OnValueChanged", function(_, _, value)
+		self:Fire("ClassChanged", value)
+	end)
+
+	self.roleDropdown = AceGUI:Create("EPDropdown")
+	self.roleDropdown:SetDropdownItemHeight(k.WidgetHeight)
+	self.roleDropdown:SetCallback("OnValueChanged", function(_, _, value)
+		self:Fire("RoleChanged", value)
+	end)
+
+	self.deleteButton = AceGUI:Create("EPButton")
+	self.deleteButton:SetIcon(k.CloseTexture)
+	self.deleteButton:SetIconPadding(0, 0)
+	self.deleteButton:SetHeight(k.WidgetHeight)
+	self.deleteButton:SetWidth(k.WidgetHeight)
+	self.deleteButton:SetCallback("Clicked", function()
+		self:Fire("DeleteButtonClicked")
+	end)
+
+	self:AddChildren(self.nameLineEdit, self.classDropdown, self.roleDropdown, self.deleteButton)
+end
+
+---@param self EPRosterEntry
+local function OnRelease(self)
+	self.nameLineEdit = nil
+	self.classDropdown = nil
+	self.roleDropdown = nil
+	self.deleteButton = nil
+end
+
+---@param self EPRosterEntry
+---@param width number|nil
+---@param height number|nil
+local function LayoutFinished(self, width, height)
+	if width and height then
+		self.frame:SetSize(width, height)
+	end
+end
+
+---@param self EPRosterEntry
+---@param dropdownItemData table<integer, DropdownItemData>
+local function PopulateClassDropdown(self, dropdownItemData)
+	self.classDropdown:AddItems(dropdownItemData)
+end
+
+---@param self EPRosterEntry
+---@param roles table<RaidGroupRole, boolean>
+local function PopulateRoleDropdown(self, roles)
+	self.roleDropdown:Clear()
+	local items = {}
+	if roles["role:tank"] then
+		items[#items + 1] = { itemValue = "role:tank", text = L["Tank"] }
+	end
+	if roles["role:healer"] then
+		items[#items + 1] = { itemValue = "role:healer", text = L["Healer"] }
+	end
+	if roles["role:damager"] then
+		items[#items + 1] = { itemValue = "role:damager", text = L["Damager"] }
+	end
+	if #items > 0 then
+		self.roleDropdown:AddItems(items)
+	end
+end
+
+---@param self EPRosterEntry
+---@param name string
+---@param class string
+---@param role RaidGroupRole
+local function SetData(self, name, class, role)
+	self.nameLineEdit:SetText(name)
+	self.classDropdown:SetValue(class)
+	self.roleDropdown:SetValue(role)
+end
+
+local function SetRelativeWidths(self, width)
+	local nonSpacingWidth = max(1, width - 3 * self.content.spacing.x)
+	local firstThreeWidth = (nonSpacingWidth - k.WidgetHeight) / 3.0
+	local firstThreeRelativeWidth = firstThreeWidth / nonSpacingWidth
+	self.nameLineEdit:SetRelativeWidth(firstThreeRelativeWidth)
+	self.classDropdown:SetRelativeWidth(firstThreeRelativeWidth)
+	self.roleDropdown:SetRelativeWidth(firstThreeRelativeWidth)
+	self.deleteButton:SetRelativeWidth(k.WidgetHeight / nonSpacingWidth)
+end
+
+local function Constructor()
+	local count = AceGUI:GetNextWidgetNum(Type)
+
+	local frame = CreateFrame("Frame", Type .. count, UIParent)
+	frame:SetSize(k.MainFrameWidth, k.MainFrameHeight)
+
+	local content = CreateFrame("Frame", Type .. "Content" .. count, frame)
+	content:SetPoint("TOPLEFT")
+	content:SetPoint("BOTTOMRIGHT")
+	content.spacing = k.ContentFramePadding
+
+	---@class EPRosterEntry : AceGUIContainer
+	---@field nameLineEdit EPLineEdit
+	---@field classDropdown EPDropdown
+	---@field roleDropdown EPDropdown
+	---@field deleteButton EPButton
+	local widget = {
+		OnAcquire = OnAcquire,
+		OnRelease = OnRelease,
+		LayoutFinished = LayoutFinished,
+		PopulateClassDropdown = PopulateClassDropdown,
+		PopulateRoleDropdown = PopulateRoleDropdown,
+		SetData = SetData,
+		SetRelativeWidths = SetRelativeWidths,
+		frame = frame,
+		content = content,
+		type = Type,
+		count = count,
+	}
+
+	return AceGUI:RegisterAsContainer(widget)
+end
+
+AceGUI:RegisterWidgetType(Type, Constructor, Version)

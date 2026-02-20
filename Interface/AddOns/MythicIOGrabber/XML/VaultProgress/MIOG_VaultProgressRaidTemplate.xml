@@ -1,0 +1,42 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+    <Frame name="MIOG_VaultProgressRaidTemplate" inherits="MIOG_VaultProgressTemplate" virtual="true">
+        <Frames>
+            <Frame parentKey="Progress6" inherits="MIOG_VaultProgressRewardTemplate">
+                <Anchors>
+                    <Anchor point="RIGHT" y="-1"/>
+                </Anchors>
+            </Frame>
+
+            <Frame parentKey="Progress5" inherits="MIOG_VaultProgressRewardTemplate">
+                <Anchors>
+                    <Anchor point="RIGHT" relativeKey="$parent.Progress6" relativePoint="LEFT" x="-4"/>
+                </Anchors>
+            </Frame>
+
+            <Frame parentKey="Progress4" inherits="MIOG_VaultProgressRewardTemplate">
+                <Anchors>
+                    <Anchor point="RIGHT" relativeKey="$parent.Progress5" relativePoint="LEFT" x="-4"/>
+                </Anchors>
+            </Frame>
+
+            <Frame parentKey="Progress3" inherits="MIOG_VaultProgressRewardTemplate">
+                <Anchors>
+                    <Anchor point="RIGHT" relativeKey="$parent.Progress4" relativePoint="LEFT" x="-4"/>
+                </Anchors>
+            </Frame>
+
+            <Frame parentKey="Progress2" inherits="MIOG_VaultProgressRewardTemplate">
+                <Anchors>
+                    <Anchor point="RIGHT" relativeKey="$parent.Progress3" relativePoint="LEFT" x="-4"/>
+                </Anchors>
+            </Frame>
+
+            <Frame parentKey="Progress1" inherits="MIOG_VaultProgressRewardTemplate">
+                <Anchors>
+                    <Anchor point="RIGHT" relativeKey="$parent.Progress2" relativePoint="LEFT" x="-4"/>
+                </Anchors>
+            </Frame>
+        </Frames>
+    </Frame>
+</Ui>

@@ -1,0 +1,12 @@
+## Interface: 11507
+## Title: Twitch Emotes - Unhinged
+## Author: Plenyx - TarrenMill (EU)
+## Notes: Twitch emotes used by an EU guild Unhinged-TarrenMill
+## Version: 1.1.9
+## IconTexture: Interface\Addons\UnhingedTwitchEmotes\Emotes\Unhinged\plenMensius.tga
+## DefaultState: enabled
+## Dependencies: TwitchEmotes
+## Category: Unhinged
+## X-Curse-Project-ID: 924699
+
+UnhingedTwitchEmotes.lua

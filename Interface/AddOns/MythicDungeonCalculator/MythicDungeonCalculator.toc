@@ -1,0 +1,27 @@
+## Interface: 120000
+## Title: Mythic Dungeon Calculator
+## Author: Ravor
+## Version: 3.4.0
+## Notes: Let's you calculate your way to the 'Keystone' Achievements and more
+## Notes-deDE: Tool zur Berechnung der Mythisch+ Wertung um die 'SchlU+00fcsselsteinmeister' Erfolge zu erlangen und mehr
+## DefaultState: Enabled
+## OptionalDeps: Ace3, LibStub, !LibUIDropDownMenu
+## SavedVariables: MDC_Settings, MDCDB
+## AddonCompartmentFunc: MDC_OnAddonCompartmentClick
+## IconTexture: Interface\AddOns\MythicDungeonCalculator\Textures\mdc_icon
+## Category-enUS: Dungeons & Raids
+## Category-deDE: Dungeons & Schlachtzüge
+## Category-esES: Mazmorras y bandas
+## Category-esMX: Calabozos y bandas
+## Category-frFR: Donjons et raids
+## Category-itIT: Spedizioni e incursioni
+## Category-koKR: 던전 및 공격대
+## Category-ptBR: Masmorras e Raides
+## Category-ruRU: Подземелья и рейды
+## Category-zhCN: 地下城和团队副本
+## Category-zhTW: 地城與團隊
+
+Libraries\load_libraries.xml
+initialize.lua
+languages.xml
+MythicDungeonCalculator.lua

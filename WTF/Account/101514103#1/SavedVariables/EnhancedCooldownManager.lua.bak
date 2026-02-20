@@ -1,0 +1,79 @@
+
+EnhancedCooldownManagerDB = {
+["_versions"] = {
+[8] = {
+["profileKeys"] = {
+["Jeaf - Sylvanas"] = "Default",
+["Qute - Sylvanas"] = "Default",
+["Qpfromage - Sylvanas"] = "Default",
+["Sørn - Ravencrest"] = "Default",
+},
+["profiles"] = {
+["Default"] = {
+["buffBars"] = {
+["colors"] = {
+["bySpellID"] = {
+[8] = {
+{
+},
+[3] = {
+},
+},
+[10] = {
+{
+},
+},
+},
+["byName"] = {
+[8] = {
+{
+},
+[3] = {
+},
+},
+[10] = {
+{
+},
+},
+},
+["byCooldownID"] = {
+[8] = {
+{
+},
+[3] = {
+},
+},
+[10] = {
+{
+},
+},
+},
+["byTexture"] = {
+[8] = {
+{
+},
+[3] = {
+},
+},
+[10] = {
+{
+},
+},
+},
+},
+},
+["itemIcons"] = {
+["enabled"] = false,
+},
+["powerBar"] = {
+["enabled"] = false,
+},
+["resourceBar"] = {
+["enabled"] = false,
+["anchorMode"] = "free",
+},
+},
+},
+},
+},
+}

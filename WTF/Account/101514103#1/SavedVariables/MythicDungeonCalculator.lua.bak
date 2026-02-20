@@ -1,0 +1,213 @@
+
+MDC_Settings = nil
+MDCDB = {
+["profileKeys"] = {
+["Sörn - Ravencrest"] = "Sörn - Ravencrest",
+["Sikducker - Sylvanas"] = "Sikducker - Sylvanas",
+["Qpfromage - Sylvanas"] = "Qpfromage - Sylvanas",
+["Xiaoyuu - Sylvanas"] = "Xiaoyuu - Sylvanas",
+["Dogson - Ragnaros"] = "Dogson - Ragnaros",
+["Kaijid - Ragnaros"] = "Kaijid - Ragnaros",
+["Qtte - Sylvanas"] = "Qtte - Sylvanas",
+["Qute - Sylvanas"] = "Qute - Sylvanas",
+["Qpfromage - Ragnaros"] = "Qpfromage - Ragnaros",
+["Qudroformagi - Sylvanas"] = "Qudroformagi - Sylvanas",
+["Jeaf - Sylvanas"] = "Jeaf - Sylvanas",
+["Helikåpter - Sylvanas"] = "Helikåpter - Sylvanas",
+["Casiomage - Sylvanas"] = "Casiomage - Sylvanas",
+["Qpfromage - Ravencrest"] = "Qpfromage - Ravencrest",
+["Sørn - Ravencrest"] = "Sørn - Ravencrest",
+["Qpfromage - Confrérie du Thorium"] = "Qpfromage - Confrérie du Thorium",
+["Qpaladin - Ragnaros"] = "Qpaladin - Ragnaros",
+},
+["profiles"] = {
+["Sörn - Ravencrest"] = {
+["class"] = "ROGUE",
+["iLvl"] = 4,
+["version"] = "3.0.0",
+},
+["Sikducker - Sylvanas"] = {
+["iLvl"] = 311,
+["class"] = "MAGE",
+},
+["Qpfromage - Sylvanas"] = {
+["calculation"] = {
+["affixTime"] = {
+1776,
+2110,
+1942,
+1557,
+1619,
+1167,
+1403,
+1410,
+},
+["affixLevel"] = {
+10,
+8,
+8,
+4,
+8,
+6,
+10,
+8,
+},
+},
+["iLvl"] = 708,
+["currentRating"] = 2017,
+["class"] = "MAGE",
+["version"] = "3.0.0",
+["weeklyRewards"] = {
+nil,
+691,
+697,
+515,
+},
+},
+["Xiaoyuu - Sylvanas"] = {
+["class"] = "MONK",
+["iLvl"] = 16,
+["version"] = "3.0.0",
+},
+["Dogson - Ragnaros"] = {
+},
+["Kaijid - Ragnaros"] = {
+["addonPosition"] = {
+["xOffset"] = 196.9996948242188,
+["anchorTo"] = "TOPLEFT",
+["anchorFrom"] = "TOPLEFT",
+["yOffset"] = -20.33326530456543,
+},
+["iLvl"] = 551,
+["class"] = "WARRIOR",
+["optionalBottomFrame"] = {
+["show"] = true,
+["content"] = 2,
+},
+["version"] = "3.0.0",
+},
+["Qtte - Sylvanas"] = {
+["iLvl"] = 4,
+["class"] = "HUNTER",
+},
+["Qute - Sylvanas"] = {
+},
+["Qpfromage - Ragnaros"] = {
+["addonPosition"] = {
+["xOffset"] = 2.999956607818604,
+["yOffset"] = 3.282587567809969e-05,
+},
+["optionalBottomFrame"] = {
+["show"] = true,
+["content"] = 2,
+},
+["calculation"] = {
+["affixLevel"] = {
+{
+22,
+22,
+},
+{
+22,
+22,
+},
+{
+22,
+22,
+},
+{
+22,
+22,
+},
+{
+22,
+22,
+},
+{
+22,
+22,
+},
+{
+22,
+22,
+},
+{
+22,
+22,
+},
+},
+["affixTime"] = {
+{
+1808,
+1755,
+},
+{
+1275,
+1619,
+},
+{
+1968,
+1622,
+},
+{
+1484,
+1420,
+},
+{
+1857,
+2100,
+},
+{
+1709,
+2040,
+},
+{
+1306,
+1747,
+},
+{
+1978,
+2160,
+},
+},
+},
+},
+["Qudroformagi - Sylvanas"] = {
+["class"] = "MAGE",
+["iLvl"] = 4,
+["version"] = "3.0.0",
+},
+["Jeaf - Sylvanas"] = {
+["class"] = "MONK",
+["iLvl"] = 779,
+["version"] = "3.0.0",
+},
+["Helikåpter - Sylvanas"] = {
+["class"] = "DEMONHUNTER",
+["iLvl"] = 574,
+["version"] = "3.0.0",
+},
+["Casiomage - Sylvanas"] = {
+["class"] = "MAGE",
+["iLvl"] = 4,
+["version"] = "3.0.0",
+},
+["Qpfromage - Ravencrest"] = {
+["class"] = "MAGE",
+["iLvl"] = 8,
+["version"] = "3.0.0",
+},
+["Sørn - Ravencrest"] = {
+["class"] = "ROGUE",
+["iLvl"] = 103,
+["version"] = "3.0.0",
+},
+["Qpfromage - Confrérie du Thorium"] = {
+["class"] = "MAGE",
+["iLvl"] = 8,
+["version"] = "3.0.0",
+},
+["Qpaladin - Ragnaros"] = {
+},
+},
+}

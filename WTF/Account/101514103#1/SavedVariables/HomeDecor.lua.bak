@@ -1,0 +1,40 @@
+
+HomeDecorDB = {
+["profileKeys"] = {
+["Qpfromage - Sylvanas"] = "Qpfromage - Sylvanas",
+},
+["profiles"] = {
+["Qpfromage - Sylvanas"] = {
+["timers"] = {
+},
+["ui"] = {
+["activeCategory"] = "Drops",
+["width"] = 1073,
+["eventsSeenSig"] = "active",
+["_searchNorm"] = "",
+["height"] = 634,
+["_searchLast"] = "",
+["expanded"] = {
+},
+["_searchTokens"] = {
+},
+},
+["changelog"] = {
+["lastSeenVersion"] = "v12.0.27",
+},
+["tracker"] = {
+["alpha"] = 0.699999988079071,
+["pos"] = {
+["y"] = -80,
+["relPoint"] = "TOPRIGHT",
+["point"] = "TOPRIGHT",
+["x"] = -40,
+},
+},
+["filters"] = {
+["hideCollected"] = true,
+["faction"] = "Horde",
+},
+},
+},
+}

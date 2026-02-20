@@ -1,0 +1,45 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+    <Button name="MIOG_ProgressSelectionButtonTemplate" mixin="ProgressSelectionButtonMixin" virtual="true">
+        <Size y="20" />
+
+        <KeyValues>
+            <Keyvalue key="expand" value="true" type="boolean" />
+        </KeyValues>
+
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture parentKey="Texture" setAllPoints="true" />
+            </Layer>
+            <Layer level="ARTWORK">
+                <FontString parentKey="Label" inherits="GameFontNormal" justifyH="RIGHT">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" x="7" y="1"/>
+                        <Anchor point="BOTTOMRIGHT" x="-3" y="1"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+
+        <Scripts>
+            <OnClick method="OnClick" />
+
+            <OnEnter>
+                if(not self.isSelected) then
+                    self.Texture:SetAtlas("Options_List_Hover")
+
+                end
+            </OnEnter>
+
+            <OnLeave>
+                if(not self.isSelected) then
+                    self.Texture:SetTexture(nil)
+
+                end
+
+            </OnLeave>
+
+            <OnLoad method="OnLoad" />
+        </Scripts>
+    </Button>
+</Ui>

@@ -1,0 +1,217 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+    <Button name="MIOG_GroupManagerListCharacterTemplate" registerForClicks="RightButtonUp, LeftButtonUp" inherits="UIButtonTemplate" virtual="true">
+
+        <KeyValues>
+			<KeyValue key="expand" value="true" type="boolean"/>
+		</KeyValues>
+
+        <Layers>
+            <Layer level="OVERLAY" textureSubLevel="2">
+                <Texture parentKey="ReadyBorder">
+                    <Size x="17" y="17"/>
+
+                    <Color r="0" g="0" b="0" a="0.75" />
+                    
+                    <Anchors>
+                        <Anchor point="RIGHT" relativeKey="$parent" relativePoint="RIGHT" x="-8"/>
+                    </Anchors>
+                </Texture>
+
+                <Texture parentKey="Ready">
+                    <Color r="0.2" g="0.2" b="0.2" a="0.75" />
+                    
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.ReadyBorder" relativePoint="TOPLEFT" x="1" y="-1"/>
+                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.ReadyBorder" relativePoint="BOTTOMRIGHT" x="-1" y="1"/>
+                    </Anchors>
+                </Texture>
+
+                <Texture parentKey="RaidRole">                    
+                    <Anchors>
+                        <Anchor point="RIGHT" relativeKey="$parent.ReadyBorder" relativePoint="LEFT" x="-20"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+
+            <Layer level="OVERLAY" textureSubLevel="-1">
+                <FontString parentKey="Index" font="GameFontHighlight" justifyH="CENTER">
+                    <Size x="17" />
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent" relativePoint="LEFT" x="2"/>
+                    </Anchors>
+                </FontString>
+
+                <Texture parentKey="Role">
+                    <Size x="17" y="17"/>
+                    
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.Index" relativePoint="RIGHT" x="2"/>
+                    </Anchors>
+                </Texture>
+
+                <Texture parentKey="Spec">
+                    <Size x="16" y="16"/>
+                    
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.Role" relativePoint="RIGHT" x="4"/>
+                    </Anchors>
+                </Texture>
+
+                <FontString parentKey="Name" font="GameFontHighlight" justifyH="LEFT">
+                    <Size x="100" />
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.Spec" relativePoint="RIGHT" x="3"/>
+                    </Anchors>
+                </FontString>
+
+                <FontString parentKey="Itemlevel" font="GameFontHighlight" justifyH="LEFT">
+                    <Size x="32" />
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.Name" relativePoint="RIGHT" x="3"/>
+                    </Anchors>
+                </FontString>
+
+                <FontString parentKey="Durability" font="GameFontHighlight" justifyH="LEFT">
+                    <Size x="47" />
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.Itemlevel" relativePoint="RIGHT" x="4"/>
+                    </Anchors>
+                </FontString>
+
+                <FontString parentKey="Score" font="GameFontHighlight" justifyH="LEFT">
+                    <Size x="44" />
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.Durability" relativePoint="RIGHT" x="2"/>
+                    </Anchors>
+                </FontString>
+
+                <FontString parentKey="Progress" font="GameFontHighlight" justifyH="LEFT">
+                    <Size x="59" />
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.Score" relativePoint="RIGHT" x="3"/>
+                    </Anchors>
+                </FontString>
+
+                <FontString parentKey="Keystone" font="GameFontHighlight" justifyH="LEFT">
+                    <Size x="82" />
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.Progress" relativePoint="RIGHT" x="3"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers> 
+        
+        <Scripts>
+            <OnEnter>
+                GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+                GameTooltip:SetUnit(self.unit)
+
+                if(self.unit) then
+                    if(self.id) then
+                        local name, rank, subgroup, level, class, fileName, zone, online, isDead, role, isML, combatRole = GetRaidRosterInfo(self.id) --ONLY WORKS WHEN IN GROUP
+
+                        if(rank == 2 ) then
+                            GameTooltip_AddBlankLineToTooltip(GameTooltip)
+                            GameTooltip:AddLine("Rank: " .. RAID_LEADER)
+
+                        elseif(rank == 1 ) then
+                            GameTooltip_AddBlankLineToTooltip(GameTooltip)
+                            GameTooltip:AddLine("Rank: " .. RAID_ASSISTANT)
+
+                        else
+                            if(role ~= nil) then
+                                GameTooltip_AddBlankLineToTooltip(GameTooltip)
+
+                                if (role == "MAINTANK" ) then
+                                    GameTooltip:AddLine("Raid role: " .. MAIN_TANK);
+                                elseif (role == "MAINASSIST" ) then
+                                    GameTooltip:AddLine("Raid role: " .. MAIN_ASSIST);
+                                end
+                            end
+                        end
+                    end
+
+                    if(self.data.keystone) then
+                        GameTooltip_AddBlankLineToTooltip(GameTooltip)
+                        GameTooltip:AddLine("Keystone: +" .. self.data.keylevel .. " " .. self.data.keyname)
+
+                    end
+
+                    if(self.data.progressTooltipData) then
+                        GameTooltip_AddBlankLineToTooltip(GameTooltip)
+                        GameTooltip:AddLine(self.data.progressTooltipData)
+
+                    end
+
+                    if(self.data.hasWeaponEnchant) then
+                        GameTooltip_AddBlankLineToTooltip(GameTooltip)
+                        GameTooltip:AddLine(WrapTextInColorCode("Weapon enchanted", "FF00FF00"))
+
+                    elseif(self.data.hasWeaponEnchant == false) then
+                        GameTooltip_AddBlankLineToTooltip(GameTooltip)
+                        GameTooltip:AddLine(WrapTextInColorCode("Weapon not enchanted", "FFFF0000"))
+
+                    end
+
+                    if(self.data.missingGems) then
+                        if(#self.data.missingGems > 0) then
+                            local missingGems = ""
+
+                            for k, v in ipairs(self.data.missingGems) do
+                                missingGems = missingGems .. v .. " "
+
+                            end 
+                            
+                            GameTooltip_AddBlankLineToTooltip(GameTooltip)
+                            GameTooltip:AddLine(WrapTextInColorCode("Unsocketed slots: " .. missingGems, "FFFF0000"))
+                        else
+                            GameTooltip_AddBlankLineToTooltip(GameTooltip)
+                            GameTooltip:AddLine(WrapTextInColorCode("All sockets filled", "FF00FF00"))
+
+                        end
+                    end
+
+                    if(self.data.missingEnchants) then
+                        if(#self.data.missingEnchants > 0) then
+                            local missingEnchants = ""
+
+                            for k, v in ipairs(self.data.missingEnchants) do
+                                missingEnchants = missingEnchants .. v .. " "
+
+                            end
+                            
+                            GameTooltip_AddBlankLineToTooltip(GameTooltip)
+                            GameTooltip:AddLine(WrapTextInColorCode("Unenchanted slots: " .. missingEnchants, "FFFF0000"))
+                        else
+                            GameTooltip_AddBlankLineToTooltip(GameTooltip)
+                            GameTooltip:AddLine(WrapTextInColorCode("Fully enchanted", "FF00FF00"))
+
+                        end
+
+                    --[[else
+                        GameTooltip_AddBlankLineToTooltip(GameTooltip)
+                        GameTooltip:AddLine(WrapTextInColorCode("No data available (yet) for this player.", "FFFF0000"))
+                        GameTooltip:AddLine(WrapTextInColorCode("This player may not have Details or MythicIOGrabber installed.", "FFFF0000"))
+                        ]]--
+
+                    end
+
+                    local fullName = self.data.fullName
+	
+                    if(fullName == "Rhany-Ravencrest" or fullName == "Gerhanya-Ravencrest" or fullName == "Latimeria-Ravencrest") then
+                        GameTooltip:AddLine("You've found the creator of this addon.\nHow lucky!")
+
+                    end
+
+                    GameTooltip:Show()
+                end
+            </OnEnter>
+            <OnLoad>
+                self:SetNormalAtlas("communitiesfinder-card")
+                self:SetHighlightAtlas("communitiesfinder-card")
+            </OnLoad>
+            <OnLeave function="GameTooltip_Hide" />
+        </Scripts>
+    </Button>
+</Ui>

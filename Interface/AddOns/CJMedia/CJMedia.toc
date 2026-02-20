@@ -1,0 +1,8 @@
+## Interface: 120000
+## Title: CJ's Media
+## Author: CJ Miller (cjm721)
+## Version: 1.0.2
+
+Libs\LibStub\LibStub.lua
+Embeded.xml
+Register.lua

@@ -1,0 +1,227 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+    <Frame name="MIOG_GroupOrganizer" virtual="true">
+        <Frames>
+            <Frame parentKey="Settings">
+                <Size y="28"/>
+
+                <Anchors>
+                    <Anchor point="TOPLEFT" x="1"/>
+                    <Anchor point="TOPRIGHT"/>
+                </Anchors>
+
+                <Frames>
+                    <Button parentKey="Refresh" inherits="BigRedRefreshButtonTemplate">
+                        <Size x="20" y="20" />
+                        <Anchors>
+                            <Anchor point="LEFT" relativeKey="$parent" x="4"/>
+                        </Anchors>
+
+                        <Scripts>
+                            <OnEnter>
+                                GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+                                GameTooltip:SetText("Refresh player data.")
+                                GameTooltip:Show()
+                            </OnEnter>
+
+                            <OnLeave function="GameTooltip_Hide" />
+                        </Scripts>
+                    </Button>
+
+                    <Button parentKey="ListViewButton" inherits="UIPanelButtonTemplate" text="List">
+                        <Anchors>
+                            <Anchor point="LEFT" relativeKey="$parent.Refresh" relativePoint="RIGHT" x="4"/>
+                        </Anchors>
+
+                        <Scripts>
+                            <OnClick>
+                                self:GetParent():GetParent().RaidView:Hide()
+                                self:GetParent():GetParent().ListView:Show()
+                            </OnClick>
+                        </Scripts>
+                    </Button>
+
+                    <Button parentKey="RaidViewButton" inherits="UIPanelButtonTemplate" text="Raid">
+                        <Anchors>
+                            <Anchor point="LEFT" relativeKey="$parent.ListViewButton" relativePoint="RIGHT" x="4"/>
+                        </Anchors>
+
+                        <Scripts>
+                            <OnClick>
+                                self:GetParent():GetParent().ListView:Hide()
+                                self:GetParent():GetParent().RaidView:Show()
+                            </OnClick>
+                        </Scripts>
+                    </Button>
+                </Frames>
+
+                <Layers>
+                    <Layer level="OVERLAY">
+                        <FontString parentKey="NextRefreshString" font="GameFontHighlight" justifyH="CENTER" justifyV="MIDDLE" outline="NORMAL">
+                            <Anchors>
+                                <Anchor point="RIGHT"/>
+                            </Anchors>
+                        </FontString>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <Frame parentKey="RaidView" mixin="RaidViewMixin" hidden="true">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.Settings" relativePoint="BOTTOMLEFT" />
+                    <Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOMRIGHT"/>
+                </Anchors>
+
+                <Frames>
+                    <Frame parentKey="Blocker" setAllPoints="true" hidden="true" frameStrata="HIGH" >
+                        <Layers>
+                            <Layer level="OVERLAY" textureSubLevel="7">
+                                <Texture setAllPoints="true">
+                                    <Color r="0.1" g="0.1" b="0.1" a="0.8" />
+                                </Texture>
+                            </Layer>
+                        </Layers>
+
+                        <Frames>
+                            <Frame parentKey="LoadingSpinner" inherits="LoadingSpinnerTemplate">
+                                <Size x="64" y="64" />
+                                <Anchors>
+                                    <Anchor point="CENTER"/>
+                                </Anchors>
+                            </Frame>
+                        </Frames>
+                    </Frame>
+
+                    <Frame parentKey="Group1" inherits="MIOG_GroupOrganizerRaidViewGroupTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" />
+                        </Anchors>
+                    </Frame>
+
+                    <Frame parentKey="Group2" inherits="MIOG_GroupOrganizerRaidViewGroupTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeKey="$parent.Group1" relativePoint="TOPRIGHT" x="5"/>
+                        </Anchors>
+                    </Frame>
+
+                    <Frame parentKey="Group3" inherits="MIOG_GroupOrganizerRaidViewGroupTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeKey="$parent.Group2" relativePoint="TOPRIGHT" x="5"/>
+                        </Anchors>
+                    </Frame>
+
+                    <Frame parentKey="Group4" inherits="MIOG_GroupOrganizerRaidViewGroupTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeKey="$parent.Group3" relativePoint="TOPRIGHT" x="5"/>
+                        </Anchors>
+                    </Frame>
+
+                    <Frame parentKey="Group5" inherits="MIOG_GroupOrganizerRaidViewGroupTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="LEFT"/>
+                        </Anchors>
+                    </Frame>
+
+                    <Frame parentKey="Group6" inherits="MIOG_GroupOrganizerRaidViewGroupTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeKey="$parent.Group5" relativePoint="TOPRIGHT" x="5"/>
+                        </Anchors>
+                    </Frame>
+
+                    <Frame parentKey="Group7" inherits="MIOG_GroupOrganizerRaidViewGroupTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeKey="$parent.Group6" relativePoint="TOPRIGHT" x="5"/>
+                        </Anchors>
+                    </Frame>
+
+                    <Frame parentKey="Group8" inherits="MIOG_GroupOrganizerRaidViewGroupTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeKey="$parent.Group7" relativePoint="TOPRIGHT" x="5"/>
+                        </Anchors>
+                    </Frame>
+                    
+                    <Button parentKey="Member1" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member2" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member3" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member4" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member5" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member6" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member7" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member8" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member9" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member10" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member11" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member12" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member13" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member14" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member15" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member16" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member17" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member18" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member19" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member20" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member21" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member22" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member23" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member24" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member25" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member26" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member27" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member28" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member29" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member30" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member31" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member32" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member33" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member34" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member35" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member36" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member37" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member38" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member39" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                    <Button parentKey="Member40" inherits="MIOG_GroupOrganizerRaidViewMemberFrameTemplate" />
+                </Frames>
+
+                <Scripts>
+                    <OnShow method="OnShow" />
+                    <OnLoad method="OnLoad" />
+                </Scripts>
+            </Frame>
+
+            <Frame parentKey="ListView">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.Settings" relativePoint="BOTTOMLEFT" />
+                    <Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOMRIGHT"/>
+                </Anchors>
+
+                <Frames>
+                    <Frame parentKey="HeaderContainer">
+                        <Size y="20"/>
+
+                        <Anchors>
+                            <Anchor point="TOPLEFT" />
+                            <Anchor point="TOPRIGHT" />
+                        </Anchors>
+                    </Frame>
+
+                    <Frame parentKey="ScrollBox" inherits="WowScrollBoxList">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeKey="$parent.HeaderContainer" relativePoint="BOTTOMLEFT"/>
+                            <Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOMRIGHT"/>
+                        </Anchors>
+                    </Frame>
+                </Frames>
+            </Frame>
+
+            
+        </Frames>
+
+        <Layers>
+            <Layer level="OVERLAY">
+                <Texture parentKey="LeaderCrown" file="Interface\Addons\MythicIOGrabber\res\infoIcons\leaderIcon.png" hidden="true">
+                    <Size x="14" y="14" />
+                </Texture>
+            </Layer>
+        </Layers>
+    </Frame>
+</Ui>

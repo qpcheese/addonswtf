@@ -1,0 +1,31 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+    <Frame name="MIOG_ProgressLineTemplate" virtual="true">
+        <Size x="35" y="35" />
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture parentKey="DividerShadow" setAllPoints="true">
+                    <Color r="0.03" g="0.03" b="0.03" a="0.6" />
+                </Texture>
+            </Layer>
+
+            <Layer level="ARTWORK">
+                <Texture parentKey="DividerTop" atlas="dragonflight-weeklyrewards-divider">
+                    <Size y="6" />
+                    <Anchors>
+                        <Anchor point="TOPLEFT" y="2"/>
+                        <Anchor point="TOPRIGHT" y="2"/>
+                    </Anchors>
+                </Texture>
+
+                <Texture parentKey="DividerBottom" atlas="dragonflight-weeklyrewards-divider">
+                    <Size y="4" />
+                    <Anchors>
+                        <Anchor point="BOTTOMLEFT" y="-1"/>
+                        <Anchor point="BOTTOMRIGHT" y="-1"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+        </Layers>
+    </Frame>
+</Ui>

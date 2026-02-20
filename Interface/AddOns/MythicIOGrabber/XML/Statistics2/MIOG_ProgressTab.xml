@@ -1,0 +1,143 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+    <Frame name="MIOG_ProgressTab" virtual="true">
+        <Frames>
+            <Frame parentKey="TabPanel" inherits="HorizontalLayoutFrame">
+                <KeyValues>
+                    <KeyValue key="spacing" value="5" type="number"/>
+                </KeyValues>
+                <Anchors>
+                    <Anchor point="TOPRIGHT" relativeKey="$parent" relativePoint="TOPRIGHT" x="-20"/>
+                </Anchors>
+
+                <Frames>
+                    <Button inherits="UIPanelDynamicResizeButtonTemplate" text="Overview">
+                        <Size y="25" />
+                        <KeyValues>
+                            <KeyValue key="layoutIndex" value="1" type="number"/>
+                        </KeyValues>
+
+                        <Scripts>
+                            <OnClick>
+                                local progressTab = self:GetParent():GetParent()
+                                progressTab.RaidStatistics:Hide()
+                                progressTab.PVPStatistics:Hide()
+                                progressTab.MPlusStatistics:Hide()
+                                progressTab.NewSystem:Show()
+
+                                local mainFrame = progressTab:GetParent():GetParent()
+                                mainFrame.anchorNewScrollBar(PanelTemplates_GetSelectedTab(mainFrame))
+                            </OnClick>
+                        </Scripts>
+                    </Button>
+
+                    <Button inherits="UIPanelDynamicResizeButtonTemplate" text="Mythic Plus">
+                        <Size y="25" />
+                        <KeyValues>
+                            <KeyValue key="layoutIndex" value="2" type="number"/>
+                        </KeyValues>
+
+                        <Scripts>
+                            <OnClick>
+                                local progressTab = self:GetParent():GetParent()
+
+                                progressTab.RaidStatistics:Hide()
+                                progressTab.PVPStatistics:Hide()
+                                progressTab.NewSystem:Hide()
+                                progressTab.MPlusStatistics:Show()
+
+                                local mainFrame = progressTab:GetParent():GetParent()
+                                mainFrame.anchorNewScrollBar(PanelTemplates_GetSelectedTab(mainFrame), "mplus")
+                            </OnClick>
+                        </Scripts>
+                    </Button>
+
+                    <Button inherits="UIPanelDynamicResizeButtonTemplate" text="Raid">
+                        <Size y="25" />
+                        <KeyValues>
+                            <KeyValue key="layoutIndex" value="3" type="number"/>
+                        </KeyValues>
+
+                        <Scripts>
+                            <OnClick>
+                                local progressTab = self:GetParent():GetParent()
+                                progressTab.MPlusStatistics:Hide()
+                                progressTab.PVPStatistics:Hide()
+                                progressTab.NewSystem:Hide()
+                                progressTab.RaidStatistics:Show()
+
+                                local mainFrame = progressTab:GetParent():GetParent()
+                                mainFrame.anchorNewScrollBar(PanelTemplates_GetSelectedTab(mainFrame), "raid")
+                            </OnClick>
+                        </Scripts>
+                    </Button>
+
+                    <Button inherits="UIPanelDynamicResizeButtonTemplate" text="PVP">
+                        <Size y="25" />
+                        <KeyValues>
+                            <KeyValue key="layoutIndex" value="4" type="number"/>
+                        </KeyValues>
+
+                        <Scripts>
+                            <OnClick>
+                                local progressTab = self:GetParent():GetParent()
+                                progressTab.RaidStatistics:Hide()
+                                progressTab.MPlusStatistics:Hide()
+                                progressTab.NewSystem:Hide()
+                                progressTab.PVPStatistics:Show()
+
+                                local mainFrame = progressTab:GetParent():GetParent()
+                                mainFrame.anchorNewScrollBar(PanelTemplates_GetSelectedTab(mainFrame), "pvp")
+                            </OnClick>
+                        </Scripts>
+                    </Button>
+                </Frames>
+            </Frame>
+
+            <Frame parentKey="NewSystem" setAllPoints="true" mixin="ProgressionTabMixin">
+                <Frames>
+                    <Frame parentKey="Columns" inherits="WowScrollBoxList">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT" y="-25"/>
+                            <Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOMRIGHT" y="20"/>
+                        </Anchors>
+                    </Frame> 
+                    <EventFrame parentKey="ScrollBar" inherits="MIOG_MinimalHorizontalScrollBarTemplate">
+                        <Size y="16" />
+                        <KeyValues>
+                            <KeyValue key="minThumbExtent" value="10" type="number"/>
+                        </KeyValues>
+                        <Anchors>
+                            <Anchor point="BOTTOMLEFT" relativeKey="$parent" relativePoint="BOTTOMLEFT"/>
+                            <Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOMRIGHT"/>
+                        </Anchors>
+
+                    </EventFrame>
+                </Frames>
+
+                <Scripts>
+                    <OnShow method="OnShow" />
+                </Scripts>
+            </Frame>
+
+            <Frame parentKey="MPlusStatistics" inherits="MIOG_ProgressLayoutTemplate" mixin="ProgressionTabMixin" hidden="true" setAllPoints="true">
+                <Scripts>
+                    <OnShow method="OnShow" />
+                </Scripts>
+            </Frame>
+
+            <Frame parentKey="RaidStatistics" inherits="MIOG_ProgressLayoutTemplate" mixin="ProgressionTabMixin" hidden="true" setAllPoints="true">
+                <Scripts>
+                    <OnShow method="OnShow" />
+                </Scripts>
+            </Frame>
+
+            <Frame parentKey="PVPStatistics" inherits="MIOG_ProgressLayoutTemplate" mixin="ProgressionTabMixin" hidden="true" setAllPoints="true">
+                <Scripts>
+                    <OnShow method="OnShow" />
+                </Scripts>
+            </Frame>
+
+        </Frames>
+    </Frame>
+</Ui>

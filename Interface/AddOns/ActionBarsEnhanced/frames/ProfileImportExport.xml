@@ -1,0 +1,528 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+    <Frame name="ActionBarsEnhancedImportDialog" mixin="ActionBarsEnhancedImportDialogMixin" virtual="true" frameStrata="DIALOG" frameLevel="120" enableMouse="true" hidden="false">
+		<Size x="550" y="350"/>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString parentKey="Title" inherits="GameFontHighlight" text="Import Profile">
+					<Size x="250"/>
+					<Anchors>
+						<Anchor point="TOP" y="-20"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame parentKey="Border" inherits="DialogBorderDarkTemplate"/>
+			<Frame parentKey="ContentArea">
+				<Anchors>
+					<Anchor point="TOPLEFT" x="40" y="-40"/>
+					<Anchor point="BOTTOMRIGHT" x="-40" y="25"/>
+				</Anchors>
+			</Frame>
+            <Frame parentKey="ImportControl" mixin="ActionBarsEnhancedImportDialogMixin">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeKey="$parent.ContentArea"/>
+					<Anchor point="TOPRIGHT" relativeKey="$parent.ContentArea"/>
+				</Anchors>
+				<Size y="180"/>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString parentKey="Label" inherits="GameFontNormal" text="Import Text">
+							<Anchors>
+								<Anchor point="TOPLEFT"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<ScrollFrame parentKey="InputContainer" inherits="InputScrollFrameTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeKey="$parent.Label" y="-10"/>
+							<Anchor point="RIGHT"/>
+							<Anchor point="BOTTOM"/>
+						</Anchors>
+						<KeyValues>
+							<KeyValue key="maxLetters" value="80000" type="number"/>
+							<KeyValue key="instructions" value="HUD_CLASS_TALENTS_IMPORT_INSTRUCTIONS" type="global"/>
+							<KeyValue key="hideCharCount" value="true" type="boolean"/>
+						</KeyValues>
+					</ScrollFrame>
+				</Frames>
+			</Frame>
+			
+			<Frame parentKey="NameControl" mixin="ActionBarsEnhancedImportDialogMixin" virtual="true" hidden="false">
+                <Size x="260" y="50"/>
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeKey="$parent.ImportControl" y="-25"/>
+					<Anchor point="TOPRIGHT" relativePoint="BOTTOMRIGHT" relativeKey="$parent.ContentArea" y="-25"/>
+				</Anchors>
+                <Layers>
+                    <Layer level="ARTWORK">
+                        <FontString parentKey="Label" inherits="GameFontNormal" text="NAME">
+                            <Anchors>
+                                <Anchor point="TOPLEFT"/>
+                            </Anchors>
+                        </FontString>
+                    </Layer>
+                </Layers>
+                <Frames>
+                    <EditBox parentKey="EditBox" inherits="InputBoxTemplate" letters="30" autoFocus="false">
+                        <Size x="260" y="32"/>
+                        <FontString inherits="ChatFontNormal"/>
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeKey="$parent.Label" y="10"/>
+                            <Anchor point="RIGHT"/>
+                            <Anchor point="BOTTOM"/>
+                        </Anchors>
+                    </EditBox>
+                </Frames>
+			</Frame>
+			
+            <Button parentKey="AcceptButton" mixin="ActionBarsEnhancedImportDialogMixin" inherits="UIPanelButtonTemplate" text="ACCEPT">
+                <Size x="200" y="25"/>
+                <Anchors>
+                    <Anchor point="BOTTOMRIGHT" relativePoint="BOTTOM" relativeKey="$parent.ContentArea" x="-5"/>
+                </Anchors>
+                <Scripts>
+                    <OnClick method="AcceptImport"/>
+                </Scripts>
+            </Button>
+            <Button parentKey="CancelButton" inherits="UIPanelButtonTemplate" text="CANCEL">
+                <Size x="200" y="25"/>
+                <Anchors>
+                    <Anchor point="BOTTOMLEFT" relativePoint="BOTTOM" relativeKey="$parent.ContentArea" x="5"/>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        self:GetParent():Hide()
+                    </OnClick>
+                </Scripts>
+            </Button>
+		</Frames>
+    </Frame>
+    <Frame name="ActionBarsEnhancedExportDialog" mixin="ActionBarsEnhancedExportDialogMixin" virtual="true" frameStrata="DIALOG" frameLevel="120" enableMouse="true" hidden="true">
+		<Size x="550" y="350"/>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Layers>
+			<Layer level="ARTWORK">
+				<FontString parentKey="Title" inherits="GameFontHighlight" text="Export Profile">
+					<Size x="250"/>
+					<Anchors>
+						<Anchor point="TOP" y="-20"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame parentKey="Border" inherits="DialogBorderDarkTemplate"/>
+			<Frame parentKey="ContentArea">
+				<Anchors>
+					<Anchor point="TOPLEFT" x="40" y="-40"/>
+					<Anchor point="BOTTOMRIGHT" x="-40" y="25"/>
+				</Anchors>
+			</Frame>
+            <Frame parentKey="ExportControl" mixin="ActionBarsEnhancedExportDialogMixin">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeKey="$parent.ContentArea"/>
+					<Anchor point="TOPRIGHT" relativeKey="$parent.ContentArea"/>
+				</Anchors>
+				<Size y="250"/>
+				<Layers>
+					<Layer level="ARTWORK">
+						<FontString parentKey="Label" inherits="GameFontNormal" text="Export Text">
+							<Anchors>
+								<Anchor point="TOPLEFT"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<ScrollFrame parentKey="ExportContainer" inherits="InputScrollFrameTemplate">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeKey="$parent.Label" y="-10"/>
+							<Anchor point="RIGHT"/>
+							<Anchor point="BOTTOM"/>
+						</Anchors>
+						<KeyValues>
+							<KeyValue key="maxLetters" value="80000" type="number"/>
+							<KeyValue key="hideCharCount" value="true" type="boolean"/>
+						</KeyValues>
+					</ScrollFrame>
+				</Frames>
+			</Frame>
+            <Button parentKey="CancelButton" inherits="UIPanelButtonTemplate" text="CLOSE">
+                <Size x="200" y="25"/>
+                <Anchors>
+                    <Anchor point="BOTTOM" relativePoint="BOTTOM" relativeKey="$parent.ContentArea" x="5"/>
+                </Anchors>
+                <Scripts>
+                    <OnClick>
+                        self:GetParent():Hide()
+                    </OnClick>
+                </Scripts>
+            </Button>
+		</Frames>
+    </Frame>
+    <Frame name="ActionBarsEnhancedProfilesTemplate" mixin="ActionBarsEnhancedProfilesMixin" frameStrata="HIGH" virtual="true" parent="UIParent" enableMouse="true" hidden="false">
+        <Size x="600" y="400"/>
+        <Anchors>
+            <Anchor point="CENTER" relativeKey="$parent" relativePoint="CENTER"/>
+        </Anchors>
+        <Frames>
+            <Frame parentKey="NineSlice" inherits="NineSlicePanelTemplate" setAllPoints="true" hidden="false" frameLevel="100">
+				<Anchors>
+					<Anchor point="TOPLEFT" x="-8" y="8"/>
+					<Anchor point="BOTTOMRIGHT" x="8" y="-8"/>
+				</Anchors>
+				<Layers>
+                    <Layer level="BACKGROUND" textureSubLevel="-5">
+                        <Texture parentKey="Bg" atlas="auctionhouse-background-sell-right" alpha="0.9">
+                            <Anchors>
+                                <Anchor point="TOPLEFT" x="7" y="-7"/>
+                                <Anchor point="BOTTOMRIGHT" x="-7" y="7"/>
+                            </Anchors>
+                        </Texture>
+                    </Layer>
+					<Layer level="BORDER">
+						<Texture parentKey="TopLeftCorner" atlas="UI-Frame-DiamondMetal-CornerTopLeft" useAtlasSize="true">
+                            <Anchors>
+                                <Anchor point="TOPLEFT"/>
+                            </Anchors>
+                        </Texture>
+                        <Texture parentKey="TopRightCorner" atlas="UI-Frame-DiamondMetal-CornerTopRight" useAtlasSize="true">
+                            <Anchors>
+                                <Anchor point="TOPRIGHT"/>
+                            </Anchors>
+                        </Texture>
+                        <Texture parentKey="BottomLeftCorner" atlas="UI-Frame-DiamondMetal-CornerBottomLeft" useAtlasSize="true">
+                            <Anchors>
+                                <Anchor point="BOTTOMLEFT"/>
+                            </Anchors>
+                        </Texture>
+                        <Texture parentKey="BottomRightCorner" atlas="UI-Frame-DiamondMetal-CornerBottomRight" useAtlasSize="true">
+                            <Anchors>
+                                <Anchor point="BOTTOMRIGHT"/>
+                            </Anchors>
+                        </Texture>
+                        <Texture parentKey="TopEdge" atlas="_UI-Frame-DiamondMetal-EdgeTop" useAtlasSize="true" horizTile="true">
+                            <Anchors>
+                                <Anchor point="TOPLEFT" relativeKey="$parent.TopLeftCorner" relativePoint="TOPRIGHT"/>
+                                <Anchor point="TOPRIGHT" relativeKey="$parent.TopRightCorner" relativePoint="TOPLEFT"/>
+                            </Anchors>
+                        </Texture>
+                        <Texture parentKey="BottomEdge" atlas="_UI-Frame-DiamondMetal-EdgeBottom" useAtlasSize="true" horizTile="true">
+                            <Anchors>
+                                <Anchor point="BOTTOMLEFT" relativeKey="$parent.BottomLeftCorner" relativePoint="BOTTOMRIGHT"/>
+                                <Anchor point="BOTTOMRIGHT" relativeKey="$parent.BottomRightCorner" relativePoint="BOTTOMLEFT"/>
+                            </Anchors>
+                        </Texture>
+                        <Texture parentKey="LeftEdge" atlas="!UI-Frame-DiamondMetal-EdgeLeft" useAtlasSize="true" vertTile="true">
+                            <Anchors>
+                                <Anchor point="TOPLEFT" relativeKey="$parent.TopLeftCorner" relativePoint="BOTTOMLEFT"/>
+                                <Anchor point="BOTTOMLEFT" relativeKey="$parent.BottomLeftCorner" relativePoint="TOPLEFT"/>
+                            </Anchors>
+                        </Texture>
+                        <Texture parentKey="RightEdge" atlas="!UI-Frame-DiamondMetal-EdgeRight" useAtlasSize="true" vertTile="true">
+                            <Anchors>
+                                <Anchor point="TOPRIGHT" relativeKey="$parent.TopRightCorner" relativePoint="BOTTOMRIGHT"/>
+                                <Anchor point="BOTTOMRIGHT" relativeKey="$parent.BottomRightCorner" relativePoint="TOPRIGHT"/>
+                            </Anchors>
+                        </Texture>
+					</Layer>
+					<Layer level="ARTWORK" textureSubLevel="1">
+						<Texture parentKey="TopBorderDecoration" atlas="majorfaction-celebration-thewarwithin-bottomglowline" useAtlasSize="true" desaturated="true">
+							<Anchors>
+								<Anchor point="BOTTOM" relativeKey="$parent.TopEdge" relativePoint="BOTTOM" x="0" y="15"/>
+							</Anchors>
+						</Texture>
+						<Texture parentKey="BottomBorderDecoration" atlas="perks-theme-childrensweek-tp-bottomsmall" useAtlasSize="false" desaturated="false">
+                            <Size x="180" y="35"/>
+                            <Color r="0.6" g="0.6" b="0.6"/>
+							<Anchors>
+								<Anchor point="CENTER" relativeKey="$parent.BottomEdge" relativePoint="BOTTOM" x="0" y="4"/>
+							</Anchors>
+						</Texture>
+					</Layer>
+                    <Layer level="OVERLAY">
+                        <FontString parentKey="Title" inherits="GameFontNormal" text="Profiles">
+							<Shadow x="1" y="-1">
+								<Color r="0" g="0" b="0"/>
+							</Shadow>
+							<Anchors>
+								<Anchor point="CENTER" relativeKey="$parent.TopBorderDecoration" relativePoint="CENTER" x="0" y="-3"/>
+							</Anchors>
+							<Color color="ARTIFACT_GOLD_COLOR"/>
+						</FontString>
+                    </Layer>
+				</Layers>
+			</Frame>
+            
+            <Button parentKey="CloseButton" inherits="UIPanelCloseButton" hidden="false" virtual="true">
+                <Anchors>
+					<Anchor point="CENTER" relativeKey="$parent" relativePoint="TOPRIGHT" x="0" y="0"/>
+				</Anchors>
+                <Scripts>
+                    <OnClick>
+                        self:GetParent():Hide()
+                    </OnClick>
+                </Scripts>
+            </Button>
+            <Frame parentKey="Content" virtual="true" frameLevel="110">
+                <Anchors>
+                    <Anchor point="TOPLEFT" x="7" y="-7"/>
+                    <Anchor point="BOTTOMRIGHT" x="-7" y="7"/>
+                </Anchors>
+                <Frames>
+                    <Frame parentKey="Header" virtual="true">
+                        <Size x="550" y="70"/>
+                        <Anchors>
+                            <Anchor point="TOP" relativeKey="$parent" relativePoint="TOP" x="0" y="-10"/>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="OVERLAY">
+                                <FontString parentKey="HeaderText" inherits="Number13Font" text="Profiles" justifyH="LEFT" justifyV="TOP">
+                                    <Size x="550"/>
+                                    <Shadow x="1" y="-1">
+                                        <Color r="0" g="0" b="0"/>
+                                    </Shadow>
+                                    <Anchors>
+                                        <Anchor point="TOP"/>
+                                    </Anchors>
+                                    <Color color="HIGHLIGHT_FONT_COLOR"/>
+                                </FontString>
+                                <FontString parentKey="CurrentProfileTitle" inherits="Number13Font" text="Current profile:" justifyH="LEFT" justifyV="TOP">
+                                    <Shadow x="1" y="-1">
+                                        <Color r="0" g="0" b="0"/>
+                                    </Shadow>
+                                    <Anchors>
+                                        <Anchor point="TOPLEFT" relativeKey="$parent.HeaderText" relativePoint="BOTTOMLEFT" x="0" y="-10"/>
+                                    </Anchors>
+                                    <Color color="HIGHLIGHT_FONT_COLOR"/>
+                                </FontString>
+                                <FontString parentKey="CurrentProfile" inherits="Number13Font" text="Default" justifyH="LEFT" justifyV="TOP">
+                                    <Shadow x="1" y="-1">
+                                        <Color r="0" g="0" b="0"/>
+                                    </Shadow>
+                                    <Anchors>
+                                        <Anchor point="LEFT" relativeKey="$parent.CurrentProfileTitle" relativePoint="RIGHT" x="2" y="0"/>
+                                    </Anchors>
+                                    <Color color="DIM_GREEN_FONT_COLOR"/>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                    </Frame>
+                    <Button parentKey="ResetButton" mixin="ActionBarsEnhancedProfilesMixin" inherits="UIPanelButtonTemplate" text="Reset">
+                        <Size x="100" y="25"/>
+                        <Anchors>
+                            <Anchor point="LEFT" relativeKey="$parent.Header.CurrentProfile" relativePoint="RIGHT" x="10" y="0"/>
+                        </Anchors>
+                        <Scripts>
+                            <OnClick method="ResetProfile"/>
+                        </Scripts>
+                    </Button>
+                    <Frame parentKey="NewProfileFrame" virtual="true">
+                        <Size x="550" y="50"/>
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeKey="$parent.Header" relativePoint="BOTTOMLEFT" x="0" y="-10"/>
+                        </Anchors>
+                        <Frames>
+                            <EditBox parentKey="NewProfileName" letters="24" inherits="InputBoxTemplate" autoFocus="false" virtual="true" hidden="false">
+                                <Size x="196" y="48"/>
+                                <Anchors>
+                                    <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT" x="4" y="-10"/>
+                                </Anchors>
+                                <Layers>
+                                    <Layer level="OVERLAY">
+                                        <FontString parentKey="Label" inherits="GameFontNormalSmall" text="New" justifyH="LEFT" justifyV="TOP">
+                                            <Size x="100"/>
+                                            <Shadow x="1" y="-1">
+                                                <Color r="0" g="0" b="0"/>
+                                            </Shadow>
+                                            <Anchors>
+                                                <Anchor point="BOTTOMLEFT" relativeKey="$parent" relativePoint="TOPLEFT" x="0" y="-10"/>
+                                            </Anchors>
+                                        </FontString>
+                                    </Layer>
+                                </Layers>
+                                <Frames>
+                                    <Button parentKey="AcceptButton" hidden="true">
+                                        <Size x="32" y="32"/>
+                                        <Anchors>
+                                            <Anchor point="RIGHT" x="0" y="0"/>
+                                        </Anchors>
+                                        <NormalTexture atlas="glues-characterSelect-icon-plus"/>
+                                        <PushedTexture atlas="glues-characterSelect-plus-pressed"/>
+                                        <HighlightTexture atlas="glues-characterSelect-icon-plus-hover"/>
+                                        <Scripts>
+                                            <OnClick function="NewProfile_OnAcceptClick"/>
+                                        </Scripts>
+                                    </Button>
+                                </Frames>
+                                <Scripts>
+                                    <OnEditFocusLost function="NewProfile_OnEditFocusLost"/>
+                                    <OnTextChanged function="NewProfile_OnTextChanged"/>
+                                </Scripts>
+                            </EditBox>
+                            <Frame parentKey="ProfileSelect" virtual="true" hidden="false">
+                                <Size x="200" y="48"/>
+                                <Anchors>
+                                    <Anchor point="LEFT" relativeKey="$parent.NewProfileName" relativePoint="RIGHT" x="10" y="0"/>
+                                </Anchors>
+                                <Frames>
+                                    <DropdownButton parentKey="Dropdown" inherits="WowStyle2DropdownTemplate">
+                                        <Size x="200" y="22"/>
+                                        <Anchors>
+                                            <Anchor point="CENTER"/>
+                                        </Anchors>
+                                        <Layers>
+                                            <Layer level="ARTWORK">
+                                                <FontString parentKey="Label" font="GameFontNormalSmall" text="Existing Profile" justifyH="LEFT">
+                                                    <Size x="100"/>
+                                                    <Shadow x="1" y="-1">
+                                                        <Color r="0" g="0" b="0"/>
+                                                    </Shadow>
+                                                    <Anchors>
+                                                        <Anchor point="BOTTOMLEFT" relativeKey="$parent" relativePoint="TOPLEFT" x="0" y="4"/>
+                                                    </Anchors>
+                                                </FontString>
+                                            </Layer>
+                                        </Layers>
+                                    </DropdownButton>
+                                </Frames>
+                            </Frame>
+                        </Frames>
+                    </Frame>
+                    
+                    <Frame parentKey="CopyProfileFrame" virtual="true">
+                        <Size x="550" y="60"/>
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeKey="$parent.NewProfileFrame" relativePoint="BOTTOMLEFT" x="0" y="-10"/>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="OVERLAY">
+                                <FontString parentKey="CopyText" inherits="Number13Font" text="COPY TEXT HERE" justifyH="LEFT" justifyV="TOP">
+                                    <Size x="550"/>
+                                    <Shadow x="1" y="-1">
+                                        <Color r="0" g="0" b="0"/>
+                                    </Shadow>
+                                    <Anchors>
+                                        <Anchor point="TOP"/>
+                                    </Anchors>
+                                    <Color color="HIGHLIGHT_FONT_COLOR"/>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                        <Frames>
+                            <DropdownButton parentKey="Dropdown" inherits="WowStyle2DropdownTemplate">
+                                <Size x="200" y="22"/>
+                                <Anchors>
+                                     <Anchor point="TOPLEFT" relativeKey="$parent.CopyText" relativePoint="BOTTOMLEFT" x="0" y="-20"/>
+                                </Anchors>
+                                <Layers>
+                                    <Layer level="ARTWORK">
+                                        <FontString parentKey="Label" font="GameFontNormalSmall" text="Copy From" justifyH="LEFT">
+                                            <Size x="100"/>
+                                            <Shadow x="1" y="-1">
+                                                <Color r="0" g="0" b="0"/>
+                                            </Shadow>
+                                            <Anchors>
+                                                <Anchor point="BOTTOMLEFT" relativeKey="$parent" relativePoint="TOPLEFT" x="0" y="4"/>
+                                            </Anchors>
+                                        </FontString>
+                                    </Layer>
+                                </Layers>
+                            </DropdownButton>
+                        </Frames>
+                    </Frame>
+
+                    <Frame parentKey="DeleteProfileFrame" virtual="true">
+                        <Size x="550" y="70"/>
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeKey="$parent.CopyProfileFrame" relativePoint="BOTTOMLEFT" x="0" y="-10"/>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="OVERLAY">
+                                <FontString parentKey="DeleteText" inherits="Number13Font" text="DELETE TEXT HERE" justifyH="LEFT" justifyV="TOP">
+                                    <Size x="550"/>
+                                    <Shadow x="1" y="-1">
+                                        <Color r="0" g="0" b="0"/>
+                                    </Shadow>
+                                    <Anchors>
+                                        <Anchor point="TOP"/>
+                                    </Anchors>
+                                    <Color color="HIGHLIGHT_FONT_COLOR"/>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                        <Frames>
+                            <DropdownButton parentKey="Dropdown" inherits="WowStyle2DropdownTemplate">
+                                <Size x="200" y="22"/>
+                                <Anchors>
+                                    <Anchor point="TOPLEFT" relativeKey="$parent.DeleteText" relativePoint="BOTTOMLEFT" x="0" y="-20"/>
+                                </Anchors>
+                                <Layers>
+                                    <Layer level="ARTWORK">
+                                        <FontString parentKey="Label" font="GameFontNormalSmall" text="Delete a Profile" justifyH="LEFT">
+                                            <Size x="100"/>
+                                            <Shadow x="1" y="-1">
+                                                <Color r="0" g="0" b="0"/>
+                                            </Shadow>
+                                            <Anchors>
+                                                <Anchor point="BOTTOMLEFT" relativeKey="$parent.Dropdown" relativePoint="TOPLEFT" x="0" y="4"/>
+                                            </Anchors>
+                                        </FontString>
+                                    </Layer>
+                                </Layers>
+                            </DropdownButton>
+                        </Frames>
+                    </Frame>
+                    <Frame parentKey="ImportExportFrame" virtual="true">
+                        <Size x="550" y="70"/>
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeKey="$parent.DeleteProfileFrame" relativePoint="BOTTOMLEFT" x="0" y="-10"/>
+                        </Anchors>
+                        <Layers>
+                            <Layer level="OVERLAY">
+                                <FontString parentKey="ImportExportText" inherits="Number13Font" text="Import/Export text here" justifyH="LEFT" justifyV="TOP">
+                                    <Size x="550"/>
+                                    <Shadow x="1" y="-1">
+                                        <Color r="0" g="0" b="0"/>
+                                    </Shadow>
+                                    <Anchors>
+                                        <Anchor point="TOP"/>
+                                    </Anchors>
+                                    <Color color="HIGHLIGHT_FONT_COLOR"/>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                        <Frames>
+                            <Button parentKey="ImportButton"  mixin="ActionBarsEnhancedProfilesMixin" inherits="UIPanelButtonTemplate" text="Import Profile">
+                                <Size x="200" y="25"/>
+                                <Anchors>
+                                    <Anchor point="TOPLEFT" relativeKey="$parent.ImportExportText" relativePoint="BOTTOMLEFT" x="0" y="-10"/>
+                                </Anchors>
+                                <Scripts>
+                                    <OnClick method="ImportProfile"/>
+                                </Scripts>
+                            </Button>
+                            <Button parentKey="ExportButton" mixin="ActionBarsEnhancedProfilesMixin" inherits="UIPanelButtonTemplate" text="Export Profile">
+                                <Size x="200" y="25"/>
+                                <Anchors>
+                                    <Anchor point="LEFT" relativeKey="$parent.ImportButton" relativePoint="RIGHT" x="4" y="0"/>
+                                </Anchors>
+                                <Scripts>
+                                    <OnClick method="ExportProfile"/>
+                                </Scripts>
+                            </Button>
+                        </Frames>
+                    </Frame>
+                </Frames>
+            </Frame>
+        </Frames>
+    </Frame>
+</Ui>

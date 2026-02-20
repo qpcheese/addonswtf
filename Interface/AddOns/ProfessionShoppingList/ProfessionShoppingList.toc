@@ -1,0 +1,53 @@
+## Interface: 120001
+## Title: |cff3FC7EBProfession Shopping List|r
+## Author: Slackluster
+## IconTexture: Interface\AddOns\ProfessionShoppingList\assets\icon.png
+## Version: v12.0.1-01
+## X-Curse-Project-ID: 498475
+## X-Wago-ID: Xb6X71Np
+
+## AddonCompartmentFunc: ProfessionShoppingList_Click
+## AddonCompartmentFuncOnEnter: ProfessionShoppingList_Enter
+## AddonCompartmentFuncOnLeave: ProfessionShoppingList_Leave
+
+## SavedVariables: ProfessionShoppingList_Settings, ProfessionShoppingList_Data, ProfessionShoppingList_Library, ProfessionShoppingList_Cache
+## SavedVariablesPerCharacter: ProfessionShoppingList_CharacterData
+
+## Category-enUS: Professions
+## Category-deDE: Berufe
+## Category-esES: Profesiones
+## Category-esMX: Profesiones
+## Category-frFR: Métiers
+## Category-itIT: Professioni
+## Category-koKR: 전문 기술
+## Category-ptBR: Profissões
+## Category-ruRU: Профессии
+## Category-zhCN: 专业
+## Category-zhTW: 專業技能
+
+libs\ChatThrottleLib\ChatThrottleLib.xml
+libs\LibDBIcon-1.0\embeds.xml
+libs\LibDBIcon-1.0\LibDBIcon-1.0\LibDBIcon-1.0.lua
+Core.lua
+Database.lua
+Settings.lua
+FrameTemplates.xml
+modules\AuctionHouse.lua
+modules\CraftingOrders.lua
+modules\Merchant.lua
+modules\ProfessionKnowledge.lua
+modules\ProfessionWindow.lua
+modules\Tooltip.lua
+modules\TrackingWindow.lua
+modules\TrackNewMogs.lua
+locales\enUS.lua
+locales\deDE.lua
+locales\esES.lua
+locales\esMX.lua
+locales\frFR.lua
+locales\itIT.lua
+locales\koKR.lua
+locales\ptBR.lua
+locales\ruRU.lua
+locales\zhCN.lua
+locales\zhTW.lua

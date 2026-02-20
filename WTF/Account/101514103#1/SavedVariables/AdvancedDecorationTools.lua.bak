@@ -1,0 +1,107 @@
+
+ADT_DB = {
+["AutoRotate"] = {
+["SeqIndexByRID"] = {
+},
+["LastRotationByRID"] = {
+},
+["StepByRID"] = {
+},
+},
+["EnableHoverHUD"] = true,
+["EnableDupe"] = true,
+["InterfaceStyle"] = "modern",
+["DebugEnabled"] = false,
+["AutoRotatePresetDegrees"] = 90,
+["QuickbarSize"] = "medium",
+["EnableHoverHighlight"] = true,
+["EnableDyeCopy"] = true,
+["Tags"] = {
+{
+["id"] = "favorite",
+["isDefault"] = true,
+["name"] = "Favorites",
+["color"] = "yellow",
+},
+{
+["id"] = "red",
+["name"] = "Red",
+["color"] = "red",
+},
+{
+["id"] = "orange",
+["name"] = "Orange",
+["color"] = "orange",
+},
+{
+["id"] = "green",
+["name"] = "Green",
+["color"] = "green",
+},
+{
+["id"] = "blue",
+["name"] = "Blue",
+["color"] = "blue",
+},
+{
+["id"] = "purple",
+["name"] = "Purple",
+["color"] = "purple",
+},
+{
+["id"] = "gray",
+["name"] = "Gray",
+["color"] = "gray",
+},
+},
+["AutoRotateSequence"] = "0,90",
+["VisitFriendWaitSec"] = 8,
+["Quickbar"] = {
+},
+["AutoRotateStepDegrees"] = 15,
+["EnableDockAutoOpenInEditor"] = true,
+["EnableResetT"] = true,
+["ExtraClipboard"] = {
+},
+["AutoRotateApplyScope"] = "onlyPaint",
+["EnableQuickbar"] = true,
+["ProtectedDecors"] = {
+},
+["AutoRotateIncrementDegrees"] = 15,
+["EnableResetAll"] = true,
+["AutoRotateMode"] = "preset",
+["Keybinds"] = {
+["Quickbar8"] = "F8",
+["RotateCW90"] = "Q",
+["Cut"] = "CTRL-X",
+["Quickbar6"] = "F6",
+["Copy"] = "CTRL-C",
+["ResetAll"] = "CTRL-T",
+["Quickbar1"] = "F1",
+["Quickbar3"] = "F3",
+["Recall"] = "CTRL-R",
+["Reset"] = "T",
+["RotateCCW90"] = "E",
+["Quickbar7"] = "F7",
+["Quickbar5"] = "F5",
+["Quickbar2"] = "F2",
+["StoreCopy"] = "CTRL-SHIFT-S",
+["Duplicate"] = "CTRL-D",
+["Quickbar4"] = "F4",
+["Paste"] = "CTRL-V",
+["Store"] = "CTRL-S",
+["DyeCopy"] = "SHIFT-C",
+},
+["EnableIndoorOutdoorBypass"] = false,
+["EnableBatchPlace"] = true,
+["LastCategoryKey"] = "Housing",
+["PlacementHistory"] = {
+},
+["EnableAutoRotateOnCtrlPlace"] = false,
+["EnableQERotate"] = true,
+["DecorTags"] = {
+},
+["VisitAutoRemoveFriend"] = true,
+["EnableLock"] = true,
+["DuplicateKey"] = 3,
+}

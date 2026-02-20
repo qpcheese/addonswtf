@@ -1,0 +1,45 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+    <Button name="MIOG_LockoutCheckInstanceTemplate" inherits="BackdropTemplate" virtual="true">
+        <Size y="20" />
+
+        <NormalTexture parentKey="NormalTexture" atlas="pvpqueue-button-casual-up"/>
+        <HighlightTexture parentKey="HighlightTexture" atlas="pvpqueue-button-casual-highlight" alphaMode="ADD"/>
+
+        <Layers>
+            <Layer level="ARTWORK">
+                <Texture parentKey="Icon">
+                    <Size x="16" y="16" />
+
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent" relativePoint="LEFT" x="3" />
+                    </Anchors>
+                </Texture>
+
+                <FontString parentKey="Difficulty" font="GameFontHighlight" justifyH="CENTER" justifyV="MIDDLE" outline="NORMAL" text="DifficultyName">
+                    <Anchors>
+                        <Anchor point="RIGHT" relativeKey="$parent" relativePoint="RIGHT" x="-3" />
+                    </Anchors>
+                </FontString>
+
+                <FontString parentKey="Name" font="GameFontHighlight" justifyH="CENTER" justifyV="MIDDLE" outline="NORMAL" text="InstanceName">
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.Icon" relativePoint="RIGHT" x="3" />
+                        <Anchor point="RIGHT" relativeKey="$parent.Difficulty" relativePoint="LEFT" x="-3" />
+                    </Anchors>
+                </FontString>
+            </Layer>
+
+            <Layer level="OVERLAY">
+                
+                <Texture parentKey="Checkmark" atlas="AlliedRace-UnlockingFrame-Checkmark" hidden="true">
+                    <Size x="16" y="16" />
+
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent" relativePoint="TOPLEFT" y="-2"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+        </Layers>
+    </Button>
+</Ui>

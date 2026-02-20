@@ -1,0 +1,30 @@
+VER 3 0100000000000002 "fd" "134400"
+#showtooltip
+/cqs
+/stopcasting
+/cast Feign Death
+END
+VER 3 0100000000000004 "kick" "134400"
+#showtooltip
+/cqs
+/stopcasting
+/cast counter shot
+END
+VER 3 0100000000000001 "ks" "134400"
+#showtooltip
+/cqs
+/stopcasting
+/cast kill shot
+END
+VER 3 0100000000000005 "reg" "134400"
+#showtooltip
+/cqs
+/stopcasting
+/cast Exhilaration
+END
+VER 3 0100000000000003 "turt" "134400"
+#showtooltip
+/cqs
+/stopcasting
+/cast Aspect of the Turtle
+END

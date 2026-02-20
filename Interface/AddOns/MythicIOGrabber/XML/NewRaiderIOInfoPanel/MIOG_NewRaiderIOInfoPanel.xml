@@ -1,0 +1,214 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+    <Frame name="MIOG_NewRaiderIOInfoPanel" mixin="RaiderIOInformationPanelMixin" virtual="true" hidden="true">
+        <Size y="200" />
+
+        <Frames>
+            <Frame parentKey="MythicPlus" inherits="MIOG_NewRaiderIOInfoPanelDungeonPanelTemplate">
+                <Size x="120" y="160" />
+
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT" />
+                </Anchors>
+            </Frame>
+
+            <Frame parentKey="Raids">
+                <Size y="80" />
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.MythicPlus" relativePoint="TOPRIGHT" x="5" />
+                    <Anchor point="TOPRIGHT" relativeKey="$parent" relativePoint="TOPRIGHT" />
+                </Anchors>
+
+                <Frames>
+                    <Frame parentKey="Raid1" inherits="MIOG_NewRaiderIOInfoPanelTierTemplate" hidden="true">
+                        <Size y="40" />
+
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT"/>
+                            <Anchor point="TOPRIGHT" relativeKey="$parent" relativePoint="TOPRIGHT"/>
+                        </Anchors>
+                    </Frame>
+
+                    <Frame parentKey="Raid2" inherits="MIOG_NewRaiderIOInfoPanelTierTemplate" hidden="true">
+                        <Size y="40" />
+
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeKey="$parent.Raid1" relativePoint="BOTTOMLEFT"/>
+                            <Anchor point="TOPRIGHT" relativeKey="$parent.Raid1" relativePoint="BOTTOMRIGHT"/>
+                        </Anchors>
+                    </Frame>
+                </Frames>
+            </Frame>
+        </Frames>
+
+        <Layers>
+            <Layer level="OVERLAY">
+                <FontString parentKey="PreviousData" font="GameFontHighlight" justifyH="LEFT">
+                    <Size y="20" />
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.Raids" relativePoint="BOTTOMLEFT"/>
+                        <Anchor point="TOPRIGHT" relativeKey="$parent.Raids" relativePoint="BOTTOMRIGHT"/>
+                    </Anchors>
+                </FontString>
+
+                <FontString parentKey="MainData" font="GameFontHighlight" justifyH="LEFT">
+                    <Size y="20" />
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.PreviousData" relativePoint="BOTTOMLEFT" />
+                        <Anchor point="TOPRIGHT" relativeKey="$parent.PreviousData" relativePoint="BOTTOMRIGHT" />
+                    </Anchors>
+                </FontString>
+
+                <FontString parentKey="MPlusKeys" font="GameFontHighlight" justifyH="LEFT">
+                    <Size y="20" />
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.MainData" relativePoint="BOTTOMLEFT" />
+                        <Anchor point="TOPRIGHT" relativeKey="$parent.MainData" relativePoint="BOTTOMRIGHT" />
+                    </Anchors>
+
+                    <Scripts>
+                        <OnEnter>
+                            local parentPanel = self:GetParent()
+
+                            if(parentPanel.mplusData) then
+                                GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+                                GameTooltip:SetText("The amount of keys in a specific keylevel bracket that have been completed:")
+                                GameTooltip:AddLine("2-3: " .. parentPanel.mplusData.keystoneMilestone2)
+                                GameTooltip:AddLine("4-6: " .. parentPanel.mplusData.keystoneMilestone4)
+                                GameTooltip:AddLine("7-9: " .. parentPanel.mplusData.keystoneMilestone7)
+                                GameTooltip:AddLine("10-11: " .. parentPanel.mplusData.keystoneMilestone10)
+                                GameTooltip:AddLine("12-14: " .. parentPanel.mplusData.keystoneMilestone12)
+                                GameTooltip:AddLine("15+: " .. parentPanel.mplusData.keystoneMilestone15)
+                                GameTooltip:Show()
+                            end
+
+                        </OnEnter>
+
+                        <OnLeave>
+                            GameTooltip:Hide()
+                        </OnLeave>
+                    </Scripts>
+                </FontString>
+
+                <FontString parentKey="RaceRolesServer" font="GameFontHighlight" justifyH="LEFT" text="">
+                    <Size y="20" />
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.MPlusKeys" relativePoint="BOTTOMLEFT" />
+                        <Anchor point="TOPRIGHT" relativeKey="$parent.MPlusKeys" relativePoint="BOTTOMRIGHT" />
+                    </Anchors>
+                </FontString>
+
+                <FontString parentKey="Comment" font="GameFontHighlight" justifyH="LEFT" spacing="4">
+                    <Size y="40" />
+                    <Anchors>
+                        <Anchor point="BOTTOMLEFT" relativeKey="$parent" relativePoint="BOTTOMLEFT" x="1"/>
+                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOMRIGHT" x="-1"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+
+            
+            <Layer level="BACKGROUND" textureSubLevel="3">
+                <Texture parentKey="BackgroundOverlay" setAllPoints="true">
+                    <Color r="0" g="0" b="0" a="0.5" />
+                </Texture>
+            </Layer>
+
+            <Layer level="BACKGROUND">
+                <Texture parentKey="Background" setAllPoints="true">
+                    <Color r="0" g="0" b="0" a="0.5" />
+                </Texture>
+
+                <Texture parentKey="BaseInfoDivider" atlas="tab-divider-top">
+                    <Color r="0" g="0" b="0" a="1" />
+                    <Size y="2" />
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT" />
+                        <Anchor point="TOPRIGHT" relativeKey="$parent" relativePoint="TOPRIGHT" />
+                    </Anchors>
+                </Texture>
+
+                <Texture parentKey="BackgroundDivider1" atlas="gm-bgopen-divider-horizontal" useAtlasSize="true">
+                    <Color r="0" g="0" b="0" a="1" />
+                    <Size y="18" />
+                    <Anchors>
+                        <Anchor point="BOTTOMLEFT" relativeKey="$parent" relativePoint="BOTTOMLEFT" />
+                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOMRIGHT" />
+                    </Anchors>
+                </Texture>
+
+                <Texture>
+                    <Color r="0.05" g="0.05" b="0.05" a="0.95" />
+                    <Size y="1" />
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT" y="-20"/>
+                        <Anchor point="TOPRIGHT" relativeKey="$parent" relativePoint="TOPRIGHT" y="-20" />
+                    </Anchors>
+                </Texture>
+
+                <Texture>
+                    <Color r="0.05" g="0.05" b="0.05" a="0.95" />
+                    <Size y="1" />
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT" y="-40"/>
+                        <Anchor point="TOPRIGHT" relativeKey="$parent" relativePoint="TOPRIGHT" y="-40" />
+                    </Anchors>
+                </Texture>
+
+                <Texture>
+                    <Color r="0.05" g="0.05" b="0.05" a="0.95" />
+                    <Size y="1" />
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT" y="-60"/>
+                        <Anchor point="TOPRIGHT" relativeKey="$parent" relativePoint="TOPRIGHT" y="-60" />
+                    </Anchors>
+                </Texture>
+
+                <Texture>
+                    <Color r="0.05" g="0.05" b="0.05" a="0.95" />
+                    <Size y="1" />
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT" y="-80"/>
+                        <Anchor point="TOPRIGHT" relativeKey="$parent" relativePoint="TOPRIGHT" y="-80" />
+                    </Anchors>
+                </Texture>
+
+                <Texture>
+                    <Color r="0.05" g="0.05" b="0.05" a="0.95" />
+                    <Size y="1" />
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT" y="-100"/>
+                        <Anchor point="TOPRIGHT" relativeKey="$parent" relativePoint="TOPRIGHT" y="-100" />
+                    </Anchors>
+                </Texture>
+
+                <Texture>
+                    <Color r="0.05" g="0.05" b="0.05" a="0.95" />
+                    <Size y="1" />
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT" y="-120"/>
+                        <Anchor point="TOPRIGHT" relativeKey="$parent" relativePoint="TOPRIGHT" y="-120" />
+                    </Anchors>
+                </Texture>
+
+                <Texture>
+                    <Color r="0.05" g="0.05" b="0.05" a="0.95" />
+                    <Size y="1" />
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT" y="-140"/>
+                        <Anchor point="TOPRIGHT" relativeKey="$parent" relativePoint="TOPRIGHT" y="-140" />
+                    </Anchors>
+                </Texture>
+
+                <Texture>
+                    <Color r="0.05" g="0.05" b="0.05" a="0.95" />
+                    <Size y="1" />
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT" y="-160"/>
+                        <Anchor point="TOPRIGHT" relativeKey="$parent" relativePoint="TOPRIGHT" y="-160" />
+                    </Anchors>
+                </Texture>
+            </Layer>
+        </Layers>
+    </Frame>
+</Ui>

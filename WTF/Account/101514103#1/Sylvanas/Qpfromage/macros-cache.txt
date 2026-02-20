@@ -1,0 +1,19 @@
+VER 3 0100000000000002 "AI self" "134400"
+#showtooltip
+/cast [@player] Arcane Intellect
+END
+VER 3 0100000000000004 "DB / NOVA" "4555546"
+#showtooltip
+/cast Supernova
+/cast Dragon's Breath
+END
+VER 3 0100000000000001 "mount" "2399288"
+/use surf jelly
+/use Ashes of Al'ar
+/dismount
+END
+VER 3 0100000000000003 "surge" "134400"
+#showtooltip
+/cast arcane surge
+/use Kindness of chi-ji
+END

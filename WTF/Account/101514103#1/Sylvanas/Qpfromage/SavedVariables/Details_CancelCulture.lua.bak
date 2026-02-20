@@ -1,0 +1,3121 @@
+
+CancelCultureLog = {
+[31474] = {
+["Player-1403-0A1B8831"] = {
+["stopsSpells"] = {
+[31935] = {
+["cnt"] = 2,
+["interrupted"] = {
+[460582] = {
+["cnt"] = 2,
+["name"] = "Overload!",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[31935] = {
+["cnt"] = 7,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 2,
+["overlaps"] = 7,
+},
+["Player-3702-0B19325B"] = {
+["stopsSpells"] = {
+[116705] = {
+["cnt"] = 3,
+["interrupted"] = {
+[460582] = {
+["cnt"] = 3,
+["name"] = "Overload!",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["stops"] = 3,
+["overlaps"] = 0,
+},
+["Player-3391-0A42576F"] = {
+["stopsSpells"] = {
+[57994] = {
+["cnt"] = 2,
+["interrupted"] = {
+[460582] = {
+["cnt"] = 2,
+["name"] = "Overload!",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[57994] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 2,
+["overlaps"] = 1,
+},
+["Player-1403-0A8BA525"] = {
+["stopsSpells"] = {
+[97547] = {
+["cnt"] = 1,
+["interrupted"] = {
+[460582] = {
+["cnt"] = 1,
+["name"] = "Overload!",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["stops"] = 1,
+["overlaps"] = 0,
+},
+["Player-1597-0F7AB124"] = {
+["stopsSpells"] = {
+[235450] = {
+["cnt"] = 1,
+["interrupted"] = {
+[460582] = {
+["cnt"] = 1,
+["name"] = "Overload!",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[2139] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 1,
+["overlaps"] = 1,
+},
+["Player-1403-0AF37172"] = {
+["stopsSpells"] = {
+},
+["overlapsSpells"] = {
+[147362] = {
+["cnt"] = 2,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 0,
+["overlaps"] = 2,
+},
+},
+[31444] = {
+["Player-3702-0AF1DA41"] = {
+["stopsSpells"] = {
+},
+["overlapsSpells"] = {
+[31935] = {
+["cnt"] = 11,
+["interrupted"] = {
+},
+},
+},
+["overlaps"] = 11,
+["stops"] = 0,
+},
+["Player-1403-0A1B8831"] = {
+["stopsSpells"] = {
+},
+["overlapsSpells"] = {
+[31935] = {
+["cnt"] = 12,
+["interrupted"] = {
+},
+},
+},
+["overlaps"] = 12,
+["stops"] = 0,
+},
+["Player-3391-0A42576F"] = {
+["stopsSpells"] = {
+},
+["overlapsSpells"] = {
+[57994] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["overlaps"] = 1,
+["stops"] = 0,
+},
+},
+[31491] = {
+["Player-1403-07DE4A4E"] = {
+["stopsSpells"] = {
+[51490] = {
+["cnt"] = 3,
+["interrupted"] = {
+[462771] = {
+["cnt"] = 2,
+["name"] = "Surveying Beam",
+},
+[461796] = {
+["cnt"] = 1,
+["name"] = "Reload",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["stops"] = 3,
+["overlaps"] = 0,
+},
+["Player-3702-0B19325B"] = {
+["stopsSpells"] = {
+[116705] = {
+["cnt"] = 2,
+["interrupted"] = {
+[462771] = {
+["cnt"] = 1,
+["name"] = "Surveying Beam",
+},
+[465871] = {
+["cnt"] = 1,
+["name"] = "Blood Blast",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[116705] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 2,
+["overlaps"] = 1,
+},
+["Player-3391-0CA79866"] = {
+["stopsSpells"] = {
+[96231] = {
+["cnt"] = 2,
+["interrupted"] = {
+[465871] = {
+["cnt"] = 2,
+["name"] = "Blood Blast",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["stops"] = 2,
+["overlaps"] = 0,
+},
+["Player-1597-0F7AB124"] = {
+["stopsSpells"] = {
+[2139] = {
+["cnt"] = 2,
+["interrupted"] = {
+[462771] = {
+["cnt"] = 1,
+["name"] = "Surveying Beam",
+},
+[1214468] = {
+["cnt"] = 1,
+["name"] = "Trickshot",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["stops"] = 2,
+["overlaps"] = 0,
+},
+["Player-3391-0CC75402"] = {
+["stopsSpells"] = {
+[96231] = {
+["cnt"] = 5,
+["interrupted"] = {
+[462771] = {
+["cnt"] = 3,
+["name"] = "Surveying Beam",
+},
+[465871] = {
+["cnt"] = 2,
+["name"] = "Blood Blast",
+},
+},
+},
+[31935] = {
+["cnt"] = 6,
+["interrupted"] = {
+[462771] = {
+["cnt"] = 1,
+["name"] = "Surveying Beam",
+},
+[465871] = {
+["cnt"] = 5,
+["name"] = "Blood Blast",
+},
+},
+},
+[853] = {
+["cnt"] = 1,
+["interrupted"] = {
+[1216039] = {
+["cnt"] = 1,
+["name"] = "R.P.G.G.",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[31935] = {
+["cnt"] = 22,
+["interrupted"] = {
+},
+},
+[96231] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 12,
+["overlaps"] = 23,
+},
+},
+[31461] = {
+["Player-1403-0A1B8831"] = {
+["stopsSpells"] = {
+},
+["overlapsSpells"] = {
+[31935] = {
+["cnt"] = 7,
+["interrupted"] = {
+},
+},
+},
+["overlaps"] = 7,
+["stops"] = 0,
+},
+["Player-3391-0A42576F"] = {
+["stopsSpells"] = {
+},
+["overlapsSpells"] = {
+[57994] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["overlaps"] = 1,
+["stops"] = 0,
+},
+},
+[31463] = {
+["Player-1403-0A1B8831"] = {
+["stopsSpells"] = {
+},
+["overlapsSpells"] = {
+[31935] = {
+["cnt"] = 10,
+["interrupted"] = {
+},
+},
+},
+["overlaps"] = 10,
+["stops"] = 0,
+},
+["Player-3391-0A42576F"] = {
+["stopsSpells"] = {
+},
+["overlapsSpells"] = {
+[57994] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["overlaps"] = 1,
+["stops"] = 0,
+},
+},
+[31464] = {
+["Player-1403-0A1B8831"] = {
+["stopsSpells"] = {
+},
+["overlapsSpells"] = {
+[31935] = {
+["cnt"] = 15,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 0,
+["overlaps"] = 15,
+},
+["Player-3391-0A42576F"] = {
+["stopsSpells"] = {
+},
+["overlapsSpells"] = {
+[57994] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 0,
+["overlaps"] = 1,
+},
+},
+[31449] = {
+["Player-3702-0AF1DA41"] = {
+["stopsSpells"] = {
+[31935] = {
+["cnt"] = 2,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 2,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[31935] = {
+["cnt"] = 10,
+["interrupted"] = {
+},
+},
+},
+["overlaps"] = 10,
+["stops"] = 2,
+},
+["Player-3702-0B19325B"] = {
+["stopsSpells"] = {
+[116705] = {
+["cnt"] = 1,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 1,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[116705] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["overlaps"] = 1,
+["stops"] = 1,
+},
+["Player-1403-0A8BA525"] = {
+["stopsSpells"] = {
+[97547] = {
+["cnt"] = 1,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 1,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["overlaps"] = 0,
+["stops"] = 1,
+},
+["Player-1597-0F7AB124"] = {
+["stopsSpells"] = {
+[2139] = {
+["cnt"] = 2,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 2,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[2139] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["overlaps"] = 1,
+["stops"] = 2,
+},
+["Player-3682-0B8337DD"] = {
+["stopsSpells"] = {
+[116705] = {
+["cnt"] = 1,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 1,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["overlaps"] = 0,
+["stops"] = 1,
+},
+["Player-1403-0A1B8831"] = {
+["stopsSpells"] = {
+[96231] = {
+["cnt"] = 1,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 1,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[31935] = {
+["cnt"] = 8,
+["interrupted"] = {
+},
+},
+[96231] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["overlaps"] = 9,
+["stops"] = 1,
+},
+["Player-3702-0AE3C98F"] = {
+["stopsSpells"] = {
+[2139] = {
+["cnt"] = 2,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 2,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["overlaps"] = 0,
+["stops"] = 2,
+},
+["Player-3391-0A42576F"] = {
+["stopsSpells"] = {
+[57994] = {
+["cnt"] = 3,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 3,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[57994] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["overlaps"] = 1,
+["stops"] = 3,
+},
+["Player-3391-0CE97902"] = {
+["stopsSpells"] = {
+[8122] = {
+["cnt"] = 1,
+["interrupted"] = {
+[466748] = {
+["cnt"] = 1,
+["name"] = "Infected Bite",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["overlaps"] = 0,
+["stops"] = 1,
+},
+["Player-1403-0538752C"] = {
+["stopsSpells"] = {
+[147362] = {
+["cnt"] = 1,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 1,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[147362] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["overlaps"] = 1,
+["stops"] = 1,
+},
+["Player-1403-0AF37172"] = {
+["stopsSpells"] = {
+[147362] = {
+["cnt"] = 3,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 3,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["overlaps"] = 0,
+["stops"] = 3,
+},
+},
+[31506] = {
+["Player-1597-0F30BB1D"] = {
+["stopsSpells"] = {
+[116705] = {
+["cnt"] = 1,
+["interrupted"] = {
+[472378] = {
+["cnt"] = 1,
+["name"] = "Repairing",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["overlaps"] = 0,
+["stops"] = 1,
+},
+["Player-1597-0D0994D8"] = {
+["stopsSpells"] = {
+},
+["overlapsSpells"] = {
+[31935] = {
+["cnt"] = 2,
+["interrupted"] = {
+},
+},
+},
+["overlaps"] = 2,
+["stops"] = 0,
+},
+},
+[31481] = {
+["Player-1597-0F7AB124"] = {
+["stopsSpells"] = {
+},
+["overlapsSpells"] = {
+[2139] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 0,
+["overlaps"] = 1,
+},
+["Player-1403-07DE4A4E"] = {
+["stopsSpells"] = {
+[57994] = {
+["cnt"] = 2,
+["interrupted"] = {
+[465813] = {
+["cnt"] = 2,
+["name"] = "Lethargic Venom",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["stops"] = 2,
+["overlaps"] = 0,
+},
+},
+[31505] = {
+["Player-1316-0C266755"] = {
+["stopsSpells"] = {
+},
+["overlapsSpells"] = {
+[31935] = {
+["cnt"] = 2,
+["interrupted"] = {
+},
+},
+},
+["overlaps"] = 2,
+["stops"] = 0,
+},
+["Player-1597-0D0994D8"] = {
+["stopsSpells"] = {
+},
+["overlapsSpells"] = {
+[31935] = {
+["cnt"] = 3,
+["interrupted"] = {
+},
+},
+},
+["overlaps"] = 3,
+["stops"] = 0,
+},
+},
+[31482] = {
+["Player-1597-0FA26F9B"] = {
+["stopsSpells"] = {
+},
+["overlapsSpells"] = {
+[2139] = {
+["cnt"] = 5,
+["interrupted"] = {
+},
+},
+},
+["overlaps"] = 5,
+["stops"] = 0,
+},
+["Player-3702-0B19325B"] = {
+["stopsSpells"] = {
+[116844] = {
+["cnt"] = 2,
+["interrupted"] = {
+[468631] = {
+["cnt"] = 1,
+["name"] = "Harpoon",
+},
+[465682] = {
+["cnt"] = 1,
+["name"] = "Surprise Inspection",
+},
+},
+},
+[119381] = {
+["cnt"] = 9,
+["interrupted"] = {
+[465682] = {
+["cnt"] = 3,
+["name"] = "Surprise Inspection",
+},
+[1216039] = {
+["cnt"] = 1,
+["name"] = "R.P.G.G.",
+},
+[464655] = {
+["cnt"] = 3,
+["name"] = "Snipe",
+},
+[465595] = {
+["cnt"] = 2,
+["name"] = "Lightning Bolt",
+},
+},
+},
+[116705] = {
+["cnt"] = 11,
+["interrupted"] = {
+[471733] = {
+["cnt"] = 1,
+["name"] = "Restorative Algae",
+},
+[1214468] = {
+["cnt"] = 1,
+["name"] = "Trickshot",
+},
+[465871] = {
+["cnt"] = 1,
+["name"] = "Blood Blast",
+},
+[468631] = {
+["cnt"] = 2,
+["name"] = "Harpoon",
+},
+[465595] = {
+["cnt"] = 3,
+["name"] = "Lightning Bolt",
+},
+[463058] = {
+["cnt"] = 1,
+["name"] = "Bloodthirsty Cackle",
+},
+[462771] = {
+["cnt"] = 1,
+["name"] = "Surveying Beam",
+},
+[1214780] = {
+["cnt"] = 1,
+["name"] = "Maximum Distortion",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[116705] = {
+["cnt"] = 3,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 22,
+["overlaps"] = 3,
+},
+["Player-1597-0F30BB1D"] = {
+["stopsSpells"] = {
+[116705] = {
+["cnt"] = 1,
+["interrupted"] = {
+[472378] = {
+["cnt"] = 1,
+["name"] = "Repairing",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["overlaps"] = 0,
+["stops"] = 1,
+},
+["Player-3391-0CA79866"] = {
+["stopsSpells"] = {
+[96231] = {
+["cnt"] = 6,
+["interrupted"] = {
+[471733] = {
+["cnt"] = 1,
+["name"] = "Restorative Algae",
+},
+[465871] = {
+["cnt"] = 2,
+["name"] = "Blood Blast",
+},
+[1214780] = {
+["cnt"] = 1,
+["name"] = "Maximum Distortion",
+},
+[465595] = {
+["cnt"] = 1,
+["name"] = "Lightning Bolt",
+},
+[1214468] = {
+["cnt"] = 1,
+["name"] = "Trickshot",
+},
+},
+},
+[105421] = {
+["cnt"] = 2,
+["interrupted"] = {
+[471733] = {
+["cnt"] = 1,
+["name"] = "Restorative Algae",
+},
+[468631] = {
+["cnt"] = 1,
+["name"] = "Harpoon",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[96231] = {
+["cnt"] = 5,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 8,
+["overlaps"] = 5,
+},
+["Player-1597-0F7AB124"] = {
+["stopsSpells"] = {
+[157981] = {
+["cnt"] = 3,
+["interrupted"] = {
+[464655] = {
+["cnt"] = 2,
+["name"] = "Snipe",
+},
+[465682] = {
+["cnt"] = 1,
+["name"] = "Surprise Inspection",
+},
+},
+},
+[2139] = {
+["cnt"] = 6,
+["interrupted"] = {
+[468631] = {
+["cnt"] = 1,
+["name"] = "Harpoon",
+},
+[465595] = {
+["cnt"] = 1,
+["name"] = "Lightning Bolt",
+},
+[462771] = {
+["cnt"] = 1,
+["name"] = "Surveying Beam",
+},
+[1214468] = {
+["cnt"] = 2,
+["name"] = "Trickshot",
+},
+[1214780] = {
+["cnt"] = 1,
+["name"] = "Maximum Distortion",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[2139] = {
+["cnt"] = 4,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 9,
+["overlaps"] = 4,
+},
+["Player-1403-07DE4A4E"] = {
+["stopsSpells"] = {
+[57994] = {
+["cnt"] = 3,
+["interrupted"] = {
+[1214468] = {
+["cnt"] = 1,
+["name"] = "Trickshot",
+},
+[462771] = {
+["cnt"] = 1,
+["name"] = "Surveying Beam",
+},
+[465595] = {
+["cnt"] = 1,
+["name"] = "Lightning Bolt",
+},
+},
+},
+[51490] = {
+["cnt"] = 13,
+["interrupted"] = {
+[471733] = {
+["cnt"] = 5,
+["name"] = "Restorative Algae",
+},
+[465682] = {
+["cnt"] = 1,
+["name"] = "Surprise Inspection",
+},
+[468631] = {
+["cnt"] = 1,
+["name"] = "Harpoon",
+},
+[461796] = {
+["cnt"] = 1,
+["name"] = "Reload",
+},
+[462771] = {
+["cnt"] = 2,
+["name"] = "Surveying Beam",
+},
+[468726] = {
+["cnt"] = 3,
+["name"] = "Plant Seaforium Charge",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[57994] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 16,
+["overlaps"] = 1,
+},
+["Player-1316-0C266755"] = {
+["stopsSpells"] = {
+},
+["overlapsSpells"] = {
+[31935] = {
+["cnt"] = 3,
+["interrupted"] = {
+},
+},
+},
+["overlaps"] = 3,
+["stops"] = 0,
+},
+["Player-1597-0D0994D8"] = {
+["stopsSpells"] = {
+},
+["overlapsSpells"] = {
+[31935] = {
+["cnt"] = 5,
+["interrupted"] = {
+},
+},
+},
+["overlaps"] = 5,
+["stops"] = 0,
+},
+["Player-3391-0CC75402"] = {
+["stopsSpells"] = {
+[96231] = {
+["cnt"] = 12,
+["interrupted"] = {
+[471733] = {
+["cnt"] = 1,
+["name"] = "Restorative Algae",
+},
+[465871] = {
+["cnt"] = 2,
+["name"] = "Blood Blast",
+},
+[465595] = {
+["cnt"] = 3,
+["name"] = "Lightning Bolt",
+},
+[462771] = {
+["cnt"] = 5,
+["name"] = "Surveying Beam",
+},
+[463058] = {
+["cnt"] = 1,
+["name"] = "Bloodthirsty Cackle",
+},
+},
+},
+[105421] = {
+["cnt"] = 6,
+["interrupted"] = {
+[471733] = {
+["cnt"] = 2,
+["name"] = "Restorative Algae",
+},
+[468726] = {
+["cnt"] = 2,
+["name"] = "Plant Seaforium Charge",
+},
+[462771] = {
+["cnt"] = 1,
+["name"] = "Surveying Beam",
+},
+[468631] = {
+["cnt"] = 1,
+["name"] = "Harpoon",
+},
+},
+},
+[31935] = {
+["cnt"] = 14,
+["interrupted"] = {
+[471733] = {
+["cnt"] = 2,
+["name"] = "Restorative Algae",
+},
+[465871] = {
+["cnt"] = 5,
+["name"] = "Blood Blast",
+},
+[1214780] = {
+["cnt"] = 1,
+["name"] = "Maximum Distortion",
+},
+[465595] = {
+["cnt"] = 3,
+["name"] = "Lightning Bolt",
+},
+[1214468] = {
+["cnt"] = 2,
+["name"] = "Trickshot",
+},
+[462771] = {
+["cnt"] = 1,
+["name"] = "Surveying Beam",
+},
+},
+},
+[853] = {
+["cnt"] = 1,
+["interrupted"] = {
+[1216039] = {
+["cnt"] = 1,
+["name"] = "R.P.G.G.",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[31935] = {
+["cnt"] = 90,
+["interrupted"] = {
+},
+},
+[96231] = {
+["cnt"] = 8,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 33,
+["overlaps"] = 98,
+},
+},
+[31492] = {
+["Player-3391-0CC75402"] = {
+["stopsSpells"] = {
+},
+["overlapsSpells"] = {
+[31935] = {
+["cnt"] = 6,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 0,
+["overlaps"] = 6,
+},
+},
+[31452] = {
+["Player-1403-0538752C"] = {
+["stopsSpells"] = {
+[147362] = {
+["cnt"] = 1,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 1,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["stops"] = 1,
+["overlaps"] = 0,
+},
+["Player-3702-0B19325B"] = {
+["stopsSpells"] = {
+[116705] = {
+["cnt"] = 1,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 1,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["stops"] = 1,
+["overlaps"] = 0,
+},
+["Player-1305-04DDB4D7"] = {
+["stopsSpells"] = {
+[6552] = {
+["cnt"] = 2,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 2,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["stops"] = 2,
+["overlaps"] = 0,
+},
+["Player-1403-0A8BA525"] = {
+["stopsSpells"] = {
+[97547] = {
+["cnt"] = 1,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 1,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["stops"] = 1,
+["overlaps"] = 0,
+},
+["Player-1597-0F7AB124"] = {
+["stopsSpells"] = {
+[2139] = {
+["cnt"] = 4,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 4,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["stops"] = 4,
+["overlaps"] = 0,
+},
+["Player-1403-0A1B8831"] = {
+["stopsSpells"] = {
+[31935] = {
+["cnt"] = 2,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 2,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[31935] = {
+["cnt"] = 10,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 2,
+["overlaps"] = 10,
+},
+["Player-1403-0AF37172"] = {
+["stopsSpells"] = {
+[147362] = {
+["cnt"] = 1,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 1,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["stops"] = 1,
+["overlaps"] = 0,
+},
+["Player-3391-0A42576F"] = {
+["stopsSpells"] = {
+[57994] = {
+["cnt"] = 3,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 3,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[57994] = {
+["cnt"] = 2,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 3,
+["overlaps"] = 2,
+},
+["Player-3702-0AE3C98F"] = {
+["stopsSpells"] = {
+[2139] = {
+["cnt"] = 1,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 1,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["stops"] = 1,
+["overlaps"] = 0,
+},
+["Player-3702-0AF1DA41"] = {
+["stopsSpells"] = {
+[31935] = {
+["cnt"] = 2,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 2,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[31935] = {
+["cnt"] = 11,
+["interrupted"] = {
+},
+},
+[96231] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 2,
+["overlaps"] = 12,
+},
+["Player-1408-0A8FD4E4"] = {
+["stopsSpells"] = {
+},
+["overlapsSpells"] = {
+[19647] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 0,
+["overlaps"] = 1,
+},
+},
+[31455] = {
+["Player-3702-0AF1DA41"] = {
+["stopsSpells"] = {
+[31935] = {
+["cnt"] = 3,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 3,
+["name"] = "Scrap Rockets",
+},
+},
+},
+[96231] = {
+["cnt"] = 1,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 1,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[31935] = {
+["cnt"] = 20,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 4,
+["overlaps"] = 20,
+},
+["Player-3702-0B19325B"] = {
+["stopsSpells"] = {
+[116705] = {
+["cnt"] = 2,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 2,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[116705] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 2,
+["overlaps"] = 1,
+},
+["Player-1305-04DDB4D7"] = {
+["stopsSpells"] = {
+[6552] = {
+["cnt"] = 3,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 3,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[6552] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 3,
+["overlaps"] = 1,
+},
+["Player-1597-0F7AB124"] = {
+["stopsSpells"] = {
+[2139] = {
+["cnt"] = 6,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 6,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[2139] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 6,
+["overlaps"] = 1,
+},
+["Player-1403-07DE4A4E"] = {
+["stopsSpells"] = {
+},
+["overlapsSpells"] = {
+[57994] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 0,
+["overlaps"] = 1,
+},
+["Player-1403-0A1B8831"] = {
+["stopsSpells"] = {
+[31935] = {
+["cnt"] = 2,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 2,
+["name"] = "Scrap Rockets",
+},
+},
+},
+[96231] = {
+["cnt"] = 1,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 1,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[31935] = {
+["cnt"] = 21,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 3,
+["overlaps"] = 21,
+},
+["Player-1403-0AF37172"] = {
+["stopsSpells"] = {
+[147362] = {
+["cnt"] = 2,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 2,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["stops"] = 2,
+["overlaps"] = 0,
+},
+["Player-3391-0A42576F"] = {
+["stopsSpells"] = {
+[57994] = {
+["cnt"] = 5,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 5,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[57994] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 5,
+["overlaps"] = 1,
+},
+["Player-3702-0AE3C98F"] = {
+["stopsSpells"] = {
+[2139] = {
+["cnt"] = 1,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 1,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["stops"] = 1,
+["overlaps"] = 0,
+},
+["Player-1403-0538752C"] = {
+["stopsSpells"] = {
+[147362] = {
+["cnt"] = 1,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 1,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["stops"] = 1,
+["overlaps"] = 0,
+},
+["Player-1408-0A8FD4E4"] = {
+["stopsSpells"] = {
+},
+["overlapsSpells"] = {
+[19647] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 0,
+["overlaps"] = 1,
+},
+},
+[31453] = {
+["Player-3702-0AF1DA41"] = {
+["stopsSpells"] = {
+[31935] = {
+["cnt"] = 2,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 2,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[31935] = {
+["cnt"] = 10,
+["interrupted"] = {
+},
+},
+[96231] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 2,
+["overlaps"] = 11,
+},
+["Player-3702-0AE3C98F"] = {
+["stopsSpells"] = {
+[2139] = {
+["cnt"] = 3,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 3,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["stops"] = 3,
+["overlaps"] = 0,
+},
+["Player-1305-04DDB4D7"] = {
+["stopsSpells"] = {
+},
+["overlapsSpells"] = {
+[6552] = {
+["cnt"] = 2,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 0,
+["overlaps"] = 2,
+},
+["Player-1597-0F7AB124"] = {
+["stopsSpells"] = {
+[2139] = {
+["cnt"] = 2,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 2,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[2139] = {
+["cnt"] = 2,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 2,
+["overlaps"] = 2,
+},
+["Player-1403-0A1B8831"] = {
+["stopsSpells"] = {
+[31935] = {
+["cnt"] = 3,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 3,
+["name"] = "Scrap Rockets",
+},
+},
+},
+[96231] = {
+["cnt"] = 1,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 1,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[31935] = {
+["cnt"] = 8,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 4,
+["overlaps"] = 8,
+},
+["Player-3391-0A42576F"] = {
+["stopsSpells"] = {
+[57994] = {
+["cnt"] = 6,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 6,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[57994] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 6,
+["overlaps"] = 1,
+},
+["Player-1403-0538752C"] = {
+["stopsSpells"] = {
+[147362] = {
+["cnt"] = 1,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 1,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["stops"] = 1,
+["overlaps"] = 0,
+},
+["Player-3702-0B19325B"] = {
+["stopsSpells"] = {
+[116705] = {
+["cnt"] = 1,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 1,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["stops"] = 1,
+["overlaps"] = 0,
+},
+["Player-1403-0AF37172"] = {
+["stopsSpells"] = {
+[147362] = {
+["cnt"] = 3,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 3,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[147362] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 3,
+["overlaps"] = 1,
+},
+},
+[31500] = {
+["Player-3391-0CC75402"] = {
+["stopsSpells"] = {
+[31935] = {
+["cnt"] = 3,
+["interrupted"] = {
+[465595] = {
+["cnt"] = 3,
+["name"] = "Lightning Bolt",
+},
+},
+},
+[96231] = {
+["cnt"] = 3,
+["interrupted"] = {
+[465595] = {
+["cnt"] = 3,
+["name"] = "Lightning Bolt",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[31935] = {
+["cnt"] = 14,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 6,
+["overlaps"] = 14,
+},
+["Player-3702-0B19325B"] = {
+["stopsSpells"] = {
+[116844] = {
+["cnt"] = 1,
+["interrupted"] = {
+[465682] = {
+["cnt"] = 1,
+["name"] = "Surprise Inspection",
+},
+},
+},
+[119381] = {
+["cnt"] = 3,
+["interrupted"] = {
+[465595] = {
+["cnt"] = 2,
+["name"] = "Lightning Bolt",
+},
+[465682] = {
+["cnt"] = 1,
+["name"] = "Surprise Inspection",
+},
+},
+},
+[116705] = {
+["cnt"] = 3,
+["interrupted"] = {
+[465595] = {
+["cnt"] = 3,
+["name"] = "Lightning Bolt",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["stops"] = 7,
+["overlaps"] = 0,
+},
+["Player-3391-0CA79866"] = {
+["stopsSpells"] = {
+[96231] = {
+["cnt"] = 1,
+["interrupted"] = {
+[465595] = {
+["cnt"] = 1,
+["name"] = "Lightning Bolt",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["stops"] = 1,
+["overlaps"] = 0,
+},
+["Player-1597-0F7AB124"] = {
+["stopsSpells"] = {
+[157981] = {
+["cnt"] = 1,
+["interrupted"] = {
+[465682] = {
+["cnt"] = 1,
+["name"] = "Surprise Inspection",
+},
+},
+},
+[2139] = {
+["cnt"] = 1,
+["interrupted"] = {
+[465595] = {
+["cnt"] = 1,
+["name"] = "Lightning Bolt",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[2139] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 2,
+["overlaps"] = 1,
+},
+["Player-1403-07DE4A4E"] = {
+["stopsSpells"] = {
+[51490] = {
+["cnt"] = 1,
+["interrupted"] = {
+[465682] = {
+["cnt"] = 1,
+["name"] = "Surprise Inspection",
+},
+},
+},
+[57994] = {
+["cnt"] = 1,
+["interrupted"] = {
+[465595] = {
+["cnt"] = 1,
+["name"] = "Lightning Bolt",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[57994] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 2,
+["overlaps"] = 1,
+},
+},
+[31454] = {
+["Player-3702-0AF1DA41"] = {
+["stopsSpells"] = {
+[31935] = {
+["cnt"] = 2,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 2,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[31935] = {
+["cnt"] = 13,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 2,
+["overlaps"] = 13,
+},
+["Player-3702-0B19325B"] = {
+["stopsSpells"] = {
+},
+["overlapsSpells"] = {
+[116705] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 0,
+["overlaps"] = 1,
+},
+["Player-1305-04DDB4D7"] = {
+["stopsSpells"] = {
+[6552] = {
+["cnt"] = 1,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 1,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[6552] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 1,
+["overlaps"] = 1,
+},
+["Player-1403-0A8BA525"] = {
+["stopsSpells"] = {
+[97547] = {
+["cnt"] = 1,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 1,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["stops"] = 1,
+["overlaps"] = 0,
+},
+["Player-1597-0F7AB124"] = {
+["stopsSpells"] = {
+[2139] = {
+["cnt"] = 4,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 4,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["stops"] = 4,
+["overlaps"] = 0,
+},
+["Player-1403-0A1B8831"] = {
+["stopsSpells"] = {
+[31935] = {
+["cnt"] = 3,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 3,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[31935] = {
+["cnt"] = 12,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 3,
+["overlaps"] = 12,
+},
+["Player-3391-0A42576F"] = {
+["stopsSpells"] = {
+[57994] = {
+["cnt"] = 4,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 4,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[57994] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 4,
+["overlaps"] = 1,
+},
+["Player-3702-0AE3C98F"] = {
+["stopsSpells"] = {
+[2139] = {
+["cnt"] = 1,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 1,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[2139] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 1,
+["overlaps"] = 1,
+},
+["Player-1403-0538752C"] = {
+["stopsSpells"] = {
+},
+["overlapsSpells"] = {
+[147362] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 0,
+["overlaps"] = 1,
+},
+["Player-1403-0AF37172"] = {
+["stopsSpells"] = {
+[147362] = {
+["cnt"] = 1,
+["interrupted"] = {
+[1219384] = {
+["cnt"] = 1,
+["name"] = "Scrap Rockets",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["stops"] = 1,
+["overlaps"] = 0,
+},
+},
+[31501] = {
+["Player-3391-0CC75402"] = {
+["stopsSpells"] = {
+},
+["overlapsSpells"] = {
+[31935] = {
+["cnt"] = 6,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 0,
+["overlaps"] = 6,
+},
+},
+[31486] = {
+["Player-3391-0CC75402"] = {
+["stopsSpells"] = {
+[96231] = {
+["cnt"] = 3,
+["interrupted"] = {
+[463058] = {
+["cnt"] = 1,
+["name"] = "Bloodthirsty Cackle",
+},
+[462771] = {
+["cnt"] = 2,
+["name"] = "Surveying Beam",
+},
+},
+},
+[31935] = {
+["cnt"] = 2,
+["interrupted"] = {
+[1214468] = {
+["cnt"] = 2,
+["name"] = "Trickshot",
+},
+},
+},
+[105421] = {
+["cnt"] = 1,
+["interrupted"] = {
+[462771] = {
+["cnt"] = 1,
+["name"] = "Surveying Beam",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[96231] = {
+["cnt"] = 4,
+["interrupted"] = {
+},
+},
+[31935] = {
+["cnt"] = 24,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 6,
+["overlaps"] = 28,
+},
+["Player-3702-0B19325B"] = {
+["stopsSpells"] = {
+[116705] = {
+["cnt"] = 2,
+["interrupted"] = {
+[463058] = {
+["cnt"] = 1,
+["name"] = "Bloodthirsty Cackle",
+},
+[1214468] = {
+["cnt"] = 1,
+["name"] = "Trickshot",
+},
+},
+},
+[119381] = {
+["cnt"] = 6,
+["interrupted"] = {
+[465682] = {
+["cnt"] = 2,
+["name"] = "Surprise Inspection",
+},
+[464655] = {
+["cnt"] = 3,
+["name"] = "Snipe",
+},
+[1216039] = {
+["cnt"] = 1,
+["name"] = "R.P.G.G.",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[116705] = {
+["cnt"] = 2,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 8,
+["overlaps"] = 2,
+},
+["Player-3391-0CA79866"] = {
+["stopsSpells"] = {
+[96231] = {
+["cnt"] = 1,
+["interrupted"] = {
+[1214468] = {
+["cnt"] = 1,
+["name"] = "Trickshot",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[96231] = {
+["cnt"] = 3,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 1,
+["overlaps"] = 3,
+},
+["Player-1597-0F7AB124"] = {
+["stopsSpells"] = {
+[2139] = {
+["cnt"] = 1,
+["interrupted"] = {
+[1214468] = {
+["cnt"] = 1,
+["name"] = "Trickshot",
+},
+},
+},
+[157981] = {
+["cnt"] = 2,
+["interrupted"] = {
+[464655] = {
+["cnt"] = 2,
+["name"] = "Snipe",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[2139] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 3,
+["overlaps"] = 1,
+},
+["Player-1403-07DE4A4E"] = {
+["stopsSpells"] = {
+[57994] = {
+["cnt"] = 2,
+["interrupted"] = {
+[462771] = {
+["cnt"] = 1,
+["name"] = "Surveying Beam",
+},
+[1214468] = {
+["cnt"] = 1,
+["name"] = "Trickshot",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["stops"] = 2,
+["overlaps"] = 0,
+},
+},
+[31495] = {
+["Player-3391-0CC75402"] = {
+["stopsSpells"] = {
+},
+["overlapsSpells"] = {
+[31935] = {
+["cnt"] = 4,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 0,
+["overlaps"] = 4,
+},
+},
+[31487] = {
+["Player-3391-0CA79866"] = {
+["stopsSpells"] = {
+[96231] = {
+["cnt"] = 1,
+["interrupted"] = {
+[1214780] = {
+["cnt"] = 1,
+["name"] = "Maximum Distortion",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["stops"] = 1,
+["overlaps"] = 0,
+},
+["Player-3391-0CC75402"] = {
+["stopsSpells"] = {
+[31935] = {
+["cnt"] = 1,
+["interrupted"] = {
+[1214780] = {
+["cnt"] = 1,
+["name"] = "Maximum Distortion",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[31935] = {
+["cnt"] = 9,
+["interrupted"] = {
+},
+},
+[96231] = {
+["cnt"] = 2,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 1,
+["overlaps"] = 11,
+},
+["Player-3702-0B19325B"] = {
+["stopsSpells"] = {
+[116705] = {
+["cnt"] = 1,
+["interrupted"] = {
+[1214780] = {
+["cnt"] = 1,
+["name"] = "Maximum Distortion",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["stops"] = 1,
+["overlaps"] = 0,
+},
+["Player-1597-0F7AB124"] = {
+["stopsSpells"] = {
+[2139] = {
+["cnt"] = 1,
+["interrupted"] = {
+[1214780] = {
+["cnt"] = 1,
+["name"] = "Maximum Distortion",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[2139] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 1,
+["overlaps"] = 1,
+},
+},
+[31503] = {
+["Player-3391-0CC75402"] = {
+["stopsSpells"] = {
+[96231] = {
+["cnt"] = 12,
+["interrupted"] = {
+[471733] = {
+["cnt"] = 1,
+["name"] = "Restorative Algae",
+},
+[465871] = {
+["cnt"] = 2,
+["name"] = "Blood Blast",
+},
+[465595] = {
+["cnt"] = 3,
+["name"] = "Lightning Bolt",
+},
+[462771] = {
+["cnt"] = 5,
+["name"] = "Surveying Beam",
+},
+[463058] = {
+["cnt"] = 1,
+["name"] = "Bloodthirsty Cackle",
+},
+},
+},
+[31935] = {
+["cnt"] = 14,
+["interrupted"] = {
+[471733] = {
+["cnt"] = 2,
+["name"] = "Restorative Algae",
+},
+[465871] = {
+["cnt"] = 5,
+["name"] = "Blood Blast",
+},
+[1214780] = {
+["cnt"] = 1,
+["name"] = "Maximum Distortion",
+},
+[465595] = {
+["cnt"] = 3,
+["name"] = "Lightning Bolt",
+},
+[462771] = {
+["cnt"] = 1,
+["name"] = "Surveying Beam",
+},
+[1214468] = {
+["cnt"] = 2,
+["name"] = "Trickshot",
+},
+},
+},
+[105421] = {
+["cnt"] = 6,
+["interrupted"] = {
+[471733] = {
+["cnt"] = 2,
+["name"] = "Restorative Algae",
+},
+[468631] = {
+["cnt"] = 1,
+["name"] = "Harpoon",
+},
+[462771] = {
+["cnt"] = 1,
+["name"] = "Surveying Beam",
+},
+[468726] = {
+["cnt"] = 2,
+["name"] = "Plant Seaforium Charge",
+},
+},
+},
+[853] = {
+["cnt"] = 1,
+["interrupted"] = {
+[1216039] = {
+["cnt"] = 1,
+["name"] = "R.P.G.G.",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[31935] = {
+["cnt"] = 90,
+["interrupted"] = {
+},
+},
+[96231] = {
+["cnt"] = 8,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 33,
+["overlaps"] = 98,
+},
+["Player-3702-0B19325B"] = {
+["stopsSpells"] = {
+[116844] = {
+["cnt"] = 2,
+["interrupted"] = {
+[465682] = {
+["cnt"] = 1,
+["name"] = "Surprise Inspection",
+},
+[468631] = {
+["cnt"] = 1,
+["name"] = "Harpoon",
+},
+},
+},
+[119381] = {
+["cnt"] = 9,
+["interrupted"] = {
+[465682] = {
+["cnt"] = 3,
+["name"] = "Surprise Inspection",
+},
+[465595] = {
+["cnt"] = 2,
+["name"] = "Lightning Bolt",
+},
+[1216039] = {
+["cnt"] = 1,
+["name"] = "R.P.G.G.",
+},
+[464655] = {
+["cnt"] = 3,
+["name"] = "Snipe",
+},
+},
+},
+[116705] = {
+["cnt"] = 11,
+["interrupted"] = {
+[471733] = {
+["cnt"] = 1,
+["name"] = "Restorative Algae",
+},
+[1214780] = {
+["cnt"] = 1,
+["name"] = "Maximum Distortion",
+},
+[465871] = {
+["cnt"] = 1,
+["name"] = "Blood Blast",
+},
+[468631] = {
+["cnt"] = 2,
+["name"] = "Harpoon",
+},
+[465595] = {
+["cnt"] = 3,
+["name"] = "Lightning Bolt",
+},
+[462771] = {
+["cnt"] = 1,
+["name"] = "Surveying Beam",
+},
+[1214468] = {
+["cnt"] = 1,
+["name"] = "Trickshot",
+},
+[463058] = {
+["cnt"] = 1,
+["name"] = "Bloodthirsty Cackle",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[116705] = {
+["cnt"] = 3,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 22,
+["overlaps"] = 3,
+},
+["Player-3391-0CA79866"] = {
+["stopsSpells"] = {
+[96231] = {
+["cnt"] = 6,
+["interrupted"] = {
+[471733] = {
+["cnt"] = 1,
+["name"] = "Restorative Algae",
+},
+[465871] = {
+["cnt"] = 2,
+["name"] = "Blood Blast",
+},
+[1214780] = {
+["cnt"] = 1,
+["name"] = "Maximum Distortion",
+},
+[465595] = {
+["cnt"] = 1,
+["name"] = "Lightning Bolt",
+},
+[1214468] = {
+["cnt"] = 1,
+["name"] = "Trickshot",
+},
+},
+},
+[105421] = {
+["cnt"] = 2,
+["interrupted"] = {
+[471733] = {
+["cnt"] = 1,
+["name"] = "Restorative Algae",
+},
+[468631] = {
+["cnt"] = 1,
+["name"] = "Harpoon",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[96231] = {
+["cnt"] = 5,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 8,
+["overlaps"] = 5,
+},
+["Player-1597-0F7AB124"] = {
+["stopsSpells"] = {
+[157981] = {
+["cnt"] = 3,
+["interrupted"] = {
+[465682] = {
+["cnt"] = 1,
+["name"] = "Surprise Inspection",
+},
+[464655] = {
+["cnt"] = 2,
+["name"] = "Snipe",
+},
+},
+},
+[2139] = {
+["cnt"] = 6,
+["interrupted"] = {
+[468631] = {
+["cnt"] = 1,
+["name"] = "Harpoon",
+},
+[465595] = {
+["cnt"] = 1,
+["name"] = "Lightning Bolt",
+},
+[1214468] = {
+["cnt"] = 2,
+["name"] = "Trickshot",
+},
+[462771] = {
+["cnt"] = 1,
+["name"] = "Surveying Beam",
+},
+[1214780] = {
+["cnt"] = 1,
+["name"] = "Maximum Distortion",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[2139] = {
+["cnt"] = 4,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 9,
+["overlaps"] = 4,
+},
+["Player-1403-07DE4A4E"] = {
+["stopsSpells"] = {
+[51490] = {
+["cnt"] = 13,
+["interrupted"] = {
+[471733] = {
+["cnt"] = 5,
+["name"] = "Restorative Algae",
+},
+[465682] = {
+["cnt"] = 1,
+["name"] = "Surprise Inspection",
+},
+[468631] = {
+["cnt"] = 1,
+["name"] = "Harpoon",
+},
+[468726] = {
+["cnt"] = 3,
+["name"] = "Plant Seaforium Charge",
+},
+[462771] = {
+["cnt"] = 2,
+["name"] = "Surveying Beam",
+},
+[461796] = {
+["cnt"] = 1,
+["name"] = "Reload",
+},
+},
+},
+[57994] = {
+["cnt"] = 3,
+["interrupted"] = {
+[465595] = {
+["cnt"] = 1,
+["name"] = "Lightning Bolt",
+},
+[462771] = {
+["cnt"] = 1,
+["name"] = "Surveying Beam",
+},
+[1214468] = {
+["cnt"] = 1,
+["name"] = "Trickshot",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[57994] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 16,
+["overlaps"] = 1,
+},
+},
+[31494] = {
+["Player-1403-07DE4A4E"] = {
+["stopsSpells"] = {
+[51490] = {
+["cnt"] = 9,
+["interrupted"] = {
+[471733] = {
+["cnt"] = 5,
+["name"] = "Restorative Algae",
+},
+[468726] = {
+["cnt"] = 3,
+["name"] = "Plant Seaforium Charge",
+},
+[468631] = {
+["cnt"] = 1,
+["name"] = "Harpoon",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["stops"] = 9,
+["overlaps"] = 0,
+},
+["Player-3702-0B19325B"] = {
+["stopsSpells"] = {
+[116705] = {
+["cnt"] = 3,
+["interrupted"] = {
+[471733] = {
+["cnt"] = 1,
+["name"] = "Restorative Algae",
+},
+[468631] = {
+["cnt"] = 2,
+["name"] = "Harpoon",
+},
+},
+},
+[116844] = {
+["cnt"] = 1,
+["interrupted"] = {
+[468631] = {
+["cnt"] = 1,
+["name"] = "Harpoon",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["stops"] = 4,
+["overlaps"] = 0,
+},
+["Player-3391-0CA79866"] = {
+["stopsSpells"] = {
+[105421] = {
+["cnt"] = 2,
+["interrupted"] = {
+[471733] = {
+["cnt"] = 1,
+["name"] = "Restorative Algae",
+},
+[468631] = {
+["cnt"] = 1,
+["name"] = "Harpoon",
+},
+},
+},
+[96231] = {
+["cnt"] = 1,
+["interrupted"] = {
+[471733] = {
+["cnt"] = 1,
+["name"] = "Restorative Algae",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[96231] = {
+["cnt"] = 2,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 3,
+["overlaps"] = 2,
+},
+["Player-1597-0F7AB124"] = {
+["stopsSpells"] = {
+[2139] = {
+["cnt"] = 1,
+["interrupted"] = {
+[468631] = {
+["cnt"] = 1,
+["name"] = "Harpoon",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[2139] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 1,
+["overlaps"] = 1,
+},
+["Player-3391-0CC75402"] = {
+["stopsSpells"] = {
+[96231] = {
+["cnt"] = 1,
+["interrupted"] = {
+[471733] = {
+["cnt"] = 1,
+["name"] = "Restorative Algae",
+},
+},
+},
+[105421] = {
+["cnt"] = 5,
+["interrupted"] = {
+[471733] = {
+["cnt"] = 2,
+["name"] = "Restorative Algae",
+},
+[468726] = {
+["cnt"] = 2,
+["name"] = "Plant Seaforium Charge",
+},
+[468631] = {
+["cnt"] = 1,
+["name"] = "Harpoon",
+},
+},
+},
+[31935] = {
+["cnt"] = 2,
+["interrupted"] = {
+[471733] = {
+["cnt"] = 2,
+["name"] = "Restorative Algae",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[31935] = {
+["cnt"] = 5,
+["interrupted"] = {
+},
+},
+[96231] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 8,
+["overlaps"] = 6,
+},
+},
+[31504] = {
+["Player-1597-0FA26F9B"] = {
+["stopsSpells"] = {
+},
+["overlapsSpells"] = {
+[2139] = {
+["cnt"] = 5,
+["interrupted"] = {
+},
+},
+},
+["overlaps"] = 5,
+["stops"] = 0,
+},
+["Player-1316-0C266755"] = {
+["stopsSpells"] = {
+},
+["overlapsSpells"] = {
+[31935] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["overlaps"] = 1,
+["stops"] = 0,
+},
+},
+[31472] = {
+["Player-3702-0AF1DA41"] = {
+["stopsSpells"] = {
+},
+["overlapsSpells"] = {
+[96231] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 0,
+["overlaps"] = 1,
+},
+["Player-1403-0A1B8831"] = {
+["stopsSpells"] = {
+},
+["overlapsSpells"] = {
+[31935] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 0,
+["overlaps"] = 1,
+},
+["Player-3391-0A42576F"] = {
+["stopsSpells"] = {
+[57994] = {
+["cnt"] = 1,
+["interrupted"] = {
+[460582] = {
+["cnt"] = 1,
+["name"] = "Overload!",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["stops"] = 1,
+["overlaps"] = 0,
+},
+["Player-3702-0B19325B"] = {
+["stopsSpells"] = {
+[116705] = {
+["cnt"] = 2,
+["interrupted"] = {
+[460582] = {
+["cnt"] = 2,
+["name"] = "Overload!",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["stops"] = 2,
+["overlaps"] = 0,
+},
+["Player-1403-0AF37172"] = {
+["stopsSpells"] = {
+[147362] = {
+["cnt"] = 1,
+["interrupted"] = {
+[460582] = {
+["cnt"] = 1,
+["name"] = "Overload!",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["stops"] = 1,
+["overlaps"] = 0,
+},
+},
+[31475] = {
+["Player-3682-0B8337DD"] = {
+["stopsSpells"] = {
+[116705] = {
+["cnt"] = 1,
+["interrupted"] = {
+[460582] = {
+["cnt"] = 1,
+["name"] = "Overload!",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["stops"] = 1,
+["overlaps"] = 0,
+},
+["Player-3702-0AE3C98F"] = {
+["stopsSpells"] = {
+[2139] = {
+["cnt"] = 2,
+["interrupted"] = {
+[460582] = {
+["cnt"] = 2,
+["name"] = "Overload!",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["stops"] = 2,
+["overlaps"] = 0,
+},
+["Player-3702-0B19325B"] = {
+["stopsSpells"] = {
+[119381] = {
+["cnt"] = 1,
+["interrupted"] = {
+[465009] = {
+["cnt"] = 1,
+["name"] = "Explosive Gaze",
+},
+},
+},
+},
+["overlapsSpells"] = {
+},
+["stops"] = 1,
+["overlaps"] = 0,
+},
+["Player-3391-0A42576F"] = {
+["stopsSpells"] = {
+[57994] = {
+["cnt"] = 4,
+["interrupted"] = {
+[460582] = {
+["cnt"] = 4,
+["name"] = "Overload!",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[57994] = {
+["cnt"] = 2,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 4,
+["overlaps"] = 2,
+},
+["Player-1403-0A1B8831"] = {
+["stopsSpells"] = {
+[31935] = {
+["cnt"] = 1,
+["interrupted"] = {
+[460582] = {
+["cnt"] = 1,
+["name"] = "Overload!",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[31935] = {
+["cnt"] = 13,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 1,
+["overlaps"] = 13,
+},
+["Player-1597-0F7AB124"] = {
+["stopsSpells"] = {
+},
+["overlapsSpells"] = {
+[2139] = {
+["cnt"] = 3,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 0,
+["overlaps"] = 3,
+},
+["Player-1403-0AF37172"] = {
+["stopsSpells"] = {
+[147362] = {
+["cnt"] = 1,
+["interrupted"] = {
+[460582] = {
+["cnt"] = 1,
+["name"] = "Overload!",
+},
+},
+},
+},
+["overlapsSpells"] = {
+[147362] = {
+["cnt"] = 1,
+["interrupted"] = {
+},
+},
+},
+["stops"] = 1,
+["overlaps"] = 1,
+},
+},
+}

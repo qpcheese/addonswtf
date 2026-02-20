@@ -1,0 +1,14 @@
+
+Musician_CharacterSettings = {
+["addonCompartment"] = {
+["hide"] = false,
+},
+["tracking"] = {
+["mini"] = true,
+["world"] = true,
+},
+["minimap"] = {
+["minimapPos"] = 154.770806821196,
+["hide"] = false,
+},
+}

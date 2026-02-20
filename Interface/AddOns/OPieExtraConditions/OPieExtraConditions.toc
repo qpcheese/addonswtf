@@ -1,0 +1,9 @@
+## Title: OPie: Extra Conditions
+## Notes: Extra conditions for OPie ring slices.
+## Author: Shockah
+## Version: 1.0.1
+## Interface: 100100
+## RequiredDeps: OPie
+
+..\OPie\Libs\Evie.lua
+Core.lua

@@ -1,0 +1,38 @@
+
+PasteNGDB = {
+["global"] = {
+["minimap"] = {
+},
+},
+["profileKeys"] = {
+["Kaijid - Ragnaros"] = "Default",
+["Sörn - Ravencrest"] = "Default",
+["Qope - Ragnaros"] = "Default",
+["Sikducker - Sylvanas"] = "Default",
+["Qute - Sylvanas"] = "Default",
+["Qpfromage - Sylvanas"] = "Default",
+["Xiaoyuu - Sylvanas"] = "Default",
+["Qudroformagi - Sylvanas"] = "Default",
+["Jeaf - Sylvanas"] = "Default",
+["Helikåpter - Sylvanas"] = "Default",
+["Casiomage - Sylvanas"] = "Default",
+["Qpfromage - Confrérie du Thorium"] = "Default",
+["Sørn - Ravencrest"] = "Default",
+["Qpaladin - Ragnaros"] = "Default",
+["Dogson - Ragnaros"] = "Default",
+},
+["profiles"] = {
+["Default"] = {
+["savedPastes"] = {
+["tanaan"] = "L3dheSA3NS40NSwgMzcuMzYgRGVmaWxlZCBFYXJ0aAovd2F5IDU3LjczLCAzNy4zNCBEaXJlZmxhbWUKL3dheSA1NC4wNywgMjkuODMgRGFyayBHYXplcgovd2F5IDQ4LjA3LCAzMy4wMiBTa3JpbGxpeCAoQ2F2ZSkKL3dheSA0OC4zNywgMzUuNDcgTmV0aGVyZmlzdAovd2F5IDQ0LjAzLCA0NS43MiBWaWxlIEJsb29kCi93YXkgNDcuMzMsIDUyLjc4IERyZWFkd2Fsa2VyCi93YXkgNTMuMDEsIDY1LjIxIENvcnJ1cHRlZCBUaHVuZGVydGFpbAovd2F5IDU1LjkwLiA4MC43NiBGZWxmbHkKL3dheSA0My4zNywgODQuNDQgVGFpbnRlZCBNYXVsY2xhdwovd2F5IDQyLjIzLCA3MS43OSBNaXJlY3JvYWsKL3dheSAzMS4zNywgMzguMDYgQ3Vyc2VkIFNwaXJpdAovd2F5IDI2LjE0LCAzMS42MCBGZWxzd29ybiBTZW50cnkKL3dheSAxNS43NCwgNDQuNDQgQmxlYWtjbGF3Ci93YXkgMjUuMDQsIDc2LjIxIENoYW9zIFB1cA==",
+},
+["mainFramePosition"] = {
+["height"] = 400,
+["top"] = 825.9998779296875,
+["left"] = 743.5004272460938,
+["width"] = 500.0000915527344,
+},
+["dataVersion"] = 1,
+},
+},
+}

@@ -1,0 +1,45 @@
+## Interface: 120000, 120001
+## Title: WeeklyKnowledge
+## Notes: Track your profession knowledge across your characters
+## Version: v1.1.10
+## IconTexture: Interface\AddOns\WeeklyKnowledge\Media\Icon.blp
+## SavedVariables: WeeklyKnowledgeDB
+## X-Website: https://github.com/DennisRas/WeeklyKnowledge
+## X-Curse-Project-ID: 1092009
+## X-Wago-ID: qKQx0o6x
+## X-WoWI-ID: 26821
+## Category-enUS: Professions
+## Category-deDE: Berufe
+## Category-esES: Profesiones
+## Category-esMX: Profesiones
+## Category-frFR: Métiers
+## Category-itIT: Professioni
+## Category-koKR: 전문 기술
+## Category-ptBR: Profissões
+## Category-ruRU: Профессии
+## Category-zhCN: 专业
+## Category-zhTW: 專業技能
+
+Libs\LibStub\LibStub.lua
+Libs\CallbackHandler-1.0\CallbackHandler-1.0.xml
+Libs\LibDataBroker-1.1\LibDataBroker-1.1.lua
+Libs\LibDBIcon-1.0\lib.xml
+
+Libs\AceAddon-3.0\AceAddon-3.0.xml
+Libs\AceEvent-3.0\AceEvent-3.0.xml
+Libs\AceTimer-3.0\AceTimer-3.0.xml
+Libs\AceBucket-3.0\AceBucket-3.0.xml
+Libs\AceDB-3.0\AceDB-3.0.xml
+Libs\AceConsole-3.0\AceConsole-3.0.xml
+Libs\AceGUI-3.0\AceGUI-3.0.xml
+Libs\AceConfig-3.0\AceConfig-3.0.xml
+
+Types.lua
+Constants.lua
+Utils.lua
+Interface.lua
+Data.lua
+
+Checklist.lua
+Main.lua
+Core.lua

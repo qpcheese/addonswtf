@@ -1,0 +1,110 @@
+
+SimulationCraftDB = {
+["profileKeys"] = {
+["Sikducker - Sylvanas"] = "Sikducker - Sylvanas",
+["Qpaladin - Ragnaros"] = "Qpaladin - Ragnaros",
+["Qpebank - Draenor"] = "Qpebank - Draenor",
+["Qpcheese - Chamber of Aspects"] = "Qpcheese - Chamber of Aspects",
+["Laurs - Ragnaros"] = "Laurs - Ragnaros",
+["Qpcheese - Ragnaros"] = "Qpcheese - Ragnaros",
+["Qpc - Draenor"] = "Qpc - Draenor",
+["Dogson - Ragnaros"] = "Dogson - Ragnaros",
+["Xiaoyuu - Sylvanas"] = "Xiaoyuu - Sylvanas",
+["Djagon - Ragnaros"] = "Djagon - Ragnaros",
+["Zelení - Draenor"] = "Zelení - Draenor",
+["Helikåpter - Sylvanas"] = "Helikåpter - Sylvanas",
+["Cyclosarin - Ragnaros"] = "Cyclosarin - Ragnaros",
+["Gammelemil - Grim Batol"] = "Gammelemil - Grim Batol",
+["Qtte - Sylvanas"] = "Qtte - Sylvanas",
+["Qute - Sylvanas"] = "Qute - Sylvanas",
+["Jerwin - Ragnaros"] = "Jerwin - Ragnaros",
+["Qubit - Ragnaros"] = "Qubit - Ragnaros",
+["Qpfromage - Confrérie du Thorium"] = "Qpfromage - Confrérie du Thorium",
+["Myfficraider - Ragnaros"] = "Myfficraider - Ragnaros",
+["Fishanus - Ragnaros"] = "Fishanus - Ragnaros",
+["Qudroformagi - Sylvanas"] = "Qudroformagi - Sylvanas",
+["Jeaf - Sylvanas"] = "Jeaf - Sylvanas",
+["Qpe - Ravencrest"] = "Qpe - Ravencrest",
+["Casiomage - Sylvanas"] = "Casiomage - Sylvanas",
+["Flurrq - Ragnaros"] = "Flurrq - Ragnaros",
+["Qpfromage - Ragnaros"] = "Qpfromage - Ragnaros",
+["Qpew - Ragnaros"] = "Qpew - Ragnaros",
+["Qpfromage - Sylvanas"] = "Qpfromage - Sylvanas",
+},
+["profiles"] = {
+["Sikducker - Sylvanas"] = {
+},
+["Qpaladin - Ragnaros"] = {
+},
+["Qpebank - Draenor"] = {
+},
+["Qpcheese - Chamber of Aspects"] = {
+},
+["Laurs - Ragnaros"] = {
+},
+["Qpcheese - Ragnaros"] = {
+["frame"] = {
+["ofsx"] = 0.9999418258666992,
+["ofsy"] = 1.000040292739868,
+},
+["minimap"] = {
+["minimapPos"] = 283.5359443822794,
+},
+},
+["Qpc - Draenor"] = {
+},
+["Dogson - Ragnaros"] = {
+},
+["Xiaoyuu - Sylvanas"] = {
+},
+["Djagon - Ragnaros"] = {
+},
+["Zelení - Draenor"] = {
+},
+["Helikåpter - Sylvanas"] = {
+},
+["Cyclosarin - Ragnaros"] = {
+},
+["Gammelemil - Grim Batol"] = {
+},
+["Qtte - Sylvanas"] = {
+},
+["Qute - Sylvanas"] = {
+},
+["Jerwin - Ragnaros"] = {
+},
+["Qubit - Ragnaros"] = {
+},
+["Qpfromage - Confrérie du Thorium"] = {
+},
+["Myfficraider - Ragnaros"] = {
+},
+["Fishanus - Ragnaros"] = {
+},
+["Qudroformagi - Sylvanas"] = {
+},
+["Jeaf - Sylvanas"] = {
+},
+["Qpe - Ravencrest"] = {
+},
+["Casiomage - Sylvanas"] = {
+},
+["Flurrq - Ragnaros"] = {
+},
+["Qpfromage - Ragnaros"] = {
+["frame"] = {
+["ofsx"] = 201,
+["ofsy"] = 19.0001106262207,
+["point"] = "BOTTOM",
+["relativePoint"] = "BOTTOM",
+},
+},
+["Qpew - Ragnaros"] = {
+},
+["Qpfromage - Sylvanas"] = {
+["minimap"] = {
+["minimapPos"] = 203.0588627194111,
+},
+},
+},
+}

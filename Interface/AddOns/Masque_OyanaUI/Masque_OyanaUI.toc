@@ -1,0 +1,8 @@
+## Interface: 100000
+## Author: Oyana/Fyve
+## Title: Masque|cff36e5ff:|r|cff1784d1 Oyana UI|r 
+## Version: 10.0.1
+## Notes: |cff36e5ffChange the texture of your buttons.|r 
+## Dependencies: Masque
+
+Settings.lua

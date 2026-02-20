@@ -1,0 +1,356 @@
+
+BAGANATOR_CONFIG = {
+["CharacterSpecific"] = {
+["sort_ignore_bank_slots_count"] = {
+},
+["sort_ignore_slots_count_2"] = {
+},
+["currencies_tracked"] = {
+["Helikåpter-Sylvanas"] = {
+{
+["currencyID"] = 3252,
+},
+{
+["currencyID"] = 3268,
+},
+},
+["Jeaf-Sylvanas"] = {
+{
+["currencyID"] = 3252,
+},
+{
+["currencyID"] = 3268,
+},
+},
+["Sørn-Ravencrest"] = {
+{
+["currencyID"] = 3252,
+},
+{
+["currencyID"] = 3268,
+},
+},
+},
+["currencies_tracked_imported"] = {
+},
+},
+["Version"] = 1,
+["Profiles"] = {
+["DEFAULT"] = {
+["guild_view_width"] = 14,
+["empty_slot_background"] = true,
+["junk_plugin"] = "poor_quality",
+["reduce_spacing"] = false,
+["bag_view_type"] = "category",
+["automatic_categories_added"] = {
+["default_auto_recents"] = true,
+["default_questitem"] = true,
+["default_armor"] = true,
+["default_itemenhancement"] = true,
+["default_toy"] = true,
+["default_hearthstone"] = true,
+["default_other"] = true,
+["default_battlepet"] = true,
+["default_food"] = true,
+["default_reagent"] = true,
+["default_junk"] = true,
+["default_special_empty"] = true,
+["default_miscellaneous"] = true,
+["default_key"] = true,
+["default_consumable"] = true,
+["default_tradegoods"] = true,
+["default_container"] = true,
+["default_keystone"] = true,
+["default_auto_equipment_sets"] = true,
+["default_profession"] = true,
+["default_potion"] = true,
+["default_gem"] = true,
+["default_recipe"] = true,
+["default_weapon"] = true,
+},
+["show_search_box"] = true,
+["debug_categories_search"] = false,
+["bank_view_show_bag_slots"] = false,
+["bank_view_width"] = 14,
+["sort_method"] = "type",
+["reverse_groups_sort_order"] = false,
+["auto_open"] = {
+["auction_house"] = true,
+["tradeskill"] = false,
+["void_storage"] = false,
+["guild_bank"] = false,
+["trade_partner"] = false,
+["item_upgrade"] = true,
+["merchant"] = true,
+["character_panel"] = false,
+["scrapping_machine"] = true,
+["item_interaction"] = true,
+["mail"] = false,
+["sockets"] = false,
+["forge_of_bonds"] = false,
+["bank"] = true,
+},
+["icon_corners_auto_insert_applied"] = {
+["keystone_level"] = true,
+["battle_pet_level"] = true,
+["battle_pet_breed_id"] = true,
+["bag_type"] = true,
+},
+["show_recents_tabs_main_view"] = false,
+["upgrade_plugin_ignored"] = {
+},
+["category_hidden"] = {
+["1"] = false,
+["default_food"] = false,
+["default_consumable"] = false,
+["default_auto_equipment_sets"] = false,
+},
+["junk_plugin_ignored"] = {
+},
+["icon_flash_similar_alt"] = false,
+["category_edit_search_mode"] = "visual",
+["no_frame_borders"] = true,
+["warband_current_tab"] = 0,
+["category_item_grouping"] = true,
+["icon_top_left_corner_array"] = {
+"junk",
+"battle_pet_level",
+"keystone_level",
+"item_level",
+},
+["main_view_show_bag_slots"] = true,
+["category_display_order"] = {
+"_1",
+"default_auto_equipment_sets",
+"default_weapon",
+"default_armor",
+"__end",
+"----",
+"default_hearthstone",
+"default_keystone",
+"default_questitem",
+"default_gem",
+"default_container",
+"default_key",
+"default_miscellaneous",
+"default_battlepet",
+"default_toy",
+"default_other",
+"default_auto_recents",
+"_2",
+"default_potion",
+"default_consumable",
+"default_food",
+"default_itemenhancement",
+"__end",
+"_3",
+"default_reagent",
+"default_tradegoods",
+"default_profession",
+"default_recipe",
+"__end",
+"----",
+"default_junk",
+"default_special_empty",
+},
+["current_skin"] = "blizzard",
+["hide_boe_on_common"] = false,
+["bank_view_type"] = "category",
+["icon_grey_junk"] = false,
+["main_view_position"] = {
+"RIGHT",
+-4,
+-165.9998779296875,
+},
+["bank_only_view_show_bag_slots"] = true,
+["icon_bottom_left_corner_array"] = {
+"bag_type",
+"battle_pet_breed_id",
+"equipment_set",
+},
+["icon_top_right_corner_array"] = {
+},
+["icon_bottom_right_corner_array"] = {
+"quantity",
+},
+["bank_view_position"] = {
+"BOTTOMLEFT",
+30,
+75,
+},
+["sort_start_at_bottom"] = false,
+["recent_include_owned"] = false,
+["currency_headers_collapsed"] = {
+},
+["bag_icon_size"] = 38,
+["guild_view_position_2"] = {
+"TOPLEFT",
+30,
+-235,
+},
+["character_select_position"] = {
+"RIGHT",
+"Baganator_CategoryViewBackpackViewFrameblizzard",
+"LEFT",
+0,
+0,
+},
+["debug_timers"] = false,
+["seen_welcome"] = 1,
+["hide_special_container"] = {
+},
+["icon_equipment_set_border"] = true,
+["bag_empty_space_at_top"] = false,
+["icon_context_fading"] = true,
+["category_horizontal_spacing_2"] = 0.32,
+["bag_view_show_bag_slots"] = false,
+["category_default_import"] = 2,
+["debug_categories"] = false,
+["character_bank_current_tab"] = 1,
+["sort_ignore_bank_slots_count"] = {
+["Qpfromage-Sylvanas"] = 0,
+["Qute-Sylvanas"] = 0,
+},
+["new_items_flashing"] = true,
+["upgrade_plugin"] = "simple_item_levels",
+["recent_timeout"] = 15,
+["guild_bank_sort_method"] = "unset",
+["category_migration"] = 5,
+["guild_view_position"] = {
+"LEFT",
+20,
+0,
+},
+["category_modifications"] = {
+["default_armor"] = {
+["addedItems"] = {
+["i:219382"] = true,
+},
+},
+["default_food"] = {
+["showGroupPrefix"] = true,
+["priority"] = -1,
+["addedItems"] = {
+["i:6657"] = true,
+["i:222726"] = true,
+["i:223744"] = true,
+},
+},
+["default_consumable"] = {
+["showGroupPrefix"] = true,
+["priority"] = -1,
+},
+["default_auto_equipment_sets"] = {
+["showGroupPrefix"] = true,
+["priority"] = -1,
+},
+},
+["warband_bank_view_width"] = 14,
+["category_section_toggled"] = {
+["Equipment"] = false,
+["New Section"] = false,
+["Crafting"] = true,
+},
+["add_to_category_buttons_2"] = "drag",
+["view_type"] = "unset",
+["bank_current_tab"] = 1,
+["icon_text_quality_colors"] = false,
+["guild_current_tab"] = 1,
+["icon_text_font_size"] = 16,
+["show_buttons_on_alt"] = false,
+["sort_ignore_slots_count_2"] = {
+["Qpfromage-Sylvanas"] = 0,
+["Qute-Sylvanas"] = 0,
+},
+["view_alpha"] = 1,
+["bag_view_width"] = 9,
+["currencies_tracked_imported"] = {
+},
+["currencies_tracked"] = {
+["Qpfromage-Sylvanas"] = {
+{
+["currencyID"] = 1979,
+},
+},
+["Qute-Sylvanas"] = {
+},
+["Qpaladin-Ragnaros"] = {
+{
+["currencyID"] = 2650,
+},
+},
+},
+["recent_characters_main_view"] = {
+"Qpaladin-Ragnaros",
+"Qpfromage-Sylvanas",
+"Qute-Sylvanas",
+},
+["skins"] = {
+["blizzard"] = {
+["no_frame_borders"] = false,
+["view_transparency"] = 0,
+["empty_slot_background"] = false,
+},
+["dark"] = {
+["no_frame_borders"] = false,
+["square_icons"] = false,
+["view_transparency"] = 0.3,
+["empty_slot_background"] = false,
+},
+},
+["debug_keywords"] = false,
+["auto_sort_on_open"] = true,
+["sort_ignore_slots_at_end"] = false,
+["setting_anchors"] = false,
+["disabled_skins"] = {
+},
+["category_sections"] = {
+["1"] = {
+["name"] = "EQUIPMENT",
+},
+["3"] = {
+["name"] = "CRAFTING",
+},
+["2"] = {
+["name"] = "New Section",
+},
+},
+["guild_view_dialog_position"] = {
+"BOTTOM",
+"Baganator_GuildViewFrame",
+"TOP",
+0,
+0,
+},
+["saved_searches"] = {
+},
+["bank_only_view_position"] = {
+"LEFT",
+20,
+0,
+},
+["category_group_empty_slots"] = true,
+["show_sort_button_2"] = true,
+["icon_mark_unusable"] = false,
+["bag_view_position"] = {
+"BOTTOMRIGHT",
+-115,
+85,
+},
+["currency_panel_position"] = {
+"RIGHT",
+"Baganator_CategoryViewBackpackViewFrameblizzard",
+"LEFT",
+0,
+0,
+},
+["lock_frames"] = false,
+["category_sort_method"] = "type",
+["migrated_sort_method"] = true,
+["custom_categories"] = {
+},
+["character_bank_view_width"] = 14,
+},
+},
+}
+BAGANATOR_DATA = nil

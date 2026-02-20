@@ -1,0 +1,15 @@
+
+BigWigs_Voice_DB = {
+["channel"] = {
+["value"] = "Master",
+["text"] = "주 음량",
+},
+["playSoundType"] = {
+["long"] = true,
+["warning"] = true,
+["info"] = true,
+["alarm"] = true,
+["alert"] = true,
+["etc"] = true,
+},
+}

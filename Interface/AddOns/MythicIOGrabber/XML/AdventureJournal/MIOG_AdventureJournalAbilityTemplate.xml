@@ -1,0 +1,65 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+    <Frame name="MIOG_AdventureJournalAbilityTemplate2" inherits="ResizeLayoutFrame" virtual="true">
+         <Layers>
+            <Layer level="BACKGROUND">
+                <Texture inherits="UI-PaperOverlay-AbilityTextBG" parentKey="Background" setAllPoints="true" />
+            </Layer>
+
+            <Layer level="ARTWORK">
+                <Texture parentKey="Icon">
+                    <Size x="20" y="20" />
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT" x="2" y="-2"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+
+            <Layer level="OVERLAY">
+                <FontString parentKey="Title" font="GameFontHighlight" justifyH="LEFT" justifyV="MIDDLE" outline="NORMAL">
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.Icon" relativePoint="RIGHT" x="3" />
+                        <Anchor point="RIGHT" x="-3"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+
+        <Frames>
+            <Frame parentKey="Base" inherits="MIOG_AdventureJournalAbilityDifficultyTemplate2">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.Icon" relativePoint="BOTTOMLEFT"/>
+                    <Anchor point="TOPRIGHT" relativeKey="$parent.Title" relativePoint="BOTTOMRIGHT"/>
+                </Anchors>
+            </Frame>
+
+            <Frame parentKey="Diff1" inherits="MIOG_AdventureJournalAbilityDifficultyTemplate2">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.Base" relativePoint="BOTTOMLEFT" />
+                    <Anchor point="TOPRIGHT" relativeKey="$parent.Base" relativePoint="BOTTOMRIGHT"/>
+                </Anchors>
+            </Frame>
+
+            <Frame parentKey="Diff2" inherits="MIOG_AdventureJournalAbilityDifficultyTemplate2">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.Diff1" relativePoint="BOTTOMLEFT" />
+                    <Anchor point="TOPRIGHT" relativeKey="$parent.Diff1" relativePoint="BOTTOMRIGHT"/>
+                </Anchors>
+            </Frame>
+
+            <Frame parentKey="Diff3" inherits="MIOG_AdventureJournalAbilityDifficultyTemplate2">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.Diff2" relativePoint="BOTTOMLEFT" />
+                    <Anchor point="TOPRIGHT" relativeKey="$parent.Diff2" relativePoint="BOTTOMRIGHT"/>
+                </Anchors>
+            </Frame>
+
+            <Frame parentKey="Diff4" inherits="MIOG_AdventureJournalAbilityDifficultyTemplate2">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.Diff3" relativePoint="BOTTOMLEFT" />
+                    <Anchor point="TOPRIGHT" relativeKey="$parent.Diff3" relativePoint="BOTTOMRIGHT"/>
+                </Anchors>
+            </Frame>
+        </Frames>
+    </Frame>
+</Ui>

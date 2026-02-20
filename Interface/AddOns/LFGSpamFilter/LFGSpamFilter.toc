@@ -1,0 +1,36 @@
+## Interface: 110207, 120000
+## Title: LFGSpamFilter
+## Version: 1.7.3
+## Author: romdeau23
+## Notes: LFG tool spam filtering
+## SavedVariables: LFGSpamFilterAddonConfig
+## OptionalDeps: PremadeGroupsFilter
+## IconTexture: Interface\AddOns\LFGSpamFilter\icon
+## X-Website: https://github.com/romdeau23/wow-lfgspamfilter
+## Category-enUS: Dungeons & Raids
+## Category-deDE: Dungeons & Schlachtzüge
+## Category-esES: Mazmorras y bandas
+## Category-esMX: Calabozos y bandas
+## Category-frFR: Donjons et raids
+## Category-itIT: Spedizioni e incursioni
+## Category-koKR: 던전 및 공격대
+## Category-ptBR: Masmorras e Raides
+## Category-ruRU: Подземелья и рейды
+## Category-zhCN: 地下城和团队副本
+## Category-zhTW: 地城與團隊
+
+lib/globals.lua
+lib/constants.lua
+lib/namespace.lua
+lib/event.lua
+lib/module.lua
+modules/config.lua
+modules/tempBan.lua
+modules/ui.lua
+modules/ui/statusButton.xml
+modules/ui/statusButton.lua
+modules/ui/banButton.xml
+modules/ui/banButton.lua
+modules/ui/options.xml
+modules/ui/options.lua
+modules/main.lua

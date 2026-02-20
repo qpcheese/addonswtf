@@ -1,0 +1,34 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+    <Button name="MIOG_MenuButtonTemplate" inherits="BackdropTemplate, UIButtonTemplate" virtual="true">
+        <Layers>
+            <Layer level="OVERLAY">
+                <FontString parentKey="Title" font="GameFontHighlight" justifyH="CENTER" justifyV="MIDDLE" outline="NORMAL" text="HERE GOES YOUR TITLE">
+                    <Anchors>
+                        <Anchor point="CENTER" relativeKey="$parent" relativePoint="CENTER"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+
+            <Layer level="BACKGROUND">
+                <Texture parentKey="BackgroundImage">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT" />
+                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOMRIGHT" />
+                    </Anchors>
+                </Texture>
+            </Layer>
+        </Layers>
+
+        --UI-CharacterCreate-LargeButton-Yellow-Highlight   yellow round x+3-3 y+1-1 lowres
+        --communities-create-button-highlight               blue rounded x+5-5 y+1-1 middleres
+        --communitiesfinder_card_highlight                  blue rounded x-3+3 y-2+1 hires
+        --groupfinder-highlightbar-green
+        --BattleBar-SwapPetFrame-Highlight                  yellow middleres
+        --auctionhouse-nav-button-highlight                 blue middleres
+        --auctionhouse-nav-button-secondary-highlight       blue middleres
+        --search-highlight                                  blue hires
+        
+        <HighlightTexture atlas="communitiesfinder_card_highlight" />
+    </Button>
+</Ui>

@@ -1,0 +1,50 @@
+## Interface: 120000, 120001
+## Title: Remix Artifact Tracker
+## Notes: Adds a way to track artifact appearances from anywhere in the game
+## Author: Keyboardturner
+## Version: 0.1.2
+## IconTexture: Interface/Icons/inv_glaive_1h_artifactazgalor_d_02dual.blp
+## SavedVariables: RemixArtifactTracker_DB
+
+## X-Curse-Project-ID: 1350667
+## X-Wago-ID: n6VPz8Gd
+## X-WoWI-ID: 26971
+
+## Title-enUS: Remix Artifact Tracker
+## Notes-enUS: Adds a way to track artifact appearances from anywhere in the game
+## Title-esMX: Remix Artifact Tracker
+## Notes-esMX: Añade una forma de seguir las apariencias de artefactos desde cualquier lugar del juego.
+## Title-esES: Remix Artifact Tracker
+## Notes-esES: Añade una forma de seguir las apariencias de artefactos desde cualquier lugar del juego.
+## Title-frFR: Remix Artifact Tracker
+## Notes-frFR: Ajoute un moyen de suivre les apparences d’artefacts depuis n’importe où dans le jeu.
+## Title-deDE: Remix Artifact Tracker"
+## Notes-deDE: Fügt eine Möglichkeit hinzu, Artefaktvorlagen von überall im Spiel zu verfolgen.
+## Title-itIT: Remix Artifact Tracker
+## Notes-itIT: Aggiunge un modo per tenere traccia delle apparenze degli artefatti da qualsiasi punto del gioco.
+## Title-ptBR: Remix Artifact Tracker
+## Notes-ptBR: Adiciona uma forma de acompanhar as aparências de artefatos de qualquer lugar do jogo.
+## Title-ruRU: Remix Artifact Tracker
+## Notes-ruRU: Добавляет возможность отслеживать внешности артефактов из любой точки игры.
+## Title-koKR: Remix Artifact Tracker
+## Notes-koKR: 게임 내 어디서든 유물 형상을 추적할 수 있는 기능을 추가합니다.
+## Title-zhCN: Remix Artifact Tracker
+## Notes-zhCN: 添加了一种可以在游戏内任何地方追踪神器外观的方式。
+## Title-zhTW: Remix Artifact Tracker
+## Notes-zhTW: 新增可在遊戲中任意地點追蹤神器外觀的功能。
+
+## Category-enUS: Collections
+## Category-deDE: Kriegsmeutesammlungen
+## Category-esES: Colecciones de banda guerrera
+## Category-esMX: Colecciones de tropa
+## Category-frFR: Collections du bataillon
+## Category-itIT: Collezioni della Brigata
+## Category-koKR: 전투부대 수집품
+## Category-ptBR: Coleções do Bando de Guerra
+## Category-ruRU: Коллекции отряда
+## Category-zhCN: 战团藏品
+## Category-zhTW: 戰隊收藏
+
+Localization.lua
+Data.lua
+Core.lua

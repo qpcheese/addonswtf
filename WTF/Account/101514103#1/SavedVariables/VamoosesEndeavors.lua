@@ -1,0 +1,293 @@
+
+VE_DB = {
+["battleTagLookup"] = {
+["Jeaf"] = "z99gd2aa",
+["Qpfromage"] = "z99gd2aa",
+},
+["ui"] = {
+["showRewardsHighlight"] = true,
+},
+["windowPos"] = {
+["y"] = -161.6665802001953,
+["relPoint"] = "TOPLEFT",
+["point"] = "TOPLEFT",
+["x"] = 135.166748046875,
+},
+["battleTagMains"] = {
+["z99gd2aa"] = {
+"Qpfromage",
+"Jeaf",
+},
+},
+["minimap"] = {
+["minimapPos"] = 200,
+["showMinimapButton"] = true,
+["lock"] = false,
+["showInCompartment"] = true,
+["hide"] = false,
+},
+["myCharacters"] = {
+["Qpfromage"] = true,
+["Jeaf"] = true,
+},
+["altSharing"] = {
+["enabled"] = false,
+["lastBroadcast"] = 0,
+["groupingMode"] = "individual",
+["receivedMappings"] = {
+},
+},
+["couponGains"] = {
+{
+["character"] = "Jeaf",
+["source"] = 67,
+["amount"] = 5,
+["taskName"] = "Home: Drop a Line",
+["timestamp"] = 1770228480,
+["taskID"] = 171,
+},
+{
+["character"] = "Jeaf",
+["source"] = 67,
+["amount"] = 15,
+["taskName"] = "Home: Arcane Acrobatics",
+["timestamp"] = 1770228858,
+["taskID"] = 169,
+},
+{
+["character"] = "Qpfromage",
+["source"] = 67,
+["amount"] = 10,
+["taskName"] = "Home: Be a Good Neighbor",
+["timestamp"] = 1770425870,
+},
+{
+["character"] = "Qpfromage",
+["source"] = 67,
+["amount"] = 10,
+["taskName"] = "Home: Snail Mail",
+["timestamp"] = 1770429594,
+},
+{
+["character"] = "Qpfromage",
+["source"] = 67,
+["amount"] = 5,
+["taskName"] = "Kill Hozen",
+["timestamp"] = 1770431307,
+},
+{
+["character"] = "Qpfromage",
+["source"] = 67,
+["amount"] = 5,
+["taskName"] = "Kill Hozen",
+["timestamp"] = 1770431376,
+},
+{
+["character"] = "Qpfromage",
+["source"] = 67,
+["amount"] = 4,
+["taskName"] = "Kill Hozen",
+["timestamp"] = 1770431413,
+},
+{
+["character"] = "Qpfromage",
+["source"] = 67,
+["amount"] = 4,
+["taskName"] = "Kill Hozen",
+["timestamp"] = 1770431442,
+},
+{
+["character"] = "Qpfromage",
+["source"] = 67,
+["amount"] = 3,
+["taskName"] = "Kill Hozen",
+["timestamp"] = 1770431480,
+},
+{
+["character"] = "Qpfromage",
+["source"] = 67,
+["amount"] = 3,
+["taskName"] = "Kill Hozen",
+["timestamp"] = 1770431507,
+},
+{
+["character"] = "Qpfromage",
+["source"] = 67,
+["amount"] = 3,
+["taskName"] = "Kill Hozen",
+["timestamp"] = 1770431531,
+},
+{
+["character"] = "Qpfromage",
+["source"] = 67,
+["amount"] = 30,
+["taskName"] = "Defeat Bosses",
+["timestamp"] = 1770431878,
+},
+{
+["character"] = "Qpfromage",
+["source"] = 67,
+["amount"] = 10,
+["taskName"] = "Kill Raid Bosses",
+["timestamp"] = 1770432748,
+},
+},
+["taskActualCoupons"] = {
+["Home: Arcane Acrobatics"] = {
+{
+["isRepeatable"] = true,
+["character"] = "Jeaf",
+["amount"] = 15,
+["taskName"] = "Home: Arcane Acrobatics",
+["timestamp"] = 1770228858,
+["taskID"] = 169,
+},
+},
+["Home: Drop a Line"] = {
+{
+["isRepeatable"] = false,
+["character"] = "Jeaf",
+["amount"] = 5,
+["taskName"] = "Home: Drop a Line",
+["timestamp"] = 1770228480,
+["taskID"] = 171,
+},
+},
+["Home: Snail Mail"] = {
+{
+["isRepeatable"] = false,
+["character"] = "Qpfromage",
+["amount"] = 10,
+["taskName"] = "Home: Snail Mail",
+["timestamp"] = 1770429594,
+},
+},
+["Defeat Bosses"] = {
+{
+["isRepeatable"] = false,
+["character"] = "Qpfromage",
+["amount"] = 30,
+["taskName"] = "Defeat Bosses",
+["timestamp"] = 1770431878,
+},
+},
+["Kill Hozen"] = {
+{
+["isRepeatable"] = false,
+["character"] = "Qpfromage",
+["amount"] = 5,
+["taskName"] = "Kill Hozen",
+["timestamp"] = 1770431307,
+},
+{
+["isRepeatable"] = false,
+["character"] = "Qpfromage",
+["amount"] = 5,
+["taskName"] = "Kill Hozen",
+["timestamp"] = 1770431376,
+},
+{
+["isRepeatable"] = false,
+["character"] = "Qpfromage",
+["amount"] = 4,
+["taskName"] = "Kill Hozen",
+["timestamp"] = 1770431413,
+},
+{
+["isRepeatable"] = false,
+["character"] = "Qpfromage",
+["amount"] = 4,
+["taskName"] = "Kill Hozen",
+["timestamp"] = 1770431442,
+},
+{
+["isRepeatable"] = false,
+["character"] = "Qpfromage",
+["amount"] = 3,
+["taskName"] = "Kill Hozen",
+["timestamp"] = 1770431480,
+},
+{
+["isRepeatable"] = false,
+["character"] = "Qpfromage",
+["amount"] = 3,
+["taskName"] = "Kill Hozen",
+["timestamp"] = 1770431507,
+},
+{
+["isRepeatable"] = false,
+["character"] = "Qpfromage",
+["amount"] = 3,
+["taskName"] = "Kill Hozen",
+["timestamp"] = 1770431531,
+},
+},
+["Kill Raid Bosses"] = {
+{
+["isRepeatable"] = false,
+["character"] = "Qpfromage",
+["amount"] = 10,
+["taskName"] = "Kill Raid Bosses",
+["timestamp"] = 1770432748,
+},
+},
+["Home: Be a Good Neighbor"] = {
+{
+["isRepeatable"] = false,
+["character"] = "Qpfromage",
+["amount"] = 10,
+["taskName"] = "Home: Be a Good Neighbor",
+["timestamp"] = 1770425870,
+},
+},
+},
+["selectedHouseIndex"] = 1,
+["config"] = {
+["bgOpacity"] = 0.9,
+["uiScale"] = 1,
+["debug"] = false,
+["showDashboardButton"] = true,
+["fontScale"] = 0,
+["fontFamily"] = "ARIALN",
+["theme"] = "gruvboxdark",
+["showMinimapButton"] = true,
+},
+["knownInitiatives"] = {
+[18] = {
+["firstSeen"] = 1770227753,
+["description"] = "The Consortium are in the neighborhood helping the locals recover items lost in void storage.",
+["title"] = "Consortium Consternation",
+["lastSeen"] = 1770229102,
+},
+[16] = {
+["firstSeen"] = 1770227499,
+["title"] = "Reaching Beyond the Possible",
+["description"] = "The dracthyr have recently rediscovered themselves and chosen their own path in life. Their passion for learning will help inspire neighborhood residents to learn new trade skills.",
+["lastSeen"] = 1770227835,
+},
+[13] = {
+["firstSeen"] = 1770227011,
+["description"] = "Maintaining a home is hard work! Everyone could sure use a little pick-me-up. That's why we've reached out to the grummles of Kun-Lai, who brew a special beverage called kafa that will put some pep back in your step.",
+["title"] = "Friend of the Grummles",
+["lastSeen"] = 1770227548,
+},
+},
+["characters"] = {
+["Qpfromage-Sylvanas"] = {
+["lastUpdated"] = 1770227633,
+["tasks"] = {
+},
+["class"] = "MAGE",
+["name"] = "Qpfromage",
+["realm"] = "Sylvanas",
+},
+["Jeaf-Sylvanas"] = {
+["name"] = "Jeaf",
+["tasks"] = {
+},
+["class"] = "MONK",
+["lastUpdated"] = 1770229118,
+["realm"] = "Sylvanas",
+},
+},
+}

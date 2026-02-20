@@ -1,0 +1,101 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+    <Frame name="MIOG_PopupFrame" inherits="TooltipBorderedFrameTemplate, VerticalLayoutFrame" virtual="true">
+        <KeyValues>
+            <KeyValue key="spacing" value="5" type="number" />
+            <KeyValue key="topPadding" value="10" type="number" />
+            <KeyValue key="leftPadding" value="2" type="number" />
+            <KeyValue key="rightPadding" value="2" type="number" />
+            <KeyValue key="bottomPadding" value="6" type="number" />
+        </KeyValues>
+
+        <Layers>
+            <Layer level="OVERLAY">
+                <FontString parentKey="Text1" font="GameFontHighlight" justifyH="CENTER" justifyV="MIDDLE" outline="NORMAL" text="A group is not compatible with your filters anymore.">
+                    <KeyValues>
+                        <KeyValue key="layoutIndex" value="1" type="number" />
+                        <KeyValue key="expand" value="true" type="boolean" />
+                    </KeyValues>
+                </FontString>
+
+                <FontString parentKey="Text2" font="GameFontHighlight" justifyH="CENTER" justifyV="MIDDLE" outline="NORMAL" text="Reason">
+                    <KeyValues>
+                        <KeyValue key="layoutIndex" value="2" type="number" />
+                        <KeyValue key="expand" value="true" type="boolean" />
+                    </KeyValues>
+                </FontString>
+
+                <FontString parentKey="Text3" font="GameFontHighlight" justifyH="CENTER" justifyV="MIDDLE" outline="NORMAL" text="Activity">
+                    <KeyValues>
+                        <KeyValue key="layoutIndex" value="3" type="number" />
+                        <KeyValue key="expand" value="true" type="boolean" />
+                    </KeyValues>
+                </FontString>
+
+                <FontString parentKey="Text4" font="GameFontHighlight" justifyH="CENTER" justifyV="MIDDLE" outline="NORMAL" text="Leader">
+                    <KeyValues>
+                        <KeyValue key="layoutIndex" value="4" type="number" />
+                        <KeyValue key="expand" value="true" type="boolean" />
+                    </KeyValues>
+                </FontString>
+
+                <FontString parentKey="Text5" font="GameFontHighlight" justifyH="CENTER" justifyV="MIDDLE" outline="NORMAL" text="Cancel the application?">
+                    <KeyValues>
+                        <KeyValue key="layoutIndex" value="5" type="number" />
+                        <KeyValue key="expand" value="true" type="boolean" />
+                    </KeyValues>
+                </FontString>
+
+                <FontString parentKey="Text6" font="GameFontHighlight" justifyH="CENTER" justifyV="MIDDLE" outline="NORMAL" text="Remaining applications: 0">
+                    <KeyValues>
+                        <KeyValue key="layoutIndex" value="6" type="number" />
+                        <KeyValue key="expand" value="true" type="boolean" />
+                        <KeyValue key="topPadding" value="7" type="number" />
+                    </KeyValues>
+                </FontString>
+            </Layer>
+        </Layers>
+
+        <Frames>
+            <Frame parentKey="ButtonPanel">
+                <Size y="20" />
+                <KeyValues>
+                    <KeyValue key="layoutIndex" value="7" type="number" />
+                    <KeyValue key="expand" value="true" type="boolean" />
+                    <KeyValue key="bottomPadding" value="4" type="number" />
+                    <KeyValue key="leftPadding" value="4" type="number" />
+                    <KeyValue key="rightPadding" value="4" type="number" />
+                </KeyValues>
+
+                <Frames>
+                    <Button parentKey="Button1" inherits="UIPanelDynamicResizeButtonTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT"/>
+                            <Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOM"/>
+                        </Anchors>
+
+                        <Scripts>
+                            <PostClick>
+                                StaticPopupSpecial_Hide(self:GetParent():GetParent())
+                            </PostClick>
+                        </Scripts>
+                    </Button>
+
+                    <Button parentKey="Button2" inherits="UIPanelDynamicResizeButtonTemplate, SecureActionButtonTemplate">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOP"/>
+                            <Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOMRIGHT"/>
+                        </Anchors>
+                    </Button>
+
+                    <Button parentKey="Button2P5" inherits="UIPanelDynamicResizeButtonTemplate, SecureActionButtonTemplate" hidden="true">
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOP"/>
+                            <Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOMRIGHT"/>
+                        </Anchors>
+                    </Button>
+                </Frames>
+            </Frame>
+        </Frames>
+    </Frame>
+</Ui>

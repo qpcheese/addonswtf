@@ -1,0 +1,108 @@
+
+dbJVS = {
+["char"] = {
+["Sörn - Ravencrest"] = {
+["firstun"] = false,
+},
+["Jeaf - Sylvanas"] = {
+["firstun"] = false,
+},
+["Kaijid - Ragnaros"] = {
+["firstun"] = false,
+},
+["Qute - Sylvanas"] = {
+["firstun"] = false,
+},
+["Qpaladin - Ragnaros"] = {
+["firstun"] = false,
+},
+["Sørn - Ravencrest"] = {
+["firstun"] = false,
+},
+["Qpfromage - Sylvanas"] = {
+["firstun"] = false,
+},
+["Helikåpter - Sylvanas"] = {
+["firstun"] = false,
+},
+},
+["profileKeys"] = {
+["Sörn - Ravencrest"] = "Sörn - Ravencrest",
+["Jeaf - Sylvanas"] = "Jeaf - Sylvanas",
+["Kaijid - Ragnaros"] = "Kaijid - Ragnaros",
+["Qute - Sylvanas"] = "Qute - Sylvanas",
+["Qpaladin - Ragnaros"] = "Qpaladin - Ragnaros",
+["Sørn - Ravencrest"] = "Sørn - Ravencrest",
+["Qpfromage - Sylvanas"] = "Qpfromage - Sylvanas",
+["Helikåpter - Sylvanas"] = "Helikåpter - Sylvanas",
+},
+["global"] = {
+["firstrun"] = false,
+},
+["profiles"] = {
+["Sörn - Ravencrest"] = {
+["toggles"] = {
+["DIM"] = true,
+["MINQUAL"] = 1,
+["LOOK"] = 1,
+["MINLEVEL"] = 100,
+},
+},
+["Jeaf - Sylvanas"] = {
+["toggles"] = {
+["DIM"] = true,
+["MINLEVEL"] = 100,
+["LOOK"] = 1,
+["MINQUAL"] = 1,
+},
+},
+["Kaijid - Ragnaros"] = {
+["toggles"] = {
+["DIM"] = true,
+["MINLEVEL"] = 100,
+["LOOK"] = 1,
+["MINQUAL"] = 1,
+},
+},
+["Qute - Sylvanas"] = {
+["toggles"] = {
+["DIM"] = true,
+["LOOK"] = 1,
+["MINLEVEL"] = 100,
+["MINQUAL"] = 1,
+},
+},
+["Qpaladin - Ragnaros"] = {
+["toggles"] = {
+["DIM"] = true,
+["MINLEVEL"] = 100,
+["LOOK"] = 1,
+["MINQUAL"] = 1,
+},
+},
+["Sørn - Ravencrest"] = {
+["toggles"] = {
+["DIM"] = true,
+["MINQUAL"] = 1,
+["LOOK"] = 1,
+["MINLEVEL"] = 100,
+},
+},
+["Qpfromage - Sylvanas"] = {
+["toggles"] = {
+["DIM"] = true,
+["MINLEVEL"] = 100,
+["LOOK"] = 1,
+["MINQUAL"] = 1,
+},
+},
+["Helikåpter - Sylvanas"] = {
+["toggles"] = {
+["DIM"] = true,
+["MINQUAL"] = 1,
+["MINLEVEL"] = 100,
+["LOOK"] = 1,
+},
+},
+},
+}

@@ -1,0 +1,25 @@
+## Interface: 120001
+## Title: Can Opener
+## Version: v1.1.0
+## Author: Jassade
+## Notes: Adds a movable button to easily open items in your bag!
+## SavedVariablesPerCharacter: CanOpenerSavedVars
+## IconTexture: Interface\AddOns\CanOpener\CanOpenerIcon.tga
+
+Helpers.lua
+Openables.lua
+Openables\Classic.lua
+Openables\BurningCrusade.lua
+Openables\WrathOfTheLichKing.lua
+Openables\Cataclysm.lua
+Openables\MistsOfPandaria.lua
+Openables\WarlordsOfDraenor.lua
+Openables\Legion.lua
+Openables\BattleForAzeroth.lua
+Openables\Shadowlands.lua
+Openables\Dragonflight.lua
+Openables\TheWarWithin.lua
+Openables\Midnight.lua
+Criteria.lua
+Menu.lua
+CanOpener.lua

@@ -1,0 +1,7 @@
+## Interface: 11508
+## Title: IconFileNames
+## Description: Provides names corresponding to icon file IDs
+## LoadOnDemand: 1
+## IconTexture: Interface/Icons/INV_Scroll_03
+## Version: 8.1.2
+IconFileNames.lua

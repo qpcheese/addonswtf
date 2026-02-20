@@ -1,0 +1,18 @@
+Good
+- Main
+
+Okay
+- Group
+- Raid sheet
+- Gearing // enable&disable columns
+
+WIP
+
+Needs overhaul
+- Progress // submenus only
+- Drops
+- Ports
+
+No idea
+- Upgrades
+- FilterManager

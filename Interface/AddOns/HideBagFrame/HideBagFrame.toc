@@ -1,0 +1,13 @@
+## Interface: 120000
+## Title: Hide Bag Frame
+## Notes: Hides the default bag frame.
+## Author: Kurhast
+## Version: 1.4
+## SavedVariables: BagHiderDB
+
+libs\LibStub\LibStub.lua
+libs\LibDataBroker-1.1\LibDataBroker-1.1.lua
+libs\LibDBIcon-1.0\LibDBIcon-1.0\LibDBIcon-1.0.lua
+
+
+HideBagFrame.lua

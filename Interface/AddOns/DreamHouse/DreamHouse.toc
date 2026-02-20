@@ -1,0 +1,35 @@
+## Interface: 120000
+## Title: |cFF00CCFFDream|r|cFFFFD100House|r
+## Notes: Extends the WoW Housing UI with Favorites, Hotbar, Statistics and more!
+## Notes-deDE: Erweitert das WoW Housing UI mit Favoriten, Hotbar, Statistiken und mehr!
+## Author: Balboran
+## Version: 1.7.0
+## SavedVariables: DreamHouseDB, DreamHouseVendorDB
+## IconTexture: Interface\AddOns\DreamHouse\Textures\DHLogo
+
+# Utils zuerst (werden von anderen benötigt)
+Utils\Localization.lua
+Utils\Debug.lua
+Utils\Helpers.lua
+
+# Config
+Config\Settings.lua
+
+# Core
+Core.lua
+
+# Hooks
+Hooks\StoragePanelHooks.lua
+Hooks\EditorFrameHooks.lua
+
+# Components
+Components\FavoritesButton.lua
+Components\PreviewButton.lua
+Components\FavoritesCategory.lua
+Components\CollectionsPanel.lua
+Components\Hotbar.lua
+Components\StatsPanel.lua
+Components\TooltipEnhancer.lua
+Components\PresetManager.lua
+Components\QualityFilter.lua
+Components\VendorDatabase.lua

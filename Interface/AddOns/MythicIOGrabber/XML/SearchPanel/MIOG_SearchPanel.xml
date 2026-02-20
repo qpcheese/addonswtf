@@ -1,0 +1,99 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+    <Frame name="MIOG_SearchPanel" inherits="BackdropTemplate" mixin="SortBarMixin" virtual="true" hidden="true">
+        <Anchors>
+            <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT" />
+            <Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOMRIGHT" />
+        </Anchors>
+
+        <Frames>
+            <Frame parentKey="Status" frameStrata="DIALOG" hidden="true">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT" x="-1" y="-25" />
+                    <Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOMRIGHT" />
+                </Anchors>
+
+                <Layers>
+                    <Layer level="BACKGROUND">
+                        <Texture parentKey="Background" setAllPoints="true">
+                            <Color r="0.1" g="0.1" b="0.1" a="0.93"/>
+                        </Texture>
+                    </Layer>
+
+                    <Layer level="OVERLAY">
+                        <FontString parentKey="FontString" font="GameFontHighlight" hidden="true" justifyH="CENTER" wordwrap="true" nonspacewrap="true">
+                            <Anchors>
+                                <Anchor point="TOP" relativeKey="$parent.Background" relativePoint="TOP" y="-20"/>
+                                <Anchor point="LEFT" relativeKey="$parent.Background" relativePoint="LEFT"/>
+                                <Anchor point="RIGHT" relativeKey="$parent.Background" relativePoint="RIGHT"/>
+                            </Anchors>
+                        </FontString>
+                    </Layer>
+                </Layers>
+
+                <Frames>
+                    <Frame parentKey="LoadingSpinner" inherits="LoadingSpinnerTemplate" hidden="true">
+                        <Size x="60" y="60" />
+                        <Anchors>
+                            <Anchor point="TOP" relativeKey="$parent" relativePoint="TOP" y="-10"/>
+                        </Anchors>
+                    </Frame>
+                </Frames>
+
+                <Scripts>
+                    <OnMouseDown>
+                        
+                    </OnMouseDown>
+                </Scripts>
+            </Frame>
+
+            <EditBox parentKey="SearchBoxBase" hidden="true">
+                <Size x="270" y="20"/>
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT" x="8" y="-2" />
+                </Anchors>
+            </EditBox>
+
+            <Button parentKey="StartSearch" inherits="UIPanelDynamicResizeButtonTemplate" text="Search">
+                <Size y="20" />
+                <Anchors>
+                    <Anchor point="TOPRIGHT" relativeKey="$parent" relativePoint="TOPRIGHT" y="-2"/>
+                </Anchors>
+
+                <Scripts>
+                    <OnLoad>
+                        self:FitToText()
+                    </OnLoad>
+                </Scripts>
+            </Button>
+
+            <Frame parentKey="SortButtonRow" inherits="BackdropTemplate, HorizontalLayoutFrame">
+                <KeyValues>
+                    <KeyValue key="minimumHeight" value="20" type="number" />
+                </KeyValues>
+                
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT" y="-25"/>
+                    <Anchor point="TOPRIGHT" relativeKey="$parent" relativePoint="TOPRIGHT" y="-25" />
+                </Anchors>
+            </Frame>
+
+            <Frame parentKey="ScrollBox2" inherits="WowScrollBoxList">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.SortButtonRow" relativePoint="BOTTOMLEFT" x="1"/>
+                    <Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOMRIGHT"  x="-1"/>
+                </Anchors>
+            </Frame>
+            
+            <Button parentKey="SignUpButton" inherits="UIPanelDynamicResizeButtonTemplate" text="Signup">
+                <Size y="20" />
+
+                <Scripts>
+                    <OnLoad>
+                        self:FitToText()
+                    </OnLoad>
+                </Scripts>
+            </Button>
+        </Frames>
+    </Frame>
+</Ui>

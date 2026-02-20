@@ -1,0 +1,25 @@
+
+MindSeekersTrackerDB = {
+["y"] = -110.0000152587891,
+["x"] = -40.00000762939453,
+["point"] = "RIGHT",
+["shown"] = false,
+["collapsed"] = false,
+["confirmed"] = {
+[24] = true,
+[25] = true,
+[14] = true,
+[2] = true,
+[4] = true,
+[8] = true,
+[16] = true,
+[3] = true,
+[18] = true,
+[10] = true,
+[27] = true,
+[21] = true,
+[22] = true,
+[12] = true,
+[19] = true,
+},
+}

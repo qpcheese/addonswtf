@@ -1,0 +1,804 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+    <Frame name="MIOG_MainFrameTemplate" inherits="BackdropTemplate" resizable="true" movable="true" hidden="true" clampedToScreen="true" virtual="true" registerForDrag="LeftButton" parent="UIParent" toplevel="true">
+        <Frames>
+            <Frame parentKey="CategoryHoverFrame" inherits="VerticalLayoutFrame" hidden="true" frameLevel="10000">
+                <KeyValues>
+                    <KeyValue key="align" value="top" />
+                    <KeyValue key="spacing" value="1" />
+                </KeyValues>
+            </Frame>
+
+            <Frame parentKey="TitleBar">
+                <Size y="21" />
+                <Anchors>
+                    <Anchor point="TOPLEFT" />
+                    <Anchor point="TOPRIGHT" />
+                </Anchors>
+
+                <Frames>
+                    <Button parentKey="CreateGroupButton" inherits="MIOG_NavBarButtonTemplate">
+                        <Size x="56" y="19" />
+
+						<Anchors>
+							<Anchor point="LEFT"/>
+						</Anchors>
+
+                    </Button>
+                    
+                    <Button parentKey="FindGroupButton" inherits="MIOG_NavBarButtonTemplate">
+                        <Size x="50" y="19" />
+
+						<Anchors>
+							<Anchor point="LEFT" relativeKey="$parent.CreateGroupButton" relativePoint="RIGHT" x="2" />
+						</Anchors>
+                    </Button>
+                    
+                    <Button parentKey="MoreButton" inherits="MIOG_NavBarButtonTemplate" hidden="true">
+                        <Size x="62" y="19" />
+
+						<Anchors>
+							<Anchor point="LEFT" relativeKey="$parent.FindGroupButton" relativePoint="RIGHT" x="2" />
+						</Anchors>
+                    </Button>
+
+                    <Button parentKey="BlizzardFrame" inherits="UIButtonTemplate" mixin="LFDMicroButtonMixin">
+                        <KeyValues>
+                            <KeyValue key="commandName" value="TOGGLEGROUPFINDER" type="string"/>
+                            <KeyValue key="newbieText" value="NEWBIE_TOOLTIP_LFGPARENT" type="global"/>
+                        </KeyValues>
+
+                        <Size x="19" y="19"/>
+
+						<Anchors>
+							<Anchor point="RIGHT" relativeKey="$parent.Settings" relativePoint="LEFT" x="-2"/>
+						</Anchors>
+
+                        <NormalTexture atlas="Battlenet-ClientIcon-WoW" />
+                        
+						<Scripts>
+							<OnClick>
+                                --ConquestFrame.selectedButton = nil --entrypoint for Blizzard to fuck up
+
+                                LFGListUtil_OpenBestWindow(false)
+							</OnClick>
+
+                            <OnEnter>
+                                GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+                                GameTooltip:SetText("Show the stock Blizzard frame")
+                                GameTooltip:Show()
+                            </OnEnter>
+
+                            <OnLeave>
+                                GameTooltip:Hide()
+                            </OnLeave>
+                            <OnLoad>
+                                self:RegisterForClicks("AnyUp");
+                                self:RegisterEvent("UPDATE_BINDINGS");
+                                self:RegisterEvent("NEUTRAL_FACTION_SELECT_RESULT");
+                                self:RegisterEvent("QUEST_LOG_UPDATE");
+
+                                SetDesaturation(LFDMicroButton:GetDisabledTexture(), true);
+                                self.tooltipText = MicroButtonTooltipText(DUNGEONS_BUTTON, "TOGGLEGROUPFINDER");
+
+                                self.disabledTooltip =	function()
+                                    local canUse, failureReason = C_LFGInfo.CanPlayerUseGroupFinder();
+                                    return canUse and FEATURE_UNAVAILBLE_PLAYER_IS_NEUTRAL or failureReason;
+                                end
+
+                                self.IsActive =	function()
+                                    local factionGroup = UnitFactionGroup("player");
+                                    local canUse, failureReason = C_LFGInfo.CanPlayerUseGroupFinder();
+                                    return canUse and factionGroup ~= "Neutral" and not Kiosk.IsEnabled();
+                                end
+                            </OnLoad>
+                            <OnEvent method="OnEvent"/>
+						</Scripts>
+					</Button>
+                    
+                    <Button parentKey="CloseButton" inherits="UIPanelCloseButton" frameLevel="4">
+                        <Size x="20" y="20" />
+                        <Anchors>
+                            <Anchor point="RIGHT" x="-3" />
+                        </Anchors>
+						<Scripts>
+							<OnClick>
+                                self:GetParent():GetParent():Hide()
+							</OnClick>
+						</Scripts>
+					</Button>
+                </Frames>
+
+                <Layers>
+                    <Layer level="BACKGROUND" textureSubLevel="-5">
+                        <Texture parentKey="Background" setAllPoints="true"/>
+                    </Layer>
+
+                    <Layer level="OVERLAY">
+                        <FontString parentKey="TitleString" font="GameFontHighlight" justifyH="CENTER" justifyV="MIDDLE" outline="NORMAL" text="Mythic IO Grabber">
+                            <Size y="19" />
+                            <Anchors>
+                                <Anchor point="CENTER" relativeKey="$parent" relativePoint="CENTER"/>
+                            </Anchors>
+                        </FontString>
+                        
+                        <FontString parentKey="RaiderIOLoaded" font="GameFontHighlight" justifyH="RIGHT" hidden="true" text="[RaiderIO missing]">
+                            <Anchors>
+                                <Anchor point="LEFT" relativeKey="$parent.TitleString" relativePoint="RIGHT" x="3" />
+                            </Anchors>
+                            <Scripts>
+                                <OnShow>
+                                    self:SetTextColor(1, 0, 0, 1)
+
+                                </OnShow>
+
+                                <OnEnter>
+                                    GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+                                    GameTooltip:SetText("RaiderIO has been disabled in the addon settings.")
+                                    GameTooltip:AddLine("There will be no data for M+ and raid progress.")
+                                    GameTooltip:Show()
+
+                                </OnEnter>
+                                <OnLeave function="GameTooltip_Hide" />
+                            </Scripts>
+                        </FontString>
+                    </Layer>
+                </Layers>        
+
+                <Frames>
+                    <Frame parentKey="UISlider" mixin="SettingsAdvancedSliderMixin" frameStrata="MEDIUM">
+                        <Size x="110" y="8" />
+                        <Anchors>
+                            <Anchor point="LEFT" relativeKey="$parent.TitleString" relativePoint="RIGHT" x="5" />
+                        </Anchors>
+                        <Scripts>
+                            <!--<OnLoad>
+                                self:Init(self:GetParent():GetParent():GetScale(), 1, 3, 20, formatters)
+                                self.Slider:SetSize(self:GetSize())
+
+                                local function changeValue(self, value, user)
+                                    if(not user) then
+                                        self:GetParent():GetParent():GetParent():SetScale(value)
+                                        self:GetParent():GetParent().Scale:SetText(value)
+                                    end
+                                end
+
+                            </OnLoad>!-->
+                        </Scripts>
+
+                        <Layers>
+                            <Layer>
+                                <FontString parentKey="Text" inherits="GameFontNormal" justifyH="LEFT" hidden="true">
+                                    <Anchors>
+                                        <Anchor point="LEFT" />
+                                    </Anchors>
+                                </FontString>
+                            </Layer>
+                        </Layers>
+                        <Frames>
+                            <Frame parentKey="SliderWithSteppers" inherits="MinimalSliderWithSteppersTemplate">
+                                <Anchors>
+                                    <Anchor point="LEFT" x="3"/>
+                                    <Anchor point="RIGHT"  x="-3"/>
+                                </Anchors>
+                            </Frame>
+                            <Frame parentKey="NewFeature" inherits="NewFeatureLabelTemplate" frameStrata="HIGH" scale=".8" frameLevel="100">
+                                <Size x="1" y="1"/>
+                                <Anchors>
+                                    <Anchor point="BOTTOM" relativeKey="$parent.SliderWithSteppers" relativePoint="TOP"/>
+                                </Anchors>
+                            </Frame>
+                             <EditBox parentKey="Scale" inherits="InputBoxTemplate" autoFocus="false" letters="3" frameStrata="HIGH">
+                                <Size x="32" y="8" />
+                                <Anchors>
+                                    <Anchor point="LEFT" relativeKey="$parent" relativePoint="LEFT" x="27" />
+                                    <Anchor point="RIGHT" relativeKey="$parent" relativePoint="RIGHT" x="-23" />
+                                </Anchors>
+                                <Scripts>
+                                    <OnLoad>
+                                        self:SetText(self:GetParent():GetParent():GetScale())
+                                    </OnLoad>
+
+                                    <OnEnterPressed>
+                                        local num = tonumber(self:GetText())
+                                        
+                                        if(num and num >= 1 and 3 >= num) then
+                                            --self:GetParent():GetParent():GetParent():SetScale(num)
+                                            self:GetParent().SliderWithSteppers:SetValue(num)
+                                            self:ClearFocus()
+                                        end
+                                    </OnEnterPressed>
+
+                                    <OnEscapePressed>
+                                        self:ClearFocus()
+                                    </OnEscapePressed>
+                                </Scripts>
+                            </EditBox>
+                        </Frames>
+                        <Scripts>
+                            <OnLoad>
+	                            self.cbrHandles = Settings.CreateCallbackHandleContainer();
+                                self:OnLoad()
+                                self.SliderWithSteppers:Init(self:GetParent():GetParent():GetScale(), 1, 3, 20, formatters)
+
+                                local mainFrame = self:GetParent():GetParent()
+                                local scale = self.Scale
+
+                                self.SliderWithSteppers.Slider:Hide()
+
+                                local function round(number, decimals)
+                                    number = ((number * 10) + (2^52 + 2^51) - (2^52 + 2^51)) / 10
+                                    local power = 10 ^ decimals
+                                    return math.floor(number * power) / power
+                                end
+
+                                local function changeValue(slider, value)
+                                    value = round(value, 2)
+                                    mainFrame:SetScale(value)
+                                    scale:SetText(value)
+
+                                    MIOG_NewSettings.mainFrameScale = value
+                                end
+
+		                        self.cbrHandles:RegisterCallback(self.SliderWithSteppers, MinimalSliderWithSteppersMixin.Event.OnValueChanged, changeValue);
+                            </OnLoad>
+                        </Scripts>
+                    </Frame>
+                </Frames>    
+            </Frame>
+
+            <Frame parentKey="TitleBarSeparator">
+                <Size y="3" />
+
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.TitleBar" relativePoint="BOTTOMLEFT" />
+                    <Anchor point="TOPRIGHT" relativeKey="$parent.TitleBar" relativePoint="BOTTOMRIGHT"/>
+                </Anchors>
+                
+                <Layers>
+                    <Layer level="BACKGROUND" textureSubLevel="-5">
+                        <Texture parentKey="Background" setAllPoints="true"/>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <Frame parentKey="Currency" inherits="ContainerFrameCurrencyBorderTemplate, HorizontalLayoutFrame">
+                <KeyValues>
+                    <KeyValue key="spacing" value="11" type="number"/>
+			        <KeyValue key="align" value="bottom" type="string"/>
+                </KeyValues>
+
+                <Anchors>
+                    <Anchor point="BOTTOMLEFT" relativeKey="$parent" relativePoint="BOTTOMLEFT"/>
+                    <Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOMRIGHT"/>
+                </Anchors>
+
+                <Layers>
+                    <Layer level="BACKGROUND" textureSubLevel="-5">
+                        <Texture parentKey="Background" setAllPoints="true"/>
+                    </Layer>
+                </Layers>
+                
+                <Frames>
+                    <Frame parentKey="Border" inherits="ContainerFrameCurrencyBorderTemplate">
+                        <KeyValues>
+                            <KeyValue key="leftEdge" value="common-coinbox-left" type="string"/>
+                            <KeyValue key="rightEdge" value="common-coinbox-right" type="string"/>
+                            <KeyValue key="centerEdge" value="_common-coinbox-center" type="string"/>
+                        </KeyValues>
+
+                        <Anchors>
+                            <Anchor point="TOPLEFT" x="1"/>
+                            <Anchor point="BOTTOMRIGHT" x="1"/>
+                        </Anchors>
+                    </Frame>
+                    
+                    <Frame parentKey="1" inherits="MIOG_CurrencySingleTemplate">
+                        <KeyValues>
+                            <KeyValue key="layoutIndex" value="1" type="number" />
+                        </KeyValues>
+                    </Frame>
+
+                    <Frame parentKey="2" inherits="MIOG_CurrencySingleTemplate">
+                        <KeyValues>
+                            <KeyValue key="layoutIndex" value="2" type="number" />
+                        </KeyValues>
+                    </Frame>
+
+                    <Frame parentKey="3" inherits="MIOG_CurrencySingleTemplate">
+                        <KeyValues>
+                            <KeyValue key="layoutIndex" value="3" type="number" />
+                        </KeyValues>
+                    </Frame>
+
+                    <Frame parentKey="4" inherits="MIOG_CurrencySingleTemplate">
+                        <KeyValues>
+                            <KeyValue key="layoutIndex" value="4" type="number" />
+                        </KeyValues>
+                    </Frame>
+
+                    <Frame parentKey="5" inherits="MIOG_CurrencySingleTemplate">
+                        <KeyValues>
+                            <KeyValue key="layoutIndex" value="5" type="number" />
+                        </KeyValues>
+                    </Frame>
+
+                    <Frame parentKey="6" inherits="MIOG_CurrencySingleTemplate">
+                        <KeyValues>
+                            <KeyValue key="layoutIndex" value="6" type="number" />
+                        </KeyValues>
+                    </Frame>
+
+                    <Frame parentKey="7" inherits="MIOG_CurrencySingleTemplate">
+                        <KeyValues>
+                            <KeyValue key="layoutIndex" value="7" type="number" />
+                        </KeyValues>
+                    </Frame>
+
+                    <Frame parentKey="8" inherits="MIOG_CurrencySingleTemplate">
+                        <KeyValues>
+                            <KeyValue key="layoutIndex" value="8" type="number" />
+                        </KeyValues>
+                    </Frame>
+                </Frames>
+
+                <Scripts>
+                    <OnShow>
+                        self:MarkDirty()
+                    </OnShow>
+                </Scripts>
+            </Frame>
+
+            <Frame parentKey="ScrollBarArea">
+                <Size x="24" />
+                <Anchors>
+                    <Anchor point="TOPRIGHT" relativeKey="$parent.TitleBarSeparator" relativePoint="BOTTOMRIGHT" />
+                    <Anchor point="BOTTOMRIGHT" relativeKey="$parent.Currency" relativePoint="TOPRIGHT"/>
+                </Anchors>
+
+                <Layers>
+                    <Layer level="BACKGROUND" textureSubLevel="-5">
+                        <Texture parentKey="Background" setAllPoints="true"/>
+                    </Layer>
+           
+                    <Layer level="BACKGROUND" textureSubLevel="-4">
+                        <Texture parentKey="TransparentDark" setAllPoints="true">
+                            <Color r="0.3" g="0.3" b="0.3" a="0.1" />
+                        </Texture>
+                    </Layer>
+                </Layers>
+
+                <Frames>
+                    <EventFrame parentKey="ApplicationViewerScrollBar" inherits="MinimalScrollBar" hidden="true" />
+                    <EventFrame parentKey="SearchPanelScrollBar" inherits="MinimalScrollBar" hidden="true" />
+                    <EventFrame parentKey="GroupManagerScrollBar" inherits="MinimalScrollBar" hidden="true" />
+                    <EventFrame parentKey="ProgressMPlusScrollBar" inherits="MinimalScrollBar" hidden="true" />
+                    <EventFrame parentKey="ProgressRaidScrollBar" inherits="MinimalScrollBar" hidden="true" />
+                    <EventFrame parentKey="ProgressPVPScrollBar" inherits="MinimalScrollBar" hidden="true" />
+                    <EventFrame parentKey="GearingScrollBar" inherits="MinimalScrollBar" hidden="true" />
+                    <EventFrame parentKey="TeleportsScrollBar" inherits="MinimalScrollBar" hidden="true" />
+                    <EventFrame parentKey="RaidSheetScrollBar" inherits="MinimalScrollBar" hidden="true" />
+                    <EventFrame parentKey="DropsScrollBar" inherits="MinimalScrollBar" hidden="true" />
+                    <EventFrame parentKey="UpgradesScrollBar" inherits="MinimalScrollBar" hidden="true" />
+
+                    <Button parentKey="Resize" inherits="PanelResizeButtonTemplate" topLevel="true" frameStrata="HIGH" registerForDrag="LeftButton">
+                        <Size x="20" y="20" />
+                        <Anchors>
+                            <Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOMRIGHT" y="2"/>
+                        </Anchors>
+
+                        <Scripts>
+                            <OnLoad>
+                                local mainFrame = self:GetParent():GetParent()
+                                self:Init(mainFrame, PVEFrame:GetWidth(), PVEFrame:GetHeight(), PVEFrame:GetWidth(), PVEFrame:GetHeight() * 2)
+
+                                self:HookScript("OnMouseUp", function()
+                                    MIOG_NewSettings.mainFrameSize = {width = mainFrame:GetWidth(), height = mainFrame:GetHeight()}
+                                
+                                end)
+                            </OnLoad>
+                        </Scripts>
+                    </Button>
+                </Frames>
+            </Frame>
+
+            <Frame parentKey="TabFramesPanel">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent.TitleBarSeparator" relativePoint="BOTTOMLEFT" />
+                    <Anchor point="BOTTOMRIGHT" relativeKey="$parent.ScrollBarArea" relativePoint="BOTTOMLEFT"/>
+                </Anchors>
+
+                <Frames>
+                    <Frame parentKey="MainTab" setAllPoints="true">
+                        <Frames>
+                            <Frame parentKey="QueueInformation">
+                                <Size x="190" />
+                                
+                                <Anchors>
+                                    <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT" />
+                                    <Anchor point="BOTTOMLEFT" relativeKey="$parent" relativePoint="BOTTOMLEFT" y="3"/>
+                                </Anchors>
+
+                                <Frames>
+                                    <Frame parentKey="RolePanel">
+                                        <Size y="22" />
+                                        <Anchors>
+                                            <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT" />
+                                            <Anchor point="TOPRIGHT" relativeKey="$parent" relativePoint="TOPRIGHT" />
+                                        </Anchors>
+
+                                        <Frames>
+                                            <Frame parentKey="Leader" inherits="MIOG_MainFrameRoleTemplate">
+                                                <Anchors>
+                                                    <Anchor point="LEFT" relativeKey="$parent" relativePoint="LEFT" x="2"/>
+                                                </Anchors>
+                                            </Frame>
+
+                                            <Frame parentKey="Tank" inherits="MIOG_MainFrameRoleTemplate">
+                                                <Size x="40" y="22" />
+
+                                                <Anchors>
+                                                    <Anchor point="LEFT" relativeKey="$parent.Leader" relativePoint="RIGHT" x="9"/>
+                                                </Anchors>
+                                            </Frame>
+
+                                            <Frame parentKey="Healer" inherits="MIOG_MainFrameRoleTemplate">
+                                                <Size x="40" y="22" />
+
+                                                <Anchors>
+                                                    <Anchor point="LEFT" relativeKey="$parent.Tank" relativePoint="RIGHT" x="9"/>
+                                                </Anchors>
+                                            </Frame>
+
+                                            <Frame parentKey="Damager" inherits="MIOG_MainFrameRoleTemplate">
+                                                <Size x="40" y="22" />
+
+                                                <Anchors>
+                                                    <Anchor point="LEFT" relativeKey="$parent.Healer" relativePoint="RIGHT" x="9"/>
+                                                </Anchors>
+                                            </Frame>
+                                        </Frames>
+                                    </Frame>
+
+                                    <DropdownButton parentKey="FakeDropdown" inherits="WowStyle1DropdownTemplate" mixin="FakeDropdownMixin">
+                                        <Size y="25" />
+                                        <Anchors>
+                                            <Anchor point="TOPLEFT" relativeKey="$parent.RolePanel" relativePoint="BOTTOMLEFT" x="4" y="-4"/>
+                                            <Anchor point="TOPRIGHT" relativeKey="$parent.RolePanel" relativePoint="BOTTOMRIGHT" x="-27" y="-4"/>
+                                        </Anchors>
+
+                                        <Scripts>
+                                            <OnClick method="OnClick" />
+                                        </Scripts>
+                                    </DropdownButton>
+
+                                    <Button parentKey="Requeue" inherits="BigRedRefreshButtonTemplate">
+                                        <Size x="25" y="25" />
+                                        <Anchors>
+                                            <Anchor point="LEFT" relativeKey="$parent.FakeDropdown" relativePoint="RIGHT" x="2"/>
+                                        </Anchors>
+                                        <Scripts>
+                                            <OnLeave function="GameTooltip_Hide" />
+                                        </Scripts>
+                                    </Button>
+                                    
+                                    <Frame parentKey="LastGroup" inherits="InsetFrameTemplate3">
+                                        <Size y="50" />
+
+                                        <Anchors>
+                                            <Anchor point="BOTTOMLEFT" relativeKey="$parent" relativePoint="BOTTOMLEFT" x="4"/>
+                                            <Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOMRIGHT"/>
+                                        </Anchors>
+
+                                        <Frames>
+                                            <Button parentKey="TeleportButton" inherits="MIOG_TeleportButtonTemplate">
+                                                <Size x="50" y="50" />
+                                                <Anchors>
+                                                    <Anchor point="LEFT" relativeKey="$parent" relativePoint="RIGHT" x="3"/>
+                                                </Anchors>
+                                            </Button>
+                                        </Frames>
+
+                                        <Layers>
+                                            <Layer level="OVERLAY">
+                                                <FontString parentKey="Text" font="GameFontHighlight" justifyH="CENTER" outline="NORMAL" text="">
+                                                    <Anchors>
+                                                        <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT" x="4" y="-4"/>
+                                                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOMRIGHT" x="-4" y="4"/>
+                                                    </Anchors>
+                                                </FontString>
+                                            </Layer>
+                                        </Layers>
+                                    </Frame>
+
+                                    <Frame parentKey="Panel" inherits="MIOG_QueueManager">
+                                        <Anchors>
+                                            <Anchor point="TOPLEFT" relativeKey="$parent.FakeDropdown" relativePoint="BOTTOMLEFT" y="-4"/>
+                                            <Anchor point="BOTTOMRIGHT" relativeKey="$parent.LastGroup" relativePoint="TOPRIGHT" y="2"/>
+                                        </Anchors>
+                                    </Frame>
+                                </Frames>
+                            </Frame>
+
+                            <Frame parentKey="Information" inherits="BackdropTemplate">
+                                <Anchors>
+                                    <Anchor point="TOPLEFT" relativeKey="$parent.QueueInformation" relativePoint="TOPRIGHT"/>
+                                    <Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOMRIGHT" y="3"/>
+                                </Anchors>
+
+                                <Frames>
+                                    <Frame parentKey="AbandonFrame" inherits="MIOG_AbandonFrame">
+                                        <Anchors>
+                                            <Anchor point="TOPRIGHT"/>
+                                        </Anchors>
+                                    </Frame>
+
+                                    <Frame parentKey="Holiday" inherits="HorizontalLayoutFrame" hidden="true">
+                                        <KeyValues>
+                                            <KeyValue key="spacing" value="5" />
+                                        </KeyValues>
+
+                                        <Size y="40" />
+
+                                        <Anchors>
+                                            <Anchor point="TOPLEFT" y="-3"/>
+                                            <Anchor point="TOPRIGHT" y="-3"/>
+                                        </Anchors>
+                                    </Frame>
+
+                                    <Frame parentKey="VaultProgress3" inherits="MIOG_VaultProgressWorldTemplate">
+                                        <Anchors>
+                                            <Anchor point="BOTTOMRIGHT" x="-3"/>
+                                        </Anchors>
+                                    </Frame>
+
+                                    <Frame parentKey="VaultProgress2" inherits="MIOG_VaultProgressDungeonTemplate">
+                                        <Anchors>
+                                            <Anchor point="BOTTOMRIGHT" relativeKey="$parent.VaultProgress3" relativePoint="TOPRIGHT" y="12"/>
+                                        </Anchors>
+                                    </Frame>
+
+                                    <Frame parentKey="VaultProgress1" inherits="MIOG_VaultProgressRaidTemplate">
+                                        <Anchors>
+                                            <Anchor point="BOTTOMRIGHT" relativeKey="$parent.VaultProgress2" relativePoint="TOPRIGHT" y="12"/>
+                                        </Anchors>
+                                    </Frame>
+
+                                    <StatusBar parentKey="KeystoneStatusBar" frameBuffer="true" >
+                                        <BarTexture atlas="ui-castingbar-filling-standard" />
+                                        <Size x="276" y="16" />
+                                        <Anchors>
+                                            <Anchor point="BOTTOMRIGHT" relativeKey="$parent.VaultProgress1" relativePoint="TOPRIGHT" y="12"/>
+                                        </Anchors>
+
+                                        <Layers>
+                                            <Layer level="BACKGROUND" textureSubLevel="1">
+                                                <Texture parentKey="BarBackground" atlas="activities-bar-background">
+                                                    <Size x="277" y="16" />
+                                                    <Anchors>
+                                                        <Anchor point="CENTER" x="0" y="0"/>
+                                                    </Anchors>
+                                                </Texture>
+                                            </Layer>
+
+                                            <Layer level="OVERLAY">
+                                                <Texture parentKey="Icon" file="interface/icons/inv_relics_hourglass_02.blp">
+                                                    <Size x="14" y="14" />
+                                                    <Anchors>
+                                                        <Anchor point="RIGHT" x="-4"/>
+                                                    </Anchors>
+                                                </Texture>
+
+                                                <Texture parentKey="Affix">
+                                                    <Size x="14" y="14" />
+                                                    <Anchors>
+                                                        <Anchor point="RIGHT" relativeKey="$parent.Icon" relativePoint="LEFT" />
+                                                    </Anchors>
+
+                                                    <Scripts>
+                                                        <OnEnter>
+                                                            if(self.affixID) then
+                                                                local name, desc, filedataid = C_ChallengeMode.GetAffixInfo(self.affixID)
+                                                                GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+                                                                GameTooltip:SetText(name)
+                                                                GameTooltip:AddLine(desc)
+                                                                GameTooltip:Show()
+                                                            end
+                                                        </OnEnter>
+                                                        <OnLeave function="GameTooltip_Hide" />
+                                                    </Scripts>
+                                                </Texture>
+
+                                                <FontString parentKey="Text" setAllPoints="true" font="GameFontHighlight" justifyH="LEFT" text="No keystone found" outline="NORMAL">
+                                                    <Anchors>
+                                                        <Anchor point="LEFT"  x="5"/>
+                                                        <Anchor point="RIGHT" relativeKey="$parent.Affix" relativePoint="LEFT" x="-2"/>
+                                                    </Anchors>
+                                                </FontString>
+
+                                                <Texture parentKey="BarBorder" atlas="activities-bar-border">
+                                                    <Anchors>
+                                                        <Anchor point="TOPLEFT" relativePoint="$parent" x="-2" y="2"/>
+                                                        <Anchor point="BOTTOMRIGHT" relativePoint="$parent" x="4" y="-4"/>
+                                                    </Anchors>
+                                                </Texture>
+                                            </Layer>
+                                        </Layers>
+                                    </StatusBar>
+
+                                    <Frame parentKey="RenownBar1" inherits="MIOG_RenownBarTemplate" hidden="true">
+                                        <Anchors>
+                                            <Anchor point="BOTTOMRIGHT" relativeKey="$parent.KeystoneStatusBar" relativePoint="TOPRIGHT" y="12"/>
+                                        </Anchors>
+                                    </Frame>
+
+                                    <Frame parentKey="HolidayScrollBox" inherits="WowScrollBoxList">
+                                        <Size x="256" />
+                                        <Anchors>
+                                            <Anchor point="TOPRIGHT" x="-2" y="-3"/>
+                                            <Anchor point="BOTTOMRIGHT" relativeKey="$parent.KeystoneStatusBar" relativePoint="TOPRIGHT" />
+                                        </Anchors>
+                                    </Frame>
+                                </Frames>
+                            </Frame>
+                            
+                            <Frame parentKey="AppViewer" inherits="MIOG_AppViewer" frameStrata="HIGH">
+                                <Anchors>
+                                    <Anchor point="TOPLEFT" relativeKey="$parent.Information"/>
+                                    <Anchor point="BOTTOMRIGHT" relativeKey="$parent.Information"/>
+                                </Anchors>
+                            </Frame>
+                        </Frames>
+                    </Frame>
+                    
+                    <Frame parentKey="GroupManager" inherits="MIOG_GroupOrganizer" hidden="true" setAllPoints="true" />
+                    <Frame parentKey="NewProgress" inherits="MIOG_ProgressTabTemplate" hidden="true" setAllPoints="true" />
+                    <Frame parentKey="Teleports" inherits="MIOG_Teleports" hidden="true" setAllPoints="true" />
+                    <Frame parentKey="GearingTable" inherits="MIOG_GearingTable" hidden="true" setAllPoints="true" />
+                    <Frame parentKey="RaidSheet" inherits="MIOG_RaidSheet" hidden="true" setAllPoints="true" />
+                    <Frame parentKey="Drops" inherits="MIOG_Drops" hidden="true" setAllPoints="true" />
+                    <Frame parentKey="UpgradeFinder" inherits="MIOG_UpgradeFinder" hidden="true" setAllPoints="true" />
+
+                    <Frame parentKey="Loot" inherits="MIOG_Loot" hidden="true">
+                        <Size x="400" y="300" />
+
+                        <Anchors>
+                            <Anchor point="TOPLEFT" relativeKey="$parent.Drops" relativePoint="TOPRIGHT" x="40"/>
+                        </Anchors>
+                    </Frame>
+                </Frames>
+
+                <Layers>
+                    <Layer level="BACKGROUND" textureSubLevel="1">
+                        <Texture parentKey="Background" setAllPoints="true"/>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <Button name="$parentTab1" inherits="MIOG_TabButtonTemplate" id="1" text="Main">
+               <Anchors>
+                   <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="BOTTOMLEFT" />
+               </Anchors>
+
+                <Scripts>
+                    <OnLoad>
+                        self.frameName = "MainTab"
+                    </OnLoad>
+                </Scripts>
+            </Button>
+
+            <Button name="$parentTab2" inherits="MIOG_TabButtonTemplate" id="2" text="Group">
+               <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentTab1" relativePoint="RIGHT" />
+               </Anchors>
+
+                <Scripts>
+                    <OnLoad>
+                        self.frameName = "GroupManager"
+                    </OnLoad>
+                </Scripts>
+            </Button>
+
+            <Button name="$parentTab3" inherits="MIOG_TabButtonTemplate" id="3" text="Progress">
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentTab2" relativePoint="RIGHT"/>
+                </Anchors>
+                
+                <Scripts>
+                    <OnLoad>
+                        self.frameName = "NewProgress"
+                    </OnLoad>
+                </Scripts>
+            </Button>
+
+            <Button name="$parentTab4" inherits="MIOG_TabButtonTemplate" id="4" text="Ports">
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentTab3" relativePoint="RIGHT" />
+                </Anchors>
+
+                <Scripts>
+                    <OnLoad>
+                        self.frameName = "Teleports"
+                    </OnLoad>
+                </Scripts>
+            </Button>
+
+            <Button name="$parentTab5" inherits="MIOG_TabButtonTemplate" id="5" text="Gearing">
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentTab4" relativePoint="RIGHT" />
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        self.frameName = "GearingTable"
+                    </OnLoad>
+                </Scripts>
+            </Button>
+
+            <Button name="$parentTab6" inherits="MIOG_TabButtonTemplate" id="6" text="Raid Sheet">
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentTab5" relativePoint="RIGHT" />
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        self.frameName = "RaidSheet"
+                    </OnLoad>
+                </Scripts>
+            </Button>
+
+            <Button name="$parentTab7" inherits="MIOG_TabButtonTemplate" id="7" text="Drops">
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentTab6" relativePoint="RIGHT" />
+                </Anchors>
+                <Scripts>
+                    <OnLoad>
+                        self.frameName = "Drops"
+                    </OnLoad>
+                </Scripts>
+            </Button>
+
+            <Button name="$parentTab8" inherits="MIOG_TabButtonTemplate" id="8" text="Upgrades">
+                <Anchors>
+                    <Anchor point="LEFT" relativeTo="$parentTab7" relativePoint="RIGHT"/>
+                </Anchors>
+                
+                <Scripts>
+                    <OnLoad>
+                        self.frameName = "UpgradeFinder"
+                    </OnLoad>
+                </Scripts>
+            </Button>
+        </Frames>
+
+        <Scripts>
+            <OnDragStart>
+                self:StartMoving()
+            </OnDragStart>
+
+            <OnDragStop>
+                self:StopMovingOrSizing()
+            </OnDragStop>
+
+            <OnLoad>
+                PanelTemplates_SetNumTabs(self, 8)
+                PanelTemplates_SetTab(self, 1)
+                self.selectedTabFrame = self.TabFramesPanel.MainTab
+                tinsert(UISpecialFrames, self:GetName());
+                
+	            PanelTemplates_SetTabEnabled(self, 7, false);
+            </OnLoad>
+
+            <OnShow>
+                PlaySound(SOUNDKIT.IG_CHARACTER_INFO_OPEN);
+
+                for index = 1, self.numTabs, 1 do
+                    tab = self.Tabs and self.Tabs[index] or _G[self:GetName().."Tab"..index];
+                    tab:SetWidth(67)
+                end
+            </OnShow>
+
+            <OnHide>
+                PlaySound(SOUNDKIT.IG_CHARACTER_INFO_CLOSE);
+            </OnHide>
+        </Scripts>
+    </Frame>
+</Ui>

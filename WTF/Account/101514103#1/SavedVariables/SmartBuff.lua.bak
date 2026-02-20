@@ -1,0 +1,7 @@
+
+SMARTBUFF_OptionsGlobal = {
+["SplashMsgShort"] = true,
+["SplashIcon"] = true,
+["Tutorial"] = 120000,
+["FirstStart"] = "r35.200126",
+}

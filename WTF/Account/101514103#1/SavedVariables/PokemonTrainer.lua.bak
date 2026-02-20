@@ -1,0 +1,49 @@
+
+PokemonTrainerDB = {
+["namespaces"] = {
+["FrameCombatDisplay"] = {
+["profiles"] = {
+["Default"] = {
+["model3d"] = false,
+},
+},
+},
+["HealBandageButtons"] = {
+["profiles"] = {
+["Default"] = {
+["enabled"] = true,
+},
+},
+},
+["WildPetTooltip"] = {
+["profiles"] = {
+["Default"] = {
+["enabled"] = false,
+["battlelevel"] = false,
+["battlelevelonlydiff"] = false,
+},
+},
+},
+},
+["profileKeys"] = {
+["Gammelemil - Grim Batol"] = "Default",
+["Qpaladin - Ragnaros"] = "Default",
+["Qute - Sylvanas"] = "Default",
+["Qpfromage - Sylvanas"] = "Default",
+["Fishanus - Ragnaros"] = "Default",
+["Qudroformagi - Sylvanas"] = "Default",
+["Helikåpter - Sylvanas"] = "Default",
+["Xiaoyuu - Sylvanas"] = "Default",
+["Flurrq - Ragnaros"] = "Default",
+["Qpfromage - Ragnaros"] = "Default",
+["Sikducker - Sylvanas"] = "Default",
+["Dogson - Ragnaros"] = "Default",
+},
+["profiles"] = {
+["Default"] = {
+["alpha"] = true,
+["version"] = "12.0.1-20260211-1",
+},
+},
+}
+PTDevDB = nil

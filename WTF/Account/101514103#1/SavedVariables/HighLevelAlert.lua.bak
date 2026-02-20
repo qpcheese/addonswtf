@@ -1,0 +1,10 @@
+
+HLATAB = {
+["minimapPos"] = 0,
+["SHOWTEXT"] = true,
+["HighLevelAlert"] = {
+},
+["MMBTN"] = false,
+["SHOWWARNINGFORPLAYERS"] = true,
+["TEXTSCALE"] = 1,
+}

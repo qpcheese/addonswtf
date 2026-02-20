@@ -1,0 +1,15 @@
+VER 3 0100000000000004 "attack" "237507"
+/startattack
+END
+VER 3 0100000000000003 "flame" "134400"
+#showtooltip
+/cast [@cursor] Sigil of Flame
+END
+VER 3 0100000000000002 "meta" "134400"
+#showtooltip
+/cast [@cursor] Metamorphosis
+END
+VER 3 0100000000000001 "misery" "134400"
+#showtooltip
+/cast [@cursor] Sigil of Misery
+END

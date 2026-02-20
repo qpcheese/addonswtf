@@ -1,0 +1,42 @@
+## Interface: 120000
+## Author: Dro
+## Title: |cff0099ccCooldown Manager|r Control
+## Category: Dro|cff0099ccUI|r
+## Version: 12.0
+## DefaultState: Enabled
+## SavedVariables: CooldownManagerControlDB
+
+libs\LibStub\LibStub.lua
+libs\CallbackHandler-1.0\CallbackHandler-1.0.xml
+libs\AceAddon-3.0\AceAddon-3.0.xml
+libs\AceEvent-3.0\AceEvent-3.0.xml
+libs\AceTimer-3.0\AceTimer-3.0.xml
+libs\AceBucket-3.0\AceBucket-3.0.xml
+libs\AceHook-3.0\AceHook-3.0.xml
+libs\AceDB-3.0\AceDB-3.0.xml
+libs\AceDBOptions-3.0\AceDBOptions-3.0.xml
+libs\AceConsole-3.0\AceConsole-3.0.xml
+libs\AceGUI-3.0\AceGUI-3.0.xml
+libs\AceConfig-3.0\AceConfig-3.0.xml
+libs\LibCustomGlow-1.0\LibCustomGlow-1.0.xml
+libs\LibDeflate\lib.xml
+libs\LibSerialize\lib.xml
+libs\LibEditModeOverride\LibEditModeOverride.xml
+
+Core.lua
+CMC.lua
+Layout.lua
+Skin.lua
+AddedItemBar.lua
+AddedItem.lua
+Default.lua
+Utils.lua
+UtilsGUI.lua
+Keybind.lua
+
+Option.lua
+options\LayoutOption.lua
+options\AnchorOption.lua
+options\OverrideOption.lua
+options\AddedItemOption.lua
+options\ImportExport.lua

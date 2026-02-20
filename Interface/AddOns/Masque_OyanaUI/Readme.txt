@@ -1,0 +1,1 @@
+If you have this folder and have no idea why, find associated Weakauras here: https://wago.io/p/Oyana

@@ -1,0 +1,18 @@
+## Interface: 120001, 120000
+## X-Min-Interface: 120000
+## Title: Mythic-Plus-Key-Announcer
+## Notes: LFG Keystone tracker
+## Notes-ruRU: Аддон, который оповещает, когда Вы присоединяетесь к группе M+ (или связанной с ней), и показывает всплывающее окно с ключом группы и подробностями
+## Author: Jason Burch
+## Version: 12.0.1.1
+## X-Curse-Project-ID: 449091
+## X-Website: https://www.curseforge.com/wow/addons/mythic-plus-key-announcer
+## SavedVariables: MythicPlusKeyAnnouncerDB
+embeds.xml
+Locales\enUS.lua
+Locales\esES.lua
+Locales\frFR.lua
+Locales\ptBR.lua
+Locales\zhCN.lua
+Locales\ruRU.lua
+Mythic-Plus-Key-Announcer.lua

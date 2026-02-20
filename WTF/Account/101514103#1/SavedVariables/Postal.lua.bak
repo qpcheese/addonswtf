@@ -1,0 +1,21 @@
+
+Postal3DB = {
+["profileKeys"] = {
+["Qpaladin - Ragnaros"] = "Qpaladin - Ragnaros",
+["Gammelemil - Grim Batol"] = "Gammelemil - Grim Batol",
+},
+["global"] = {
+["BlackBook"] = {
+["alts"] = {
+"Gammelemil|Grim Batol|Alliance|10|ROGUE",
+"Qpaladin|Ragnaros|Horde|80|PALADIN",
+},
+},
+},
+["profiles"] = {
+["Qpaladin - Ragnaros"] = {
+},
+["Gammelemil - Grim Batol"] = {
+},
+},
+}

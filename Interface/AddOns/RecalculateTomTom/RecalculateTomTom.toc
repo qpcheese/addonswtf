@@ -1,0 +1,12 @@
+## Interface: 120001, 120000
+## Title: |cff0070ddRecalculate for TomTom|r
+## Notes: |cff00ff00|nAdds |nClosest[|cff0070ddMOD+Left|r] & Remove[|cff0070ddMOD+Middle|r] |nClicks to the TomTom Arrow |n|nUse|r |cffffffff /recaltt |r |cff00ff00 or |r |cffffffff /rtt|n|r
+## Author: |cffff0000Kilrah|r
+## Category: Kilrah
+## Version: 1.0.0
+## DefaultState: enabled
+## Dependencies: TomTom
+
+## SavedVariables: RecalculateTomTomDB
+
+RecalculateTomTom.lua

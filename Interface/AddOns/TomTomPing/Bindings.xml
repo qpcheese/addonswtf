@@ -1,0 +1,9 @@
+<Bindings>
+	<Binding name="TOMTOMPING_TARGET" header="TOM_TOM_PING"  category="ADDONS">TomTomPing:TriggerAction("destination", "name", UnitName("target"))</Binding>
+	<Binding name="TOMTOMPING_STICK" category="ADDONS">TomTomPing:TriggerAction("sticky")</Binding>
+	<Binding name="TOMTOMPING_CLEAR" category="ADDONS">TomTomPing:TriggerAction("clear")</Binding>
+	<Binding name="TOMTOMPING_PING" category="ADDONS">TomTomPing:TriggerAction("ping")</Binding>
+	<Binding name="TOMTOMPING_WAYPOINT" category="ADDONS">local name = UnitName("target"); TomTomPing:TriggerAction("destination", "waypoint", name)</Binding>
+	<Binding name="TOMTOMPING_CUSTOM_ONE" category="ADDONS">TomTomPing:TriggerAction("custom", "CustomCmd1")</Binding>
+	<Binding name="TOMTOMPING_CUSTOM_TWO" category="ADDONS">TomTomPing:TriggerAction("custom", "CustomCmd2")</Binding>
+</Bindings>

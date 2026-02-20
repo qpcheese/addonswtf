@@ -1,0 +1,83 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+    <Frame name="MIOG_Plugin" inherits="BackdropTemplate" flattenRenderLayers="true" frameBuffer="true" resizable="true" virtual="true" hidden="true">
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture parentKey="Background" setAllPoints="true" />
+            </Layer>
+        </Layers>
+
+        <Frames>
+            <Frame parentKey="FooterBar" inherits="BackdropTemplate">
+                <Size y="24" />
+                <Anchors>
+                    <Anchor point="BOTTOMLEFT" relativeKey="$parent" relativePoint="BOTTOMLEFT" />
+                    <Anchor point="BOTTOMRIGHT" relativeKey="$parent" relativePoint="BOTTOMRIGHT" />
+                </Anchors>
+
+                <Frames>
+                    <Button parentKey="Back" inherits="UIPanelDynamicResizeButtonTemplate" text="BACK">
+                        <Size x="1" y="20" />
+                        <Anchors>
+                            <Anchor point="LEFT" relativeKey="$parent" relativePoint="LEFT" />
+                        </Anchors>
+                        
+                        <Scripts>
+                            <OnLoad>
+                                self:FitToText()
+
+                            </OnLoad>
+                            <OnClick>
+                                PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON);
+                                LFGListFrame_SetActivePanel(LFGListFrame, LFGListFrame.CategorySelection);
+                                LFGListFrame.SearchPanel.shouldAlwaysShowCreateGroupButton = false;
+
+                            </OnClick>
+                        </Scripts>
+                    </Button>
+                </Frames>
+
+                <Layers>
+                    <Layer level="OVERLAY">
+                        <FontString parentKey="Results" font="GameFontHighlight" justifyH="CENTER" justifyV="MIDDLE" outline="NORMAL" text="">
+                            <Anchors>
+                                <Anchor point="RIGHT" relativeKey="$parent" relativePoint="RIGHT" x="-3" />
+                            </Anchors>
+
+                            <Scripts>
+                                <OnLeave function="GameTooltip_Hide" />
+                            </Scripts>
+                        </FontString>
+
+                        <FontString parentKey="LeaverText" font="GameFontHighlight" justifyH="CENTER" justifyV="MIDDLE" outline="NORMAL">
+                            <Anchors>
+                                <Anchor point="RIGHT" relativeKey="$parent.Results" relativePoint="LEFT" x="-6" />
+                            </Anchors>
+
+                            <Scripts>
+                                <OnShow>
+                                    if(C_InstanceLeaver.IsPlayerLeaver()) then
+                                        self:Show()
+                                        self:SetText("|A:groupfinder-icon-leaver:12:12|a Leaver")
+
+                                    else
+                                        self:Hide()
+
+                                    end
+
+                                </OnShow>
+                            </Scripts>
+                        </FontString>
+                    </Layer>
+                </Layers>
+            </Frame>
+
+            <Frame parentKey="InsertFrame">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT" />
+                    <Anchor point="BOTTOMRIGHT" relativeKey="$parent.FooterBar" relativePoint="TOPRIGHT" />
+                </Anchors>
+            </Frame>
+        </Frames>
+    </Frame>
+</Ui>

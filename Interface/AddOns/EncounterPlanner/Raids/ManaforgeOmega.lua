@@ -1,0 +1,3071 @@
+local _, Namespace = ...
+
+local isElevenDotTwo = select(4, GetBuildInfo()) >= 110200 -- Remove when 11.2 is live
+if not isElevenDotTwo then
+	return
+end
+
+---@class Private
+local Private = Namespace
+local L = Private.L
+---@class EventTrigger
+local EventTrigger = Private.classes.EventTrigger
+---@class Boss
+local Boss = Private.classes.Boss
+---@class BossAbility
+local BossAbility = Private.classes.BossAbility
+---@class BossAbilityPhase
+local BossAbilityPhase = Private.classes.BossAbilityPhase
+---@class BossPhase
+local BossPhase = Private.classes.BossPhase
+---@class DungeonInstance
+local DungeonInstance = Private.classes.DungeonInstance
+
+Private.dungeonInstances[2810] = DungeonInstance:New({
+	journalInstanceID = 1302,
+	instanceID = 2810,
+	customGroups = { "TheWarWithinSeasonThree" },
+	bosses = {
+		Boss:New({ -- Plexus Sentinel
+			bossIDs = {
+				233814, -- Plexus Sentinel
+				243241, -- Volatile Manifestation
+				-- nil, -- Arcanomatrix Warden
+				-- nil, -- Overloading Attendant
+			},
+			journalEncounterCreatureIDsToBossIDs = {
+				-- = 233814 -- Plexus Sentinel
+				-- = 243241, -- Volatile Manifestation
+				-- [5945] = nil, -- Arcanomatrix Warden
+				-- [5946] = nil, -- Overloading Attendant
+			},
+			journalEncounterID = 2684,
+			dungeonEncounterID = 3129,
+			instanceID = 2810,
+			preferredCombatLogEventAbilities = {
+				[1] = nil,
+				[2] = { combatLogEventSpellID = 1241303, combatLogEventType = "SAA" },
+				[3] = { combatLogEventSpellID = 1241303, combatLogEventType = "SAR" },
+				[4] = { combatLogEventSpellID = 1241303, combatLogEventType = "SAA" },
+				[5] = { combatLogEventSpellID = 1241303, combatLogEventType = "SAR" },
+				[6] = { combatLogEventSpellID = 1241303, combatLogEventType = "SAA" },
+				[7] = { combatLogEventSpellID = 1241303, combatLogEventType = "SAR" },
+			},
+			abilities = {
+				[1234733] = BossAbility:New({ -- Cleanse the Chamber
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 0.02 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 29.76 },
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 29.89 },
+						}),
+						[7] = BossAbilityPhase:New({
+							castTimes = { 63.39 },
+							repeatInterval = { 7.03, 10.37 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 3.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1223364] = BossAbility:New({ -- Powered Automaton
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 0.02 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 1.57 },
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 1.66 },
+						}),
+						[7] = BossAbilityPhase:New({
+							castTimes = { 1.65 },
+						}),
+					},
+					durationLastsUntilEndOfPhase = true,
+					duration = 0.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SCC", "SAA", "SAR" },
+				}),
+				[1219450] = BossAbility:New({ -- Manifest Matrices
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 9.03, 29.09 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 5.23, 25.86, 25.94, 25.03 },
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 5.28, 25.52, 26.25, 25.23 },
+						}),
+						[7] = BossAbilityPhase:New({
+							castTimes = { 5.30, 23.50, 26.33, 33.28 },
+							repeatInterval = { 30.87 },
+						}),
+					},
+					duration = 6.0,
+					castTime = 2.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1219263] = BossAbility:New({ -- Obliteration Arcanocannon
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 21.84, 30.57 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 13.49, 28.63, 28.60 },
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 13.60, 28.77, 28.71 },
+						}),
+						[7] = BossAbilityPhase:New({
+							castTimes = { 13.71, 28.81, 30.21 },
+							repeatInterval = { 30.21 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 6.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+					tankAbility = true,
+				}),
+				[1219531] = BossAbility:New({ -- Eradicating Salvo
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 41.08 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 20.81, 32.73, 32.59 },
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 20.89, 32.61, 32.88 },
+						}),
+						[7] = BossAbilityPhase:New({
+							castTimes = { 20.96 },
+							repeatInterval = { 33.0 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 5.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1220489] = BossAbility:New({ -- Protocol: Purge (Cast 1)
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 60.8 },
+							signifiesPhaseEnd = true,
+						}),
+					},
+					duration = 0.0,
+					castTime = 5.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+					additionalContext = L["Cast"] .. " 1",
+				}),
+				[1232543] = BossAbility:New({ -- Energy Overload
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 61.00 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 95.84 },
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 96.47 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SCC" },
+				}),
+				[1227639] = BossAbility:New({ -- Static Lightning
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 62.46 },
+							durationLastsUntilEndOfNextPhase = true,
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 95.67 },
+							durationLastsUntilEndOfNextPhase = true,
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 96.17 },
+							durationLastsUntilEndOfNextPhase = true,
+						}),
+					},
+					durationLastsUntilEndOfNextPhase = true,
+					duration = 0.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SCC", "SAA", "SAR" },
+				}),
+				[1220618] = BossAbility:New({ -- Protocol: Purge (Buff 1)
+					phases = {
+						[2] = BossAbilityPhase:New({
+							castTimes = { 0.0 },
+							signifiesPhaseEnd = true,
+						}),
+					},
+					defaultHidden = true,
+					durationLastsUntilEndOfPhase = true,
+					duration = 0.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SAA", "SAR" },
+					additionalContext = L["Buff"] .. " 1",
+				}),
+				[1220553] = BossAbility:New({ -- Protocol: Purge (Cast 2)
+					phases = {
+						[3] = BossAbilityPhase:New({
+							castTimes = { 94.0 },
+							signifiesPhaseEnd = true,
+						}),
+					},
+					duration = 0.0,
+					castTime = 5.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+					additionalContext = L["Cast"] .. " 2",
+				}),
+				[1220981] = BossAbility:New({ -- Protocol: Purge (Buff 2)
+					phases = {
+						[4] = BossAbilityPhase:New({
+							castTimes = { 0.0 },
+							signifiesPhaseEnd = true,
+						}),
+					},
+					defaultHidden = true,
+					durationLastsUntilEndOfPhase = true,
+					duration = 0.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SAA", "SAR" },
+					additionalContext = L["Buff"] .. " 2",
+				}),
+				[1220555] = BossAbility:New({ -- Protocol: Purge (Cast 3)
+					phases = {
+						[5] = BossAbilityPhase:New({
+							castTimes = { 94.5 },
+							signifiesPhaseEnd = true,
+						}),
+					},
+					duration = 0.0,
+					castTime = 5.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+					additionalContext = L["Cast"] .. " 3",
+				}),
+				[1220982] = BossAbility:New({ -- Protocol: Purge (Buff 3)
+					phases = {
+						[6] = BossAbilityPhase:New({
+							castTimes = { 0.0 },
+							signifiesPhaseEnd = true,
+						}),
+					},
+					defaultHidden = true,
+					durationLastsUntilEndOfPhase = true,
+					duration = 0.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SAA", "SAR" },
+					additionalContext = L["Buff"] .. " 3",
+				}),
+				[1241303] = BossAbility:New({ -- Arcanoshield
+					phases = {
+						[2] = BossAbilityPhase:New({
+							castTimes = { 0.0 },
+						}),
+						[4] = BossAbilityPhase:New({
+							castTimes = { 0.0 },
+						}),
+						[6] = BossAbilityPhase:New({
+							castTimes = { 0.0 },
+						}),
+					},
+					durationLastsUntilEndOfPhase = true,
+					duration = 0.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SAA", "SAR" },
+				}),
+			},
+			phases = {
+				[1] = BossPhase:New({
+					duration = 65.8,
+					defaultDuration = 65.8,
+					count = 1,
+					defaultCount = 1,
+					name = "P1",
+					fixedDuration = true,
+				}),
+				[2] = BossPhase:New({
+					duration = 40.0,
+					defaultDuration = 40.0,
+					count = 1,
+					defaultCount = 1,
+					name = "Int1",
+					fixedDuration = false,
+				}),
+				[3] = BossPhase:New({
+					duration = 99.0,
+					defaultDuration = 99.0,
+					count = 1,
+					defaultCount = 1,
+					name = "P1",
+					fixedDuration = true,
+				}),
+				[4] = BossPhase:New({
+					duration = 40.0,
+					defaultDuration = 40.0,
+					count = 1,
+					defaultCount = 1,
+					name = "Int2",
+					fixedDuration = false,
+				}),
+				[5] = BossPhase:New({
+					duration = 99.5,
+					defaultDuration = 99.5,
+					count = 1,
+					defaultCount = 1,
+					name = "P1",
+					fixedDuration = true,
+				}),
+				[6] = BossPhase:New({
+					duration = 40.0,
+					defaultDuration = 40.0,
+					count = 1,
+					defaultCount = 1,
+					name = "Int3",
+					fixedDuration = false,
+				}),
+				[7] = BossPhase:New({
+					duration = 60.0,
+					defaultDuration = 60.0,
+					count = 1,
+					defaultCount = 1,
+					name = "P1",
+				}),
+			},
+			abilitiesHeroic = {
+				[1223364] = BossAbility:New({ -- Powered Automaton
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 0.02 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 1.59 },
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 1.66 },
+						}),
+						[7] = BossAbilityPhase:New({
+							castTimes = { 1.61 },
+						}),
+					},
+					durationLastsUntilEndOfPhase = true,
+					duration = 0.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SCC", "SAA", "SAR" },
+				}),
+				[1219450] = BossAbility:New({ -- Manifest Matrices
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 10.77, 33.70 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 6.47, 35.36, 35.40 },
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 6.53, 35.31, 35.30 },
+						}),
+						[7] = BossAbilityPhase:New({
+							castTimes = { 6.48, 35.41, 35.46 },
+							repeatInterval = { 35.46 },
+						}),
+					},
+					duration = 6.0,
+					castTime = 2.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1219263] = BossAbility:New({ -- Obliteration Arcanocannon
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 21.76, 32.82 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 19.22, 34.33, 34.07 },
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 19.19, 34.20, 34.03 },
+						}),
+						[7] = BossAbilityPhase:New({
+							castTimes = { 18.98, 33.88 },
+							repeatInterval = { 33.88 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 6.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+					tankAbility = true,
+				}),
+				[1219531] = BossAbility:New({ -- Eradicating Salvo
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 30.46, 31.71 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 28.38, 34.30, 34.91 },
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 28.41, 34.50, 33.57 },
+						}),
+						[7] = BossAbilityPhase:New({
+							castTimes = { 28.41, 38.02 },
+							repeatInterval = { 38.02 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 5.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1220489] = BossAbility:New({ -- Protocol: Purge (Cast 1)
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 64.8 },
+							signifiesPhaseEnd = true,
+						}),
+					},
+					duration = 0.0,
+					castTime = 5.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+					additionalContext = L["Cast"] .. " 1",
+				}),
+				[1227639] = BossAbility:New({ -- Static Lightning
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 66.5 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 97.4 },
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 97.7 },
+						}),
+					},
+					durationLastsUntilEndOfNextPhase = true,
+					duration = 0.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SCC", "SAA", "SAR" },
+				}),
+				[1220553] = BossAbility:New({ -- Protocol: Purge (Cast 2)
+					phases = {
+						[3] = BossAbilityPhase:New({
+							castTimes = { 95.7 },
+							signifiesPhaseEnd = true,
+						}),
+					},
+					duration = 0.0,
+					castTime = 5.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+					additionalContext = L["Cast"] .. " 2",
+				}),
+				[1220555] = BossAbility:New({ -- Protocol: Purge (Cast 3)
+					phases = {
+						[5] = BossAbilityPhase:New({
+							castTimes = { 95.5 },
+							signifiesPhaseEnd = true,
+						}),
+					},
+					duration = 0.0,
+					castTime = 5.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+					additionalContext = L["Cast"] .. " 3",
+				}),
+			},
+			phasesHeroic = {
+				[1] = BossPhase:New({
+					duration = 69.8,
+					defaultDuration = 69.8,
+					count = 1,
+					defaultCount = 1,
+					name = "P1",
+					fixedDuration = true,
+				}),
+				[2] = BossPhase:New({
+					duration = 24.0,
+					defaultDuration = 24.0,
+					count = 1,
+					defaultCount = 1,
+					name = "Int1",
+					fixedDuration = false,
+				}),
+				[3] = BossPhase:New({
+					duration = 100.7,
+					defaultDuration = 100.7,
+					count = 1,
+					defaultCount = 1,
+					name = "P1",
+					fixedDuration = true,
+				}),
+				[4] = BossPhase:New({
+					duration = 24.0,
+					defaultDuration = 24.0,
+					count = 1,
+					defaultCount = 1,
+					name = "Int2",
+					fixedDuration = false,
+				}),
+				[5] = BossPhase:New({
+					duration = 100.5,
+					defaultDuration = 100.5,
+					count = 1,
+					defaultCount = 1,
+					name = "P1",
+					fixedDuration = true,
+				}),
+				[6] = BossPhase:New({
+					duration = 24.0,
+					defaultDuration = 24.0,
+					count = 1,
+					defaultCount = 1,
+					name = "Int3",
+					fixedDuration = false,
+				}),
+				[7] = BossPhase:New({
+					duration = 60.0,
+					defaultDuration = 60.0,
+					count = 1,
+					defaultCount = 1,
+					name = "P1",
+				}),
+			},
+		}),
+		Boss:New({ -- Loom'ithar
+			bossIDs = {
+				233815, -- Loom'ithar
+			},
+			journalEncounterCreatureIDsToBossIDs = {
+				[5958] = 233815, -- Loom'ithar
+			},
+			journalEncounterID = 2686,
+			dungeonEncounterID = 3131,
+			instanceID = 2810,
+			preferredCombatLogEventAbilities = {
+				[1] = nil,
+				[2] = { combatLogEventSpellID = 1228070, combatLogEventType = "SAA" },
+			},
+			abilities = {
+				[1237272] = BossAbility:New({ -- Lair Weaving
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 0.52 },
+							repeatInterval = { 7.02, 36.46, 7.00, 34.51 },
+						}),
+					},
+					duration = 5.0, -- Channel
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SCC", "SAA", "SAR" },
+				}),
+				[1227263] = BossAbility:New({ -- Piercing Strand (Cast)
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 12.58 },
+							repeatInterval = { 3.96, 39.52, 4.95, 36.55 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 3.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+					tankAbility = true,
+					additionalContext = L["Cast"],
+				}),
+				[1227261] = BossAbility:New({ -- Piercing Strand (Duration)
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 15.58 },
+							repeatInterval = { 3.96, 39.52, 4.95, 36.55 },
+						}),
+					},
+					halfHeight = true,
+					duration = 45.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SCC" },
+					additionalContext = L["Effect"],
+				}),
+				[1226311] = BossAbility:New({ -- Infusion Tether
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 22.0 },
+							repeatInterval = { 44.0, 40.0 },
+						}),
+					},
+					halfHeight = true,
+					duration = 10.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = {},
+				}),
+				[1226395] = BossAbility:New({ -- Overinfusion Burst
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 75.94 },
+							repeatInterval = { 85.0 },
+						}),
+					},
+					duration = 8.0, -- Channel
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SCC", "SAA", "SAR" },
+				}),
+				[1228070] = BossAbility:New({ -- Unbound Rage
+					phases = {
+						[2] = BossAbilityPhase:New({
+							castTimes = { 0.0 },
+							signifiesPhaseStart = true,
+						}),
+					},
+					duration = 0.0,
+					castTime = 0.0,
+					durationLastsUntilEndOfPhase = true,
+					allowedCombatLogEventTypes = { "SAA" },
+				}),
+				[1227226] = BossAbility:New({ -- Writhing Wave
+					phases = {
+						[2] = BossAbilityPhase:New({
+							castTimes = { 10.27 },
+							repeatInterval = { 20.0 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 4.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+					additionalContext = L["Cast"],
+				}),
+				[1227227] = BossAbility:New({ -- Writhing Wave
+					phases = {
+						[2] = BossAbilityPhase:New({
+							castTimes = { 14.27 },
+							repeatInterval = { 20.0 },
+						}),
+					},
+					halfHeight = true,
+					duration = 25.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SCC", "SAA", "SAR" },
+					additionalContext = L["Effect"],
+				}),
+				[1227782] = BossAbility:New({ -- Arcane Outrage (Cast)
+					phases = {
+						[2] = BossAbilityPhase:New({
+							castTimes = { 17.26 },
+							repeatInterval = { 20.00 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 2.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+					additionalContext = L["Cast"],
+				}),
+				[1227784] = BossAbility:New({ -- Arcane Outrage (Channel)
+					phases = {
+						[2] = BossAbilityPhase:New({
+							castTimes = { 19.27 },
+							repeatInterval = { 20.00 },
+						}),
+					},
+					duration = 4.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SCC" },
+					additionalContext = L["Channel"],
+				}),
+			},
+			phases = {
+				[1] = BossPhase:New({
+					duration = 180.0,
+					defaultDuration = 180.0,
+					count = 1,
+					defaultCount = 1,
+					name = "P1",
+				}),
+				[2] = BossPhase:New({
+					duration = 180.0,
+					defaultDuration = 180.0,
+					count = 1,
+					defaultCount = 1,
+					name = "P2 (50% Health)",
+				}),
+			},
+			abilitiesHeroic = {
+				[1237272] = BossAbility:New({ -- Lair Weaving
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 0.7 },
+							repeatInterval = { 43.5 },
+						}),
+					},
+					duration = 5.0, -- Channel
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SCC", "SAA", "SAR" },
+				}),
+				[1227263] = BossAbility:New({ -- Piercing Strand (Cast)
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 9.6 },
+							repeatInterval = { 7.0, 39.6, 5.0, 33.6 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 3.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+					tankAbility = true,
+					additionalContext = L["Cast"],
+				}),
+				[1227261] = BossAbility:New({ -- Piercing Strand (Duration)
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 12.6 },
+							repeatInterval = { 7.0, 39.6, 5.0, 33.6 },
+						}),
+					},
+					halfHeight = true,
+					duration = 45.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SCC" },
+					additionalContext = L["Effect"],
+				}),
+			},
+			phasesHeroic = {},
+		}),
+		Boss:New({ -- Soulbinder Naazindhri
+			bossIDs = {
+				233816, -- Soulbinder Naazindhri
+				237981, -- Shadowguard Mage
+				242730, -- Shadowguard Assassin
+				244922, -- Shadowguard Phaseblade
+			},
+			journalEncounterCreatureIDsToBossIDs = {
+				[5959] = 233816, -- Soulbinder Naazindhri
+				[6031] = 237981, -- Shadowguard Mage
+				[6032] = 242730, -- Shadowguard Assassin
+				[6033] = 244922, -- Shadowguard Phaseblade
+			},
+			journalEncounterID = 2685,
+			dungeonEncounterID = 3130,
+			instanceID = 2810,
+			abilities = {
+				[1224025] = BossAbility:New({ -- Mythic Lash (Targeting)
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 4.0 },
+							repeatInterval = { 41.0, 38.0, 40.0, 31.0 },
+						}),
+					},
+					duration = 5.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SCC", "SAA", "SAR" },
+					tankAbility = true,
+				}),
+				[1241100] = BossAbility:New({ -- Mythic Lash (Cast)
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 5.0 },
+							repeatInterval = { 41.0, 38.0, 40.0, 31.0 },
+						}),
+					},
+					defaultHidden = true,
+					duration = 5.0,
+					castTime = 2.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC", "SAA", "SAR" },
+					tankAbility = true,
+				}),
+				[1225582] = BossAbility:New({ -- Soul Calling
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 13.0 },
+							repeatInterval = { 150.0 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 3.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1225616] = BossAbility:New({ -- Soulfire Convergence
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 16.0 },
+							repeatInterval = { 37.0, 38.0, 75.0 },
+						}),
+					},
+					duration = 3.0,
+					castTime = 2.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC", "SAA", "SAR" },
+				}),
+				[1227276] = BossAbility:New({ -- Soulfray Annihilation (Targeting)
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 26.0 },
+							repeatInterval = { 37.0, 37.0, 76.0 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SCC" },
+					additionalContext = L["Targeting"],
+				}),
+				[1227279] = BossAbility:New({ -- Soulfray Annihilation (Cast)
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 30.0 },
+							repeatInterval = { 37.0, 37.0, 76.0 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 2.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+					additionalContext = L["Cast"],
+				}),
+				[1245422] = BossAbility:New({ -- Tsunami of Arcane
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 40.0 },
+							repeatInterval = { 38.0, 67.0, 45.0 },
+						}),
+					},
+					duration = 5.2,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SCC" },
+				}),
+				[1242088] = BossAbility:New({ -- Arcane Expulsion
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 41.0 },
+							repeatInterval = { 38.0, 67.0, 45.0 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 4.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+			},
+			phases = {
+				[1] = BossPhase:New({
+					duration = 300.0,
+					defaultDuration = 300.0,
+					count = 1,
+					defaultCount = 1,
+					name = "P1",
+				}),
+			},
+			abilitiesHeroic = {
+				[1224025] = BossAbility:New({ -- Mythic Lash (Targeting)
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 5.0 },
+							repeatInterval = { 150.0 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SCC" },
+				}),
+				[1241100] = BossAbility:New({ -- Mythic Lash (Cast)
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 6.0 },
+							repeatInterval = { 40.0, 40.0, 37.9, 31.0 },
+						}),
+					},
+					duration = 5.0,
+					castTime = 2.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC", "SAA", "SAR" },
+				}),
+				[1225616] = BossAbility:New({ -- Soulfire Convergence
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 30.0 },
+							repeatInterval = { 23.9, 16.0, 24.0, 41.0, 45.0, 24.0 },
+						}),
+					},
+					duration = 3.0,
+					castTime = 2.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC", "SAA", "SAR" },
+				}),
+				[1227276] = BossAbility:New({ -- Soulfray Annihilation (Targeting)
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 20.1 },
+							repeatInterval = { 40.9, 40.0, 69.0 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SCC" },
+					additionalContext = L["Targeting"],
+				}),
+				[1227279] = BossAbility:New({ -- Soulfray Annihilation (Cast)
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 24.1 },
+							repeatInterval = { 40.9, 40.0, 69.0 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 2.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+					additionalContext = L["Cast"],
+				}),
+				[1245422] = BossAbility:New({ -- Tsunami of Arcane
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 41.0 },
+							repeatInterval = { 40.0, 64.0, 46.0 },
+						}),
+					},
+					duration = 5.2,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SCC" },
+				}),
+			},
+			phasesHeroic = {},
+		}),
+		Boss:New({ -- Forgeweaver Araz
+			bossIDs = {
+				247989, -- Forgeweaver Araz
+				241923, -- Arcane Echo
+				240905, -- Arcane Collector
+				241832, -- Shielded Attendant
+				242586, -- Arcane Manifestation
+				242589, -- Void Manifestation
+			},
+			journalEncounterCreatureIDsToBossIDs = {
+				[5939] = 247989, -- Forgeweaver Araz
+				[5932] = 241923, -- Arcane Echo
+				[5938] = 240905, -- Arcane Collector
+				[5937] = 241832, -- Shielded Attendant
+				[5995] = 242586, -- Arcane Manifestation
+				[5996] = 242589, -- Void Manifestation
+			},
+			journalEncounterID = 2687,
+			dungeonEncounterID = 3132,
+			instanceID = 2810,
+			preferredCombatLogEventAbilities = {
+				[1] = nil,
+				[2] = { combatLogEventSpellID = 1230231, combatLogEventType = "SCC" },
+				[3] = { combatLogEventSpellID = 1235338, combatLogEventType = "SCC" },
+				[4] = { combatLogEventSpellID = 1230231, combatLogEventType = "SCC" },
+				[5] = { combatLogEventSpellID = 1235338, combatLogEventType = "SCC" },
+			},
+			abilities = {
+				[1228502] = BossAbility:New({ -- Overwhelming Power
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 4.0 },
+							repeatInterval = { 22.0 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 22.0 },
+							repeatInterval = { 22.0 },
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 28.55 },
+							repeatInterval = { 22.0 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 1.2,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+					tankAbility = true,
+				}),
+				[1231720] = BossAbility:New({ -- Invoke Collector
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 9.0, 44.0, 44.0 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 25.78, 22.0, 44.0 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 2.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1231719] = BossAbility:New({ -- Invoke Collector
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 11.0, 44.0, 44.0 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 27.82, 22.0, 44.0 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 0.0,
+					defaultHidden = true,
+					allowedCombatLogEventTypes = { "SCC" },
+				}),
+				[1228216] = BossAbility:New({ -- Arcane Obliteration
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 31.08, 44.92 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 70.84 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 5.5,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1228161] = BossAbility:New({ -- Silencing Tempest
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 63.0, 44.0, 23.0 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 59.82, 43.89, 21.02 },
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 36.55, 43.24, 21.02 },
+						}),
+					},
+					duration = 3.0,
+					castTime = 3.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1227631] = BossAbility:New({ -- Arcane Expulsion
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 155.00 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 141.73 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 5.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1230231] = BossAbility:New({ -- Phase Transition P1 -> P2
+					phases = {
+						[2] = BossAbilityPhase:New({
+							castTimes = { 0.0 },
+							signifiesPhaseStart = true,
+						}),
+						[4] = BossAbilityPhase:New({
+							castTimes = { 0.0 },
+							signifiesPhaseStart = true,
+						}),
+					},
+					duration = 0.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SCC" },
+				}),
+				[1235338] = BossAbility:New({ -- Phase Transition
+					phases = {
+						[3] = BossAbilityPhase:New({
+							castTimes = { 0.00 },
+							signifiesPhaseStart = true,
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 0.0 },
+							signifiesPhaseStart = true,
+						}),
+					},
+					duration = 0.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SCC" },
+				}),
+				[1230529] = BossAbility:New({ -- Mana Sacrifice
+					phases = {
+						[3] = BossAbilityPhase:New({
+							castTimes = { 2.0 },
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 2.0 },
+						}),
+					},
+					duration = 5.0,
+					castTime = 1.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC", "SAA", "SAR" },
+				}),
+			},
+			phases = {
+				[1] = BossPhase:New({
+					duration = 160.0,
+					defaultDuration = 160.0,
+					count = 1,
+					defaultCount = 1,
+					name = "P1",
+					fixedDuration = true,
+				}),
+				[2] = BossPhase:New({
+					duration = 40.0,
+					defaultDuration = 40.0,
+					count = 1,
+					defaultCount = 1,
+					name = "Int1",
+				}),
+				[3] = BossPhase:New({
+					duration = 86.7,
+					defaultDuration = 86.7,
+					count = 1,
+					defaultCount = 1,
+					name = "P1",
+					fixedDuration = true,
+				}),
+				[4] = BossPhase:New({
+					duration = 54.0,
+					defaultDuration = 54.0,
+					count = 1,
+					defaultCount = 1,
+					name = "Int2",
+				}),
+				[5] = BossPhase:New({
+					duration = 60.0,
+					defaultDuration = 60.0,
+					count = 1,
+					defaultCount = 1,
+					name = "P2",
+				}),
+			},
+			abilitiesHeroic = {
+				[1227631] = BossAbility:New({ -- Arcane Expulsion
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 150.0 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 141.73 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 5.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+			},
+			phasesHeroic = {
+				[1] = BossPhase:New({
+					duration = 150.0,
+					defaultDuration = 150.0,
+					count = 1,
+					defaultCount = 1,
+					name = "P1",
+					fixedDuration = true,
+				}),
+				[2] = BossPhase:New({
+					duration = 50.0,
+					defaultDuration = 50.0,
+					count = 1,
+					defaultCount = 1,
+					name = "Int1",
+				}),
+				[3] = BossPhase:New({
+					duration = 86.7,
+					defaultDuration = 86.7,
+					count = 1,
+					defaultCount = 1,
+					name = "P1",
+					fixedDuration = true,
+				}),
+				[4] = BossPhase:New({
+					duration = 50.0,
+					defaultDuration = 50.0,
+					count = 1,
+					defaultCount = 1,
+					name = "Int2",
+				}),
+				[5] = BossPhase:New({
+					duration = 60.0,
+					defaultDuration = 60.0,
+					count = 1,
+					defaultCount = 1,
+					name = "P2",
+				}),
+			},
+		}),
+		Boss:New({ -- The Soul Hunters
+			bossIDs = {
+				237661, -- Adarus Duskblaze
+				248404, -- Velaryn Bloodwrath
+				237662, -- Ilyssa Darksorrow
+			},
+			journalEncounterCreatureIDsToBossIDs = {
+				[5902] = 237661, -- Adarus Duskblaze
+				[5901] = 248404, -- Velaryn Bloodwrath
+				[5900] = 237662, -- Ilyssa Darksorrow
+			},
+			journalEncounterID = 2688,
+			dungeonEncounterID = 3122,
+			instanceID = 2810,
+			preferredCombatLogEventAbilities = {
+				[1] = nil,
+				[2] = { combatLogEventSpellID = 1245978, combatLogEventType = "SAA" },
+				[3] = { combatLogEventSpellID = 1245978, combatLogEventType = "SAR" },
+				[4] = { combatLogEventSpellID = 1245978, combatLogEventType = "SAA" },
+				[5] = { combatLogEventSpellID = 1245978, combatLogEventType = "SAR" },
+				[6] = { combatLogEventSpellID = 1245978, combatLogEventType = "SAA" },
+				[7] = { combatLogEventSpellID = 1245978, combatLogEventType = "SAR" },
+			},
+			abilities = {
+				[1241833] = BossAbility:New({ -- Fracture
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 15.1, 34.1, 34.1 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 3.5, 34.1, 34.1 },
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 3.5, 34.1, 34.1 },
+						}),
+						[7] = BossAbilityPhase:New({
+							castTimes = { 4.7 },
+							repeatInterval = { 34.1, 34.1, 4.7 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 2.5,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+					tankAbility = true,
+				}),
+				[1218103] = BossAbility:New({ -- Eye Beam
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 19.6, 34.1, 34.1 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 8.1, 34.1, 34.1 },
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 8.1, 34.1, 34.1 },
+						}),
+						[7] = BossAbilityPhase:New({
+							castTimes = { 8.1 },
+							repeatInterval = { 34.1, 34.1, 8.1 },
+						}),
+					},
+					duration = 4.0,
+					castTime = 2.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+					tankAbility = true,
+				}),
+				[1225130] = BossAbility:New({ -- Felblade
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 26.0, 34.1, 34.1 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 14.4, 34.1, 34.1 },
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 14.4, 34.1, 34.1 },
+						}),
+						[7] = BossAbilityPhase:New({
+							castTimes = { 14.4 },
+							repeatInterval = { 34.1, 34.1, 14.4 },
+						}),
+					},
+					duration = 25.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SCC" },
+				}),
+				[1227355] = BossAbility:New({ -- Voidstep
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 26.5, 33.7 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 15.0, 33.7 },
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 15.0, 33.7 },
+						}),
+						[7] = BossAbilityPhase:New({
+							castTimes = { 10.6 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 2.5,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1242259] = BossAbility:New({ -- Spirit Bomb
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 32.1, 34.1, 34.1 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 20.6, 34.1, 34.1 },
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 20.6, 34.1, 34.1 },
+						}),
+						[7] = BossAbilityPhase:New({
+							castTimes = { 14.9 },
+							repeatInterval = { 34.1 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 3.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1240891] = BossAbility:New({ -- Sigil of Chains
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 39.5, 34.1 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 27.9, 34.1 },
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 27.9, 34.1 },
+						}),
+						[7] = BossAbilityPhase:New({
+							castTimes = { 27.9, 34.1 },
+						}),
+					},
+					duration = 6.0,
+					castTime = 2.5,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1227809] = BossAbility:New({ -- The Hunt (Targeting)
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 41.9, 4.0, 4.0, 26.1, 4.0, 4.0 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 30.3, 4.0, 4.0, 26.1, 4.0, 4.0 },
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 30.4, 4.0, 4.0, 26.1, 4.0, 4.0 },
+						}),
+						[7] = BossAbilityPhase:New({
+							castTimes = { 8.0, 4.0, 4.0, 26.1, 4.0, 4.0 },
+						}),
+					},
+					halfHeight = true,
+					duration = 0.0,
+					castTime = 6.0,
+					defaultHidden = true,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+					additionalContext = L["Targeting"],
+				}),
+				[1227823] = BossAbility:New({ -- The Hunt (Casts)
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 48.2, 4.0, 4.0, 26.1, 4.0, 4.0 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 36.6, 4.0, 4.0, 25.9, 4.0, 4.0 },
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 36.6, 4.0, 4.0, 26.0, 4.0, 4.0 },
+						}),
+						[7] = BossAbilityPhase:New({
+							castTimes = { 14.2, 4.0, 4.0, 26.1, 4.0, 4.0 },
+						}),
+					},
+					halfHeight = true,
+					duration = 0.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SCC" },
+					additionalContext = L["Cast"],
+				}),
+				[1245743] = BossAbility:New({ -- Eradicate (Targeting)
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 48.2, 36.6 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 36.7, 36.6 },
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 36.7, 36.6 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 2.5,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+					additionalContext = L["Targeting"],
+				}),
+				[1245726] = BossAbility:New({ -- Eradicate (Casts)
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 53.4, 5.2, 5.2, 5.2, 21.2, 5.2, 5.2, 5.2 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 42.0, 5.2, 5.2, 5.2, 21.1, 5.2, 5.2, 5.2 },
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 42.0, 5.2, 5.2, 5.2, 21.0, 5.2, 5.2, 5.2 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 3.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+					additionalContext = L["Cast"],
+				}),
+				[1232569] = BossAbility:New({ -- Meta (Adarus)
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 108.2 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 97.7 },
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 97.4 },
+						}),
+						[7] = BossAbilityPhase:New({
+							castTimes = { 22.4 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 4.0,
+					defaultHidden = true,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1231501] = BossAbility:New({ -- Meta (Velaryn)
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 108.9 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 96.7 },
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 97.7 },
+						}),
+						[7] = BossAbilityPhase:New({
+							castTimes = { 23.3 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 4.0,
+					defaultHidden = true,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1232568] = BossAbility:New({ -- Meta (Ilyssa)
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 109.2 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 97.4 },
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 96.8 },
+						}),
+						[7] = BossAbilityPhase:New({
+							castTimes = { 23.3 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 4.0,
+					defaultHidden = true,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1233093] = BossAbility:New({ -- Collapsing Star
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 115.0 },
+							duration = 25.0,
+							durationExtendsIntoNextPhase = true,
+						}),
+						[7] = BossAbilityPhase:New({
+							castTimes = { 28.2 },
+						}),
+					},
+					duration = 25.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SCC", "SAA", "SAR" },
+				}),
+				[1245978] = BossAbility:New({ -- Soul Tether
+					phases = {
+						[2] = BossAbilityPhase:New({
+							castTimes = { 0.0, 0.0 },
+							signifiesPhaseStart = true,
+							signifiesPhaseEnd = true,
+						}),
+						[4] = BossAbilityPhase:New({
+							castTimes = { 0.0, 0.0 },
+							signifiesPhaseStart = true,
+							signifiesPhaseEnd = true,
+						}),
+						[6] = BossAbilityPhase:New({
+							castTimes = { 0.0, 0.0 },
+							signifiesPhaseStart = true,
+							signifiesPhaseEnd = true,
+						}),
+					},
+					duration = 24.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SCC", "SAA", "SAR" },
+				}),
+				[1233863] = BossAbility:New({ -- Fel Rush
+					phases = {
+						[3] = BossAbilityPhase:New({
+							castTimes = { 104.0 },
+							duration = 24.0,
+							durationExtendsIntoNextPhase = true,
+						}),
+						[7] = BossAbilityPhase:New({
+							castTimes = { 30.7 },
+						}),
+					},
+					duration = 24.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SAA", "SAR" },
+				}),
+				[1227117] = BossAbility:New({ -- Fel Devastation
+					phases = {
+						[6] = BossAbilityPhase:New({
+							castTimes = { 1.3, 9.0, 9.0 },
+						}),
+						[7] = BossAbilityPhase:New({
+							castTimes = { 32.7 },
+							repeatInterval = { 9.0, 9.0, 32.7 },
+						}),
+					},
+					duration = 4.5,
+					castTime = 1.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC", "SAA", "SAR" },
+				}),
+				[1233672] = BossAbility:New({ -- Infernal Strike
+					phases = {
+						[5] = BossAbilityPhase:New({
+							castTimes = { 103.7 },
+						}),
+						[6] = BossAbilityPhase:New({
+							castTimes = { 8.0, 9.0 },
+						}),
+						[7] = BossAbilityPhase:New({
+							castTimes = { 30.4 },
+							repeatInterval = { 9.0, 9.0, 30.4 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SCC" },
+				}),
+			},
+			phases = {
+				[1] = BossPhase:New({
+					duration = 116.2,
+					defaultDuration = 116.2,
+					count = 1,
+					defaultCount = 1,
+					name = "P1",
+					fixedDuration = true,
+				}),
+				[2] = BossPhase:New({
+					duration = 24.0,
+					defaultDuration = 24.0,
+					count = 1,
+					defaultCount = 1,
+					name = "Int1",
+					fixedDuration = true,
+				}),
+				[3] = BossPhase:New({
+					duration = 104.7,
+					defaultDuration = 104.7,
+					count = 1,
+					defaultCount = 1,
+					name = "P1",
+					fixedDuration = true,
+				}),
+				[4] = BossPhase:New({
+					duration = 24.0,
+					defaultDuration = 24.0,
+					count = 1,
+					defaultCount = 1,
+					name = "Int2",
+					fixedDuration = true,
+				}),
+				[5] = BossPhase:New({
+					duration = 104.7,
+					defaultDuration = 104.7,
+					count = 1,
+					defaultCount = 1,
+					name = "P1",
+					fixedDuration = true,
+				}),
+				[6] = BossPhase:New({
+					duration = 24.0,
+					defaultDuration = 24.0,
+					count = 1,
+					defaultCount = 1,
+					name = "Int3",
+					fixedDuration = true,
+				}),
+				[7] = BossPhase:New({
+					duration = 60.0,
+					defaultDuration = 60.0,
+					count = 1,
+					defaultCount = 1,
+					name = "P2",
+				}),
+			},
+			preferredCombatLogEventAbilitiesHeroic = {
+				[1] = nil,
+				[2] = { combatLogEventSpellID = 1242133, combatLogEventType = "SAA" },
+				[3] = { combatLogEventSpellID = 1242133, combatLogEventType = "SAR" },
+				[4] = { combatLogEventSpellID = 1242133, combatLogEventType = "SAA" },
+				[5] = { combatLogEventSpellID = 1242133, combatLogEventType = "SAR" },
+				[6] = { combatLogEventSpellID = 1242133, combatLogEventType = "SAA" },
+				[7] = { combatLogEventSpellID = 1242133, combatLogEventType = "SAR" },
+			},
+			abilitiesHeroic = {
+				[1241833] = BossAbility:New({ -- Fracture
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 15.1, 34.9, 34.9 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 3.5, 34.9, 34.9 },
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 3.5, 34.9, 34.9 },
+						}),
+						[7] = BossAbilityPhase:New({
+							castTimes = { 3.5 },
+							repeatInterval = { 34.9, 34.9, 3.5 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 2.5,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+					tankAbility = true,
+				}),
+				[1218103] = BossAbility:New({ -- Eye Beam
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 19.6, 34.9, 34.9 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 8.1, 34.9, 34.9 },
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 8.1, 34.9, 34.9 },
+						}),
+						[7] = BossAbilityPhase:New({
+							castTimes = { 8.1 },
+							repeatInterval = { 34.9, 34.9, 8.1 },
+						}),
+					},
+					duration = 4.0,
+					castTime = 2.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+					tankAbility = true,
+				}),
+				[1225130] = BossAbility:New({ -- Felblade
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 26.1, 34.9, 34.9 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 14.6, 34.9, 34.9 },
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 14.6, 34.9, 34.9 },
+						}),
+						[7] = BossAbilityPhase:New({
+							castTimes = { 14.8 },
+							repeatInterval = { 34.1, 34.1, 14.8 },
+						}),
+					},
+					duration = 25.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SCC" },
+				}),
+				[1227809] = BossAbility:New({ -- The Hunt (Targeting)
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 42.5, 34.9 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 30.9, 34.9 },
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 30.9, 34.9 },
+						}),
+						[7] = BossAbilityPhase:New({
+							castTimes = { 30.9, 34.9 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 6.0,
+					defaultHidden = true,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+					additionalContext = L["Targeting"],
+				}),
+				[1227823] = BossAbility:New({ -- The Hunt (Casts)
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 48.9, 34.8 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 37.3, 34.9 },
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 37.3, 34.9 },
+						}),
+						[7] = BossAbilityPhase:New({
+							castTimes = { 37.3, 34.9 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SCC" },
+					additionalContext = L["Cast"],
+				}),
+				[1232569] = BossAbility:New({ -- Meta (Adarus)
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 109.7 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 99.0 },
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 99.4 },
+						}),
+						[7] = BossAbilityPhase:New({
+							castTimes = { 62.6 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 4.0,
+					defaultHidden = true,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1231501] = BossAbility:New({ -- Meta (Velaryn)
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 110.3 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 98.1 },
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 99.7 },
+						}),
+						[7] = BossAbilityPhase:New({
+							castTimes = { 63.3 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 4.0,
+					defaultHidden = true,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1232568] = BossAbility:New({ -- Meta (Ilyssa)
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 110.6 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 98.8 },
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 98.8 },
+						}),
+						[7] = BossAbilityPhase:New({
+							castTimes = { 63.5 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 4.0,
+					defaultHidden = true,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1227355] = BossAbility:New({ -- Voidstep
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 32.6, 31.0, 28.1 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 21.1, 31.0, 28.1 },
+						}),
+						[5] = BossAbilityPhase:New({
+							castTimes = { 21.1, 31.0, 28.1 },
+						}),
+						[7] = BossAbilityPhase:New({
+							castTimes = { 21.1 },
+							repeatInterval = { 31.0 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 2.5,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1242133] = BossAbility:New({ -- Soul Engorgement
+					phases = {
+						[2] = BossAbilityPhase:New({
+							castTimes = { 0.0, 0.0 },
+							signifiesPhaseStart = true,
+							signifiesPhaseEnd = true,
+						}),
+						[4] = BossAbilityPhase:New({
+							castTimes = { 0.0, 0.0 },
+							signifiesPhaseStart = true,
+							signifiesPhaseEnd = true,
+						}),
+						[6] = BossAbilityPhase:New({
+							castTimes = { 0.0, 0.0 },
+							signifiesPhaseStart = true,
+							signifiesPhaseEnd = true,
+						}),
+					},
+					duration = 24.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SCC", "SAA", "SAR" },
+				}),
+				[1233093] = BossAbility:New({ -- Collapsing Star
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 116.5 },
+						}),
+						[7] = BossAbilityPhase:New({
+							castTimes = { 68.4 },
+						}),
+					},
+					duration = 25.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SCC", "SAA" },
+				}),
+				[1233863] = BossAbility:New({ -- Fel Rush
+					phases = {
+						[3] = BossAbilityPhase:New({
+							castTimes = { 105.4 },
+						}),
+						[7] = BossAbilityPhase:New({
+							castTimes = { 70.8 },
+						}),
+					},
+					duration = 24.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SAA" },
+				}),
+				[1227117] = BossAbility:New({ -- Fel Devastation
+					phases = {
+						[6] = BossAbilityPhase:New({
+							castTimes = { 1.3, 9.0, 9.0 },
+						}),
+						[7] = BossAbilityPhase:New({
+							castTimes = { 72.9 },
+							repeatInterval = { 9.0, 9.0, 30.2 },
+						}),
+					},
+					duration = 4.5,
+					castTime = 1.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC", "SAA", "SAR" },
+				}),
+				[1233672] = BossAbility:New({ -- Infernal Strike
+					phases = {
+						[5] = BossAbilityPhase:New({
+							castTimes = { 105.7 },
+						}),
+						[6] = BossAbilityPhase:New({
+							castTimes = { 8.0, 9.0 },
+						}),
+						[7] = BossAbilityPhase:New({
+							castTimes = { 70.6 },
+							repeatInterval = { 9.0, 9.0, 28.4 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SCC" },
+				}),
+			},
+			phasesHeroic = {
+				[1] = BossPhase:New({
+					duration = 117.7,
+					defaultDuration = 117.7,
+					count = 1,
+					defaultCount = 1,
+					name = "P1",
+					fixedDuration = true,
+				}),
+				[2] = BossPhase:New({
+					duration = 24.0,
+					defaultDuration = 24.0,
+					count = 1,
+					defaultCount = 1,
+					name = "Int1",
+					fixedDuration = true,
+				}),
+				[3] = BossPhase:New({
+					duration = 106.1,
+					defaultDuration = 106.1,
+					count = 1,
+					defaultCount = 1,
+					name = "P1",
+					fixedDuration = true,
+				}),
+				[4] = BossPhase:New({
+					duration = 24.0,
+					defaultDuration = 24.0,
+					count = 1,
+					defaultCount = 1,
+					name = "Int2",
+					fixedDuration = true,
+				}),
+				[5] = BossPhase:New({
+					duration = 106.7,
+					defaultDuration = 106.7,
+					count = 1,
+					defaultCount = 1,
+					name = "P1",
+					fixedDuration = true,
+				}),
+				[6] = BossPhase:New({
+					duration = 24.0,
+					defaultDuration = 24.0,
+					count = 1,
+					defaultCount = 1,
+					name = "Int3",
+					fixedDuration = true,
+				}),
+				[7] = BossPhase:New({
+					duration = 60.0,
+					defaultDuration = 60.0,
+					count = 1,
+					defaultCount = 1,
+					name = "P2",
+				}),
+			},
+		}),
+		Boss:New({ -- Fractillus
+			bossIDs = {
+				237861, -- Fractillus
+			},
+			journalEncounterCreatureIDsToBossIDs = {
+				[5933] = 237861, -- Fractillus
+			},
+			journalEncounterID = 2747,
+			dungeonEncounterID = 3133,
+			instanceID = 2810,
+			abilities = {
+				[1233416] = BossAbility:New({ -- Crystalline Eruption
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 14.74, 20.48, 29.92, 20.69, 30.25, 20.61 },
+							repeatInterval = { 20.6, 30.2 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 1.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1231871] = BossAbility:New({ -- Shockwave Slam
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 18.43 },
+							repeatInterval = { 50.9 },
+						}),
+					},
+					halfHeight = true,
+					duration = 55.0,
+					castTime = 4.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+					tankAbility = true,
+				}),
+				[1220394] = BossAbility:New({ -- Shattering Backhand
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 48.6 },
+							repeatInterval = { 50.9 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 2.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+			},
+			phases = {
+				[1] = BossPhase:New({
+					duration = 300.0,
+					defaultDuration = 300.0,
+					count = 1,
+					defaultCount = 1,
+					name = "P1",
+				}),
+			},
+			abilitiesHeroic = {
+				[1233416] = BossAbility:New({ -- Crystalline Eruption
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 10.50, 17.11, 22.56, 16.39, 22.33, 17.13, 22.05 },
+							repeatInterval = { 17.0, 22.0 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 1.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1231871] = BossAbility:New({ -- Shockwave Slam
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 15.7 },
+							repeatInterval = { 40.0 },
+						}),
+					},
+					halfHeight = true,
+					duration = 55.0,
+					castTime = 4.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1220394] = BossAbility:New({ -- Shattering Backhand
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 37.66 },
+							repeatInterval = { 40.0 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 2.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+			},
+		}),
+		Boss:New({ -- Nexus-King Salhadaar
+			bossIDs = {
+				237763, -- Nexus-King Salhadaar
+				233823, -- The Royal Voidwing
+				241800, -- Manaforged Titan
+				241803, -- Nexus-Prince Ky'vor
+				241798, -- Nexus-Prince Xevvos
+				241801, -- Shadowguard Reaper
+			},
+			journalEncounterCreatureIDsToBossIDs = {
+				[5871] = 237763, -- Nexus-King Salhadaar
+				[5903] = 233823, -- The Royal Voidwing
+				[5923] = 241800, -- Manaforged Titan
+				[6011] = 241803, -- Nexus-Prince Ky'vor
+				[6010] = 241798, -- Nexus-Prince Xevvos
+				[5925] = 241801, -- Shadowguard Reaper
+			},
+			journalEncounterID = 2690,
+			dungeonEncounterID = 3134,
+			instanceID = 2810,
+			preferredCombatLogEventAbilities = {
+				[1] = nil,
+				[2] = { combatLogEventSpellID = 1227734, combatLogEventType = "SCC" },
+				[3] = { combatLogEventSpellID = 1228065, combatLogEventType = "SCC" },
+				[4] = { combatLogEventSpellID = 1228265, combatLogEventType = "SAA" },
+				[5] = { combatLogEventSpellID = 1228265, combatLogEventType = "SAR" },
+			},
+			abilities = {
+				[1225016] = BossAbility:New({ -- Command: Besiege
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 9.1, 39.9 },
+							repeatInterval = { 39.9 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 2.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1224787] = BossAbility:New({ -- Conquer
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 17.23, 8.04, 31.83, 7.13, 33.36, 5.79 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 4.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+					tankAbility = true,
+				}),
+				[1224812] = BossAbility:New({ -- Vanquish
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 18.26, 7.55, 33.14, 5.60, 33.59, 4.90 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 2.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+					tankAbility = true,
+				}),
+				[1227529] = BossAbility:New({ -- Banishment
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 30.2, 16.3, 23.9, 16.1 },
+						}),
+					},
+					duration = 8.0,
+					castTime = 1.35,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1225010] = BossAbility:New({ -- Command: Behead
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 34.9, 39.6 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 2.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1224906] = BossAbility:New({ -- Invoke the Oath
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 115.0 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 2.0,
+					defaultHidden = true,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1227734] = BossAbility:New({ -- Coalesce Voidwing
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 119.5 },
+							signifiesPhaseEnd = true, -- End of P1
+						}),
+					},
+					duration = 0.0,
+					castTime = 6.2,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1234529] = BossAbility:New({ -- Cosmic Maw
+					phases = {
+						[2] = BossAbilityPhase:New({
+							castTimes = { 9.28 },
+						}),
+					},
+					duration = 10.0,
+					castTime = 1.25,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1237068] = BossAbility:New({ -- Dimensional Breath
+					phases = {
+						[2] = BossAbilityPhase:New({
+							castTimes = { 14.61, 6.0, 6.0 },
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 78.0, 6.0, 6.0 },
+						}),
+					},
+					halfHeight = true,
+					duration = 4.0,
+					castTime = 2.0,
+					allowedCombatLogEventTypes = {},
+				}),
+				[1228065] = BossAbility:New({ -- Rally the Shadowguard
+					phases = {
+						[2] = BossAbilityPhase:New({
+							castTimes = { 32.25 },
+							signifiesPhaseEnd = true, -- End of P2
+						}),
+					},
+					duration = 0.0,
+					castTime = 4.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1232327] = BossAbility:New({ -- Seal the Forge
+					phases = {
+						[3] = BossAbilityPhase:New({
+							castTimes = { 1.00 },
+						}),
+					},
+					duration = 0.0, -- Maybe inf
+					castTime = 1.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1237105] = BossAbility:New({ -- Twilight Barrier
+					phases = {
+						[3] = BossAbilityPhase:New({
+							castTimes = { 13.96 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 1.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				-- [1237107] = BossAbility:New({ -- Twilight Massacre TODO
+				-- 	phases = {
+				-- 		[3] = BossAbilityPhase:New({
+				-- 			castTimes = {},
+				-- 		}),
+				-- 	},
+				-- 	duration = 0.0,
+				-- 	castTime = 1.0,
+				-- 	allowedCombatLogEventTypes = { "SCS", "SCC" },
+				-- }),
+				[1228075] = BossAbility:New({ -- Nexus Beams
+					phases = {
+						[3] = BossAbilityPhase:New({
+							castTimes = { 26.0 },
+						}),
+					},
+					duration = 7.0,
+					castTime = 3.0,
+					defaultHidden = true,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1228265] = BossAbility:New({ -- King's Hunger
+					phases = {
+						[4] = BossAbilityPhase:New({
+							castTimes = { 0.0 },
+							signifiesPhaseStart = true, -- End of Int1
+							signifiesPhaseEnd = true, -- End of Int2
+						}),
+					},
+					duration = 30.0,
+					castTime = 6.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC", "SAA", "SAR" },
+				}),
+				[1228317] = BossAbility:New({ -- King's Hunger
+					phases = {
+						[4] = BossAbilityPhase:New({
+							castTimes = { 0.0 },
+						}),
+					},
+					duration = 30.0,
+					castTime = 6.0,
+					defaultHidden = true,
+					allowedCombatLogEventTypes = { "SCS", "SCC", "SAA", "SAR" },
+				}),
+				[1225319] = BossAbility:New({ -- Galactic Smash
+					phases = {
+						[5] = BossAbilityPhase:New({
+							castTimes = { 9.0 },
+							repeatInterval = { 55.0 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 8.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1226347] = BossAbility:New({ -- Starkiller Swing (First event from boss)
+					phases = {
+						[5] = BossAbilityPhase:New({
+							castTimes = { 34.9, 0.0, 0.0 },
+							repeatInterval = { 15.0, 0.0, 0.0, 40.0, 0.0, 0.0 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SCC" },
+					additionalContext = L["Targeting"],
+				}),
+				[1226024] = BossAbility:New({ -- Starkiller Swing (All full casts, inc. from images)
+					phases = {
+						[5] = BossAbilityPhase:New({
+							castTimes = { 36.9, 0.0, 0.0 },
+							repeatInterval = { 15.0, 0.0, 0.0, 40.0, 0.0, 0.0 },
+						}),
+					},
+					defaultHidden = true,
+					duration = 0.0,
+					castTime = 6.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+					additionalContext = L["Cast"],
+				}),
+				[1225634] = BossAbility:New({ -- World in Twilight
+					phases = {
+						[5] = BossAbilityPhase:New({
+							castTimes = { 170.0 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 2.5,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+			},
+			phases = {
+				[1] = BossPhase:New({
+					duration = 125.2,
+					defaultDuration = 125.2,
+					count = 1,
+					defaultCount = 1,
+					name = "P1",
+					fixedDuration = true,
+				}),
+				[2] = BossPhase:New({
+					duration = 36.25,
+					defaultDuration = 36.25,
+					count = 1,
+					defaultCount = 1,
+					name = "P2",
+					fixedDuration = true,
+				}),
+				[3] = BossPhase:New({
+					duration = 97.5,
+					defaultDuration = 97.5,
+					count = 1,
+					defaultCount = 1,
+					name = "Int1",
+					fixedDuration = true,
+				}),
+				[4] = BossPhase:New({
+					duration = 36.0,
+					defaultDuration = 36.0,
+					count = 1,
+					defaultCount = 1,
+					name = "Int2",
+					fixedDuration = true,
+				}),
+				[5] = BossPhase:New({
+					duration = 180.0,
+					defaultDuration = 180.0,
+					count = 1,
+					defaultCount = 1,
+					name = "P3",
+				}),
+			},
+			abilitiesHeroic = {
+				[1225016] = BossAbility:New({ -- Command: Besiege
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 49.44, 39.62 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 2.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1224787] = BossAbility:New({ -- Conquer
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 17.1, 7.1, 33.1, 7.4, 32.2, 6.3 },
+						}),
+					},
+					halfHeight = true,
+					duration = 20.0,
+					castTime = 4.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1224812] = BossAbility:New({ -- Vanquish
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 18.5, 6.4, 33.7, 6.4, 33.4, 5.1 },
+						}),
+					},
+					halfHeight = true,
+					duration = 20.0,
+					castTime = 2.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1227529] = BossAbility:New({ -- Banishment
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 31.5, 16.0, 24.3, 14.7 },
+						}),
+					},
+					duration = 8.0,
+					castTime = 1.35,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1225010] = BossAbility:New({ -- Command: Behead
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 33.5, 39.1 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 2.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1227734] = BossAbility:New({ -- Coalesce Voidwing
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 114.1 },
+							signifiesPhaseEnd = true, -- End of P1
+						}),
+					},
+					duration = 0.0,
+					castTime = 6.2,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1234529] = BossAbility:New({ -- Cosmic Maw
+					phases = {
+						[2] = BossAbilityPhase:New({
+							castTimes = { 18.5 },
+						}),
+					},
+					tankAbility = true,
+					duration = 10.0,
+					castTime = 1.25,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+			},
+			phasesHeroic = {
+				[1] = BossPhase:New({
+					duration = 120.3,
+					defaultDuration = 120.3,
+					count = 1,
+					defaultCount = 1,
+					name = "P1",
+					fixedDuration = true,
+				}),
+				[2] = BossPhase:New({
+					duration = 36.25,
+					defaultDuration = 36.25,
+					count = 1,
+					defaultCount = 1,
+					name = "P2",
+					fixedDuration = true,
+				}),
+				[3] = BossPhase:New({
+					duration = 97.5,
+					defaultDuration = 97.5,
+					count = 1,
+					defaultCount = 1,
+					name = "Int1",
+					fixedDuration = true,
+				}),
+				[4] = BossPhase:New({
+					duration = 36.0,
+					defaultDuration = 36.0,
+					count = 1,
+					defaultCount = 1,
+					name = "Int2",
+					fixedDuration = true,
+				}),
+				[5] = BossPhase:New({
+					duration = 180.0,
+					defaultDuration = 180.0,
+					count = 1,
+					defaultCount = 1,
+					name = "P3",
+				}),
+			},
+		}),
+		Boss:New({ -- Dimensius, the All-Devouring
+			bossIDs = {
+				233824, -- Dimensius
+				245255, -- Artoshion
+				245222, -- Pargoth
+			},
+			journalEncounterCreatureIDsToBossIDs = {
+				[5951] = 233824, -- Dimensius
+				[5952] = 245255, -- Artoshion
+				[5950] = 245222, -- Pargoth
+			},
+			journalEncounterID = 2691,
+			dungeonEncounterID = 3135,
+			instanceID = 2810,
+			preferredCombatLogEventAbilities = {
+				[1] = nil,
+				[2] = { combatLogEventSpellID = 1234898, combatLogEventType = "SCC" },
+				[3] = { combatLogEventSpellID = 1237689, combatLogEventType = "SAR" },
+				[4] = { combatLogEventSpellID = 1237689, combatLogEventType = "SAR" },
+				[5] = { combatLogEventSpellID = 1245292, combatLogEventType = "SAA" },
+			},
+			preferredCombatLogEventAbilitiesHeroic = {
+				[1] = nil,
+				[2] = { combatLogEventSpellID = 1234898, combatLogEventType = "SCC" },
+				[3] = { combatLogEventSpellID = 1237689, combatLogEventType = "SAR" },
+				[4] = { combatLogEventSpellID = 1237689, combatLogEventType = "SAR" },
+				[5] = { combatLogEventSpellID = 1245292, combatLogEventType = "SAA" },
+			},
+			abilities = {
+				[1229038] = BossAbility:New({ -- Devour
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 10.5 },
+							repeatInterval = { 84.2 },
+						}),
+					},
+					duration = 5.0,
+					castTime = 2.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC", "SAA", "SAR" },
+				}),
+				[1230087] = BossAbility:New({ -- Massive Smash
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 21.0 },
+							repeatInterval = { 42.1 },
+						}),
+					},
+					tankAbility = true,
+					halfHeight = true,
+					duration = 50.0,
+					castTime = 4.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1230979] = BossAbility:New({ -- Dark Matter
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 31.5 },
+							repeatInterval = { 39.0, 45.2 },
+						}),
+					},
+					duration = 2.0,
+					castTime = 2.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC", "SAA", "SAR" },
+				}),
+				[1234898] = BossAbility:New({ -- Event Horizon
+					phases = {
+						[2] = BossAbilityPhase:New({
+							castTimes = { 0.0 },
+							signifiesPhaseStart = true,
+						}),
+					},
+					duration = 0.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1236617] = BossAbility:New({ -- Broken World
+					phases = {
+						[2] = BossAbilityPhase:New({
+							castTimes = { 10.4 },
+						}),
+					},
+					defaultHidden = true,
+					duration = 0.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SCC" },
+				}),
+				[1237689] = BossAbility:New({ -- Void Shell
+					phases = {
+						[2] = BossAbilityPhase:New({
+							castTimes = { 32.6 },
+							signifiesPhaseEnd = true,
+							duration = 32.0,
+							castTime = 0.0,
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 88.3 },
+							signifiesPhaseEnd = true,
+							duration = 32.0,
+							castTime = 0.0,
+						}),
+					},
+					duration = 32.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SAA", "SAR" },
+				}),
+				[1237690] = BossAbility:New({ -- Eclipse
+					phases = {
+						[2] = BossAbilityPhase:New({
+							castTimes = { 32.6 },
+							duration = 32.6,
+							castTime = 0.0,
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 88.3 },
+							duration = 32.0,
+							castTime = 0.0,
+						}),
+					},
+					duration = 32.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SAA", "SAR" },
+				}),
+				[1239262] = BossAbility:New({ -- Conquerer's Cross
+					phases = {
+						[3] = BossAbilityPhase:New({
+							castTimes = { 8.0, 31.6 },
+						}),
+						[4] = BossAbilityPhase:New({
+							castTimes = { 10.5, 31.6 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 2.6,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1249423] = BossAbility:New({ -- Mass Destruction
+					phases = {
+						[3] = BossAbilityPhase:New({
+							castTimes = { 11.1, 15.8, 15.8, 15.8 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 4.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1238765] = BossAbility:New({ -- Extinction
+					phases = {
+						[3] = BossAbilityPhase:New({
+							castTimes = { 18.5, 31.6 },
+						}),
+						[4] = BossAbilityPhase:New({
+							castTimes = { 20.9, 31.6 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 5.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1237325] = BossAbility:New({ -- Gamma Burst
+					phases = {
+						[3] = BossAbilityPhase:New({
+							castTimes = { 33.1 },
+						}),
+						[4] = BossAbilityPhase:New({
+							castTimes = { 35.5, 31.5 },
+						}),
+					},
+					duration = 4.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SAA" },
+					buffer = 1.0,
+				}),
+				[1237695] = BossAbility:New({ -- Starshard Nova
+					phases = {
+						[4] = BossAbilityPhase:New({
+							castTimes = { 13.6, 31.6 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 3.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1240310] = BossAbility:New({ -- Total Destruction
+					phases = {
+						[4] = BossAbilityPhase:New({
+							castTimes = { 70.99 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 10.0,
+					allowedCombatLogEventTypes = {},
+				}),
+				[1245292] = BossAbility:New({ -- Destabilized
+					phases = {
+						[5] = BossAbilityPhase:New({
+							castTimes = { 0.0 },
+							signifiesPhaseStart = true,
+						}),
+					},
+					duration = 15.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SAA", "SAR" },
+				}),
+				[1231716] = BossAbility:New({ -- Extinguish the Stars
+					phases = {
+						[5] = BossAbilityPhase:New({
+							castTimes = { 16.6 },
+						}),
+					},
+					duration = 10.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SCC", "SAA", "SAR" },
+				}),
+				[1233539] = BossAbility:New({ -- Devour
+					phases = {
+						[5] = BossAbilityPhase:New({
+							castTimes = { 47.5, 80.0, 80.0 },
+						}),
+					},
+					duration = 5.0,
+					castTime = 2.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC", "SAA", "SAR" },
+				}),
+				[1234263] = BossAbility:New({ -- Cosmic Collapse
+					phases = {
+						[5] = BossAbilityPhase:New({
+							castTimes = { 57.53, 30.0, 30.0, 30.0, 30.0 },
+						}),
+					},
+					tankAbility = true,
+					halfHeight = true,
+					duration = 50.0,
+					castTime = 4.0,
+					allowedCombatLogEventTypes = { "SCS" },
+				}),
+				[1234044] = BossAbility:New({ -- Darkened Sky
+					phases = {
+						[5] = BossAbilityPhase:New({
+							castTimes = { 72.5, 30.0, 50.0, 30.0 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 2.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+			},
+			phases = {
+				[1] = BossPhase:New({
+					duration = 171.0,
+					defaultDuration = 171.0,
+					count = 1,
+					defaultCount = 1,
+					name = "P1",
+				}),
+				[2] = BossPhase:New({
+					duration = 35.0,
+					defaultDuration = 35.0,
+					count = 1,
+					defaultCount = 1,
+					name = "Int1",
+					minDuration = 32.6,
+					maxDuration = 64.6,
+				}),
+				[3] = BossPhase:New({
+					duration = 92.0,
+					defaultDuration = 92.0,
+					count = 1,
+					defaultCount = 1,
+					name = "P2",
+					minDuration = 88.3,
+					maxDuration = 120.3,
+				}),
+				[4] = BossPhase:New({
+					duration = 85.7,
+					defaultDuration = 85.7,
+					count = 1,
+					defaultCount = 1,
+					name = "P3",
+				}),
+				[5] = BossPhase:New({
+					duration = 210.0,
+					defaultDuration = 210.0,
+					count = 1,
+					defaultCount = 1,
+					name = "P4",
+				}),
+			},
+			abilitiesHeroic = {
+				[1229038] = BossAbility:New({ -- Devour
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 11.8, 94.1 },
+						}),
+					},
+					duration = 5.0,
+					castTime = 2.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC", "SAA", "SAR" },
+				}),
+				[1230087] = BossAbility:New({ -- Massive Smash
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 23.5 },
+							repeatInterval = { 47.0 },
+						}),
+					},
+					tankAbility = true,
+					halfHeight = true,
+					duration = 50.0,
+					castTime = 4.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1230979] = BossAbility:New({ -- Dark Matter
+					phases = {
+						[1] = BossAbilityPhase:New({
+							castTimes = { 35.3 },
+							repeatInterval = { 43.6, 50.6 },
+						}),
+					},
+					duration = 2.0,
+					castTime = 2.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC", "SAA", "SAR" },
+				}),
+				[1234898] = BossAbility:New({ -- Event Horizon
+					phases = {
+						[2] = BossAbilityPhase:New({
+							castTimes = { 0.0 },
+							signifiesPhaseStart = true,
+						}),
+					},
+					duration = 0.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1236617] = BossAbility:New({ -- Broken World
+					phases = {
+						[2] = BossAbilityPhase:New({
+							castTimes = { 10.0 },
+						}),
+					},
+					defaultHidden = true,
+					duration = 0.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SCC" },
+				}),
+				[1237689] = BossAbility:New({ -- Void Shell
+					phases = {
+						[2] = BossAbilityPhase:New({
+							castTimes = { 40.0 },
+							signifiesPhaseEnd = true,
+							duration = 32.0,
+							castTime = 0.0,
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 78.9 },
+							signifiesPhaseEnd = true,
+							duration = 32.0,
+							castTime = 0.0,
+						}),
+					},
+					duration = 32.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SAA", "SAR" },
+				}),
+				[1237690] = BossAbility:New({ -- Eclipse
+					phases = {
+						[2] = BossAbilityPhase:New({
+							castTimes = { 40.0 },
+							duration = 32.0,
+							castTime = 0.0,
+						}),
+						[3] = BossAbilityPhase:New({
+							castTimes = { 78.9 },
+							duration = 32.0,
+							castTime = 0.0,
+						}),
+					},
+					duration = 32.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SAA", "SAR" },
+				}),
+				[1239262] = BossAbility:New({ -- Conquerer's Cross
+					phases = {
+						[3] = BossAbilityPhase:New({
+							castTimes = { 11.0, 35.3 },
+						}),
+						[4] = BossAbilityPhase:New({
+							castTimes = { 12.7, 35.3 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 2.6,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1237694] = BossAbility:New({ -- Mass Ejection
+					phases = {
+						[3] = BossAbilityPhase:New({
+							castTimes = { 17.9, 17.6, 17.5 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 4.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1238765] = BossAbility:New({ -- Extinction
+					phases = {
+						[3] = BossAbilityPhase:New({
+							castTimes = { 22.9, 35.5 },
+						}),
+						[4] = BossAbilityPhase:New({
+							castTimes = { 24.4, 35.2 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 5.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1237325] = BossAbility:New({ -- Gamma Burst
+					phases = {
+						[3] = BossAbilityPhase:New({
+							castTimes = { 38.0, 35.5 },
+						}),
+						[4] = BossAbilityPhase:New({
+							castTimes = { 43.3, 35.2 },
+						}),
+					},
+					duration = 4.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SAA" },
+					buffer = 1.0,
+				}),
+				[1237695] = BossAbility:New({ -- Stardust Nova
+					phases = {
+						[4] = BossAbilityPhase:New({
+							castTimes = { 19.7, 35.3 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 3.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1240310] = BossAbility:New({ -- Total Destruction
+					phases = {
+						[4] = BossAbilityPhase:New({
+							castTimes = { 69.8 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 10.0,
+					allowedCombatLogEventTypes = {},
+				}),
+				[1245292] = BossAbility:New({ -- Destabilized
+					phases = {
+						[5] = BossAbilityPhase:New({
+							castTimes = { 0.0 },
+							signifiesPhaseStart = true,
+						}),
+					},
+					duration = 15.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SAA", "SAR" },
+				}),
+				[1231716] = BossAbility:New({ -- Extinguish the Stars
+					phases = {
+						[5] = BossAbilityPhase:New({
+							castTimes = { 16.9 },
+						}),
+					},
+					duration = 10.0,
+					castTime = 0.0,
+					allowedCombatLogEventTypes = { "SCC", "SAA", "SAR" },
+				}),
+				[1233539] = BossAbility:New({ -- Devour
+					phases = {
+						[5] = BossAbilityPhase:New({
+							castTimes = { 47.7 },
+							repeatInterval = { 99.7 },
+						}),
+					},
+					duration = 5.0,
+					castTime = 2.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC", "SAA", "SAR" },
+				}),
+				[1232973] = BossAbility:New({ -- Supernova
+					phases = {
+						[5] = BossAbilityPhase:New({
+							castTimes = { 56.6, 14.5 },
+							repeatInterval = { 33.3, 33.3, 18.5, 14.6 },
+						}),
+					},
+					duration = 7.0,
+					castTime = 1.5,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+				[1234263] = BossAbility:New({ -- Cosmic Collapse
+					phases = {
+						[5] = BossAbilityPhase:New({
+							castTimes = { 65.5 },
+							repeatInterval = { 33.3 },
+						}),
+					},
+					tankAbility = true,
+					halfHeight = true,
+					duration = 50.0,
+					castTime = 4.0,
+					allowedCombatLogEventTypes = { "SCS" },
+				}),
+				[1234044] = BossAbility:New({ -- Darkened Sky
+					phases = {
+						[5] = BossAbilityPhase:New({
+							castTimes = { 81.1 },
+							repeatInterval = { 33.3, 66.6 },
+						}),
+					},
+					duration = 0.0,
+					castTime = 2.0,
+					allowedCombatLogEventTypes = { "SCS", "SCC" },
+				}),
+			},
+			phasesHeroic = {
+				[1] = BossPhase:New({
+					duration = 155.0,
+					defaultDuration = 155.0,
+					count = 1,
+					defaultCount = 1,
+					name = "P1",
+				}),
+				[2] = BossPhase:New({
+					duration = 50.0,
+					defaultDuration = 50.0,
+					count = 1,
+					defaultCount = 1,
+					name = "Int1",
+					minDuration = 45.0,
+					maxDuration = 72.0,
+				}),
+				[3] = BossPhase:New({
+					duration = 88.9,
+					defaultDuration = 88.9,
+					count = 1,
+					defaultCount = 1,
+					name = "P2",
+					minDuration = 84.9,
+					maxDuration = 110.9,
+				}),
+				[4] = BossPhase:New({
+					duration = 107.8,
+					defaultDuration = 107.8,
+					count = 1,
+					defaultCount = 1,
+					name = "P3",
+				}),
+				[5] = BossPhase:New({
+					duration = 180.0,
+					defaultDuration = 180.0,
+					count = 1,
+					defaultCount = 1,
+					name = "P4",
+				}),
+			},
+		}),
+	},
+	isRaid = true,
+	hasHeroic = true,
+	executeAndNil = function()
+		local dungeonInstance = Private.dungeonInstances[2810]
+		EJ_SelectInstance(dungeonInstance.journalInstanceID)
+		local boss = dungeonInstance.bosses[5]
+		local journalEncounterID = boss.journalEncounterID
+		EJ_SelectEncounter(journalEncounterID)
+		local _, bossName, _, _, _, _ = EJ_GetCreatureInfo(1, journalEncounterID)
+		boss.abilities[1232569].additionalContext = bossName:match("^(%S+)")
+		boss.abilitiesHeroic[1232569].additionalContext = bossName:match("^(%S+)")
+		_, bossName, _, _, _, _ = EJ_GetCreatureInfo(2, journalEncounterID)
+		boss.abilities[1231501].additionalContext = bossName:match("^(%S+)")
+		boss.abilitiesHeroic[1231501].additionalContext = bossName:match("^(%S+)")
+		_, bossName, _, _, _, _ = EJ_GetCreatureInfo(3, journalEncounterID)
+		boss.abilities[1232568].additionalContext = bossName:match("^(%S+)")
+		boss.abilitiesHeroic[1232568].additionalContext = bossName:match("^(%S+)")
+	end,
+})
+
+local dungeonInstance = Private.dungeonInstances[2810]
+local bosses = dungeonInstance.bosses ---@cast bosses table<integer, Boss>
+
+---@param bossIndex integer
+---@param abilityID integer
+local function copyMythicAbilityToHeroic(bossIndex, abilityID)
+	bosses[bossIndex].abilitiesHeroic[abilityID] = bosses[bossIndex].abilities[abilityID]
+end
+
+---@param bossIndex integer
+local function copyMythicPreferredAbilitiesToHeroic(bossIndex)
+	bosses[bossIndex].preferredCombatLogEventAbilitiesHeroic = bosses[bossIndex].preferredCombatLogEventAbilities
+end
+
+local function copyMythicPhasesToHeroic(bossIndex)
+	bosses[bossIndex].phasesHeroic = Private.DeepCopy(bosses[bossIndex].phases)
+end
+
+copyMythicAbilityToHeroic(1, 1220618)
+copyMythicAbilityToHeroic(1, 1220981)
+copyMythicAbilityToHeroic(1, 1220982)
+copyMythicAbilityToHeroic(1, 1241303)
+copyMythicPreferredAbilitiesToHeroic(1)
+
+copyMythicAbilityToHeroic(2, 1226395)
+copyMythicAbilityToHeroic(2, 1228070)
+copyMythicAbilityToHeroic(2, 1227226)
+copyMythicAbilityToHeroic(2, 1227227)
+copyMythicAbilityToHeroic(2, 1227782)
+copyMythicAbilityToHeroic(2, 1227784)
+copyMythicPreferredAbilitiesToHeroic(2)
+copyMythicPhasesToHeroic(2)
+
+copyMythicAbilityToHeroic(3, 1225582)
+copyMythicPhasesToHeroic(3)
+
+copyMythicAbilityToHeroic(4, 1228502)
+copyMythicAbilityToHeroic(4, 1231720)
+copyMythicAbilityToHeroic(4, 1231719)
+copyMythicAbilityToHeroic(4, 1228216)
+copyMythicAbilityToHeroic(4, 1228161)
+copyMythicAbilityToHeroic(4, 1230231)
+copyMythicAbilityToHeroic(4, 1235338)
+
+copyMythicPhasesToHeroic(6)
+
+copyMythicAbilityToHeroic(7, 1224906)
+copyMythicAbilityToHeroic(7, 1228065)
+copyMythicAbilityToHeroic(7, 1232327)
+copyMythicAbilityToHeroic(7, 1228075)
+copyMythicAbilityToHeroic(7, 1228265)
+copyMythicAbilityToHeroic(7, 1228317)
+copyMythicAbilityToHeroic(7, 1225319)
+copyMythicAbilityToHeroic(7, 1226024)
+copyMythicAbilityToHeroic(7, 1226442)
+copyMythicAbilityToHeroic(7, 1225634)
+copyMythicPreferredAbilitiesToHeroic(7)

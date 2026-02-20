@@ -1,0 +1,14 @@
+
+ASTM_Options = {
+["LockWindow"] = true,
+["ShowWhenCombat"] = true,
+["Version"] = 260124,
+["Font"] = 1,
+["FontSize"] = 20,
+}
+ASTM_Position = {
+["yOfs"] = -20.66687965393066,
+["xOfs"] = -0.0006565175135619938,
+["point"] = "TOP",
+["relativePoint"] = "TOP",
+}

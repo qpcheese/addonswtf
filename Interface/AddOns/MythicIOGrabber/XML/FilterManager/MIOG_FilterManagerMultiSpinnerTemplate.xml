@@ -1,0 +1,65 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+    <Frame name="MIOG_FilterManagerMultiSpinnerTemplate" mixin="FilterMixin" virtual="true">
+        <Size y="20" />
+
+        <KeyValues>
+            <KeyValue key="expand" value="true" type="boolean" />
+        </KeyValues>
+
+        <Frames>
+            <CheckButton parentKey="CheckButton" inherits="MIOG_MinimalCheckButtonTemplate">
+                <Size x="20" y="20" />
+                <Anchors>
+                    <Anchor point="LEFT" relativeKey="$parent" relativePoint="LEFT" />
+                </Anchors>
+            </CheckButton>
+        </Frames>
+        
+        <Layers>
+            <Layer level="OVERLAY">
+                <FontString parentKey="Text" font="GameFontHighlight" justifyH="LEFT" justifyV="MIDDLE" outline="NORMAL">
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.CheckButton" relativePoint="RIGHT" x="2"/>
+                    </Anchors>
+
+                    <Scripts>
+                        <OnLeave function="GameTooltip_Hide" />
+                    </Scripts>
+                </FontString>
+            </Layer>
+        </Layers>
+        
+        <Frames>
+            <CheckButton parentKey="Link" inherits="UICheckButtonTemplate">
+                <Size x="10" y="10" />
+                <Anchors>
+                    <Anchor point="LEFT" relativeKey="$parent.Text" relativePoint="RIGHT" x="4"/>
+                </Anchors>
+
+                <NormalTexture file="Interface\Addons\MythicIOGrabber\res\infoIcons\filterLinkGray.png" />
+                <PushedTexture file="Interface\Addons\MythicIOGrabber\res\infoIcons\filterLinkGray.png" />
+                <CheckedTexture file="Interface\Addons\MythicIOGrabber\res\infoIcons\filterLink.png" />
+                <HighlightTexture file="Interface\Addons\MythicIOGrabber\res\infoIcons\filterLinkHover.png" alphaMode="ADD" />
+                
+                <Scripts>
+                    <OnLeave function="GameTooltip_Hide" />
+                </Scripts>
+            </CheckButton>
+
+            <EditBox parentKey="Minimum" letters="2" inherits="NumericInputSpinnerTemplate">
+                <Size x="25" y="20"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativeKey="$parent.Link" relativePoint="RIGHT" x="36"/>
+                </Anchors>
+            </EditBox>
+
+            <EditBox parentKey="Maximum" letters="2" inherits="NumericInputSpinnerTemplate">
+                <Size x="25" y="20"/>
+                <Anchors>
+                    <Anchor point="LEFT" relativeKey="$parent.Minimum" relativePoint="RIGHT" x="50"/>
+                </Anchors>
+            </EditBox>
+        </Frames>
+    </Frame>
+</Ui>

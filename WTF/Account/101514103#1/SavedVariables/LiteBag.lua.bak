@@ -1,0 +1,30 @@
+
+LiteBagDB = {
+["profileKeys"] = {
+["Qpaladin - Ragnaros"] = "Default",
+["Kaijid - Ragnaros"] = "Default",
+["Gammelemil - Grim Batol"] = "Default",
+["Sikducker - Sylvanas"] = "Default",
+["Qpfromage - Ragnaros"] = "Default",
+["Qpfromage - Sylvanas"] = "Default",
+["Dogson - Ragnaros"] = "Default",
+},
+["profiles"] = {
+["Default"] = {
+["BACKPACK"] = {
+["scale"] = 0.95,
+["ybreak"] = 27,
+["xbreak"] = 32,
+["order"] = "reverse",
+["position"] = {
+["anchor"] = "BOTTOMRIGHT",
+["x"] = -84.44459533691406,
+["y"] = 68.0702896118164,
+},
+["locked"] = false,
+["anchor"] = "BOTTOMRIGHT",
+},
+["showBindsOn"] = true,
+},
+},
+}

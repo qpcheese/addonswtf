@@ -1,0 +1,36 @@
+
+UltraSquirtSettingsDB = {
+["profileKeys"] = {
+["Sörn - Ravencrest"] = "Sörn - Ravencrest",
+["Sikducker - Sylvanas"] = "Sikducker - Sylvanas",
+["Qpfromage - Sylvanas"] = "Qpfromage - Sylvanas",
+["Qpebank - Draenor"] = "Qpebank - Draenor",
+["Qpfromagee - Ragnaros"] = "Qpfromagee - Ragnaros",
+["Dogson - Ragnaros"] = "Dogson - Ragnaros",
+["Xiaoyuu - Sylvanas"] = "Xiaoyuu - Sylvanas",
+["Kaijid - Ragnaros"] = "Kaijid - Ragnaros",
+["Gammelemil - Grim Batol"] = "Gammelemil - Grim Batol",
+["Qpaladin - Ragnaros"] = "Qpaladin - Ragnaros",
+["Qpfromage - Confrérie du Thorium"] = "Qpfromage - Confrérie du Thorium",
+["Qpfromage - Ragnaros"] = "Qpfromage - Ragnaros",
+["Fishanus - Ragnaros"] = "Fishanus - Ragnaros",
+["Qudroformagi - Sylvanas"] = "Qudroformagi - Sylvanas",
+["Jeaf - Sylvanas"] = "Jeaf - Sylvanas",
+["Helikåpter - Sylvanas"] = "Helikåpter - Sylvanas",
+["Casiomage - Sylvanas"] = "Casiomage - Sylvanas",
+["Qute - Sylvanas"] = "Qute - Sylvanas",
+["Sørn - Ravencrest"] = "Sørn - Ravencrest",
+["Flurrq - Ragnaros"] = "Flurrq - Ragnaros",
+["Qope - Ragnaros"] = "Qope - Ragnaros",
+},
+["global"] = {
+["BattleHealingThreshold"] = {
+[107489] = 70,
+},
+["AutoBandage"] = true,
+["HealDelay"] = 1,
+["PetBattleCloseDelay"] = 1,
+["KEYBIND"] = "NUMPADDIVIDE",
+["AutoPetTreat"] = true,
+},
+}

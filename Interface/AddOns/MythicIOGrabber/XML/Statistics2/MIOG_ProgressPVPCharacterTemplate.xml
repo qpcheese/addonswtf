@@ -1,0 +1,52 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+    <Frame name="MIOG_ProgressPVPCharacterTemplate" inherits="MIOG_ProgressCharacterTemplate, HorizontalLayoutFrame" virtual="true">
+        <KeyValues>
+            <KeyValue key="spacing" value="2" type="number" />
+            <KeyValue key="leftPadding" value="125" type="number" />
+            <KeyValue key="minimumHeight" value="32" type="number" />
+        </KeyValues>
+
+        <Frames>
+            <Frame parentKey="Bracket1" inherits="MIOG_ProgressBracketTemplate">
+            </Frame>
+
+            <Frame parentKey="Bracket2" inherits="MIOG_ProgressBracketTemplate">
+            </Frame>
+
+            <Frame parentKey="Bracket3" inherits="MIOG_ProgressBracketTemplate">
+            </Frame>
+
+            <Frame parentKey="Bracket4" inherits="MIOG_ProgressBracketTemplate">
+            </Frame>
+
+            <Frame parentKey="Bracket5" inherits="MIOG_ProgressBracketTemplate">
+            </Frame>
+        </Frames>
+
+        <Layers>
+            <Layer level="ARTWORK">
+                <Texture parentKey="Rank">
+                    <Size x="25" y="25" />
+                    <Anchors>
+                        <Anchor point="RIGHT" relativeKey="$parent.Bracket1" relativePoint="LEFT" />
+                    </Anchors>
+                </Texture>
+            </Layer>
+            
+            <Layer level="OVERLAY">
+                <FontString parentKey="HonorLevel" font="GameFontHighlight" justifyH="LEFT" justifyV="MIDDLE" text="CURRENT">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT" x="96" y="-3"/>
+                    </Anchors>
+                </FontString>
+
+                <FontString parentKey="HonorProgress" font="GameFontHighlight" justifyH="LEFT" justifyV="MIDDLE" text="CURRENT">
+                    <Anchors>
+                        <Anchor point="BOTTOMLEFT" relativeKey="$parent" relativePoint="BOTTOMLEFT" x="2" y="1"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+    </Frame>
+</Ui>

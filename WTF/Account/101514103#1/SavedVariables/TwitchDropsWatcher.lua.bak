@@ -1,0 +1,6 @@
+
+TwitchDropsWatcherDB = {
+["autoOpenUI"] = false,
+["playSound"] = true,
+["notifyOnLogin"] = true,
+}

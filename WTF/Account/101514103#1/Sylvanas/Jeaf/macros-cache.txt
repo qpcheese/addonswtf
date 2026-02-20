@@ -1,0 +1,4 @@
+VER 3 0100000000000001 "Artifact ability" "134400"
+#showtooltip
+/use [known:Naran's Everdisc] Naran's Everdisc; [known:Twisted Crusade] Twisted Crusade; [known:Tempest Wrath] Tempest Wrath; [known:Vindicator's Judgment] Vindicator's Judgment; [known:Call of the Forest] Call of the Forest;
+END

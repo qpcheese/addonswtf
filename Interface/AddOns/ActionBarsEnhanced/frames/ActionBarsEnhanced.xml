@@ -1,0 +1,1109 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+	<CheckButton name="ActionButtonFXTemplate" virtual="true">
+		<Frames>
+			<Frame parentKey="InterruptDisplay" useParentLevel="true" inherits="ActionButtonInterruptTemplate" setAllPoints="true" hidden="true">
+				<Scripts>
+					<OnShow/>
+					<OnHide/>
+				</Scripts>
+			</Frame>
+			<Frame parentKey="SpellCastAnimFrame" useParentLevel="true" inherits="ActionButtonCastingAnimFrameTemplate" hidden="true">
+				<Scripts>
+					<OnShow/>
+					<OnHide/>
+				</Scripts>
+			</Frame>
+			<Frame parentKey="TargetReticleAnimFrame" useParentLevel="true" inherits="ActionButtonTargetReticleFrameTemplate" hidden="true">
+				<Scripts>
+					<OnShow/>
+					<OnHide/>
+				</Scripts>
+			</Frame>
+			<Frame parentKey="CooldownFlash" inherits="ActionButtonCooldownFlashTemplate" hidden="true">
+				<Scripts>
+					<OnShow/>
+					<OnHide/>
+				</Scripts>
+			</Frame>
+		</Frames>
+	</CheckButton>
+	<CheckButton name="OptionsButtonPreviewTemplate" inherits="ActionButtonFXTemplate" mixin="ActionBarEnhancedButtonPreviewMixin" virtual="true">
+		<Size x="50" y="50"/>
+		<Frames>
+			<Frame parentKey="Title" hidden="false" scale="0.7">
+				<Size x="80" y="15"/>
+				<Anchors>
+					<Anchor point="BOTTOM" x="0" y="0" relativeKey="$parent" relativePoint="TOP"/>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture parentKey="TitleBg" atlas="Rewards-Shadow" useAtlasSize="false" alpha="0.4">
+							<Size x="80" y="15"/>
+							<Anchors>
+								<Anchor point="CENTER"/>
+							</Anchors>
+						</Texture>
+					</Layer>
+					<Layer level="ARTWORK">
+						<FontString parentKey="TitleText" inherits="GameFontDisableSmall" justifyH="MIDDLE" maxLines="1" text="Preview">
+							<Size x="80"/>
+							<Anchors>
+								<Anchor point="CENTER" x="0" y="0" relativeKey="$parent.TitleBg" relativePoint="CENTER"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Frame>
+		</Frames>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture parentKey="icon" atlas="classicon-warlock">
+					<Size x="45" y="45"/>
+					<Anchors>
+						<Anchor point="CENTER" relativeKey="$parent"/>
+					</Anchors>
+				</Texture>
+				<MaskTexture parentKey="IconMask" atlas="UI-Frame-IconMask" hWrapMode="CLAMPTOBLACKADDITIVE" vWrapMode="CLAMPTOBLACKADDITIVE" useAtlasSize="false">
+					<Size x="45" y="45"/>
+					<Anchors>
+						<Anchor point="CENTER" relativeKey="$parent.icon"/>
+					</Anchors>
+					<MaskedTextures>
+						<MaskedTexture childKey="icon"/>
+					</MaskedTextures>
+				</MaskTexture>
+				<Texture parentKey="SlotBackground" atlas="UI-HUD-ActionBar-IconFrame-Background" setAllPoints="true"/>
+			</Layer>
+			<Layer level="OVERLAY">
+				<FontString parentKey="Name" inherits="GameFontHighlightSmallOutline" hidden="false">
+					<Size x="36" y="10"/>
+					<Anchors>
+						<Anchor point="BOTTOM" x="0" y="2"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<NormalTexture parentKey="NormalTexture" atlas="UI-HUD-ActionBar-IconFrame">
+			<Size x="45" y="45"/>
+			<Anchors>
+				<Anchor point="CENTER" x="0" y="0"/>
+			</Anchors>
+		</NormalTexture>
+		<PushedTexture atlas="UI-HUD-ActionBar-IconFrame-Down" parentKey="PushedTexture">
+			<Size x="45" y="45"/>
+			<Anchors>
+				<Anchor point="CENTER" x="0" y="0"/>
+			</Anchors>
+		</PushedTexture>
+		<HighlightTexture atlas="UI-HUD-ActionBar-IconFrame-Mouseover" parentKey="HighlightTexture">
+			<Size x="45" y="45"/>
+			<Anchors>
+				<Anchor point="CENTER" x="0" y="0"/>
+			</Anchors>
+		</HighlightTexture>
+		<CheckedTexture atlas="UI-HUD-ActionBar-IconFrame-Mouseover" parentKey="CheckedTexture">
+			<Size x="45" y="45"/>
+			<Anchors>
+				<Anchor point="CENTER" x="0" y="0"/>
+			</Anchors>
+		</CheckedTexture>
+		<Scripts>
+			<OnLeave>
+				self:SetChecked(false)
+			</OnLeave>
+		</Scripts>
+	</CheckButton>
+	<CheckButton name="OptionsButtonGlowPreviewTemplate" inherits="OptionsButtonPreviewTemplate" virtual="true">
+		<Frames>
+			<Frame parentKey="ProcGlow" hidden="false">
+				<Size x="65" y="65"/>
+				<Anchors>
+					<Anchor point="CENTER" x="0" y="0" relativeKey="$parent" relativePoint="CENTER"/>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture parentKey="ProcStartFlipbook" atlas="UI-HUD-ActionBar-Proc-Start-Flipbook" alpha="0">
+							<Size x="150" y="150"/>
+							<Anchors>
+								<Anchor point="CENTER"/>
+							</Anchors>
+						</Texture>
+						<Texture parentKey="ProcLoopFlipbook" atlas="UI-HUD-ActionBar-Proc-Loop-Flipbook" setAllPoints="true" alpha="0"/>
+						<Texture parentKey="ProcAltGlow" atlas="UI-HUD-RotationHelper-ProcAltGlow" useAtlasSize="true" hidden="true">
+							<Anchors>
+								<Anchor point="CENTER"/>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Animations>
+					<AnimationGroup parentKey="ProcLoop" looping="REPEAT">
+						<Alpha childKey="ProcLoopFlipbook" duration=".001" order="0" fromAlpha="1" toAlpha="1"/>
+						<FlipBook parentKey="FlipAnim" childKey="ProcLoopFlipbook" duration="1" order="0" flipBookRows="6" flipBookColumns="5" flipBookFrames="30" flipBookFrameWidth="0" flipBookFrameHeight="0"/>
+					</AnimationGroup>
+						
+					<AnimationGroup parentKey="ProcStartAnim" setToFinalAlpha="true" looping="REPEAT">
+						<Alpha childKey="ProcStartFlipbook" startDelay="0.5" duration=".001" order="0" fromAlpha="1" toAlpha="1"/>
+						<FlipBook childKey="ProcStartFlipbook" duration="0.7" order="1" flipBookRows="6" flipBookColumns="5" flipBookFrames="30" flipBookFrameWidth="0" flipBookFrameHeight="0"/>
+						<Alpha childKey="ProcStartFlipbook" duration=".001" order="2" fromAlpha="1" toAlpha="0"/>
+					</AnimationGroup>
+				</Animations>
+			</Frame>
+		</Frames>
+	</CheckButton>
+	<CheckButton name="OptionsButtonPresetsPreviewTemplate" virtual="true">
+		<Size x="50" y="50"/>
+		<Frames>
+			<Frame parentKey="ProcGlow" hidden="false">
+				<Size x="65" y="65"/>
+				<Anchors>
+					<Anchor point="CENTER" x="0" y="0" relativeKey="$parent" relativePoint="CENTER"/>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture parentKey="ProcStartFlipbook" atlas="UI-HUD-ActionBar-Proc-Start-Flipbook" alpha="0">
+							<Size x="150" y="150"/>
+							<Anchors>
+								<Anchor point="CENTER"/>
+							</Anchors>
+						</Texture>
+						<Texture parentKey="ProcLoopFlipbook" atlas="UI-HUD-ActionBar-Proc-Loop-Flipbook" setAllPoints="true" alpha="0"/>
+						<Texture parentKey="ProcAltGlow" atlas="UI-HUD-RotationHelper-ProcAltGlow" useAtlasSize="true" hidden="true">
+							<Anchors>
+								<Anchor point="CENTER"/>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+				<Animations>
+					<AnimationGroup parentKey="ProcLoop" looping="REPEAT">
+						<Alpha childKey="ProcLoopFlipbook" duration=".001" order="0" fromAlpha="1" toAlpha="1"/>
+						<FlipBook parentKey="FlipAnim" childKey="ProcLoopFlipbook" duration="1" order="0" flipBookRows="6" flipBookColumns="5" flipBookFrames="30" flipBookFrameWidth="0" flipBookFrameHeight="0"/>
+					</AnimationGroup>
+						
+					<AnimationGroup parentKey="ProcStartAnim" setToFinalAlpha="true" looping="REPEAT">
+						<Alpha childKey="ProcStartFlipbook" startDelay="0.5" duration=".001" order="0" fromAlpha="1" toAlpha="1"/>
+						<FlipBook childKey="ProcStartFlipbook" duration="0.7" order="1" flipBookRows="6" flipBookColumns="5" flipBookFrames="30" flipBookFrameWidth="0" flipBookFrameHeight="0"/>
+						<Alpha childKey="ProcStartFlipbook" duration=".001" order="2" fromAlpha="1" toAlpha="0"/>
+					</AnimationGroup>
+				</Animations>
+			</Frame>
+			<Frame parentKey="TextOverlayContainer" mixin="ActionButtonTextOverlayContainerMixin" hidden="false">
+				<Size x="45" y="45"/>
+				<Anchors>
+					<Anchor point="CENTER"/>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString parentKey="HotKey" inherits="NumberFontNormalSmallGray" justifyH="RIGHT">
+							<Size x="32" y="10"/>
+							<Anchors>
+								<Anchor point="TOPRIGHT" x="-5" y="-5"/>
+							</Anchors>
+						</FontString>
+						<FontString parentKey="Count" inherits="NumberFontNormal"  justifyH="RIGHT">
+							<Anchors>
+								<Anchor point="BOTTOMRIGHT" x="-5" y="5"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Frame>
+		</Frames>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture parentKey="icon" atlas="classicon-warlock">
+					<Size x="45" y="45"/>
+					<Anchors>
+						<Anchor point="CENTER" relativeKey="$parent"/>
+					</Anchors>
+				</Texture>
+				<MaskTexture parentKey="IconMask" atlas="UI-Frame-IconMask" hWrapMode="CLAMPTOBLACKADDITIVE" vWrapMode="CLAMPTOBLACKADDITIVE" useAtlasSize="false">
+					<Size x="45" y="45"/>
+					<Anchors>
+						<Anchor point="CENTER" relativeKey="$parent.icon"/>
+					</Anchors>
+					<MaskedTextures>
+						<MaskedTexture childKey="icon"/>
+					</MaskedTextures>
+				</MaskTexture>
+				<Texture parentKey="SlotBackground" atlas="UI-HUD-ActionBar-IconFrame-Background" setAllPoints="true"/>
+			</Layer>
+			<Layer level="OVERLAY">
+				<FontString parentKey="Name" inherits="GameFontHighlightSmallOutline" hidden="false">
+					<Size x="36" y="10"/>
+					<Anchors>
+						<Anchor point="BOTTOM" x="0" y="2"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<NormalTexture parentKey="NormalTexture" atlas="UI-HUD-ActionBar-IconFrame">
+			<Size x="45" y="45"/>
+			<Anchors>
+				<Anchor point="CENTER" x="0" y="0"/>
+			</Anchors>
+		</NormalTexture>
+		<PushedTexture atlas="UI-HUD-ActionBar-IconFrame-Down" parentKey="PushedTexture">
+			<Size x="45" y="45"/>
+			<Anchors>
+				<Anchor point="CENTER" x="0" y="0"/>
+			</Anchors>
+		</PushedTexture>
+		<HighlightTexture atlas="UI-HUD-ActionBar-IconFrame-Mouseover" parentKey="HighlightTexture">
+			<Size x="45" y="45"/>
+			<Anchors>
+				<Anchor point="CENTER" x="0" y="0"/>
+			</Anchors>
+		</HighlightTexture>
+		<CheckedTexture atlas="UI-HUD-ActionBar-IconFrame-Mouseover" parentKey="CheckedTexture">
+			<Size x="45" y="45"/>
+			<Anchors>
+				<Anchor point="CENTER" x="0" y="0"/>
+			</Anchors>
+		</CheckedTexture>
+		<Scripts>
+			<OnLeave>
+				self:SetChecked(false)
+			</OnLeave>
+		</Scripts>
+	</CheckButton>
+	<CheckButton name="OptionsButtonTextPreviewTemplate" inherits="OptionsButtonPreviewTemplate" mixin="ActionBarEnhancedButtonPreviewMixin" virtual="true">
+		<Frames>
+			<Frame parentKey="TextOverlayContainer" mixin="ActionButtonTextOverlayContainerMixin" hidden="false">
+				<Size x="45" y="45"/>
+				<Anchors>
+					<Anchor point="CENTER"/>
+				</Anchors>
+				<Layers>
+					<Layer level="OVERLAY">
+						<FontString parentKey="HotKey" inherits="NumberFontNormalSmallGray" justifyH="RIGHT">
+							<Size x="32" y="10"/>
+							<Anchors>
+								<Anchor point="TOPRIGHT" x="-5" y="-5"/>
+							</Anchors>
+						</FontString>
+						<FontString parentKey="Count" inherits="NumberFontNormal"  justifyH="RIGHT">
+							<Anchors>
+								<Anchor point="BOTTOMRIGHT" x="-5" y="5"/>
+							</Anchors>
+						</FontString>
+					</Layer>
+				</Layers>
+			</Frame>
+		</Frames>
+	</CheckButton>
+	<CheckButton name="OptionsButtonCooldownPreviewTemplate" inherits="OptionsButtonPreviewTemplate" mixin="ActionBarEnhancedButtonPreviewMixin" virtual="true">
+		<Frames>
+			<Cooldown parentKey="cooldown" inherits="CooldownFrameTemplate" drawBling="false" useParentLevel="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeKey="$parent.icon" x="3" y="-3"/>
+					<Anchor point="BOTTOMRIGHT" relativeKey="$parent.icon" x="-3" y="3"/>
+				</Anchors>				
+				<SwipeTexture>
+					<Color r="0" g="0" b="0" a="0.8"/>
+				</SwipeTexture>
+			</Cooldown>
+		</Frames>
+	</CheckButton>
+	<Frame name="OptionsPresetsTemplate" mixin="ActionBarEnhancedContainerMixin" virtual="true">
+		<Size x="400" y="40"/>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture parentKey="BG" atlas="housefinder_header-bg-gradient" alpha="0.5">
+					<Size x="200" y="40"/>
+					<Anchors>
+						<Anchor point="LEFT"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<FontString parentKey="Title" inherits="GameFontHighlightMedium" justifyH="LEFT" maxLines="2" hidden="false">
+					<Size x="170"/>
+					<Shadow x="1" y="-1">
+						<Color r="0" g="0" b="0"/>
+					</Shadow>
+					<Anchors>
+						<Anchor point="TOPLEFT" x="15" y="-5"/>
+					</Anchors>
+					<Color color="CAMPAIGN_COMPLETE_COLOR"/>
+				</FontString>
+				<FontString parentKey="Desc" inherits="GameFontDisableTiny2" justifyH="LEFT" maxLines="2" hidden="false">
+					<Size x="170"/>
+					<Shadow x="1" y="-1">
+						<Color r="0" g="0" b="0"/>
+					</Shadow>
+					<Anchors>
+						<Anchor point="BOTTOMLEFT" x="15" y="5" relativeKey="$parent" relativePoint="BOTTOMLEFT"/>
+					</Anchors>
+					<Color color="SPELLBOOK_UNLEARNED_TINT_COLOR"/>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame parentKey="NewFeature" inherits="NewFeatureLabelTemplate" frameStrata="HIGH" scale="1.2" frameLevel="100" hidden="true">
+				<Size x="1" y="1"/>
+				<Anchors>
+					<Anchor point="RIGHT" x="0" y="0" relativeKey="$parent.Title" relativePoint="LEFT"/>
+				</Anchors>
+			</Frame>
+			<CheckButton parentKey="Button1" inherits="OptionsButtonPresetsPreviewTemplate" scale="0.8">
+				<Anchors>
+					<Anchor point="LEFT" x="0" y="0" relativeKey="$parent" relativePoint="CENTER"/>
+				</Anchors>
+			</CheckButton>
+			<CheckButton parentKey="Button2" inherits="OptionsButtonPresetsPreviewTemplate" scale="0.8">
+				<Anchors>
+					<Anchor point="LEFT" x="1" y="0" relativeKey="$parent.Button1" relativePoint="RIGHT"/>
+				</Anchors>
+			</CheckButton>
+			<CheckButton parentKey="Button3" inherits="OptionsButtonPresetsPreviewTemplate" scale="0.8">
+				<Anchors>
+					<Anchor point="LEFT" x="1" y="0" relativeKey="$parent.Button2" relativePoint="RIGHT"/>
+				</Anchors>
+			</CheckButton>
+			<CheckButton parentKey="Button4" inherits="OptionsButtonPresetsPreviewTemplate" scale="0.8">
+				<Anchors>
+					<Anchor point="LEFT" x="1" y="0" relativeKey="$parent.Button3" relativePoint="RIGHT"/>
+				</Anchors>
+			</CheckButton>
+			<Button parentKey="ApplyButton" mixin="ActionBarEnhancedApplyPresetButtonMixin" virtual="true" scale="0.9">
+				<Size x="54" y="26"/>
+				<Anchors>
+					<Anchor point="LEFT" x="2" y="0" relativeKey="$parent.Button4" relativePoint="RIGHT"/>
+				</Anchors>
+				<NormalFont style="GameFontNormalSmall"/>
+				<HighlightFont style="GameFontHighlightSmall"/>
+				<DisabledFont style="GameFontDisableSmall"/>
+				<NormalTexture atlas="common-button-tertiary-normal-small"/>
+				<PushedTexture atlas="common-button-tertiary-pressed-small"/>
+				<HighlightTexture atlas="common-button-tertiary-selected-small" alphaMode="ADD" alpha="0.5"/>
+				<DisabledTexture atlas="common-button-tertiary-disabled-small"/>
+				<Scripts>
+					<OnClick method="OnClick"/>
+				</Scripts>
+			</Button>
+		</Frames>
+	</Frame>
+	<Frame name="OptionsContainerTemplate" mixin="ActionBarEnhancedContainerMixin" virtual="true">
+		<Size x="720" y="60"/>
+		<Layers>
+			<Layer level="BACKGROUND" textureSubLevel="1">
+				<Texture parentKey="HeaderBG" atlas="pvpscoreboard-header-glow" useAtlasSize="False" alpha="0.4">
+					<Size x="700" y="40"/>
+					<Anchors>
+						<Anchor point="TOP" x="0" y="-15" relativeKey="$parent" relativePoint="TOP"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="BACKGROUND" textureSubLevel="2">
+				<Texture parentKey="Header" atlas="evergreen-weeklyrewards-header" useAtlasSize="False">
+					<Size x="720" y="13"/>
+					<Anchors>
+						<Anchor point="TOP" x="0" y="-40" relativeKey="$parent" relativePoint="TOP"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="ARTWORK">
+				<FontString parentKey="Title" inherits="Fancy32Font" justifyH="MIDDLE" maxLines="1">
+					
+					<Shadow x="1" y="-1">
+						<Color r="0" g="0" b="0"/>
+					</Shadow>
+					<Anchors>
+						<Anchor point="BOTTOM" x="0" y="4" relativeKey="$parent.Header" relativePoint="TOP"/>
+					</Anchors>
+				</FontString>
+				<FontString parentKey="Desc" inherits="GameFontHighlightMedium" justifyH="MIDDLE" maxLines="4" >
+					<Size x="600"/>
+					<Shadow x="1" y="-1">
+						<Color r="0" g="0" b="0"/>
+					</Shadow>
+					<Anchors>
+						<Anchor point="TOP" x="0" y="-4" relativeKey="$parent.Header" relativePoint="BOTTOM"/>
+					</Anchors>
+					<Color color="LIGHTERBLUE_FONT_COLOR"/>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame parentKey="NewFeature" inherits="NewFeatureLabelTemplate" frameStrata="HIGH" scale="1.5" frameLevel="100" hidden="true">
+				<Size x="1" y="1"/>
+				<Anchors>
+					<Anchor point="RIGHT" x="0" y="0" relativeKey="$parent.Title" relativePoint="LEFT"/>
+				</Anchors>
+			</Frame>
+		</Frames>
+	</Frame>
+	<Frame name="OptionsDropdownTemplate" mixin="ActionBarEnhancedDropdownMixin" virtual="true">
+		<Size y="26"/>
+		<Anchors>
+			<Anchor point="TOPRIGHT"/>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<FontString parentKey="Text" inherits="GameFontNormal" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="LEFT" x="40"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame parentKey="Control" inherits="Metal2DropdownWithSteppersAndLabelTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="CENTER" x="-40"/>
+				</Anchors>
+			</Frame>
+			<Frame parentKey="NewFeature" inherits="NewFeatureLabelTemplate" frameStrata="HIGH" scale=".8" frameLevel="100" hidden="true">
+				<Size x="1" y="1"/>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" x="16" y="-10" relativeKey="$parent.Text" relativePoint="LEFT"/>
+				</Anchors>
+			</Frame>
+		</Frames>
+	</Frame>
+	<Frame name="OptionsDoubleDropdownTemplate" mixin="ActionBarEnhancedDropdownMixin" virtual="true">
+		<Size y="26"/>
+		<Anchors>
+			<Anchor point="TOPRIGHT"/>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<FontString parentKey="Text" inherits="GameFontNormal" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="LEFT" x="40"/>
+					</Anchors>
+				</FontString>
+				<FontString parentKey="Text1" inherits="GameFontNormal" justifyH="RIGHT" text="Attach:">
+					<Anchors>
+						<Anchor point="LEFT" relativeKey="$parent" relativePoint="CENTER" x="-15" y="15"/>
+					</Anchors>
+				</FontString>
+				<FontString parentKey="Text2" inherits="GameFontNormal" justifyH="RIGHT" text="To frame's:">
+					<Anchors>
+						<Anchor point="LEFT" relativeKey="$parent.Text1" relativePoint="RIGHT" x="100"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame parentKey="Control1" inherits="Metal2DropdownWithSteppersAndLabelTemplate">
+				<Size x="150" y="25"/>
+				<Anchors>
+					<Anchor point="TOP" relativeKey="$parent.Text1" relativePoint="BOTTOM" x="0"/>
+				</Anchors>
+			</Frame>
+			<Frame parentKey="Control2" inherits="Metal2DropdownWithSteppersAndLabelTemplate">
+				<Size x="150" y="25"/>
+				<Anchors>
+					<Anchor point="TOP" relativeKey="$parent.Text2" relativePoint="BOTTOM" x="0"/>
+				</Anchors>
+			</Frame>
+			<Frame parentKey="NewFeature" inherits="NewFeatureLabelTemplate" frameStrata="HIGH" scale=".8" frameLevel="100" hidden="true">
+				<Size x="1" y="1"/>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" x="16" y="-10" relativeKey="$parent.Text" relativePoint="LEFT"/>
+				</Anchors>
+			</Frame>
+		</Frames>
+	</Frame>
+	<Frame name="OptionsCheckboxTemplate" mixin="ActionBarEnhancedCheckboxMixin" virtual="true">
+		<Size y="26"/>
+		<Anchors>
+			<Anchor point="TOPRIGHT"/>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<FontString parentKey="Text" inherits="GameFontNormal" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="LEFT" x="40"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<CheckButton parentKey="Checkbox" inherits="UICheckButtonTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="CENTER" x="-80" y="0"/>
+				</Anchors>
+				<NormalTexture atlas="checkbox-minimal" useAtlasSize="true"/>
+				<PushedTexture atlas="checkbox-minimal" useAtlasSize="true"/>
+				<CheckedTexture atlas="checkmark-minimal" useAtlasSize="true"/>
+				<DisabledCheckedTexture atlas="checkmark-minimal-disabled" useAtlasSize="true"/>
+			</CheckButton>
+			<Frame parentKey="NewFeature" inherits="NewFeatureLabelTemplate" frameStrata="HIGH" scale=".8" frameLevel="100" hidden="true">
+				<Size x="1" y="1"/>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" x="16" y="-10" relativeKey="$parent.Text" relativePoint="LEFT"/>
+				</Anchors>
+			</Frame>
+		</Frames>
+	</Frame>
+	<Frame name="OptionsCheckboxSliderTemplate" mixin="ActionBarEnhancedCheckboxSliderMixin" virtual="true">
+		<Size y="26"/>
+		<Anchors>
+			<Anchor point="TOPRIGHT"/>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<FontString parentKey="Text" inherits="GameFontNormal" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="LEFT" x="40"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<CheckButton parentKey="Checkbox" inherits="UICheckButtonTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="CENTER" x="-80" y="0"/>
+				</Anchors>
+				<NormalTexture atlas="checkbox-minimal" useAtlasSize="true"/>
+				<PushedTexture atlas="checkbox-minimal" useAtlasSize="true"/>
+				<CheckedTexture atlas="checkmark-minimal" useAtlasSize="true"/>
+				<DisabledCheckedTexture atlas="checkmark-minimal-disabled" useAtlasSize="true"/>
+			</CheckButton>
+			<Frame parentKey="SliderWithSteppers" inherits="MinimalSliderWithSteppersTemplate">
+				<Size x="300" y="26"/>
+				<Anchors>
+					<Anchor point="LEFT" relativeKey="$parent.Checkbox" x="2" relativePoint="RIGHT" y="-5"/>
+				</Anchors>
+			</Frame>
+		</Frames>
+	</Frame>
+	<Frame name="OptionsDoubleCheckboxSliderTemplate" mixin="ActionBarEnhancedCheckboxSliderMixin" virtual="true">
+		<Size y="26"/>
+		<Anchors>
+			<Anchor point="TOPRIGHT"/>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<FontString parentKey="Text" inherits="GameFontNormal" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="LEFT" x="40"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<CheckButton parentKey="Checkbox" inherits="UICheckButtonTemplate">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="CENTER" x="-80" y="0"/>
+				</Anchors>
+				<NormalTexture atlas="checkbox-minimal" useAtlasSize="true"/>
+				<PushedTexture atlas="checkbox-minimal" useAtlasSize="true"/>
+				<CheckedTexture atlas="checkmark-minimal" useAtlasSize="true"/>
+				<DisabledCheckedTexture atlas="checkmark-minimal-disabled" useAtlasSize="true"/>
+			</CheckButton>
+			<Frame parentKey="SliderWithSteppers1" inherits="MinimalSliderWithSteppersTemplate">
+				<Size x="150" y="26"/>
+				<Anchors>
+					<Anchor point="LEFT" relativeKey="$parent.Checkbox" x="2" relativePoint="RIGHT" y="-5"/>
+				</Anchors>
+			</Frame>
+			<Frame parentKey="SliderWithSteppers2" inherits="MinimalSliderWithSteppersTemplate">
+				<Size x="150" y="26"/>
+				<Anchors>
+					<Anchor point="LEFT" relativeKey="$parent.SliderWithSteppers1" x="0" relativePoint="RIGHT" y="0"/>
+				</Anchors>
+			</Frame>
+		</Frames>
+	</Frame>
+	<Frame name="OptionsColorOverrideTemplate" mixin="ActionBarColorMixin" virtual="true">
+		<Size y="26"/>
+		<Anchors>
+			<Anchor point="TOPRIGHT"/>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<FontString parentKey="Text" inherits="GameFontNormal" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="LEFT" x="40"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<CheckButton parentKey="Checkbox1" inherits="UICheckButtonTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="CENTER" x="-80" y="0"/>
+				</Anchors>
+				<NormalTexture atlas="checkbox-minimal" useAtlasSize="true"/>
+				<PushedTexture atlas="checkbox-minimal" useAtlasSize="true"/>
+				<CheckedTexture atlas="checkmark-minimal" useAtlasSize="true"/>
+				<DisabledCheckedTexture atlas="checkmark-minimal-disabled" useAtlasSize="true"/>
+			</CheckButton>
+			<Button parentKey="ColorSwatch" inherits="ColorSwatchTemplate">
+				<Size x="22" y="22"/>
+				<Anchors>
+					<Anchor point="LEFT" relativeKey="$parent.Checkbox1" relativePoint="RIGHT" x="8" y="0"/>
+				</Anchors>
+				<Scripts>
+					<OnShow>
+						PixelUtil.SetSize(self.SwatchBg, 22, 22);
+						PixelUtil.SetSize(self.InnerBorder, 20, 20);
+						PixelUtil.SetSize(self.Color, 18, 18);
+					</OnShow>
+					<OnEnter method="OnEnter"/>
+					<OnLeave method="OnLeave"/>
+				</Scripts>
+			</Button>
+			<CheckButton parentKey="Checkbox2" inherits="UICheckButtonTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="LEFT" relativeKey="$parent.ColorSwatch" relativePoint="RIGHT" x="8" y="0"/>
+				</Anchors>
+				<NormalTexture atlas="checkbox-minimal" useAtlasSize="true"/>
+				<PushedTexture atlas="checkbox-minimal" useAtlasSize="true"/>
+				<CheckedTexture atlas="checkmark-minimal" useAtlasSize="true"/>
+				<DisabledCheckedTexture atlas="checkmark-minimal-disabled" useAtlasSize="true"/>
+			</CheckButton>
+		</Frames>
+	</Frame>
+	<Frame name="ActionBarEnhancedOptionsContent" mixin="ActionBarEnhancedMixin" virtual="true">
+		<Size x="720" y="900"/>
+		<Anchors>
+			<Anchor point="TOP" relativePoint="TOP" x="0" y="0"/>
+		</Anchors>
+	</Frame>
+	<Frame name="OptionsDividerTemplate" mixin="ActionBarEnhancedMixin" virtual="true">
+		<Size x="650" y="13"/>
+		<Layers>
+			<Layer level="BACKGROUND" textureSubLevel="2">
+				<Texture parentKey="BG" atlas="delves-companion-divider" useAtlasSize="False">
+					<Size x="650" y="10"/>
+					<Anchors>
+						<Anchor point="CENTER" x="0" y="0" relativeKey="$parent" relativePoint="CENTER"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="OptionsCDMCustomItemListTemplate" inherits="CallbackRegistrantTemplate" mixin="OptionsCDMCustomItemListMixin" virtual="true">
+		<Size x="600" y="200"/>
+		<Anchors>
+			<Anchor point="CENTER"/>
+		</Anchors>
+		<Frames>
+			<Frame parentKey="ItemListFrame" inherits="NineSlicePanelTemplate" setAllPoints="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeKey="$parent" x="0" y="0"/>
+					<Anchor point="BOTTOMRIGHT" relativeKey="$parent" x="0" y="0"/>
+				</Anchors>
+				<Layers>
+                    <Layer level="BACKGROUND" textureSubLevel="-5">
+                        <Texture parentKey="Bg" atlas="editmode-actionbar-selected-nineslice-center" alpha="0.3">
+                            <Anchors>
+                                <Anchor point="TOPLEFT" x="7" y="-7"/>
+                                <Anchor point="BOTTOMRIGHT" x="-7" y="7"/>
+                            </Anchors>
+							<Color r="0.3" g="0.2" b="0.4"/>
+                        </Texture>
+                    </Layer>
+					<Layer level="BORDER">
+						<Texture parentKey="TopLeftCorner" atlas="characterupdate-9slice-topleftcorner-selected" useAtlasSize="true">
+                            <Anchors>
+                                <Anchor point="TOPLEFT"/>
+                            </Anchors>
+                        </Texture>
+                        <Texture parentKey="TopRightCorner" atlas="characterupdate-9slice-toprightcorner-selected" useAtlasSize="true">
+                            <Anchors>
+                                <Anchor point="TOPRIGHT"/>
+                            </Anchors>
+                        </Texture>
+                        <Texture parentKey="BottomLeftCorner" atlas="characterupdate-9slice-bottomleftcorner-selected" useAtlasSize="true">
+                            <Anchors>
+                                <Anchor point="BOTTOMLEFT"/>
+                            </Anchors>
+                        </Texture>
+                        <Texture parentKey="BottomRightCorner" atlas="characterupdate-9slice-bottomrightcorner-selected" useAtlasSize="true">
+                            <Anchors>
+                                <Anchor point="BOTTOMRIGHT"/>
+                            </Anchors>
+                        </Texture>
+                        <Texture parentKey="TopEdge" atlas="_characterupdate-9slice-topedge-selected" useAtlasSize="true" horizTile="true">
+                            <Anchors>
+                                <Anchor point="TOPLEFT" relativeKey="$parent.TopLeftCorner" relativePoint="TOPRIGHT"/>
+                                <Anchor point="TOPRIGHT" relativeKey="$parent.TopRightCorner" relativePoint="TOPLEFT"/>
+                            </Anchors>
+                        </Texture>
+                        <Texture parentKey="BottomEdge" atlas="_characterupdate-9slice-bottomedge-selected" useAtlasSize="true" horizTile="true">
+                            <Anchors>
+                                <Anchor point="BOTTOMLEFT" relativeKey="$parent.BottomLeftCorner" relativePoint="BOTTOMRIGHT"/>
+                                <Anchor point="BOTTOMRIGHT" relativeKey="$parent.BottomRightCorner" relativePoint="BOTTOMLEFT"/>
+                            </Anchors>
+                        </Texture>
+                        <Texture parentKey="LeftEdge" atlas="!characterupdate-9slice-leftedge-selected" useAtlasSize="true" vertTile="true">
+                            <Anchors>
+                                <Anchor point="TOPLEFT" relativeKey="$parent.TopLeftCorner" relativePoint="BOTTOMLEFT"/>
+                                <Anchor point="BOTTOMLEFT" relativeKey="$parent.BottomLeftCorner" relativePoint="TOPLEFT"/>
+                            </Anchors>
+                        </Texture>
+                        <Texture parentKey="RightEdge" atlas="!characterupdate-9slice-rightedge-selected" useAtlasSize="true" vertTile="true">
+                            <Anchors>
+                                <Anchor point="TOPRIGHT" relativeKey="$parent.TopRightCorner" relativePoint="BOTTOMRIGHT"/>
+                                <Anchor point="BOTTOMRIGHT" relativeKey="$parent.BottomRightCorner" relativePoint="TOPRIGHT"/>
+                            </Anchors>
+                        </Texture>
+					</Layer>
+				</Layers>
+			</Frame>
+			<ScrollFrame parentKey="ItemListScroll" inherits="ScrollFrameTemplate">
+				<KeyValues>
+					<KeyValue key="scrollBarHideIfUnscrollable" value="false" type="boolean"/>
+					<KeyValue key="scrollBarHideTrackIfThumbExceedsTrack" value="true" type="boolean"/>
+					<KeyValue key="scrollBarTopY" value="0" type="number"/>
+					<KeyValue key="scrollBarBottomY" value="0" type="number"/>
+				</KeyValues>
+				<Anchors>
+					<Anchor point="TOPLEFT" x="12" y="-12"/>
+					<Anchor point="BOTTOMRIGHT" x="-30" y="12"/>
+				</Anchors>
+				<ScrollChild>
+					<Frame parentKey="GridContainer" mixin="OptionsCDMCustomItemListContentMixin" inherits="GridLayoutFrame" registerForDrag="LeftButton">
+						<KeyValues>
+							<KeyValue key="childXPadding" value="8" type="number"/>
+							<KeyValue key="childYPadding" value="8" type="number"/>
+							<KeyValue key="isHorizontal" value="true" type="boolean"/>
+							<KeyValue key="stride" value="10" type="number"/>
+							<KeyValue key="layoutFramesGoingRight" value="true" type="boolean"/>
+							<KeyValue key="layoutFramesGoingUp" value="false" type="boolean"/>
+							<KeyValue key="alwaysUpdateLayout" value="true" type="boolean"/>
+						</KeyValues>
+						<Anchors>
+							<Anchor point="TOPLEFT"/>
+							<Anchor point="TOPRIGHT"/>
+						</Anchors>
+						<Layers>
+							<Layer level="BACKGROUND">
+								<Texture parentKey="DropTarget" setAllPoints="true" hidden="false">
+									<Color r="0" g="0" b="0" a="0.01"/>
+								</Texture>
+								<FontString parentKey="DropText" inherits="ObjectiveTrackerFont17" justifyH="CENTER" text="Drop here Spell or Item">
+									<Color r="0.929" g="0.788" b="0.620" a="0.8"/>
+									<Anchors>
+										<Anchor point="CENTER"/>
+									</Anchors>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Scripts>
+							<OnReceiveDrag method="OnReceiveDrag"/>
+							<OnEnter method="OnMouseEnter" />
+							<OnLeave method="OnMouseLeave" />
+						</Scripts>
+					</Frame>
+				</ScrollChild>
+			</ScrollFrame>
+			<Frame parentKey="ReorderMarker" mixin="OptionsCDMCustomItemListReorderMarkerMixin" hidden="true">
+				<Size x="8" y="40"/>
+				<Anchors>
+					<Anchor point="CENTER" relativeKey="$parent"/>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture parentKey="Texture" atlas="CDM-vertical" setAllPoints="true" alpha="1">
+							<Size x="8" y="40"/>
+							<Anchors>
+								<Anchor point="CENTER" relativeKey="$parent"/>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Frame>
+			<Frame parentKey="NewFeature" inherits="NewFeatureLabelTemplate" frameStrata="HIGH" scale=".8" frameLevel="100" hidden="true">
+				<Size x="1" y="1"/>
+				<Anchors>
+					<Anchor point="BOTTOMRIGHT" x="16" y="-10" relativeKey="$parent.Text" relativePoint="LEFT"/>
+				</Anchors>
+			</Frame>
+			<Frame parentKey="FakeAuraFrame" frameStrata="HIGH" frameLevel="200" hidden="true" enableMouse="true">
+				<Size x="586" y="240"/>
+				<Anchors>
+					<Anchor point="CENTER" x="0" y="0" relativeKey="$parent" relativePoint="CENTER"/>
+				</Anchors>
+				<Layers>
+					<Layer level="ARTWORK">
+						<Texture parentKey="Bg" atlas="housing-floor-container-bg" setAllPoints="true" desaturated="true">
+							<Color r="0.8" g="0.7" b="0.6" a="1"/>
+						</Texture>
+						<FontString parentKey="Label" inherits="ObjectiveTrackerFont20" justifyH="CENTER">
+							<Anchors>
+								<Anchor point="CENTER" x="0" y="60"/>
+							</Anchors>
+							<Color r="1" g="0.87" b="0.72" a="1"/>
+						</FontString>
+						<FontString parentKey="Desc" inherits="ObjectiveTrackerFont14" justifyH="CENTER">
+							<Size x="580"/>
+							<Anchors>
+								<Anchor point="TOP" relativeKey="$parent.Label" relativePoint="BOTTOM" x="0" y="-2"/>
+							</Anchors>
+							<Color r="0.792" g="0.776" b="0.741" a="1"/>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Frames>
+					<EditBox parentKey="EditBox" mixin="ABE_FakeAuraEditBoxMixin" autoFocus="false" virtual="true" letters="4" numeric="true" multiLine="false" >
+						<Size x="300" y="28"/>
+						<Anchors>
+							<Anchor point="CENTER" relativePoint="CENTER" x="0" y="0"/>
+						</Anchors>
+						<Layers>
+							<Layer level="BACKGROUND">
+								<Texture parentKey="Left" atlas="Options_ListExpand_Left" useAtlasSize="false" alpha="1">
+									<Size x="12" y="28"/>
+									<Anchors>
+										<Anchor point="LEFT" x="0" y="0"/>
+									</Anchors>
+									<Color r="1" g="0.95" b="0.9" a="1"/>
+								</Texture>
+								<Texture parentKey="Right" atlas="Options_ListExpand_Left" useAtlasSize="false" alpha="1">
+									<Size x="12" y="28"/>
+									<Anchors>
+										<Anchor point="RIGHT" x="0" y="0"/>
+									</Anchors>
+									<Color r="1" g="0.95" b="0.9" a="1"/>
+									<TexCoords left="1" right="0" top="0" bottom="1"/>
+								</Texture>
+								<Texture parentKey="Middle" atlas="_Options_ListExpand_Middle" useAtlasSize="false" alpha="1">
+									<Size x="2" y="28"/>
+									<Anchors>
+										<Anchor point="TOPLEFT" relativeKey="$parent.Left" relativePoint="TOPRIGHT"/>
+										<Anchor point="BOTTOMRIGHT" relativeKey="$parent.Right" relativePoint="BOTTOMLEFT"/>
+									</Anchors>
+									<Color r="1" g="0.95" b="0.9" a="1"/>
+								</Texture>
+							</Layer>
+						</Layers>
+						<FontString inherits="SystemFont_Large" justifyV="MIDDLE" justifyH="CENTER">
+							<Anchors>
+								<Anchor point="LEFT" relativeKey="$parent.Left" relativePoint="LEFT"/>
+								<Anchor point="RIGHT" relativeKey="$parent.Right" relativePoint="RIGHT"/>
+							</Anchors>
+						</FontString>
+						<Scripts>
+							<OnEnterPressed method="OnEnterPressed"/>
+							<OnEditFocusLost method="OnEditFocusLost"/>
+							<OnEditFocusGained method="OnEditFocusGained"/>
+						</Scripts>
+					</EditBox>
+					<Button parentKey="Button" mixin="ABE_FakeAuraConfirmButtonMixin" virtual="true" scale="1" hidden="false">
+						<Size x="150" y="28"/>
+						<Anchors>
+							<Anchor point="CENTER" relativePoint="CENTER" x="0" y="-60"/>
+						</Anchors>
+						<NormalFont style="UserScaledFontGameNormal"/>
+						<HighlightFont style="UserScaledFontGameHighlight"/>
+						<DisabledFont style="UserScaledFontGameDisable"/>
+						<NormalTexture atlas="UI-Journeys-Delve-Level-Bar" desaturated="true"/>
+						<PushedTexture atlas="UI-Journeys-Delve-Level-Bar" desaturated="true">
+							<Color r="0.5" g="0.5" b="0.5" a="1"/>
+						</PushedTexture>
+						<HighlightTexture atlas="plunderstorm-spectate-background" alpha="1" alphaMode="ADD" desaturated="true">
+							<Size x="160" y="24"/>
+							<Anchors>
+								<Anchor point="CENTER" x="0" y="1"/>
+							</Anchors>
+							<Color r="0.1" g="0.9" b="0.4" a="1"/>
+						</HighlightTexture>
+						<DisabledTexture atlas="evergreen-weeklyrewards-reward-coin-unselected"/>
+						<Scripts>
+							<OnLoad method="OnLoad"/>
+							<OnShow method="OnShow"/>
+							<OnClick method="OnClick"/>
+						</Scripts>
+					</Button>
+				</Frames>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnLoad method="OnLoad"/>
+			<OnShow method="OnShow"/>
+			<OnEvent method="OnEvent"/>
+		</Scripts>
+	</Frame>
+	<Frame name="OptionsCDMCustomItemTemplate" mixin="OptionsCDMCustomItemMixin" virtual="true" hidden="false" registerForDrag="LeftButton">
+		<Size x="40" y="40"/>
+		<Layers>
+			<Layer level="ARTWORK" textureSubLevel="1">
+				<Texture parentKey="Icon" setAllPoints="true" atlas="cdm-empty"/>
+			</Layer>
+			<Layer level="ARTWORK" textureSubLevel="2">
+				<Texture parentKey="HasColor" file="Interface/addons/ActionBarsEnhanced/assets/ABE_Border_Square_4.png" setAllPoints="true" hidden="true"/>
+			</Layer>
+			<Layer level="ARTWORK" textureSubLevel="3">
+				<Texture parentKey="HasAura" atlas="ConduitIconFrame-Corners" setAllPoints="true" desaturated="true" hidden="true">
+					<Color r="1" g="0.6" b="1" a="1"/>
+				</Texture>
+				<Texture parentKey="HasCharges" atlas="plunderstorm-icon-small-utility" hidden="true">
+					<Color r="1" g="1" b="0.1" a="1"/>
+					<Size x="21" y="24"/>
+					<Anchors>
+						<Anchor point="BOTTOM" relativePoint="BOTTOM" x="0" y="-2"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="HIGHLIGHT">
+				<Texture parentKey="Highlight" setAllPoints="true" file="Interface\Buttons\ButtonHilight-Square" alphaMode="ADD"/>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnShow method="OnShow"/>
+			<OnEnter method="OnEnter"/>
+			<OnLeave method="OnLeave"/>
+			<OnDragStart method="OnDragStart"/>
+			<OnMouseUp method="OnMouseUp"/>
+		</Scripts>
+	</Frame>
+	<Frame name="CDMCustomDraggedItemTemplate" mixin="CDMCustomDraggedItemMixin" frameStrata="TOOLTIP" virtual="true">
+		<Size x="40" y="40"/>
+		<Layers>
+			<Layer level="OVERLAY" textureSubLevel="6">
+				<Texture parentKey="Icon" setAllPoints="true"/>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnUpdate method="OnUpdate"/>
+		</Scripts>
+	</Frame>
+	<Frame name="OptionsEditBoxTemplate" mixin="ActionBarEnhancedEditBoxMixin" virtual="true">
+		<Size y="26"/>
+		<Anchors>
+			<Anchor point="TOPRIGHT"/>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<FontString parentKey="Label" inherits="GameFontNormal" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="LEFT" x="40"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<EditBox parentKey="EditBox" mixin="ActionBarEnhancedEditBoxEditMixin" autoFocus="false" virtual="true" letters="20" >
+				<Size x="300" y="26"/>
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="CENTER" x="-80" y="0"/>
+				</Anchors>
+				<Layers>
+					<Layer level="BACKGROUND">
+						<Texture parentKey="Left" atlas="Options_ListExpand_Left" useAtlasSize="false" alpha="1">
+							<Size x="12" y="26"/>
+							<Anchors>
+								<Anchor point="LEFT" x="0" y="0"/>
+							</Anchors>
+							<Color r="1" g="0.9" b="0.8" a="1"/>
+						</Texture>
+						<Texture parentKey="Right" atlas="Options_ListExpand_Left" useAtlasSize="false" alpha="1">
+							<Size x="12" y="26"/>
+							<Anchors>
+								<Anchor point="RIGHT" x="0" y="0"/>
+							</Anchors>
+							<Color r="1" g="0.9" b="0.8" a="1"/>
+							<TexCoords left="1" right="0" top="0" bottom="1"/>
+						</Texture>
+						<Texture parentKey="Middle" atlas="_Options_ListExpand_Middle" useAtlasSize="false" alpha="1">
+							<Size x="2" y="26"/>
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeKey="$parent.Left" relativePoint="TOPRIGHT"/>
+								<Anchor point="BOTTOMRIGHT" relativeKey="$parent.Right" relativePoint="BOTTOMLEFT"/>
+							</Anchors>
+							<Color r="1" g="0.9" b="0.8" a="1"/>
+						</Texture>
+					</Layer>
+				</Layers>
+				<FontString inherits="GameFontHighlightOutline" justifyV="MIDDLE" justifyH="CENTER">
+					<Anchors>
+						<Anchor point="LEFT" relativeKey="$parent.Left" relativePoint="LEFT"/>
+						<Anchor point="RIGHT" relativeKey="$parent.Right" relativePoint="RIGHT"/>
+					</Anchors>
+				</FontString>
+				<Scripts>
+					<OnEnterPressed method="OnEnterPressed"/>
+					<OnEditFocusLost method="OnEditFocusLost"/>
+					<OnEditFocusGained method="OnEditFocusGained"/>
+				</Scripts>
+			</EditBox>
+		</Frames>
+	</Frame>
+	<Frame name="OptionsNamedButtonTemplate" mixin="ActionBarEnhancedButtonMixin" virtual="true">
+		<Size y="26"/>
+		<Anchors>
+			<Anchor point="TOPRIGHT"/>
+		</Anchors>
+		<Layers>
+			<Layer>
+				<FontString parentKey="Label" inherits="GameFontNormal" justifyH="LEFT">
+					<Anchors>
+						<Anchor point="LEFT" x="40"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Button parentKey="Button" virtual="true" scale="1">
+				<Size x="300" y="26"/>
+				<Anchors>
+					<Anchor point="LEFT" relativePoint="CENTER" x="-80" y="0"/>
+				</Anchors>
+				<NormalFont style="GameFontNormalSmall"/>
+				<HighlightFont style="GameFontHighlightSmall"/>
+				<DisabledFont style="GameFontDisableSmall"/>
+				<NormalTexture atlas="UI-Journeys-Delve-Level-Bar" desaturated="true"/>
+				<PushedTexture atlas="UI-Journeys-Delve-Level-Bar" desaturated="true">
+					<Color r="0.5" g="0.5" b="0.5" a="1"/>
+				</PushedTexture>
+				<HighlightTexture atlas="plunderstorm-spectate-background" alpha="1" alphaMode="ADD" desaturated="true">
+					<Size x="310" y="22"/>
+					<Anchors>
+						<Anchor point="CENTER" x="0" y="1"/>
+					</Anchors>
+					<Color r="1" g="0.2" b="0.1" a="1"/>
+				</HighlightTexture>
+				<DisabledTexture atlas="evergreen-weeklyrewards-reward-coin-unselected"/>
+			</Button>
+		</Frames>
+	</Frame>
+
+    <Frame name="ActionBarEnhancedOptionsFrameTemplate" mixin="ActionBarEnhancedMixin" parent="UIParent" virtual="true" hidden="false" toplevel="true" enableMouse="true" inherits="ButtonFrameTemplate" frameLevel="595">
+		<Size x="780" y="800"/>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture parentKey="stars" atlas="wowlabs-stars-fixed-multicolor-128" useAtlasSize="true" alpha="0.3">
+					<Anchors>
+						<Anchor point="BOTTOM" relativeKey="$parent" x="0" relativePoint="BOTTOM" y="30"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame parentKey="ScrollBox" inherits="WowScrollBoxList">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeKey="$parent" x="8" y="-68"/>
+					<Anchor point="BOTTOMRIGHT" relativeKey="$parent" x="-22" y="30"/>
+				</Anchors>
+			</Frame>
+			<EventFrame parentKey="ScrollBar" inherits="MinimalScrollBar">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeKey="$parent.ScrollBox" relativePoint="TOPRIGHT" x="0" y="-4"/>
+					<Anchor point="BOTTOMLEFT" relativeKey="$parent.ScrollBox" relativePoint="BOTTOMRIGHT" x="-1" y="4"/>
+				</Anchors>
+			</EventFrame>
+			<Button parentKey="ProfilesButton" mixin="ActionBarEnhancedMixin" inherits="UIPanelButtonTemplate" text="Profiles" hidden="false" virtual="true">
+				<Size x="150" y="25"/>
+				<Anchors>
+					<Anchor point="TOPRIGHT" relativePoint="TOPRIGHT" relativeKey="$parent" x="-15" y="-30"/>
+				</Anchors>
+				<Scripts>
+					<OnClick method="OpenProfileFrame"/>
+				</Scripts>
+			</Button>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				--tinsert(UISpecialFrames, self:GetName());
+			</OnLoad>
+		</Scripts>
+	</Frame>
+</Ui>

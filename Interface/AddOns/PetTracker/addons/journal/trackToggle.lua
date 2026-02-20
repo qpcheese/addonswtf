@@ -1,0 +1,24 @@
+--[[
+Copyright 2012-2026 João Cardoso
+All Rights Reserved
+--]]
+
+local Addon = _G[(...):match('[^_]+')]
+local Toggle = Addon:NewModule('TrackToggle', CreateFrame('CheckButton', 'PetTrackerTrackToggle', PetJournal, 'InterfaceOptionsCheckButtonTemplate'))
+
+function Toggle:OnLoad()
+	self:Update()
+	self:SetScript('OnClick', self.OnClick)
+	self:RegisterSignal('OPTIONS_CHANGED', 'Update')
+	self.Text:SetText(LibStub('AceLocale-3.0'):GetLocale('PetTracker').ZoneTracker)
+	self:SetPoint('RIGHT', CollectMeOpen2Button or PetJournalFindBattle, 'LEFT', -self.Text:GetWidth() - 15, -1)
+end
+
+function Toggle:OnClick()
+	Addon.sets.zoneTracker = self:GetChecked()
+	Addon:SendSignal('OPTIONS_CHANGED')
+end
+
+function Toggle:Update()
+	self:SetChecked(Addon.sets.zoneTracker)
+end

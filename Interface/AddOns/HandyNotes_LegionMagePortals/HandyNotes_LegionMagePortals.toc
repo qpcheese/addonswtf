@@ -1,0 +1,19 @@
+## Interface: 120001
+## Title: HandyNotes: Legion Mage Portals
+## Notes: Shows Teleportation Nexus Portal locations on your map (Legion expansion)
+## Author: Tsaavik (Updated for current WoW)
+## Version: 59f72fbceb7d4116e0be581a0c5e5d3d35ad08d8
+## DefaultState: enabled
+## SavedVariables: HandyNotes_LegionMagePortalsDB
+## RequiredDeps: HandyNotes
+## X-Category: Map & Minimap
+## X-Website: https://github.com/tsaavik/HandyNotes-Mage-Hall-Portals
+## X-Curse-Project-ID: 102475
+## X-WoWI-ID: 23581
+## X-License: All Rights Reserved
+## IconAtlas: poi-town
+## AddonCompartmentFunc: HandyNotes_LegionMagePortals_OnAddonCompartmentClick
+
+handler.lua
+config.lua
+nodes.lua

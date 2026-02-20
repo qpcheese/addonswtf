@@ -1,0 +1,30 @@
+
+HandyNotes_TheWarWithinDB = {
+["profileKeys"] = {
+["Kaijid - Ragnaros"] = "Default",
+["Gammelemil - Grim Batol"] = "Default",
+["Qpaladin - Ragnaros"] = "Default",
+["Qute - Sylvanas"] = "Default",
+["Qpfromage - Sylvanas"] = "Default",
+["Qudroformagi - Sylvanas"] = "Default",
+["Jeaf - Sylvanas"] = "Default",
+["Helikåpter - Sylvanas"] = "Default",
+["Casiomage - Sylvanas"] = "Default",
+["Sörn - Ravencrest"] = "Default",
+["Sørn - Ravencrest"] = "Default",
+["Qpfromage - Confrérie du Thorium"] = "Default",
+["Qope - Ragnaros"] = "Default",
+},
+["profiles"] = {
+["Default"] = {
+["icon_display_skyriding_glyph"] = false,
+["icon_scale_disturbed_earth"] = 1.25,
+["icon_display_disturbed_earth"] = true,
+["icon_display_rares"] = false,
+["icon_display_treasures"] = false,
+["icon_scale_skyriding_glyph"] = 1.299999952316284,
+["icon_display_misc"] = false,
+["icon_display_pet_battles"] = false,
+},
+},
+}

@@ -1,0 +1,7 @@
+## Interface: 120000,120001
+## Title: VendorBuy
+## Version: 1.0051
+## Notes: Helps your eyes
+## SavedVariables: venbuysettings
+VendorBuy.lua
+VendorBuy.xml

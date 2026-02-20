@@ -1,0 +1,8121 @@
+
+Bartender4DB = {
+["namespaces"] = {
+["StatusTrackingBar"] = {
+["profiles"] = {
+["Sikducker - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 214.3419342041016,
+["x"] = -375.000244140625,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Qpfromage - Sylvanas"] = {
+["position"] = {
+["y"] = 214.3419342041016,
+["x"] = -375.000244140625,
+["point"] = "BOTTOMRIGHT",
+},
+["version"] = 3,
+},
+["Qpc - Draenor"] = {
+["enabled"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 29,
+["x"] = -289.5,
+["point"] = "BOTTOM",
+},
+},
+["Xiaoyuu - Sylvanas"] = {
+["enabled"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 29,
+["x"] = -289.5,
+["point"] = "BOTTOM",
+},
+},
+["Qope - Ragnaros"] = {
+["enabled"] = true,
+["position"] = {
+["y"] = 2.999999761581421,
+["x"] = -289.0000305175781,
+["point"] = "BOTTOM",
+},
+["version"] = 3,
+["width"] = 576,
+},
+["Qtte - Sylvanas"] = {
+["enabled"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 29,
+["x"] = -289.5,
+["point"] = "BOTTOM",
+},
+},
+["Qudroformagi - Sylvanas"] = {
+["enabled"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 29,
+["x"] = -289.5,
+["point"] = "BOTTOM",
+},
+},
+["Jeaf - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 214.3419342041016,
+["x"] = -375.000244140625,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Helikåpter - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 214.3419342041016,
+["x"] = -375.000244140625,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Sørn - Ravencrest"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 214.3419342041016,
+["x"] = -375.000244140625,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Qpew - Ragnaros"] = {
+["enabled"] = true,
+["position"] = {
+["y"] = 214.3419342041016,
+["x"] = -375.000244140625,
+["point"] = "BOTTOMRIGHT",
+},
+["version"] = 3,
+["width"] = 359,
+},
+["Sörn - Ravencrest"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 214.3419342041016,
+["x"] = -375.000244140625,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Qpaladin - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -268.1578674316406,
+["x"] = -217.5011901855469,
+["point"] = "CENTER",
+},
+},
+["dogson"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 214.3419342041016,
+["x"] = -375.000244140625,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Qpcheese - Chamber of Aspects"] = {
+["enabled"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 29,
+["x"] = -289.5,
+["point"] = "BOTTOM",
+},
+},
+["Qpebank - Draenor"] = {
+["enabled"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 29,
+["x"] = -289.5,
+["point"] = "BOTTOM",
+},
+},
+["Zelení - Draenor"] = {
+["enabled"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 29,
+["x"] = -289.5,
+["point"] = "BOTTOM",
+},
+},
+["qpcheeso"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 214.3419342041016,
+["x"] = -375.000244140625,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Cyclosarin - Ragnaros"] = {
+["enabled"] = true,
+["width"] = 359,
+["version"] = 3,
+["position"] = {
+["y"] = 214.3419342041016,
+["x"] = -375.000244140625,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Qpcheese - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 214.3419342041016,
+["x"] = -375.000244140625,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Qpfromage - Confrérie du Thorium"] = {
+["enabled"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 29,
+["x"] = -289.5,
+["point"] = "BOTTOM",
+},
+},
+["Kaijid - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 214.3419342041016,
+["x"] = -375.000244140625,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Gammelemil - Grim Batol"] = {
+["enabled"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 29,
+["x"] = -289.5,
+["point"] = "BOTTOM",
+},
+},
+["Qubit - Ragnaros"] = {
+["enabled"] = true,
+["position"] = {
+["y"] = 68.611328125,
+["x"] = -160.989013671875,
+["point"] = "CENTER",
+},
+["version"] = 3,
+["width"] = 350,
+},
+["Qute - Sylvanas"] = {
+["enabled"] = true,
+["width"] = 616,
+["version"] = 3,
+["position"] = {
+["y"] = 63.34234713528076,
+["x"] = -251.500575380036,
+["point"] = "BOTTOM",
+["scale"] = 0.800000011920929,
+},
+},
+["Myfficraider - Ragnaros"] = {
+["enabled"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 29,
+["x"] = -289.5,
+["point"] = "BOTTOM",
+},
+},
+["Fishanus - Ragnaros"] = {
+["enabled"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 214.3419342041016,
+["x"] = -375.000244140625,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Djagon - Ragnaros"] = {
+["enabled"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 29,
+["x"] = -289.5,
+["point"] = "BOTTOM",
+},
+},
+["Laurs - Ragnaros"] = {
+["enabled"] = true,
+["position"] = {
+["y"] = -10.88818359375,
+["x"] = -186.9885864257813,
+["point"] = "TOP",
+},
+["version"] = 3,
+["width"] = 350,
+},
+["Qpe - Ravencrest"] = {
+["enabled"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 29,
+["x"] = -289.5,
+["point"] = "BOTTOM",
+},
+},
+["Casiomage - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 214.3419342041016,
+["x"] = -375.000244140625,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Jerwin - Ragnaros"] = {
+["enabled"] = true,
+["position"] = {
+["y"] = 214.3419342041016,
+["x"] = -375.000244140625,
+["point"] = "BOTTOMRIGHT",
+},
+["version"] = 3,
+["width"] = 359,
+},
+["Qpfromage - Ragnaros"] = {
+["enabled"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 29,
+["x"] = -289.5,
+["point"] = "BOTTOM",
+},
+},
+["Dogson - Ragnaros"] = {
+["enabled"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 29,
+["x"] = -289.5,
+["point"] = "BOTTOM",
+},
+},
+["Flurrq - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 254.6431274414063,
+["x"] = -288.9999694824219,
+["point"] = "BOTTOM",
+},
+},
+},
+},
+["QueueStatus"] = {
+["profiles"] = {
+["Sikducker - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 162.64453125,
+["x"] = -400.010986328125,
+["point"] = "RIGHT",
+},
+},
+["Qpfromage - Sylvanas"] = {
+["position"] = {
+["y"] = 105.64453125,
+["x"] = -424.010986328125,
+["point"] = "RIGHT",
+},
+["version"] = 3,
+},
+["Qpc - Draenor"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 40.5,
+["x"] = -271,
+},
+},
+["Xiaoyuu - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 40.5,
+["x"] = -324,
+},
+},
+["Qope - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 105.64453125,
+["x"] = -424.010986328125,
+["point"] = "RIGHT",
+},
+},
+["Qtte - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 40.5,
+["x"] = -324,
+},
+},
+["Qudroformagi - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 40.5,
+["x"] = -324,
+},
+},
+["Jeaf - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 105.64453125,
+["x"] = -424.010986328125,
+["point"] = "RIGHT",
+},
+},
+["Helikåpter - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 105.64453125,
+["x"] = -424.010986328125,
+["point"] = "RIGHT",
+},
+},
+["Sørn - Ravencrest"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 105.64453125,
+["x"] = -424.010986328125,
+["point"] = "RIGHT",
+},
+},
+["Qpew - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 162.64453125,
+["x"] = -400.010986328125,
+["point"] = "RIGHT",
+},
+},
+["Sörn - Ravencrest"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 105.64453125,
+["x"] = -424.010986328125,
+["point"] = "RIGHT",
+},
+},
+["Qpaladin - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 162.64453125,
+["x"] = -400.010986328125,
+["point"] = "RIGHT",
+},
+},
+["dogson"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 162.64453125,
+["x"] = -400.010986328125,
+["point"] = "RIGHT",
+},
+},
+["Qpcheese - Chamber of Aspects"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 40.5,
+["x"] = -271,
+},
+},
+["Qpebank - Draenor"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 40.5,
+["x"] = -271,
+},
+},
+["Zelení - Draenor"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 40.5,
+["x"] = -271,
+},
+},
+["qpcheeso"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 162.64453125,
+["x"] = -400.010986328125,
+["point"] = "RIGHT",
+},
+},
+["Cyclosarin - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 162.64453125,
+["x"] = -400.010986328125,
+["point"] = "RIGHT",
+},
+},
+["Qpcheese - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 162.64453125,
+["x"] = -400.010986328125,
+["point"] = "RIGHT",
+},
+},
+["Qpfromage - Confrérie du Thorium"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 40.5,
+["x"] = -324,
+},
+},
+["Kaijid - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 162.64453125,
+["x"] = -400.010986328125,
+["point"] = "RIGHT",
+},
+},
+["Gammelemil - Grim Batol"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 40.5,
+["x"] = -324,
+},
+},
+["Qubit - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -255.855712890625,
+["x"] = -323.0107421875,
+["point"] = "TOPRIGHT",
+},
+},
+["Qute - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 162.64453125,
+["x"] = -400.010986328125,
+["point"] = "RIGHT",
+},
+},
+["Myfficraider - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 40.5,
+["x"] = -271,
+},
+},
+["Fishanus - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 162.64453125,
+["x"] = -400.010986328125,
+["point"] = "RIGHT",
+},
+},
+["Djagon - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 40.5,
+["x"] = -271,
+},
+},
+["Laurs - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 162.64453125,
+["x"] = -400.010986328125,
+["point"] = "RIGHT",
+},
+},
+["Qpe - Ravencrest"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 40.5,
+["x"] = -271,
+},
+},
+["Casiomage - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 105.64453125,
+["x"] = -424.010986328125,
+["point"] = "RIGHT",
+},
+},
+["Jerwin - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 162.64453125,
+["x"] = -400.010986328125,
+["point"] = "RIGHT",
+},
+},
+["Qpfromage - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 40.5,
+["x"] = -271,
+},
+},
+["Dogson - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 40.5,
+["x"] = -271,
+},
+},
+["Flurrq - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 162.64453125,
+["x"] = -400.010986328125,
+["point"] = "RIGHT",
+},
+},
+},
+},
+["ActionBars"] = {
+["profiles"] = {
+["Sikducker - Sylvanas"] = {
+["actionbars"] = {
+{
+["showgrid"] = true,
+["mouseover"] = false,
+["fadeoutdelay"] = 0,
+["fadeoutalpha"] = 1,
+["position"] = {
+["y"] = 180.3674084710347,
+["x"] = -243.8251492843956,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["visibility"] = {
+["always"] = false,
+},
+["version"] = 3,
+["WoW10Layout"] = true,
+["fadeout"] = true,
+},
+{
+["fadeoutalpha"] = 0,
+["fadeoutdelay"] = 0.08,
+["buttons"] = 1,
+["fadeout"] = true,
+["position"] = {
+["y"] = -24.88078157426935,
+["x"] = -57.83584831055487,
+["point"] = "TOPRIGHT",
+["scale"] = 0.550000011920929,
+},
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["showgrid"] = true,
+["rows"] = 2,
+["mouseover"] = false,
+["fadeoutalpha"] = 0.15,
+["version"] = 3,
+["fadeout"] = true,
+["position"] = {
+["growHorizontal"] = "LEFT",
+["growVertical"] = "UP",
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+["y"] = -4.138102504452604,
+["x"] = -9.633411453287408,
+},
+["fadeoutdelay"] = 0,
+["padding"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["showgrid"] = true,
+["rows"] = 2,
+["mouseover"] = false,
+["fadeoutalpha"] = 0,
+["visibility"] = {
+["customdata"] = "[petbattle]hide;[vehicleui]hide;show",
+["overridebar"] = false,
+["custom"] = false,
+},
+["version"] = 3,
+["fadeout"] = true,
+["position"] = {
+["y"] = 102.6288454232172,
+["x"] = 455.4475377993731,
+["point"] = "BOTTOMLEFT",
+["scale"] = 0.8500000238418579,
+},
+["fadeoutdelay"] = 0,
+["padding"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["showgrid"] = true,
+["mouseover"] = true,
+["fadeout"] = true,
+["visibility"] = {
+["overridebar"] = false,
+["vehicleui"] = false,
+},
+["fadeoutdelay"] = 0,
+["position"] = {
+["y"] = 142.1320245555435,
+["x"] = -243.8251492843956,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["fadeoutalpha"] = 1,
+["version"] = 3,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["showgrid"] = true,
+["mouseover"] = false,
+["fadeoutdelay"] = 0,
+["version"] = 3,
+["position"] = {
+["y"] = 218.911944616877,
+["x"] = -242.8251645151358,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["fadeoutalpha"] = 1,
+["fadeout"] = true,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["enabled"] = true,
+["version"] = 3,
+["buttons"] = 1,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = -1.330059873544087,
+["x"] = 254.5636004011358,
+["point"] = "TOPLEFT",
+["scale"] = 0.3499999940395355,
+},
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["version"] = 3,
+["showgrid"] = true,
+["clickthrough"] = true,
+["rows"] = 3,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = 112.6250038146973,
+["x"] = 234.4997863769531,
+["point"] = "BOTTOM",
+["scale"] = 0.75,
+},
+},
+[14] = {
+["enabled"] = true,
+["showgrid"] = true,
+["rows"] = 2,
+["mouseover"] = false,
+["fadeoutalpha"] = 0.15,
+["version"] = 3,
+["fadeout"] = true,
+["position"] = {
+["y"] = 79.49848436183038,
+["x"] = 2.237121106234554,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["fadeoutdelay"] = 0,
+["padding"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+[13] = {
+["enabled"] = true,
+["showgrid"] = true,
+["buttons"] = 3,
+["visibility"] = {
+["combat"] = false,
+},
+["fadeoutalpha"] = 1,
+["position"] = {
+["y"] = 188.0030349028357,
+["x"] = 440.46879330097,
+["point"] = "BOTTOMLEFT",
+["scale"] = 0.949999988079071,
+},
+["version"] = 3,
+["padding"] = 13,
+["WoW10Layout"] = true,
+["fadeoutdelay"] = 0,
+},
+[15] = {
+["enabled"] = true,
+["showgrid"] = true,
+["alpha"] = 0,
+["buttons"] = 3,
+["visibility"] = {
+["always"] = false,
+},
+["fadeoutalpha"] = 0,
+["fadeoutdelay"] = 0,
+["position"] = {
+["y"] = -46.50562830751005,
+["x"] = 305.8268402463364,
+["point"] = "CENTER",
+["scale"] = 1.799999952316284,
+},
+["version"] = 3,
+["mouseover"] = false,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+},
+},
+["Qpfromage - Sylvanas"] = {
+["actionbars"] = {
+{
+["showgrid"] = true,
+["fadeout"] = true,
+["mouseover"] = false,
+["fadeoutdelay"] = 0,
+["version"] = 3,
+["fadeoutalpha"] = 0,
+["position"] = {
+["y"] = 166.8450463363715,
+["x"] = -241.8249921226015,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["WoW10Layout"] = true,
+["visibility"] = {
+["always"] = false,
+},
+},
+{
+["fadeout"] = true,
+["fadeoutdelay"] = 0.08,
+["buttons"] = 1,
+["version"] = 3,
+["position"] = {
+["y"] = -20.88065941725654,
+["x"] = -0.3850350135572391,
+["point"] = "TOPLEFT",
+["scale"] = 0.550000011920929,
+},
+["fadeoutalpha"] = 0,
+["WoW10Layout"] = true,
+},
+{
+["showgrid"] = true,
+["rows"] = 2,
+["fadeoutdelay"] = 0,
+["mouseover"] = false,
+["version"] = 3,
+["fadeoutalpha"] = 0.15,
+["position"] = {
+["growHorizontal"] = "LEFT",
+["growVertical"] = "UP",
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+["x"] = -7.467057082241809,
+["y"] = 9.528446798561504,
+},
+["fadeout"] = true,
+["padding"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["showgrid"] = true,
+["rows"] = 2,
+["fadeoutdelay"] = 0,
+["mouseover"] = false,
+["version"] = 3,
+["WoW10Layout"] = true,
+["fadeoutalpha"] = 0,
+["position"] = {
+["y"] = 102.6288454232172,
+["x"] = 455.4475377993731,
+["point"] = "BOTTOMLEFT",
+["scale"] = 0.8500000238418579,
+},
+["fadeout"] = true,
+["padding"] = 0,
+["visibility"] = {
+["custom"] = false,
+["customdata"] = "[petbattle]hide;[vehicleui]hide;show",
+["overridebar"] = false,
+},
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["showgrid"] = true,
+["fadeoutdelay"] = 0,
+["mouseover"] = true,
+["fadeout"] = true,
+["fadeoutalpha"] = 0,
+["version"] = 3,
+["position"] = {
+["y"] = 129.5266134353697,
+["x"] = -241.8249921226015,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["WoW10Layout"] = true,
+["visibility"] = {
+["overridebar"] = false,
+["vehicleui"] = false,
+},
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["showgrid"] = true,
+["fadeout"] = true,
+["mouseover"] = false,
+["fadeoutdelay"] = 0,
+["fadeoutalpha"] = 0,
+["position"] = {
+["y"] = 203.3292896082621,
+["x"] = -241.8249921226015,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["version"] = 3,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["enabled"] = true,
+["buttons"] = 1,
+["version"] = 3,
+["position"] = {
+["y"] = -1.330059873544087,
+["x"] = 254.5636004011358,
+["point"] = "TOPLEFT",
+["scale"] = 0.3499999940395355,
+},
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["showgrid"] = true,
+["rows"] = 3,
+["clickthrough"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 112.6250038146973,
+["x"] = 234.4997863769531,
+["point"] = "BOTTOM",
+["scale"] = 0.75,
+},
+["WoW10Layout"] = true,
+},
+[14] = {
+["showgrid"] = true,
+["rows"] = 2,
+["fadeoutdelay"] = 0,
+["enabled"] = true,
+["mouseover"] = false,
+["version"] = 3,
+["fadeoutalpha"] = 0.15,
+["position"] = {
+["y"] = 91.32614468199063,
+["x"] = 8.285491577378707,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["fadeout"] = true,
+["padding"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+[13] = {
+["showgrid"] = true,
+["fadeoutdelay"] = 0,
+["enabled"] = true,
+["WoW10Layout"] = true,
+["buttons"] = 3,
+["version"] = 3,
+["position"] = {
+["y"] = 188.0030349028357,
+["x"] = 440.46879330097,
+["point"] = "BOTTOMLEFT",
+["scale"] = 0.949999988079071,
+},
+["fadeoutalpha"] = 1,
+["padding"] = 13,
+["visibility"] = {
+["combat"] = false,
+},
+},
+[15] = {
+["showgrid"] = true,
+["fadeoutdelay"] = 0,
+["buttons"] = 3,
+["mouseover"] = false,
+["WoW10Layout"] = true,
+["fadeoutalpha"] = 0,
+["position"] = {
+["y"] = 62.66109999918626,
+["x"] = 299.1601200679434,
+["point"] = "CENTER",
+["scale"] = 1.799999952316284,
+},
+["version"] = 3,
+["visibility"] = {
+["always"] = false,
+},
+["states"] = {
+["enabled"] = true,
+},
+},
+},
+},
+["Qpc - Draenor"] = {
+["actionbars"] = {
+{
+["showgrid"] = true,
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 82,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+{
+["enabled"] = false,
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = -223.9998168945313,
+["x"] = -284.5,
+["point"] = "CENTER",
+},
+},
+{
+["flyoutDirection"] = "LEFT",
+["position"] = {
+["y"] = 193,
+["x"] = -54,
+["point"] = "RIGHT",
+},
+["rows"] = 12,
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["flyoutDirection"] = "LEFT",
+["position"] = {
+["y"] = 193,
+["x"] = -104,
+["point"] = "RIGHT",
+},
+["rows"] = 12,
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["enabled"] = false,
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 184,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+{
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 133,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+[14] = {
+["WoW10Layout"] = true,
+},
+[13] = {
+["WoW10Layout"] = true,
+},
+[15] = {
+["WoW10Layout"] = true,
+},
+},
+},
+["Xiaoyuu - Sylvanas"] = {
+["actionbars"] = {
+{
+["showgrid"] = true,
+["version"] = 3,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = 82,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+{
+["enabled"] = false,
+["version"] = 3,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = -223.9998168945313,
+["x"] = -284.5,
+["point"] = "CENTER",
+},
+},
+{
+["flyoutDirection"] = "LEFT",
+["position"] = {
+["y"] = 52.0001220703125,
+["x"] = -421.999755859375,
+["point"] = "RIGHT",
+},
+["rows"] = 12,
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["flyoutDirection"] = "LEFT",
+["position"] = {
+["y"] = 50.0001220703125,
+["x"] = -376.9991455078125,
+["point"] = "RIGHT",
+},
+["rows"] = 12,
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["enabled"] = false,
+["version"] = 3,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = 184,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+{
+["version"] = 3,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = 133,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+[14] = {
+["WoW10Layout"] = true,
+},
+[13] = {
+["WoW10Layout"] = true,
+},
+[15] = {
+["WoW10Layout"] = true,
+},
+},
+},
+["Qope - Ragnaros"] = {
+["actionbars"] = {
+{
+["showgrid"] = true,
+["mouseover"] = false,
+["version"] = 3,
+["fadeoutdelay"] = 0,
+["position"] = {
+["y"] = 176.7850635524374,
+["x"] = -241.8249921226015,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["visibility"] = {
+["always"] = false,
+},
+["fadeoutalpha"] = 1,
+["WoW10Layout"] = true,
+["fadeout"] = true,
+},
+{
+["fadeoutdelay"] = 0.08,
+["fadeoutalpha"] = 0,
+["buttons"] = 1,
+["fadeout"] = true,
+["position"] = {
+["y"] = -20.88065941725654,
+["x"] = -0.3850350135572391,
+["point"] = "TOPLEFT",
+["scale"] = 0.550000011920929,
+},
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["showgrid"] = true,
+["rows"] = 2,
+["mouseover"] = false,
+["fadeoutdelay"] = 0,
+["fadeoutalpha"] = 0.15,
+["version"] = 3,
+["position"] = {
+["growHorizontal"] = "LEFT",
+["growVertical"] = "UP",
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+["y"] = 17.93517267942912,
+["x"] = -6.374829878754099,
+},
+["fadeout"] = true,
+["padding"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["showgrid"] = true,
+["rows"] = 2,
+["mouseover"] = false,
+["fadeoutdelay"] = 0,
+["visibility"] = {
+["customdata"] = "[petbattle]hide;[vehicleui]hide;show",
+["overridebar"] = false,
+["custom"] = false,
+},
+["fadeoutalpha"] = 0,
+["version"] = 3,
+["position"] = {
+["y"] = 102.6288454232172,
+["x"] = 455.4475377993731,
+["point"] = "BOTTOMLEFT",
+["scale"] = 0.8500000238418579,
+},
+["fadeout"] = true,
+["padding"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["showgrid"] = true,
+["mouseover"] = true,
+["fadeoutdelay"] = 0,
+["visibility"] = {
+["vehicleui"] = false,
+["overridebar"] = false,
+},
+["fadeout"] = true,
+["position"] = {
+["y"] = 138.6351776862193,
+["x"] = -241.8249921226015,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["fadeoutalpha"] = 1,
+["version"] = 3,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["showgrid"] = true,
+["mouseover"] = false,
+["version"] = 3,
+["fadeoutdelay"] = 0,
+["position"] = {
+["y"] = 213.5039595408707,
+["x"] = -241.8249921226015,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["fadeoutalpha"] = 1,
+["fadeout"] = true,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["enabled"] = true,
+["version"] = 3,
+["buttons"] = 1,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = -1.330059873544087,
+["x"] = 254.5636004011358,
+["point"] = "TOPLEFT",
+["scale"] = 0.3499999940395355,
+},
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["version"] = 3,
+["showgrid"] = true,
+["position"] = {
+["y"] = 112.6250038146973,
+["x"] = 234.4997863769531,
+["point"] = "BOTTOM",
+["scale"] = 0.75,
+},
+["clickthrough"] = true,
+["WoW10Layout"] = true,
+["rows"] = 3,
+},
+[14] = {
+["enabled"] = true,
+["showgrid"] = true,
+["rows"] = 2,
+["mouseover"] = false,
+["fadeoutdelay"] = 0,
+["fadeoutalpha"] = 0.15,
+["version"] = 3,
+["position"] = {
+["y"] = 100.3851701283502,
+["x"] = 6.375066719105234,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["fadeout"] = true,
+["padding"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+[13] = {
+["enabled"] = true,
+["showgrid"] = true,
+["fadeoutdelay"] = 0,
+["visibility"] = {
+["combat"] = false,
+},
+["version"] = 3,
+["position"] = {
+["y"] = 188.0030349028357,
+["x"] = 440.46879330097,
+["point"] = "BOTTOMLEFT",
+["scale"] = 0.949999988079071,
+},
+["fadeoutalpha"] = 1,
+["padding"] = 13,
+["WoW10Layout"] = true,
+["buttons"] = 3,
+},
+[15] = {
+["showgrid"] = true,
+["mouseover"] = false,
+["buttons"] = 3,
+["visibility"] = {
+["always"] = false,
+},
+["fadeoutdelay"] = 0,
+["position"] = {
+["y"] = 62.66109999918626,
+["x"] = 299.1601200679434,
+["point"] = "CENTER",
+["scale"] = 1.799999952316284,
+},
+["fadeoutalpha"] = 0,
+["version"] = 3,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+},
+},
+["Qtte - Sylvanas"] = {
+["actionbars"] = {
+{
+["showgrid"] = true,
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 82,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+{
+["enabled"] = false,
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = -223.9998168945313,
+["x"] = -284.5,
+["point"] = "CENTER",
+},
+},
+{
+["flyoutDirection"] = "LEFT",
+["position"] = {
+["y"] = 193,
+["x"] = -54,
+["point"] = "RIGHT",
+},
+["rows"] = 12,
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["flyoutDirection"] = "LEFT",
+["position"] = {
+["y"] = 193,
+["x"] = -104,
+["point"] = "RIGHT",
+},
+["rows"] = 12,
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["enabled"] = false,
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 184,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+{
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 133,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+[14] = {
+["WoW10Layout"] = true,
+},
+[13] = {
+["WoW10Layout"] = true,
+},
+[15] = {
+["WoW10Layout"] = true,
+},
+},
+},
+["Qudroformagi - Sylvanas"] = {
+["actionbars"] = {
+{
+["showgrid"] = true,
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 82,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+{
+["enabled"] = false,
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = -224,
+["x"] = -284.5000305175781,
+["point"] = "CENTER",
+},
+},
+{
+["flyoutDirection"] = "LEFT",
+["position"] = {
+["y"] = 193,
+["x"] = -54,
+["point"] = "RIGHT",
+},
+["rows"] = 12,
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["flyoutDirection"] = "LEFT",
+["position"] = {
+["y"] = 193,
+["x"] = -104,
+["point"] = "RIGHT",
+},
+["rows"] = 12,
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["enabled"] = false,
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 184,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+{
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 133,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+[14] = {
+["WoW10Layout"] = true,
+},
+[13] = {
+["WoW10Layout"] = true,
+},
+[15] = {
+["WoW10Layout"] = true,
+},
+},
+},
+["Jeaf - Sylvanas"] = {
+["actionbars"] = {
+{
+["mouseover"] = false,
+["visibility"] = {
+["always"] = false,
+},
+["fadeoutdelay"] = 0,
+["showgrid"] = true,
+["fadeoutalpha"] = 0,
+["position"] = {
+["y"] = 195.2802552638404,
+["x"] = -242.8256573740364,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["version"] = 3,
+["fadeoutalpha"] = 0,
+["buttons"] = 1,
+["fadeout"] = true,
+["position"] = {
+["y"] = -20.88065941725654,
+["x"] = -0.3850350135572391,
+["point"] = "TOPLEFT",
+["scale"] = 0.550000011920929,
+},
+["WoW10Layout"] = true,
+["fadeoutdelay"] = 0.08,
+},
+{
+["showgrid"] = true,
+["rows"] = 2,
+["mouseover"] = false,
+["version"] = 3,
+["fadeout"] = true,
+["fadeoutalpha"] = 0.15,
+["position"] = {
+["growHorizontal"] = "LEFT",
+["growVertical"] = "UP",
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+["y"] = 32.86151310588366,
+["x"] = -6.633509025392414,
+},
+["fadeoutdelay"] = 0,
+["padding"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["showgrid"] = true,
+["rows"] = 2,
+["mouseover"] = false,
+["version"] = 3,
+["visibility"] = {
+["customdata"] = "[petbattle]hide;[vehicleui]hide;show",
+["overridebar"] = false,
+["custom"] = false,
+},
+["fadeout"] = true,
+["fadeoutalpha"] = 0,
+["position"] = {
+["y"] = 102.6288454232172,
+["x"] = 455.4475377993731,
+["point"] = "BOTTOMLEFT",
+["scale"] = 0.8500000238418579,
+},
+["fadeoutdelay"] = 0,
+["padding"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["showgrid"] = true,
+["mouseover"] = true,
+["fadeoutdelay"] = 0,
+["version"] = 3,
+["position"] = {
+["y"] = 155.7423620039535,
+["x"] = -243.8250714645692,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["visibility"] = {
+["overridebar"] = false,
+["vehicleui"] = false,
+},
+["fadeoutalpha"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["fadeoutdelay"] = 0,
+["mouseover"] = false,
+["version"] = 3,
+["showgrid"] = true,
+["position"] = {
+["y"] = 236.4003163842681,
+["x"] = -246.8250776522327,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["fadeoutalpha"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["enabled"] = true,
+["version"] = 3,
+["buttons"] = 1,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = -1.330059873544087,
+["x"] = 254.5636004011358,
+["point"] = "TOPLEFT",
+["scale"] = 0.3499999940395355,
+},
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["version"] = 3,
+["showgrid"] = true,
+["rows"] = 3,
+["clickthrough"] = true,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = 112.6250038146973,
+["x"] = 234.4997863769531,
+["point"] = "BOTTOM",
+["scale"] = 0.75,
+},
+},
+[14] = {
+["enabled"] = true,
+["showgrid"] = true,
+["rows"] = 2,
+["mouseover"] = false,
+["version"] = 3,
+["fadeout"] = true,
+["fadeoutalpha"] = 0.15,
+["position"] = {
+["y"] = 115.4923784225794,
+["x"] = 7.452190832591441,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["fadeoutdelay"] = 0,
+["padding"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+[13] = {
+["enabled"] = true,
+["showgrid"] = true,
+["buttons"] = 3,
+["visibility"] = {
+["combat"] = false,
+},
+["fadeoutdelay"] = 0,
+["position"] = {
+["y"] = 196.0028883180758,
+["x"] = -473.0562088080933,
+["point"] = "BOTTOM",
+["scale"] = 0.949999988079071,
+},
+["version"] = 3,
+["padding"] = 13,
+["WoW10Layout"] = true,
+["fadeoutalpha"] = 1,
+},
+[15] = {
+["enabled"] = true,
+["showgrid"] = true,
+["alpha"] = 0,
+["buttons"] = 3,
+["visibility"] = {
+["always"] = false,
+},
+["fadeoutdelay"] = 0,
+["version"] = 3,
+["position"] = {
+["y"] = -46.50562830751005,
+["x"] = 305.8268402463364,
+["point"] = "CENTER",
+["scale"] = 1.799999952316284,
+},
+["fadeoutalpha"] = 0,
+["mouseover"] = false,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+},
+},
+["Helikåpter - Sylvanas"] = {
+["actionbars"] = {
+{
+["fadeoutdelay"] = 0,
+["visibility"] = {
+["always"] = false,
+},
+["fadeoutalpha"] = 0,
+["showgrid"] = true,
+["position"] = {
+["y"] = 195.2802552638404,
+["x"] = -242.8256573740364,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["version"] = 3,
+["WoW10Layout"] = true,
+["mouseover"] = false,
+},
+{
+["fadeoutdelay"] = 0.08,
+["version"] = 3,
+["buttons"] = 1,
+["fadeout"] = true,
+["position"] = {
+["y"] = -111.9890204962358,
+["x"] = -530.9428059398851,
+["point"] = "CENTER",
+["scale"] = 0.8999999761581421,
+},
+["WoW10Layout"] = true,
+["fadeoutalpha"] = 0,
+},
+{
+["showgrid"] = true,
+["rows"] = 2,
+["mouseover"] = false,
+["fadeoutdelay"] = 0,
+["fadeout"] = true,
+["fadeoutalpha"] = 0.15,
+["position"] = {
+["growHorizontal"] = "LEFT",
+["growVertical"] = "UP",
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+["x"] = -6.633509025392414,
+["y"] = 32.86151310588366,
+},
+["version"] = 3,
+["padding"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["showgrid"] = true,
+["rows"] = 2,
+["mouseover"] = false,
+["fadeoutdelay"] = 0,
+["visibility"] = {
+["customdata"] = "[petbattle]hide;[vehicleui]hide;show",
+["overridebar"] = false,
+["custom"] = false,
+},
+["fadeout"] = true,
+["fadeoutalpha"] = 0,
+["position"] = {
+["y"] = 174.294997717212,
+["x"] = 472.947504720898,
+["point"] = "BOTTOMLEFT",
+["scale"] = 0.8500000238418579,
+},
+["version"] = 3,
+["padding"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["showgrid"] = true,
+["mouseover"] = true,
+["version"] = 3,
+["fadeoutdelay"] = 0,
+["position"] = {
+["y"] = 155.7423620039535,
+["x"] = -243.8250714645692,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["visibility"] = {
+["vehicleui"] = false,
+["overridebar"] = false,
+},
+["fadeoutalpha"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["version"] = 3,
+["WoW10Layout"] = true,
+["fadeoutdelay"] = 0,
+["showgrid"] = true,
+["fadeoutalpha"] = 0,
+["position"] = {
+["y"] = 236.4003163842681,
+["x"] = -246.8250776522327,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["mouseover"] = false,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["enabled"] = true,
+["version"] = 3,
+["buttons"] = 1,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = -1.330059873544087,
+["x"] = 254.5636004011358,
+["point"] = "TOPLEFT",
+["scale"] = 0.3499999940395355,
+},
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["version"] = 3,
+["showgrid"] = true,
+["position"] = {
+["y"] = 112.6250038146973,
+["x"] = 234.4997863769531,
+["point"] = "BOTTOM",
+["scale"] = 0.75,
+},
+["clickthrough"] = true,
+["WoW10Layout"] = true,
+["rows"] = 3,
+},
+[14] = {
+["enabled"] = true,
+["showgrid"] = true,
+["rows"] = 2,
+["mouseover"] = false,
+["fadeoutdelay"] = 0,
+["fadeout"] = true,
+["fadeoutalpha"] = 0.15,
+["position"] = {
+["y"] = 115.4923784225794,
+["x"] = 7.452190832591441,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["version"] = 3,
+["padding"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+[13] = {
+["enabled"] = true,
+["showgrid"] = true,
+["fadeoutdelay"] = 0,
+["visibility"] = {
+["combat"] = false,
+},
+["fadeoutalpha"] = 1,
+["position"] = {
+["y"] = 249.336061019194,
+["x"] = -445.5566224789636,
+["point"] = "BOTTOM",
+["scale"] = 0.949999988079071,
+},
+["buttons"] = 3,
+["padding"] = 13,
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+[15] = {
+["enabled"] = true,
+["showgrid"] = true,
+["alpha"] = 0,
+["buttons"] = 3,
+["visibility"] = {
+["always"] = false,
+},
+["fadeoutdelay"] = 0,
+["version"] = 3,
+["position"] = {
+["y"] = -46.50562830751005,
+["x"] = 305.8268402463364,
+["point"] = "CENTER",
+["scale"] = 1.799999952316284,
+},
+["fadeoutalpha"] = 0,
+["mouseover"] = false,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+},
+},
+["Sørn - Ravencrest"] = {
+["actionbars"] = {
+{
+["visibility"] = {
+["always"] = false,
+},
+["WoW10Layout"] = true,
+["fadeoutdelay"] = 0,
+["showgrid"] = true,
+["position"] = {
+["y"] = -404,
+["x"] = -242.2500067949295,
+["point"] = "CENTER",
+["scale"] = 0.8500000238418579,
+},
+["fadeoutalpha"] = 0,
+["mouseover"] = false,
+["version"] = 3,
+},
+{
+["fadeoutalpha"] = 0,
+["fadeoutdelay"] = 0.08,
+["buttons"] = 1,
+["fadeout"] = true,
+["position"] = {
+["y"] = -20.88065941725654,
+["x"] = -0.3850350135572391,
+["point"] = "TOPLEFT",
+["scale"] = 0.550000011920929,
+},
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["showgrid"] = true,
+["rows"] = 2,
+["mouseover"] = false,
+["fadeoutalpha"] = 0.15,
+["fadeoutdelay"] = 0,
+["position"] = {
+["growHorizontal"] = "LEFT",
+["growVertical"] = "UP",
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+["x"] = 2.316503372843727,
+["y"] = 30.42433232768372,
+},
+["version"] = 3,
+["fadeout"] = true,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["showgrid"] = true,
+["rows"] = 2,
+["mouseover"] = false,
+["version"] = 3,
+["visibility"] = {
+["customdata"] = "[petbattle]hide;[vehicleui]hide;show",
+["overridebar"] = false,
+["custom"] = false,
+},
+["fadeoutalpha"] = 0,
+["fadeout"] = true,
+["position"] = {
+["y"] = 102.6288454232172,
+["x"] = 455.4475377993731,
+["point"] = "BOTTOMLEFT",
+["scale"] = 0.8500000238418579,
+},
+["fadeoutdelay"] = 0,
+["padding"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["showgrid"] = true,
+["mouseover"] = true,
+["version"] = 3,
+["fadeoutdelay"] = 0,
+["position"] = {
+["y"] = -444,
+["x"] = -242.2500067949295,
+["point"] = "CENTER",
+["scale"] = 0.8500000238418579,
+},
+["visibility"] = {
+["vehicleui"] = false,
+["overridebar"] = false,
+},
+["fadeoutalpha"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["version"] = 3,
+["WoW10Layout"] = true,
+["fadeoutdelay"] = 0,
+["showgrid"] = true,
+["fadeoutalpha"] = 0,
+["position"] = {
+["y"] = -364,
+["x"] = -243,
+["point"] = "CENTER",
+["scale"] = 0.8500000238418579,
+},
+["mouseover"] = false,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["enabled"] = true,
+["version"] = 3,
+["buttons"] = 1,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = -1.330059873544087,
+["x"] = 254.5636004011358,
+["point"] = "TOPLEFT",
+["scale"] = 0.3499999940395355,
+},
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["version"] = 3,
+["showgrid"] = true,
+["position"] = {
+["y"] = 112.6250038146973,
+["x"] = 234.4997863769531,
+["point"] = "BOTTOM",
+["scale"] = 0.75,
+},
+["rows"] = 3,
+["WoW10Layout"] = true,
+["clickthrough"] = true,
+},
+[14] = {
+["enabled"] = true,
+["showgrid"] = true,
+["rows"] = 2,
+["mouseover"] = false,
+["version"] = 3,
+["fadeoutdelay"] = 0,
+["position"] = {
+["y"] = 115.0000253509079,
+["x"] = -1.167490255153098,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["fadeoutalpha"] = 0.15,
+["fadeout"] = true,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+[13] = {
+["enabled"] = true,
+["showgrid"] = true,
+["fadeoutalpha"] = 1,
+["visibility"] = {
+["combat"] = false,
+},
+["fadeoutdelay"] = 0,
+["position"] = {
+["y"] = 196.0028883180758,
+["x"] = -473.0562088080933,
+["point"] = "BOTTOM",
+["scale"] = 0.949999988079071,
+},
+["buttons"] = 3,
+["padding"] = 13,
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+[15] = {
+["showgrid"] = true,
+["mouseover"] = false,
+["buttons"] = 3,
+["visibility"] = {
+["always"] = false,
+},
+["fadeoutdelay"] = 0,
+["position"] = {
+["y"] = -77.29971782632128,
+["x"] = 392.6337786612567,
+["point"] = "LEFT",
+["scale"] = 1.799999952316284,
+},
+["fadeoutalpha"] = 0,
+["version"] = 3,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+},
+},
+["Qpew - Ragnaros"] = {
+["actionbars"] = {
+{
+["position"] = {
+["y"] = 156.3674497595239,
+["x"] = -241.8249462863969,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["WoW10Layout"] = true,
+["version"] = 3,
+["showgrid"] = true,
+},
+{
+["enabled"] = false,
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = -223.9998168945313,
+["x"] = -284.5,
+["point"] = "CENTER",
+},
+},
+{
+["fadeoutdelay"] = 0,
+["position"] = {
+["growHorizontal"] = "LEFT",
+["growVertical"] = "UP",
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+["x"] = 241.8252229192731,
+["y"] = -2.54999561309802,
+},
+["version"] = 3,
+["WoW10Layout"] = true,
+["fadeoutalpha"] = 0,
+},
+{
+["fadeoutalpha"] = 0,
+["position"] = {
+["y"] = 79.86556696795196,
+["x"] = -241.8249462863969,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["visibility"] = {
+["overridebar"] = false,
+},
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 118.1322863335408,
+["x"] = -241.8249462863969,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+},
+{
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 194.911934025482,
+["x"] = -241.8249462863969,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+[14] = {
+["enabled"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 162.4872268476829,
+["x"] = 408.201729050852,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["rows"] = 3,
+["WoW10Layout"] = true,
+["fadeoutalpha"] = 0,
+},
+[13] = {
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = -223.9998168945313,
+["x"] = -284.5,
+["point"] = "CENTER",
+},
+},
+[15] = {
+["enabled"] = true,
+["fadeoutdelay"] = 0,
+["fadeoutalpha"] = 0,
+["buttons"] = 2,
+["fadeout"] = true,
+["position"] = {
+["y"] = -203.4671155434935,
+["x"] = 350.5004901859356,
+["point"] = "CENTER",
+["scale"] = 1.799999952316284,
+},
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+},
+},
+["Sörn - Ravencrest"] = {
+["actionbars"] = {
+{
+["position"] = {
+["scale"] = 0.8500000238418579,
+["x"] = -242.8256573740364,
+["point"] = "BOTTOM",
+["y"] = 195.2802552638404,
+},
+["visibility"] = {
+["always"] = false,
+},
+["fadeoutdelay"] = 0,
+["showgrid"] = true,
+["fadeoutalpha"] = 0,
+["mouseover"] = false,
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["position"] = {
+["scale"] = 0.550000011920929,
+["x"] = -0.3850350135572391,
+["point"] = "TOPLEFT",
+["y"] = -20.88065941725654,
+},
+["fadeoutdelay"] = 0.08,
+["buttons"] = 1,
+["fadeoutalpha"] = 0,
+["fadeout"] = true,
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["showgrid"] = true,
+["rows"] = 2,
+["mouseover"] = false,
+["fadeoutdelay"] = 0,
+["version"] = 3,
+["fadeout"] = true,
+["position"] = {
+["growHorizontal"] = "LEFT",
+["growVertical"] = "UP",
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+["x"] = -6.633509025392414,
+["y"] = 32.86151310588366,
+},
+["fadeoutalpha"] = 0.15,
+["padding"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["showgrid"] = true,
+["rows"] = 2,
+["mouseover"] = false,
+["fadeoutdelay"] = 0,
+["visibility"] = {
+["customdata"] = "[petbattle]hide;[vehicleui]hide;show",
+["overridebar"] = false,
+["custom"] = false,
+},
+["version"] = 3,
+["fadeout"] = true,
+["position"] = {
+["scale"] = 0.8500000238418579,
+["x"] = 455.4475377993731,
+["point"] = "BOTTOMLEFT",
+["y"] = 102.6288454232172,
+},
+["fadeoutalpha"] = 0,
+["padding"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["showgrid"] = true,
+["mouseover"] = true,
+["version"] = 3,
+["fadeoutdelay"] = 0,
+["position"] = {
+["scale"] = 0.8500000238418579,
+["x"] = -243.8250714645692,
+["point"] = "BOTTOM",
+["y"] = 155.7423620039535,
+},
+["visibility"] = {
+["vehicleui"] = false,
+["overridebar"] = false,
+},
+["fadeoutalpha"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["version"] = 3,
+["mouseover"] = false,
+["fadeoutdelay"] = 0,
+["position"] = {
+["scale"] = 0.8500000238418579,
+["x"] = -246.8250776522327,
+["point"] = "BOTTOM",
+["y"] = 236.4003163842681,
+},
+["fadeoutalpha"] = 0,
+["showgrid"] = true,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["enabled"] = true,
+["version"] = 3,
+["buttons"] = 1,
+["WoW10Layout"] = true,
+["position"] = {
+["scale"] = 0.3499999940395355,
+["x"] = 254.5636004011358,
+["point"] = "TOPLEFT",
+["y"] = -1.330059873544087,
+},
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["version"] = 3,
+["showgrid"] = true,
+["position"] = {
+["scale"] = 0.75,
+["x"] = 234.4997863769531,
+["point"] = "BOTTOM",
+["y"] = 112.6250038146973,
+},
+["rows"] = 3,
+["WoW10Layout"] = true,
+["clickthrough"] = true,
+},
+[14] = {
+["enabled"] = true,
+["showgrid"] = true,
+["rows"] = 2,
+["mouseover"] = false,
+["fadeoutdelay"] = 0,
+["version"] = 3,
+["fadeout"] = true,
+["position"] = {
+["scale"] = 0.8500000238418579,
+["x"] = 7.452190832591441,
+["point"] = "BOTTOM",
+["y"] = 115.4923784225794,
+},
+["fadeoutalpha"] = 0.15,
+["padding"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+[13] = {
+["enabled"] = true,
+["showgrid"] = true,
+["buttons"] = 3,
+["visibility"] = {
+["combat"] = false,
+},
+["fadeoutdelay"] = 0,
+["position"] = {
+["scale"] = 0.949999988079071,
+["x"] = -473.0562088080933,
+["point"] = "BOTTOM",
+["y"] = 196.0028883180758,
+},
+["fadeoutalpha"] = 1,
+["padding"] = 13,
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+[15] = {
+["enabled"] = true,
+["showgrid"] = true,
+["mouseover"] = false,
+["buttons"] = 3,
+["visibility"] = {
+["always"] = false,
+},
+["fadeoutdelay"] = 0,
+["fadeoutalpha"] = 0,
+["position"] = {
+["scale"] = 1.799999952316284,
+["x"] = 305.8268402463364,
+["point"] = "CENTER",
+["y"] = -46.50562830751005,
+},
+["alpha"] = 0,
+["version"] = 3,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+},
+},
+["Qpaladin - Ragnaros"] = {
+["actionbars"] = {
+{
+["version"] = 3,
+["showgrid"] = true,
+["WoW10Layout"] = true,
+["mouseover"] = true,
+["position"] = {
+["y"] = 156.3674497595239,
+["x"] = -241.8249462863969,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+},
+{
+["version"] = 3,
+["fadeoutdelay"] = 0.08,
+["buttons"] = 1,
+["fadeoutalpha"] = 0,
+["position"] = {
+["y"] = -24.88078157426935,
+["x"] = -57.83584831055487,
+["point"] = "TOPRIGHT",
+["scale"] = 0.550000011920929,
+},
+["WoW10Layout"] = true,
+["fadeout"] = true,
+},
+{
+["showgrid"] = true,
+["mouseover"] = true,
+["fadeoutalpha"] = 0,
+["fadeoutdelay"] = 0,
+["position"] = {
+["growHorizontal"] = "LEFT",
+["growVertical"] = "UP",
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+["x"] = 241.8252229192731,
+["y"] = 34.17516689791864,
+},
+["version"] = 3,
+["fadeout"] = true,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["enabled"] = false,
+["showgrid"] = true,
+["mouseover"] = false,
+["fadeout"] = true,
+["WoW10Layout"] = true,
+["fadeoutdelay"] = 0,
+["position"] = {
+["y"] = -156.0739317970838,
+["x"] = 440.3439632287846,
+["point"] = "CENTER",
+["scale"] = 0.8500000238418579,
+},
+["version"] = 3,
+["fadeoutalpha"] = 0,
+["visibility"] = {
+["overridebar"] = false,
+},
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["version"] = 3,
+["showgrid"] = true,
+["position"] = {
+["y"] = 117.3602617757533,
+["x"] = -241.8249462863969,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["WoW10Layout"] = true,
+["mouseover"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["version"] = 3,
+["showgrid"] = true,
+["position"] = {
+["y"] = 195.1695825007264,
+["x"] = -242.8252942148465,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["WoW10Layout"] = true,
+["mouseover"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+[14] = {
+["enabled"] = true,
+["showgrid"] = true,
+["rows"] = 3,
+["mouseover"] = false,
+["fadeoutalpha"] = 0,
+["position"] = {
+["y"] = 190.4872932458566,
+["x"] = 316.2017814019637,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["version"] = 3,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+[13] = {
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = -223.9998168945313,
+["x"] = -284.5,
+["point"] = "CENTER",
+},
+},
+[15] = {
+["enabled"] = true,
+["showgrid"] = true,
+["mouseover"] = false,
+["buttons"] = 2,
+["fadeoutdelay"] = 0,
+["fadeout"] = true,
+["position"] = {
+["y"] = 123.4004941675266,
+["x"] = -450.5917188169769,
+["point"] = "BOTTOM",
+["scale"] = 1.799999952316284,
+},
+["version"] = 3,
+["fadeoutalpha"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+},
+},
+["dogson"] = {
+["actionbars"] = {
+{
+["showgrid"] = true,
+["mouseover"] = true,
+["fadeout"] = true,
+["fadeoutdelay"] = 0,
+["position"] = {
+["y"] = 180.3670064019316,
+["x"] = -243.8252011642799,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["WoW10Layout"] = true,
+["fadeoutalpha"] = 1,
+["visibility"] = {
+["always"] = false,
+},
+["version"] = 3,
+},
+{
+["fadeoutdelay"] = 0.08,
+["buttons"] = 1,
+["fadeoutalpha"] = 1,
+["position"] = {
+["y"] = -0.1545338924279349,
+["x"] = 277.8927880610718,
+["point"] = "CENTER",
+["scale"] = 0.550000011920929,
+},
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["showgrid"] = true,
+["rows"] = 2,
+["mouseover"] = true,
+["fadeout"] = true,
+["version"] = 3,
+["fadeoutdelay"] = 0,
+["position"] = {
+["growHorizontal"] = "LEFT",
+["growVertical"] = "UP",
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+["x"] = -2.633414308700594,
+["y"] = 14.86170943938168,
+},
+["fadeoutalpha"] = 0.15,
+["padding"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["showgrid"] = true,
+["rows"] = 2,
+["mouseover"] = true,
+["fadeoutalpha"] = 1,
+["WoW10Layout"] = true,
+["fadeoutdelay"] = 0,
+["position"] = {
+["y"] = 99.6282880117833,
+["x"] = 461.4477576942372,
+["point"] = "BOTTOMLEFT",
+["scale"] = 0.8500000238418579,
+},
+["version"] = 3,
+["padding"] = 0,
+["visibility"] = {
+["customdata"] = "[petbattle]hide;[vehicleui]hide;show",
+["overridebar"] = false,
+["custom"] = false,
+},
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["showgrid"] = true,
+["mouseover"] = true,
+["fadeout"] = true,
+["WoW10Layout"] = true,
+["fadeoutdelay"] = 0,
+["position"] = {
+["y"] = 141.1325456151553,
+["x"] = -243.8248898849743,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["version"] = 3,
+["fadeoutalpha"] = 1,
+["visibility"] = {
+["vehicleui"] = false,
+["overridebar"] = false,
+},
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["showgrid"] = true,
+["mouseover"] = true,
+["states"] = {
+["enabled"] = true,
+},
+["fadeoutdelay"] = 0,
+["fadeout"] = true,
+["position"] = {
+["y"] = 218.9120483766455,
+["x"] = -242.8252942148465,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["fadeoutalpha"] = 1,
+["version"] = 3,
+["WoW10Layout"] = true,
+["autoassist"] = true,
+},
+{
+["enabled"] = true,
+["version"] = 3,
+["buttons"] = 1,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = -257.3299334435797,
+["x"] = -380.261411240077,
+["point"] = "TOP",
+["scale"] = 0.3499999940395355,
+},
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+[14] = {
+["enabled"] = true,
+["showgrid"] = true,
+["rows"] = 2,
+["mouseover"] = true,
+["fadeout"] = true,
+["version"] = 3,
+["fadeoutdelay"] = 0,
+["position"] = {
+["y"] = 90.49850488826814,
+["x"] = 4.237298164291133,
+["point"] = "BOTTOM",
+["scale"] = 0.85,
+},
+["fadeoutalpha"] = 0.2,
+["padding"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+[13] = {
+["enabled"] = true,
+["showgrid"] = true,
+["mouseover"] = true,
+["version"] = 3,
+["WoW10Layout"] = true,
+["fadeoutdelay"] = 0,
+["position"] = {
+["y"] = 188.0030349028357,
+["x"] = 440.46879330097,
+["point"] = "BOTTOMLEFT",
+["scale"] = 0.949999988079071,
+},
+["buttons"] = 2,
+["padding"] = 13,
+["visibility"] = {
+["combat"] = true,
+},
+["fadeoutalpha"] = 1,
+},
+[15] = {
+["enabled"] = true,
+["showgrid"] = true,
+["buttons"] = 1,
+["alpha"] = 0,
+["WoW10Layout"] = true,
+["mouseover"] = true,
+["fadeoutalpha"] = 1,
+["fadeoutdelay"] = 0,
+["position"] = {
+["y"] = -245.2992616521169,
+["x"] = 403.9995671378347,
+["point"] = "CENTER",
+["scale"] = 1.799999952316284,
+},
+["version"] = 3,
+["padding"] = 6,
+["visibility"] = {
+["always"] = false,
+["overridebar"] = false,
+["vehicleui"] = false,
+},
+["states"] = {
+["enabled"] = true,
+},
+},
+},
+},
+["Qpcheese - Chamber of Aspects"] = {
+["actionbars"] = {
+{
+["position"] = {
+["y"] = 82,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+["version"] = 3,
+["WoW10Layout"] = true,
+["showgrid"] = true,
+},
+{
+["enabled"] = false,
+["version"] = 3,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = -223.9998168945313,
+["x"] = -284.5,
+["point"] = "CENTER",
+},
+},
+{
+["flyoutDirection"] = "LEFT",
+["position"] = {
+["y"] = 193,
+["x"] = -54,
+["point"] = "RIGHT",
+},
+["rows"] = 12,
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["flyoutDirection"] = "LEFT",
+["position"] = {
+["y"] = 193,
+["x"] = -104,
+["point"] = "RIGHT",
+},
+["rows"] = 12,
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["enabled"] = false,
+["version"] = 3,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = 184,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+{
+["version"] = 3,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = 133,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+[14] = {
+["WoW10Layout"] = true,
+},
+[13] = {
+["WoW10Layout"] = true,
+},
+[15] = {
+["WoW10Layout"] = true,
+},
+},
+},
+["Qpebank - Draenor"] = {
+["actionbars"] = {
+{
+["showgrid"] = true,
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 82,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+{
+["enabled"] = false,
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = -223.9998168945313,
+["x"] = -284.5,
+["point"] = "CENTER",
+},
+},
+{
+["flyoutDirection"] = "LEFT",
+["position"] = {
+["y"] = 193,
+["x"] = -54,
+["point"] = "RIGHT",
+},
+["rows"] = 12,
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["flyoutDirection"] = "LEFT",
+["position"] = {
+["y"] = 193,
+["x"] = -104,
+["point"] = "RIGHT",
+},
+["rows"] = 12,
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["enabled"] = false,
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 184,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+{
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 133,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+[14] = {
+["WoW10Layout"] = true,
+},
+[13] = {
+["WoW10Layout"] = true,
+},
+[15] = {
+["WoW10Layout"] = true,
+},
+},
+},
+["Zelení - Draenor"] = {
+["actionbars"] = {
+{
+["position"] = {
+["y"] = 82,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+["version"] = 3,
+["WoW10Layout"] = true,
+["showgrid"] = true,
+},
+{
+["enabled"] = false,
+["version"] = 3,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = -223.9998168945313,
+["x"] = -284.5,
+["point"] = "CENTER",
+},
+},
+{
+["flyoutDirection"] = "LEFT",
+["position"] = {
+["y"] = 193,
+["x"] = -54,
+["point"] = "RIGHT",
+},
+["rows"] = 12,
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["flyoutDirection"] = "LEFT",
+["position"] = {
+["y"] = 193,
+["x"] = -104,
+["point"] = "RIGHT",
+},
+["rows"] = 12,
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["enabled"] = false,
+["version"] = 3,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = 184,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+{
+["version"] = 3,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = 133,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+[14] = {
+["WoW10Layout"] = true,
+},
+[13] = {
+["WoW10Layout"] = true,
+},
+[15] = {
+["WoW10Layout"] = true,
+},
+},
+},
+["qpcheeso"] = {
+["actionbars"] = {
+{
+["showgrid"] = true,
+["mouseover"] = false,
+["fadeoutdelay"] = 0,
+["version"] = 3,
+["position"] = {
+["y"] = 180.3674084710347,
+["x"] = -243.8251492843956,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["visibility"] = {
+["always"] = false,
+},
+["fadeoutalpha"] = 0,
+["WoW10Layout"] = true,
+["fadeout"] = true,
+},
+{
+["fadeoutalpha"] = 0,
+["fadeoutdelay"] = 0.08,
+["buttons"] = 1,
+["fadeout"] = true,
+["position"] = {
+["y"] = -24.88078157426935,
+["x"] = -57.83584831055487,
+["point"] = "TOPRIGHT",
+["scale"] = 0.550000011920929,
+},
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["showgrid"] = true,
+["rows"] = 2,
+["mouseover"] = false,
+["fadeoutalpha"] = 0.15,
+["version"] = 3,
+["fadeoutdelay"] = 0,
+["position"] = {
+["growHorizontal"] = "LEFT",
+["growVertical"] = "UP",
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+["y"] = 8.861770830765067,
+["x"] = -6.633405265623878,
+},
+["fadeout"] = true,
+["padding"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["showgrid"] = true,
+["rows"] = 2,
+["mouseover"] = false,
+["fadeoutalpha"] = 0,
+["visibility"] = {
+["customdata"] = "[petbattle]hide;[vehicleui]hide;show",
+["overridebar"] = false,
+["custom"] = false,
+},
+["version"] = 3,
+["fadeout"] = true,
+["position"] = {
+["y"] = 95.62840729961408,
+["x"] = 457.4476629775454,
+["point"] = "BOTTOMLEFT",
+["scale"] = 0.8500000238418579,
+},
+["fadeoutdelay"] = 0,
+["padding"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["showgrid"] = true,
+["mouseover"] = true,
+["fadeoutdelay"] = 0,
+["visibility"] = {
+["overridebar"] = false,
+["vehicleui"] = false,
+},
+["fadeout"] = true,
+["position"] = {
+["y"] = 142.1320245555435,
+["x"] = -243.8251492843956,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["fadeoutalpha"] = 0,
+["version"] = 3,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["showgrid"] = true,
+["mouseover"] = true,
+["fadeoutdelay"] = 0,
+["fadeoutalpha"] = 0,
+["position"] = {
+["y"] = 218.911944616877,
+["x"] = -242.8251645151358,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["version"] = 3,
+["fadeout"] = true,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["enabled"] = true,
+["version"] = 3,
+["buttons"] = 1,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = -1.330059873544087,
+["x"] = 254.5636004011358,
+["point"] = "TOPLEFT",
+["scale"] = 0.3499999940395355,
+},
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+[14] = {
+["enabled"] = true,
+["showgrid"] = true,
+["rows"] = 2,
+["mouseover"] = false,
+["version"] = 3,
+["fadeoutalpha"] = 0.15,
+["fadeoutdelay"] = 0,
+["position"] = {
+["y"] = 90.49850488826814,
+["x"] = 4.237298164291133,
+["point"] = "BOTTOM",
+["scale"] = 0.85,
+},
+["fadeout"] = true,
+["padding"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+[13] = {
+["enabled"] = true,
+["showgrid"] = true,
+["buttons"] = 2,
+["visibility"] = {
+["combat"] = true,
+},
+["fadeoutdelay"] = 0,
+["position"] = {
+["y"] = 188.0030349028357,
+["x"] = 440.46879330097,
+["point"] = "BOTTOMLEFT",
+["scale"] = 0.949999988079071,
+},
+["fadeoutalpha"] = 1,
+["padding"] = 13,
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+[15] = {
+["enabled"] = true,
+["showgrid"] = true,
+["alpha"] = 0,
+["buttons"] = 3,
+["WoW10Layout"] = true,
+["mouseover"] = false,
+["fadeoutdelay"] = 0,
+["position"] = {
+["y"] = 10.34419623628855,
+["x"] = 255.8266889829974,
+["point"] = "CENTER",
+["scale"] = 1.799999952316284,
+},
+["version"] = 3,
+["fadeoutalpha"] = 0,
+["visibility"] = {
+["always"] = false,
+},
+["states"] = {
+["enabled"] = true,
+},
+},
+},
+},
+["Cyclosarin - Ragnaros"] = {
+["actionbars"] = {
+{
+["showgrid"] = true,
+["version"] = 3,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = 156.3674497595239,
+["x"] = -241.8249462863969,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+},
+{
+["enabled"] = false,
+["version"] = 3,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = -223.9998168945313,
+["x"] = -284.5,
+["point"] = "CENTER",
+},
+},
+{
+["fadeoutdelay"] = 0,
+["position"] = {
+["growHorizontal"] = "LEFT",
+["growVertical"] = "UP",
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+["x"] = 241.8252229192731,
+["y"] = -2.54999561309802,
+},
+["version"] = 3,
+["WoW10Layout"] = true,
+["fadeoutalpha"] = 0,
+},
+{
+["version"] = 3,
+["position"] = {
+["y"] = 79.86556696795196,
+["x"] = -241.8249462863969,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["fadeoutalpha"] = 0,
+["WoW10Layout"] = true,
+["visibility"] = {
+["overridebar"] = false,
+},
+},
+{
+["version"] = 3,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = 118.1322863335408,
+["x"] = -241.8249462863969,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+},
+{
+["version"] = 3,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = 194.911934025482,
+["x"] = -241.8249462863969,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+[14] = {
+["enabled"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 162.4872268476829,
+["x"] = 408.201729050852,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["rows"] = 3,
+["WoW10Layout"] = true,
+["fadeoutalpha"] = 0,
+},
+[13] = {
+["version"] = 3,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = -223.9998168945313,
+["x"] = -284.5,
+["point"] = "CENTER",
+},
+},
+[15] = {
+["enabled"] = true,
+["version"] = 3,
+["fadeoutdelay"] = 0,
+["buttons"] = 2,
+["fadeout"] = true,
+["position"] = {
+["y"] = -203.4671155434935,
+["x"] = 350.5004901859356,
+["point"] = "CENTER",
+["scale"] = 1.799999952316284,
+},
+["WoW10Layout"] = true,
+["fadeoutalpha"] = 0,
+},
+},
+},
+["Qpcheese - Ragnaros"] = {
+["actionbars"] = {
+{
+["showgrid"] = true,
+["mouseover"] = false,
+["fadeout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 180.3674084710347,
+["x"] = -243.8251492843956,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["WoW10Layout"] = true,
+["fadeoutalpha"] = 0,
+["visibility"] = {
+["always"] = false,
+},
+["fadeoutdelay"] = 0,
+},
+{
+["version"] = 3,
+["fadeoutdelay"] = 0.08,
+["buttons"] = 1,
+["fadeoutalpha"] = 0,
+["position"] = {
+["y"] = -24.88078157426935,
+["x"] = -57.83584831055487,
+["point"] = "TOPRIGHT",
+["scale"] = 0.550000011920929,
+},
+["WoW10Layout"] = true,
+["fadeout"] = true,
+},
+{
+["rows"] = 3,
+["mouseover"] = false,
+["version"] = 3,
+["fadeout"] = true,
+["position"] = {
+["y"] = 33.56083449085554,
+["x"] = 407.8282976438932,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+["growHorizontal"] = "LEFT",
+["growVertical"] = "UP",
+},
+["fadeoutalpha"] = 0,
+["fadeoutdelay"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["rows"] = 3,
+["mouseover"] = false,
+["fadeoutdelay"] = 0,
+["visibility"] = {
+["overridebar"] = false,
+},
+["fadeout"] = true,
+["position"] = {
+["y"] = 139.7358094309584,
+["x"] = -433.3773594962113,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["version"] = 3,
+["fadeoutalpha"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["fadeout"] = true,
+["visibility"] = {
+["vehicleui"] = false,
+["overridebar"] = false,
+},
+["version"] = 3,
+["position"] = {
+["y"] = 142.1320245555435,
+["x"] = -243.8251492843956,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["WoW10Layout"] = true,
+["fadeoutalpha"] = 0,
+["mouseover"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["fadeoutalpha"] = 0,
+["fadeout"] = true,
+["position"] = {
+["y"] = 218.911944616877,
+["x"] = -242.8251645151358,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["WoW10Layout"] = true,
+["version"] = 3,
+["mouseover"] = false,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+[14] = {
+["enabled"] = true,
+["rows"] = 3,
+["mouseover"] = false,
+["fadeout"] = true,
+["position"] = {
+["y"] = 177.2446025973095,
+["x"] = 404.6941819553977,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["version"] = 3,
+["fadeoutalpha"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+[13] = {
+["enabled"] = true,
+["fadeoutalpha"] = 0,
+["version"] = 3,
+["buttons"] = 2,
+["visibility"] = {
+["combat"] = true,
+},
+["padding"] = 13,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = 199.0010068717629,
+["x"] = -432.4994023712134,
+["point"] = "BOTTOM",
+["scale"] = 0.949999988079071,
+},
+},
+[15] = {
+["enabled"] = true,
+["buttons"] = 2,
+["mouseover"] = false,
+["fadeoutalpha"] = 0,
+["fadeoutdelay"] = 0,
+["position"] = {
+["y"] = -110.6562659513602,
+["x"] = 472.8251756661412,
+["point"] = "CENTER",
+["scale"] = 1.799999952316284,
+},
+["version"] = 3,
+["fadeout"] = true,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+},
+},
+["Qpfromage - Confrérie du Thorium"] = {
+["actionbars"] = {
+{
+["showgrid"] = true,
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 82,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+{
+["enabled"] = false,
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = -224,
+["x"] = -284.5000305175781,
+["point"] = "CENTER",
+},
+},
+{
+["flyoutDirection"] = "LEFT",
+["position"] = {
+["y"] = 193,
+["x"] = -54,
+["point"] = "RIGHT",
+},
+["rows"] = 12,
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["flyoutDirection"] = "LEFT",
+["position"] = {
+["y"] = 193,
+["x"] = -104,
+["point"] = "RIGHT",
+},
+["rows"] = 12,
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["enabled"] = false,
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 184,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+{
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 133,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+[14] = {
+["WoW10Layout"] = true,
+},
+[13] = {
+["WoW10Layout"] = true,
+},
+[15] = {
+["WoW10Layout"] = true,
+},
+},
+},
+["Kaijid - Ragnaros"] = {
+["actionbars"] = {
+{
+["showgrid"] = true,
+["mouseover"] = false,
+["fadeoutdelay"] = 0,
+["fadeout"] = true,
+["position"] = {
+["y"] = 180.3674084710347,
+["x"] = -243.8251492843956,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["WoW10Layout"] = true,
+["fadeoutalpha"] = 1,
+["visibility"] = {
+["always"] = false,
+},
+["version"] = 3,
+},
+{
+["fadeoutalpha"] = 0,
+["fadeoutdelay"] = 0.08,
+["buttons"] = 1,
+["fadeout"] = true,
+["position"] = {
+["y"] = -24.88078157426935,
+["x"] = -57.83584831055487,
+["point"] = "TOPRIGHT",
+["scale"] = 0.550000011920929,
+},
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["showgrid"] = true,
+["rows"] = 2,
+["mouseover"] = false,
+["fadeoutdelay"] = 0,
+["version"] = 3,
+["fadeout"] = true,
+["position"] = {
+["growHorizontal"] = "LEFT",
+["growVertical"] = "UP",
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+["x"] = -6.633405265623878,
+["y"] = 8.861770830765067,
+},
+["fadeoutalpha"] = 0.15,
+["padding"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["showgrid"] = true,
+["rows"] = 2,
+["mouseover"] = false,
+["fadeoutdelay"] = 0,
+["WoW10Layout"] = true,
+["version"] = 3,
+["fadeout"] = true,
+["position"] = {
+["y"] = 94.62851980513733,
+["x"] = -475.1272553816198,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["fadeoutalpha"] = 0,
+["padding"] = 0,
+["visibility"] = {
+["customdata"] = "[petbattle]hide;[vehicleui]hide;show",
+["overridebar"] = false,
+["custom"] = false,
+},
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["showgrid"] = true,
+["mouseover"] = true,
+["fadeout"] = true,
+["WoW10Layout"] = true,
+["fadeoutdelay"] = 0,
+["position"] = {
+["y"] = 142.1320245555435,
+["x"] = -243.8251492843956,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["version"] = 3,
+["fadeoutalpha"] = 1,
+["visibility"] = {
+["vehicleui"] = false,
+["overridebar"] = false,
+},
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["showgrid"] = true,
+["mouseover"] = false,
+["version"] = 3,
+["fadeoutdelay"] = 0,
+["position"] = {
+["y"] = 218.911944616877,
+["x"] = -242.8251645151358,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["fadeoutalpha"] = 1,
+["fadeout"] = true,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["enabled"] = true,
+["version"] = 3,
+["buttons"] = 1,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = -1.330059873544087,
+["x"] = 254.5636004011358,
+["point"] = "TOPLEFT",
+["scale"] = 0.3499999940395355,
+},
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+[14] = {
+["enabled"] = true,
+["showgrid"] = true,
+["rows"] = 2,
+["mouseover"] = false,
+["fadeoutdelay"] = 0,
+["version"] = 3,
+["fadeout"] = true,
+["position"] = {
+["y"] = 90.49850488826814,
+["x"] = 4.237298164291133,
+["point"] = "BOTTOM",
+["scale"] = 0.85,
+},
+["fadeoutalpha"] = 0.15,
+["padding"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+[13] = {
+["enabled"] = true,
+["showgrid"] = true,
+["version"] = 3,
+["WoW10Layout"] = true,
+["fadeoutdelay"] = 0,
+["position"] = {
+["y"] = 185.0030608804218,
+["x"] = -461.0561677599435,
+["point"] = "BOTTOM",
+["scale"] = 0.949999988079071,
+},
+["buttons"] = 2,
+["padding"] = 13,
+["visibility"] = {
+["combat"] = true,
+},
+["fadeoutalpha"] = 1,
+},
+[15] = {
+["enabled"] = true,
+["showgrid"] = true,
+["alpha"] = 0,
+["buttons"] = 3,
+["WoW10Layout"] = true,
+["fadeoutalpha"] = 0,
+["fadeoutdelay"] = 0,
+["position"] = {
+["y"] = -36.65591848543045,
+["x"] = 314.8266202813611,
+["point"] = "CENTER",
+["scale"] = 1.799999952316284,
+},
+["version"] = 3,
+["mouseover"] = false,
+["visibility"] = {
+["always"] = false,
+},
+["states"] = {
+["enabled"] = true,
+},
+},
+},
+},
+["Gammelemil - Grim Batol"] = {
+["actionbars"] = {
+{
+["showgrid"] = true,
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 82,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+{
+["enabled"] = false,
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = -223.9998168945313,
+["x"] = -284.5,
+["point"] = "CENTER",
+},
+},
+{
+["flyoutDirection"] = "LEFT",
+["position"] = {
+["y"] = 193,
+["x"] = -54,
+["point"] = "RIGHT",
+},
+["rows"] = 12,
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["flyoutDirection"] = "LEFT",
+["position"] = {
+["y"] = 193,
+["x"] = -104,
+["point"] = "RIGHT",
+},
+["rows"] = 12,
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["enabled"] = false,
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 184,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+{
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 133,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+[14] = {
+["WoW10Layout"] = true,
+},
+[13] = {
+["WoW10Layout"] = true,
+},
+[15] = {
+["WoW10Layout"] = true,
+},
+},
+},
+["Qubit - Ragnaros"] = {
+["actionbars"] = {
+{
+["version"] = 3,
+["showgrid"] = true,
+["position"] = {
+["y"] = 170.3104410258584,
+["x"] = -181.8999446055459,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["WoW10Layout"] = true,
+["buttons"] = 9,
+},
+{
+["enabled"] = false,
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = -223.9998168945313,
+["x"] = -284.5,
+["point"] = "CENTER",
+},
+},
+{
+["fadeoutalpha"] = 0,
+["version"] = 3,
+["fadeout"] = true,
+["showgrid"] = true,
+["position"] = {
+["growHorizontal"] = "LEFT",
+["growVertical"] = "UP",
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+["x"] = -176.6251351924548,
+["y"] = 86.17433598951266,
+},
+["rows"] = 3,
+["WoW10Layout"] = true,
+["fadeoutdelay"] = 0,
+},
+{
+["fadeoutalpha"] = 0,
+["version"] = 3,
+["flyoutDirection"] = "LEFT",
+["showgrid"] = true,
+["position"] = {
+["y"] = 210.2741903157566,
+["x"] = 175.6251417167077,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["rows"] = 3,
+["WoW10Layout"] = true,
+["fadeout"] = true,
+},
+{
+["version"] = 3,
+["showgrid"] = true,
+["position"] = {
+["y"] = 132.03217838602,
+["x"] = -181.8999446055459,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["WoW10Layout"] = true,
+["buttons"] = 9,
+},
+{
+["version"] = 3,
+["showgrid"] = true,
+["position"] = {
+["y"] = 209.7340039907904,
+["x"] = -182.9000071946321,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["WoW10Layout"] = true,
+["buttons"] = 9,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+[14] = {
+["enabled"] = true,
+["fadeoutalpha"] = 0,
+["showgrid"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 81.51806831359863,
+["x"] = -178.3747863769531,
+["point"] = "BOTTOM",
+["scale"] = 1.25,
+},
+["WoW10Layout"] = true,
+["buttons"] = 6,
+},
+[13] = {
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = -223.9998168945313,
+["x"] = -284.5,
+["point"] = "CENTER",
+},
+},
+[15] = {
+["enabled"] = true,
+["showgrid"] = true,
+["buttons"] = 1,
+["fadeoutdelay"] = 0,
+["position"] = {
+["y"] = -203.2632504976245,
+["x"] = 432.4676144793921,
+["point"] = "CENTER",
+["scale"] = 1.799999952316284,
+},
+["version"] = 3,
+["fadeoutalpha"] = 0,
+["WoW10Layout"] = true,
+["fadeout"] = true,
+},
+},
+},
+["Qute - Sylvanas"] = {
+["actionbars"] = {
+{
+["mouseover"] = false,
+["visibility"] = {
+["always"] = false,
+},
+["fadeoutdelay"] = 0,
+["showgrid"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 180.3676030206007,
+["x"] = -242.8252942148465,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["WoW10Layout"] = true,
+["fadeoutalpha"] = 1,
+},
+{
+["fadeout"] = true,
+["fadeoutdelay"] = 0.08,
+["buttons"] = 1,
+["fadeoutalpha"] = 0,
+["position"] = {
+["y"] = -24.88078157426935,
+["x"] = -57.83584831055487,
+["point"] = "TOPRIGHT",
+["scale"] = 0.550000011920929,
+},
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["showgrid"] = true,
+["rows"] = 2,
+["mouseover"] = false,
+["fadeout"] = true,
+["fadeoutdelay"] = 0,
+["version"] = 3,
+["position"] = {
+["growHorizontal"] = "LEFT",
+["growVertical"] = "UP",
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+["x"] = -244.6334119413441,
+["y"] = 97.86153800800366,
+},
+["fadeoutalpha"] = 0,
+["padding"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["showgrid"] = true,
+["rows"] = 2,
+["mouseover"] = false,
+["fadeout"] = true,
+["visibility"] = {
+["customdata"] = "[petbattle]hide;[vehicleui]hide;show",
+["overridebar"] = false,
+["custom"] = false,
+},
+["fadeoutdelay"] = 0,
+["version"] = 3,
+["position"] = {
+["y"] = 180.6277028203767,
+["x"] = 240.8728638837711,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["fadeoutalpha"] = 0,
+["padding"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["showgrid"] = true,
+["mouseover"] = true,
+["fadeoutdelay"] = 0,
+["version"] = 3,
+["position"] = {
+["y"] = 143.1325021837038,
+["x"] = -243.8254605637012,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["visibility"] = {
+["overridebar"] = false,
+["vehicleui"] = false,
+},
+["fadeoutalpha"] = 1,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["fadeoutdelay"] = 0,
+["mouseover"] = true,
+["version"] = 3,
+["showgrid"] = true,
+["position"] = {
+["y"] = 218.911944616877,
+["x"] = -242.8251645151358,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["fadeoutalpha"] = 1,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["enabled"] = true,
+["version"] = 3,
+["buttons"] = 1,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = -1.330059873544087,
+["x"] = 254.5636004011358,
+["point"] = "TOPLEFT",
+["scale"] = 0.3499999940395355,
+},
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+[14] = {
+["enabled"] = true,
+["showgrid"] = true,
+["mouseover"] = false,
+["fadeout"] = true,
+["fadeoutdelay"] = 0,
+["version"] = 3,
+["position"] = {
+["y"] = 101.4983762600386,
+["x"] = -235.7625483502379,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["fadeoutalpha"] = 0.15,
+["padding"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+[13] = {
+["enabled"] = true,
+["showgrid"] = true,
+["buttons"] = 2,
+["visibility"] = {
+["combat"] = true,
+},
+["fadeoutdelay"] = 0,
+["position"] = {
+["y"] = 251.0030837033537,
+["x"] = 432.4687659355368,
+["point"] = "BOTTOMLEFT",
+["scale"] = 0.949999988079071,
+},
+["version"] = 3,
+["padding"] = 13,
+["WoW10Layout"] = true,
+["fadeoutalpha"] = 1,
+},
+[15] = {
+["enabled"] = true,
+["showgrid"] = true,
+["mouseover"] = false,
+["buttons"] = 3,
+["visibility"] = {
+["always"] = false,
+},
+["alpha"] = 0,
+["fadeoutdelay"] = 0,
+["position"] = {
+["y"] = 10.34419623628855,
+["x"] = 255.8266889829974,
+["point"] = "CENTER",
+["scale"] = 1.799999952316284,
+},
+["fadeoutalpha"] = 0,
+["version"] = 3,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+},
+},
+["Myfficraider - Ragnaros"] = {
+["actionbars"] = {
+{
+["position"] = {
+["y"] = 82,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+["WoW10Layout"] = true,
+["version"] = 3,
+["showgrid"] = true,
+},
+{
+["enabled"] = false,
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = -223.9998168945313,
+["x"] = -284.5,
+["point"] = "CENTER",
+},
+},
+{
+["flyoutDirection"] = "LEFT",
+["position"] = {
+["y"] = 193,
+["x"] = -54,
+["point"] = "RIGHT",
+},
+["rows"] = 12,
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["flyoutDirection"] = "LEFT",
+["position"] = {
+["y"] = 193,
+["x"] = -104,
+["point"] = "RIGHT",
+},
+["rows"] = 12,
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["enabled"] = false,
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 184,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+{
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 133,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+[14] = {
+["WoW10Layout"] = true,
+},
+[13] = {
+["WoW10Layout"] = true,
+},
+[15] = {
+["WoW10Layout"] = true,
+},
+},
+},
+["Fishanus - Ragnaros"] = {
+["actionbars"] = {
+{
+["showgrid"] = true,
+["mouseover"] = false,
+["fadeoutdelay"] = 0,
+["fadeout"] = true,
+["position"] = {
+["y"] = 180.3674084710347,
+["x"] = -243.8251492843956,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["visibility"] = {
+["always"] = false,
+},
+["fadeoutalpha"] = 1,
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["fadeout"] = true,
+["version"] = 3,
+["buttons"] = 1,
+["fadeoutalpha"] = 0,
+["position"] = {
+["y"] = -24.88078157426935,
+["x"] = -57.83584831055487,
+["point"] = "TOPRIGHT",
+["scale"] = 0.550000011920929,
+},
+["WoW10Layout"] = true,
+["fadeoutdelay"] = 0.08,
+},
+{
+["rows"] = 3,
+["mouseover"] = false,
+["version"] = 3,
+["fadeout"] = true,
+["fadeoutalpha"] = 1,
+["position"] = {
+["growHorizontal"] = "LEFT",
+["growVertical"] = "UP",
+["point"] = "BOTTOM",
+["scale"] = 0.85,
+["x"] = 392.8247388734453,
+["y"] = 97.91741264335997,
+},
+["fadeoutdelay"] = 0,
+["padding"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["rows"] = 3,
+["mouseover"] = false,
+["version"] = 3,
+["visibility"] = {
+["overridebar"] = false,
+},
+["fadeout"] = true,
+["fadeoutalpha"] = 1,
+["position"] = {
+["y"] = 218.6174484538315,
+["x"] = -396.8251795158722,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["fadeoutdelay"] = 0,
+["padding"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["mouseover"] = true,
+["fadeout"] = true,
+["visibility"] = {
+["overridebar"] = false,
+["vehicleui"] = false,
+},
+["fadeoutdelay"] = 0,
+["position"] = {
+["y"] = 142.1320245555435,
+["x"] = -243.8251492843956,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["fadeoutalpha"] = 1,
+["version"] = 3,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["fadeout"] = true,
+["mouseover"] = false,
+["fadeoutalpha"] = 1,
+["position"] = {
+["y"] = 218.911944616877,
+["x"] = -242.8251645151358,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["version"] = 3,
+["fadeoutdelay"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["enabled"] = true,
+["version"] = 3,
+["buttons"] = 1,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = -1.330059873544087,
+["x"] = 254.5636004011358,
+["point"] = "TOPLEFT",
+["scale"] = 0.3499999940395355,
+},
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+[14] = {
+["enabled"] = true,
+["rows"] = 3,
+["mouseover"] = false,
+["version"] = 3,
+["fadeout"] = true,
+["fadeoutalpha"] = 1,
+["position"] = {
+["y"] = 218.6174484538315,
+["x"] = 386.8746349467838,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["fadeoutdelay"] = 0,
+["padding"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+[13] = {
+["enabled"] = true,
+["buttons"] = 2,
+["fadeoutalpha"] = 1,
+["fadeoutdelay"] = 0,
+["position"] = {
+["y"] = 183.0032134934072,
+["x"] = 440.4688802760666,
+["point"] = "BOTTOMLEFT",
+["scale"] = 0.949999988079071,
+},
+["visibility"] = {
+["combat"] = true,
+},
+["padding"] = 13,
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+[15] = {
+["enabled"] = true,
+["buttons"] = 3,
+["mouseover"] = false,
+["fadeoutdelay"] = 0,
+["visibility"] = {
+["always"] = false,
+},
+["version"] = 3,
+["position"] = {
+["y"] = -36.65591848543045,
+["x"] = 314.8266202813611,
+["point"] = "CENTER",
+["scale"] = 1.799999952316284,
+},
+["fadeoutalpha"] = 1,
+["alpha"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+},
+},
+["Djagon - Ragnaros"] = {
+["actionbars"] = {
+{
+["position"] = {
+["y"] = 82,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+["WoW10Layout"] = true,
+["version"] = 3,
+["showgrid"] = true,
+},
+{
+["enabled"] = false,
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = -223.9998168945313,
+["x"] = -284.5,
+["point"] = "CENTER",
+},
+},
+{
+["flyoutDirection"] = "LEFT",
+["position"] = {
+["y"] = 193,
+["x"] = -54,
+["point"] = "RIGHT",
+},
+["rows"] = 12,
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["flyoutDirection"] = "LEFT",
+["position"] = {
+["y"] = 193,
+["x"] = -104,
+["point"] = "RIGHT",
+},
+["rows"] = 12,
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["enabled"] = false,
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 184,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+{
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 133,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+[14] = {
+["WoW10Layout"] = true,
+},
+[13] = {
+["WoW10Layout"] = true,
+},
+[15] = {
+["WoW10Layout"] = true,
+},
+},
+},
+["Laurs - Ragnaros"] = {
+["actionbars"] = {
+{
+["version"] = 3,
+["showgrid"] = true,
+["position"] = {
+["y"] = 170.3104410258584,
+["x"] = -181.8999446055459,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["WoW10Layout"] = true,
+["buttons"] = 9,
+},
+{
+["enabled"] = false,
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = -223.9998168945313,
+["x"] = -284.5,
+["point"] = "CENTER",
+},
+},
+{
+["fadeoutalpha"] = 0,
+["version"] = 3,
+["fadeout"] = true,
+["showgrid"] = true,
+["position"] = {
+["growHorizontal"] = "LEFT",
+["growVertical"] = "UP",
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+["y"] = 87.17389923471274,
+["x"] = -178.6254160102799,
+},
+["rows"] = 3,
+["WoW10Layout"] = true,
+["fadeoutdelay"] = 0,
+},
+{
+["version"] = 3,
+["fadeoutalpha"] = 0,
+["fadeout"] = true,
+["showgrid"] = true,
+["position"] = {
+["y"] = 210.2741903157566,
+["x"] = 175.6251417167077,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["rows"] = 3,
+["WoW10Layout"] = true,
+["flyoutDirection"] = "LEFT",
+},
+{
+["version"] = 3,
+["showgrid"] = true,
+["position"] = {
+["y"] = 132.03217838602,
+["x"] = -181.8999446055459,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["WoW10Layout"] = true,
+["buttons"] = 9,
+},
+{
+["version"] = 3,
+["showgrid"] = true,
+["position"] = {
+["y"] = 209.7340039907904,
+["x"] = -182.9000071946321,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["WoW10Layout"] = true,
+["buttons"] = 9,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+[14] = {
+["enabled"] = true,
+["version"] = 3,
+["showgrid"] = true,
+["fadeoutalpha"] = 0,
+["position"] = {
+["y"] = 81.51806831359863,
+["x"] = -178.3747863769531,
+["point"] = "BOTTOM",
+["scale"] = 1.25,
+},
+["WoW10Layout"] = true,
+["buttons"] = 6,
+},
+[13] = {
+["enabled"] = true,
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = -251.9998168945313,
+["x"] = -162.4999389648438,
+["point"] = "CENTER",
+},
+},
+[15] = {
+["enabled"] = true,
+["showgrid"] = true,
+["buttons"] = 1,
+["fadeout"] = true,
+["position"] = {
+["y"] = -203.2632504976245,
+["x"] = 432.4676144793921,
+["point"] = "CENTER",
+["scale"] = 1.799999952316284,
+},
+["version"] = 3,
+["fadeoutalpha"] = 0,
+["WoW10Layout"] = true,
+["fadeoutdelay"] = 0,
+},
+},
+},
+["Qpe - Ravencrest"] = {
+["actionbars"] = {
+{
+["showgrid"] = true,
+["version"] = 3,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = 82,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+{
+["enabled"] = false,
+["version"] = 3,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = -223.9998168945313,
+["x"] = -284.5,
+["point"] = "CENTER",
+},
+},
+{
+["flyoutDirection"] = "LEFT",
+["position"] = {
+["y"] = 193,
+["x"] = -54,
+["point"] = "RIGHT",
+},
+["rows"] = 12,
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["flyoutDirection"] = "LEFT",
+["position"] = {
+["y"] = 193,
+["x"] = -104,
+["point"] = "RIGHT",
+},
+["rows"] = 12,
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["enabled"] = false,
+["version"] = 3,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = 184,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+{
+["version"] = 3,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = 133,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+[14] = {
+["WoW10Layout"] = true,
+},
+[13] = {
+["WoW10Layout"] = true,
+},
+[15] = {
+["WoW10Layout"] = true,
+},
+},
+},
+["Casiomage - Sylvanas"] = {
+["actionbars"] = {
+{
+["showgrid"] = true,
+["mouseover"] = false,
+["fadeoutalpha"] = 0,
+["fadeoutdelay"] = 0,
+["position"] = {
+["y"] = 195.2802552638404,
+["x"] = -242.8256573740364,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["visibility"] = {
+["always"] = false,
+},
+["version"] = 3,
+["WoW10Layout"] = true,
+["fadeout"] = true,
+},
+{
+["fadeoutdelay"] = 0.08,
+["fadeoutalpha"] = 0,
+["buttons"] = 1,
+["fadeout"] = true,
+["position"] = {
+["y"] = -20.88065941725654,
+["x"] = -0.3850350135572391,
+["point"] = "TOPLEFT",
+["scale"] = 0.550000011920929,
+},
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["showgrid"] = true,
+["rows"] = 2,
+["mouseover"] = false,
+["fadeoutdelay"] = 0,
+["fadeout"] = true,
+["fadeoutalpha"] = 0.15,
+["position"] = {
+["growHorizontal"] = "LEFT",
+["growVertical"] = "UP",
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+["y"] = 32.86151310588366,
+["x"] = -6.633509025392414,
+},
+["version"] = 3,
+["padding"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["showgrid"] = true,
+["rows"] = 2,
+["mouseover"] = false,
+["fadeoutdelay"] = 0,
+["visibility"] = {
+["customdata"] = "[petbattle]hide;[vehicleui]hide;show",
+["overridebar"] = false,
+["custom"] = false,
+},
+["fadeout"] = true,
+["fadeoutalpha"] = 0,
+["position"] = {
+["y"] = 102.6288454232172,
+["x"] = 455.4475377993731,
+["point"] = "BOTTOMLEFT",
+["scale"] = 0.8500000238418579,
+},
+["version"] = 3,
+["padding"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["showgrid"] = true,
+["mouseover"] = true,
+["fadeoutdelay"] = 0,
+["visibility"] = {
+["overridebar"] = false,
+["vehicleui"] = false,
+},
+["version"] = 3,
+["position"] = {
+["y"] = 155.7423620039535,
+["x"] = -243.8250714645692,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["fadeoutalpha"] = 0,
+["fadeout"] = true,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["showgrid"] = true,
+["mouseover"] = false,
+["fadeoutdelay"] = 0,
+["version"] = 3,
+["position"] = {
+["y"] = 236.4003163842681,
+["x"] = -246.8250776522327,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["fadeoutalpha"] = 0,
+["fadeout"] = true,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["enabled"] = true,
+["version"] = 3,
+["buttons"] = 1,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = -1.330059873544087,
+["x"] = 254.5636004011358,
+["point"] = "TOPLEFT",
+["scale"] = 0.3499999940395355,
+},
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["version"] = 3,
+["showgrid"] = true,
+["clickthrough"] = true,
+["rows"] = 3,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = 112.6250038146973,
+["x"] = 234.4997863769531,
+["point"] = "BOTTOM",
+["scale"] = 0.75,
+},
+},
+[14] = {
+["enabled"] = true,
+["showgrid"] = true,
+["rows"] = 2,
+["mouseover"] = false,
+["fadeoutdelay"] = 0,
+["fadeout"] = true,
+["fadeoutalpha"] = 0.15,
+["position"] = {
+["y"] = 115.4923784225794,
+["x"] = 7.452190832591441,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["version"] = 3,
+["padding"] = 0,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+[13] = {
+["enabled"] = true,
+["showgrid"] = true,
+["buttons"] = 3,
+["visibility"] = {
+["combat"] = false,
+},
+["fadeoutalpha"] = 1,
+["position"] = {
+["y"] = 188.0030349028357,
+["x"] = 440.46879330097,
+["point"] = "BOTTOMLEFT",
+["scale"] = 0.949999988079071,
+},
+["version"] = 3,
+["padding"] = 13,
+["WoW10Layout"] = true,
+["fadeoutdelay"] = 0,
+},
+[15] = {
+["enabled"] = true,
+["showgrid"] = true,
+["alpha"] = 0,
+["buttons"] = 3,
+["visibility"] = {
+["always"] = false,
+},
+["fadeoutalpha"] = 0,
+["fadeoutdelay"] = 0,
+["position"] = {
+["y"] = -46.50562830751005,
+["x"] = 305.8268402463364,
+["point"] = "CENTER",
+["scale"] = 1.799999952316284,
+},
+["version"] = 3,
+["mouseover"] = false,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+},
+},
+["Jerwin - Ragnaros"] = {
+["actionbars"] = {
+{
+["position"] = {
+["y"] = 156.3674497595239,
+["x"] = -241.8249462863969,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["WoW10Layout"] = true,
+["version"] = 3,
+["showgrid"] = true,
+},
+{
+["enabled"] = false,
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = -223.9998168945313,
+["x"] = -284.5,
+["point"] = "CENTER",
+},
+},
+{
+["enabled"] = false,
+["fadeoutdelay"] = 0,
+["showgrid"] = true,
+["version"] = 3,
+["position"] = {
+["growHorizontal"] = "LEFT",
+["growVertical"] = "UP",
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+["x"] = 241.8252229192731,
+["y"] = -2.54999561309802,
+},
+["WoW10Layout"] = true,
+["fadeoutalpha"] = 0,
+},
+{
+["fadeoutalpha"] = 0,
+["showgrid"] = true,
+["version"] = 3,
+["WoW10Layout"] = true,
+["visibility"] = {
+["overridebar"] = false,
+},
+["position"] = {
+["y"] = 79.86556696795196,
+["x"] = -241.8249462863969,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+},
+{
+["position"] = {
+["y"] = 118.1322863335408,
+["x"] = -241.8249462863969,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["WoW10Layout"] = true,
+["version"] = 3,
+["showgrid"] = true,
+},
+{
+["position"] = {
+["y"] = 194.911934025482,
+["x"] = -241.8249462863969,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["WoW10Layout"] = true,
+["version"] = 3,
+["showgrid"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+[14] = {
+["enabled"] = true,
+["version"] = 3,
+["showgrid"] = true,
+["position"] = {
+["y"] = 162.4872268476829,
+["x"] = 408.201729050852,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["rows"] = 3,
+["WoW10Layout"] = true,
+["fadeoutalpha"] = 0,
+},
+[13] = {
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = -223.9998168945313,
+["x"] = -284.5,
+["point"] = "CENTER",
+},
+},
+[15] = {
+["enabled"] = true,
+["showgrid"] = true,
+["buttons"] = 2,
+["fadeout"] = true,
+["position"] = {
+["y"] = -203.4671155434935,
+["x"] = 350.5004901859356,
+["point"] = "CENTER",
+["scale"] = 1.799999952316284,
+},
+["fadeoutdelay"] = 0,
+["fadeoutalpha"] = 0,
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+},
+},
+["Qpfromage - Ragnaros"] = {
+["actionbars"] = {
+{
+["position"] = {
+["y"] = 82,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+["WoW10Layout"] = true,
+["version"] = 3,
+["showgrid"] = true,
+},
+{
+["enabled"] = false,
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = -223.9998168945313,
+["x"] = -284.5,
+["point"] = "CENTER",
+},
+},
+{
+["flyoutDirection"] = "LEFT",
+["position"] = {
+["y"] = 193,
+["x"] = -54,
+["point"] = "RIGHT",
+},
+["rows"] = 12,
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["flyoutDirection"] = "LEFT",
+["position"] = {
+["y"] = 193,
+["x"] = -104,
+["point"] = "RIGHT",
+},
+["rows"] = 12,
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["enabled"] = false,
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 184,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+{
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 133,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+[14] = {
+["WoW10Layout"] = true,
+},
+[13] = {
+["WoW10Layout"] = true,
+},
+[15] = {
+["WoW10Layout"] = true,
+},
+},
+},
+["Dogson - Ragnaros"] = {
+["actionbars"] = {
+{
+["showgrid"] = true,
+["version"] = 3,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = 82,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+{
+["enabled"] = false,
+["version"] = 3,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = -223.9998168945313,
+["x"] = -284.5,
+["point"] = "CENTER",
+},
+},
+{
+["flyoutDirection"] = "LEFT",
+["position"] = {
+["y"] = 193,
+["x"] = -54,
+["point"] = "RIGHT",
+},
+["rows"] = 12,
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["flyoutDirection"] = "LEFT",
+["position"] = {
+["y"] = 193,
+["x"] = -104,
+["point"] = "RIGHT",
+},
+["rows"] = 12,
+["WoW10Layout"] = true,
+["version"] = 3,
+},
+{
+["enabled"] = false,
+["version"] = 3,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = 184,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+{
+["version"] = 3,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = 133,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+[14] = {
+["WoW10Layout"] = true,
+},
+[13] = {
+["WoW10Layout"] = true,
+},
+[15] = {
+["WoW10Layout"] = true,
+},
+},
+},
+["Flurrq - Ragnaros"] = {
+["actionbars"] = {
+{
+["version"] = 3,
+["showgrid"] = true,
+["mouseover"] = true,
+["WoW10Layout"] = true,
+["position"] = {
+["y"] = 156.3674497595239,
+["x"] = -241.8249462863969,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+},
+{
+["version"] = 3,
+["fadeoutdelay"] = 0.08,
+["buttons"] = 1,
+["fadeoutalpha"] = 0,
+["position"] = {
+["y"] = -24.88078157426935,
+["x"] = -57.83584831055487,
+["point"] = "TOPRIGHT",
+["scale"] = 0.550000011920929,
+},
+["WoW10Layout"] = true,
+["fadeout"] = true,
+},
+{
+["version"] = 3,
+["WoW10Layout"] = true,
+["fadeoutdelay"] = 0,
+["position"] = {
+["growHorizontal"] = "LEFT",
+["growVertical"] = "UP",
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+["y"] = -2.54999561309802,
+["x"] = 241.8252229192731,
+},
+["fadeout"] = true,
+["fadeoutalpha"] = 0,
+["mouseover"] = false,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["mouseover"] = false,
+["fadeout"] = true,
+["visibility"] = {
+["overridebar"] = false,
+},
+["fadeoutdelay"] = 0,
+["position"] = {
+["y"] = 79.86556696795196,
+["x"] = -241.8249462863969,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["fadeoutalpha"] = 0,
+["version"] = 3,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["version"] = 3,
+["position"] = {
+["y"] = 118.1322863335408,
+["x"] = -241.8249462863969,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["WoW10Layout"] = true,
+["mouseover"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["version"] = 3,
+["position"] = {
+["y"] = 194.911934025482,
+["x"] = -241.8249462863969,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["WoW10Layout"] = true,
+["mouseover"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+{
+["WoW10Layout"] = true,
+},
+[14] = {
+["enabled"] = true,
+["version"] = 3,
+["fadeoutalpha"] = 0,
+["position"] = {
+["y"] = 162.4872268476829,
+["x"] = 408.201729050852,
+["point"] = "BOTTOM",
+["scale"] = 0.8500000238418579,
+},
+["WoW10Layout"] = true,
+["rows"] = 3,
+["mouseover"] = false,
+["states"] = {
+["enabled"] = true,
+},
+},
+[13] = {
+["WoW10Layout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = -223.9998168945313,
+["x"] = -284.5,
+["point"] = "CENTER",
+},
+},
+[15] = {
+["enabled"] = true,
+["buttons"] = 2,
+["mouseover"] = false,
+["version"] = 3,
+["fadeoutdelay"] = 0,
+["position"] = {
+["y"] = -83.65633533116488,
+["x"] = 402.8252385556625,
+["point"] = "CENTER",
+["scale"] = 1.799999952316284,
+},
+["fadeoutalpha"] = 0,
+["fadeout"] = true,
+["WoW10Layout"] = true,
+["states"] = {
+["enabled"] = true,
+},
+},
+},
+},
+},
+},
+["ExtraActionBar"] = {
+["profiles"] = {
+["Sikducker - Sylvanas"] = {
+["enabled"] = false,
+["version"] = 3,
+["fadeoutalpha"] = 1,
+["position"] = {
+["y"] = -47.49990844726563,
+["x"] = 180.0131225585938,
+["point"] = "CENTER",
+},
+},
+["Qpfromage - Sylvanas"] = {
+["enabled"] = false,
+["position"] = {
+["y"] = -47.49990844726563,
+["x"] = 180.0131225585938,
+["point"] = "CENTER",
+},
+["fadeoutalpha"] = 1,
+["version"] = 3,
+},
+["Qpc - Draenor"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -252.4999389648438,
+["x"] = -63.50006103515625,
+["point"] = "CENTER",
+},
+},
+["Xiaoyuu - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -252.4999389648438,
+["x"] = -63.50006103515625,
+["point"] = "CENTER",
+},
+},
+["Qope - Ragnaros"] = {
+["enabled"] = false,
+["fadeoutalpha"] = 1,
+["version"] = 3,
+["position"] = {
+["y"] = -47.49990844726563,
+["x"] = 180.0131225585938,
+["point"] = "CENTER",
+},
+},
+["Qtte - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -252.4999389648438,
+["x"] = -63.50006103515625,
+["point"] = "CENTER",
+},
+},
+["Qudroformagi - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 287.0000305175781,
+["x"] = -63.4998779296875,
+["point"] = "BOTTOM",
+},
+},
+["Jeaf - Sylvanas"] = {
+["enabled"] = false,
+["fadeoutalpha"] = 1,
+["version"] = 3,
+["position"] = {
+["y"] = -47.49990844726563,
+["x"] = 180.0131225585938,
+["point"] = "CENTER",
+},
+},
+["Helikåpter - Sylvanas"] = {
+["fadeoutalpha"] = 1,
+["version"] = 3,
+["position"] = {
+["y"] = 19.16671752929688,
+["x"] = -439.9864196777344,
+["point"] = "CENTER",
+},
+},
+["Sørn - Ravencrest"] = {
+["enabled"] = false,
+["version"] = 3,
+["fadeoutalpha"] = 1,
+["position"] = {
+["y"] = -47.49990844726563,
+["x"] = 180.0131225585938,
+["point"] = "CENTER",
+},
+},
+["Qpew - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 63.50006103515625,
+["x"] = 470.7445068359375,
+["point"] = "CENTER",
+},
+},
+["Sörn - Ravencrest"] = {
+["enabled"] = false,
+["version"] = 3,
+["fadeoutalpha"] = 1,
+["position"] = {
+["y"] = -47.49990844726563,
+["x"] = 180.0131225585938,
+["point"] = "CENTER",
+},
+},
+["Qpaladin - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -18.29132080078125,
+["x"] = 110.3277587890625,
+["point"] = "CENTER",
+},
+},
+["dogson"] = {
+["enabled"] = false,
+["fadeoutalpha"] = 1,
+["version"] = 3,
+["position"] = {
+["y"] = -47.49990844726563,
+["x"] = 180.0131225585938,
+["point"] = "CENTER",
+},
+},
+["Qpcheese - Chamber of Aspects"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -252.4999389648438,
+["x"] = -63.50006103515625,
+["point"] = "CENTER",
+},
+},
+["Qpebank - Draenor"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -252.4999389648438,
+["x"] = -63.50006103515625,
+["point"] = "CENTER",
+},
+},
+["Zelení - Draenor"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -252.4999389648438,
+["x"] = -63.50006103515625,
+["point"] = "CENTER",
+},
+},
+["qpcheeso"] = {
+["enabled"] = false,
+["version"] = 3,
+["fadeoutalpha"] = 1,
+["position"] = {
+["y"] = -47.49990844726563,
+["x"] = 180.0131225585938,
+["point"] = "CENTER",
+},
+},
+["Cyclosarin - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 63.50006103515625,
+["x"] = 470.7445068359375,
+["point"] = "CENTER",
+},
+},
+["Qpcheese - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -42.4998779296875,
+["x"] = 185.01318359375,
+["point"] = "CENTER",
+},
+},
+["Qpfromage - Confrérie du Thorium"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 287.0000305175781,
+["x"] = -63.4998779296875,
+["point"] = "BOTTOM",
+},
+},
+["Kaijid - Ragnaros"] = {
+["enabled"] = false,
+["fadeoutalpha"] = 1,
+["version"] = 3,
+["position"] = {
+["y"] = -47.49990844726563,
+["x"] = 180.0131225585938,
+["point"] = "CENTER",
+},
+},
+["Gammelemil - Grim Batol"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -252.4999389648438,
+["x"] = -63.50006103515625,
+["point"] = "CENTER",
+},
+},
+["Qubit - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 63.50006103515625,
+["x"] = 470.7445068359375,
+["point"] = "CENTER",
+},
+},
+["Qute - Sylvanas"] = {
+["enabled"] = false,
+["version"] = 3,
+["fadeoutalpha"] = 1,
+["position"] = {
+["y"] = -47.49990844726563,
+["x"] = 180.0131225585938,
+["point"] = "CENTER",
+},
+},
+["Myfficraider - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -252.4999389648438,
+["x"] = -63.50006103515625,
+["point"] = "CENTER",
+},
+},
+["Fishanus - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -47.49990844726563,
+["x"] = 180.0131225585938,
+["point"] = "CENTER",
+},
+},
+["Djagon - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -252.4999389648438,
+["x"] = -63.50006103515625,
+["point"] = "CENTER",
+},
+},
+["Laurs - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 63.50006103515625,
+["x"] = 470.7445068359375,
+["point"] = "CENTER",
+},
+},
+["Qpe - Ravencrest"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -252.4999389648438,
+["x"] = -63.50006103515625,
+["point"] = "CENTER",
+},
+},
+["Casiomage - Sylvanas"] = {
+["enabled"] = false,
+["fadeoutalpha"] = 1,
+["version"] = 3,
+["position"] = {
+["y"] = -47.49990844726563,
+["x"] = 180.0131225585938,
+["point"] = "CENTER",
+},
+},
+["Jerwin - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 63.50006103515625,
+["x"] = 470.7445068359375,
+["point"] = "CENTER",
+},
+},
+["Qpfromage - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -252.4999389648438,
+["x"] = -63.50006103515625,
+["point"] = "CENTER",
+},
+},
+["Dogson - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -252.4999389648438,
+["x"] = -63.50006103515625,
+["point"] = "CENTER",
+},
+},
+["Flurrq - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 19.87713623046875,
+["x"] = -371.9155883789063,
+["point"] = "CENTER",
+},
+},
+},
+},
+["MicroMenu"] = {
+["profiles"] = {
+["Sikducker - Sylvanas"] = {
+["padding"] = -6,
+["version"] = 3,
+["position"] = {
+["y"] = -251.7613830566406,
+["x"] = -239.567138671875,
+["point"] = "TOPRIGHT",
+["scale"] = 0.75,
+},
+},
+["Qpfromage - Sylvanas"] = {
+["fadeoutalpha"] = 1,
+["position"] = {
+["y"] = -295.3748474121094,
+["x"] = -232.8748779296875,
+["point"] = "TOPRIGHT",
+["scale"] = 0.75,
+},
+["visibility"] = {
+["overridebar"] = false,
+["vehicleui"] = false,
+},
+["version"] = 3,
+},
+["Qpc - Draenor"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 34,
+["x"] = -229,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Xiaoyuu - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 42,
+["x"] = -284,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Qope - Ragnaros"] = {
+["version"] = 3,
+["fadeoutalpha"] = 1,
+["visibility"] = {
+["vehicleui"] = false,
+["overridebar"] = false,
+},
+["position"] = {
+["y"] = -295.3748474121094,
+["x"] = -232.8748779296875,
+["point"] = "TOPRIGHT",
+["scale"] = 0.75,
+},
+},
+["Qtte - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 42,
+["x"] = -284,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Qudroformagi - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 42,
+["x"] = -284,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Jeaf - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -249.7611389160156,
+["x"] = -213.5679931640625,
+["point"] = "TOPRIGHT",
+["scale"] = 0.75,
+},
+},
+["Helikåpter - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -249.7611389160156,
+["x"] = -213.5679931640625,
+["point"] = "TOPRIGHT",
+["scale"] = 0.75,
+},
+},
+["Sørn - Ravencrest"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -249.7611389160156,
+["x"] = -213.5679931640625,
+["point"] = "TOPRIGHT",
+["scale"] = 0.75,
+},
+},
+["Qpew - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -250.7368774414063,
+["x"] = -231.4996337890625,
+["point"] = "TOPRIGHT",
+},
+},
+["Sörn - Ravencrest"] = {
+["version"] = 3,
+["position"] = {
+["scale"] = 0.75,
+["x"] = -213.5679931640625,
+["point"] = "TOPRIGHT",
+["y"] = -249.7611389160156,
+},
+},
+["Qpaladin - Ragnaros"] = {
+["padding"] = 4,
+["version"] = 3,
+["position"] = {
+["y"] = -246.7613179009059,
+["x"] = -234.566996476191,
+["point"] = "TOPRIGHT",
+["scale"] = 0.699999988079071,
+},
+},
+["dogson"] = {
+["padding"] = -6,
+["version"] = 3,
+["position"] = {
+["y"] = -242.7612915039063,
+["x"] = -240.5670776367188,
+["point"] = "TOPRIGHT",
+["scale"] = 0.75,
+},
+},
+["Qpcheese - Chamber of Aspects"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 34,
+["x"] = -229,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Qpebank - Draenor"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 34,
+["x"] = -229,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Zelení - Draenor"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 34,
+["x"] = -229,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["qpcheeso"] = {
+["padding"] = -6,
+["version"] = 3,
+["position"] = {
+["y"] = -243.7614135742188,
+["x"] = -220.5668334960938,
+["point"] = "TOPRIGHT",
+["scale"] = 0.75,
+},
+},
+["Cyclosarin - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -250.7368774414063,
+["x"] = -231.4996337890625,
+["point"] = "TOPRIGHT",
+},
+},
+["Qpcheese - Ragnaros"] = {
+["padding"] = -6,
+["version"] = 3,
+["position"] = {
+["y"] = -243.7614135742188,
+["x"] = -220.5668334960938,
+["point"] = "TOPRIGHT",
+["scale"] = 0.75,
+},
+},
+["Qpfromage - Confrérie du Thorium"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 42,
+["x"] = -284,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Kaijid - Ragnaros"] = {
+["padding"] = -6,
+["version"] = 3,
+["position"] = {
+["y"] = -243.7614135742188,
+["x"] = -220.5668334960938,
+["point"] = "TOPRIGHT",
+["scale"] = 0.75,
+},
+},
+["Gammelemil - Grim Batol"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 42,
+["x"] = -284,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Qubit - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -245.7368774414063,
+["x"] = -232.49951171875,
+["point"] = "TOPRIGHT",
+},
+},
+["Qute - Sylvanas"] = {
+["padding"] = 2,
+["version"] = 3,
+["position"] = {
+["y"] = -243.7614135742188,
+["x"] = -220.5668334960938,
+["point"] = "TOPRIGHT",
+["scale"] = 0.75,
+},
+},
+["Myfficraider - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 34,
+["x"] = -229,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Fishanus - Ragnaros"] = {
+["padding"] = -6,
+["version"] = 3,
+["position"] = {
+["y"] = -243.7614135742188,
+["x"] = -220.5668334960938,
+["point"] = "TOPRIGHT",
+["scale"] = 0.75,
+},
+},
+["Djagon - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 34,
+["x"] = -229,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Laurs - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -245.7368774414063,
+["x"] = -232.49951171875,
+["point"] = "TOPRIGHT",
+},
+},
+["Qpe - Ravencrest"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 34,
+["x"] = -229,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Casiomage - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -249.7611389160156,
+["x"] = -213.5679931640625,
+["point"] = "TOPRIGHT",
+["scale"] = 0.75,
+},
+},
+["Jerwin - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -250.7368774414063,
+["x"] = -231.4996337890625,
+["point"] = "TOPRIGHT",
+},
+},
+["Qpfromage - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 34,
+["x"] = -229,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Dogson - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 34,
+["x"] = -229,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Flurrq - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -250.7368774414063,
+["x"] = -231.4996337890625,
+["point"] = "TOPRIGHT",
+},
+},
+},
+},
+["BagBar"] = {
+["profiles"] = {
+["Sikducker - Sylvanas"] = {
+["enabled"] = false,
+["fadeoutdelay"] = 0.17,
+["position"] = {
+["y"] = 265.0000610351563,
+["x"] = 345.7030029296875,
+["point"] = "BOTTOM",
+},
+["fadeout"] = true,
+["fadeoutalpha"] = 0,
+["version"] = 3,
+},
+["Qpfromage - Sylvanas"] = {
+["fadeoutdelay"] = 0.17,
+["fadeout"] = true,
+["version"] = 3,
+["position"] = {
+["y"] = 44.00020599365234,
+["x"] = 372.70263671875,
+["point"] = "BOTTOM",
+},
+["fadeoutalpha"] = 0,
+},
+["Qpc - Draenor"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 74,
+["x"] = -212,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Xiaoyuu - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 80,
+["x"] = -212,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Qope - Ragnaros"] = {
+["fadeout"] = true,
+["position"] = {
+["y"] = 44.00020599365234,
+["x"] = 372.70263671875,
+["point"] = "BOTTOM",
+},
+["version"] = 3,
+["fadeoutalpha"] = 0,
+["fadeoutdelay"] = 0.17,
+},
+["Qtte - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 80,
+["x"] = -212,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Qudroformagi - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 80,
+["x"] = -212,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Jeaf - Sylvanas"] = {
+["fadeoutdelay"] = 0.17,
+["position"] = {
+["y"] = 44.00020599365234,
+["x"] = 372.70263671875,
+["point"] = "BOTTOM",
+},
+["fadeout"] = true,
+["fadeoutalpha"] = 0,
+["version"] = 3,
+},
+["Helikåpter - Sylvanas"] = {
+["fadeoutdelay"] = 0.17,
+["position"] = {
+["y"] = 44.00020599365234,
+["x"] = 372.70263671875,
+["point"] = "BOTTOM",
+},
+["version"] = 3,
+["fadeoutalpha"] = 0,
+["fadeout"] = true,
+},
+["Sørn - Ravencrest"] = {
+["fadeout"] = true,
+["position"] = {
+["y"] = 44.00020599365234,
+["x"] = 372.70263671875,
+["point"] = "BOTTOM",
+},
+["fadeoutalpha"] = 0,
+["version"] = 3,
+["fadeoutdelay"] = 0.17,
+},
+["Qpew - Ragnaros"] = {
+["enabled"] = false,
+["version"] = 3,
+["position"] = {
+["y"] = 235.0978698730469,
+["x"] = -207.999755859375,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Sörn - Ravencrest"] = {
+["fadeout"] = true,
+["position"] = {
+["y"] = 44.00020599365234,
+["x"] = 372.70263671875,
+["point"] = "BOTTOM",
+},
+["fadeoutdelay"] = 0.17,
+["version"] = 3,
+["fadeoutalpha"] = 0,
+},
+["Qpaladin - Ragnaros"] = {
+["fadeoutdelay"] = 0.17,
+["position"] = {
+["y"] = 63.00021743774414,
+["x"] = 308.666748046875,
+["point"] = "BOTTOM",
+},
+["fadeoutalpha"] = 0,
+["version"] = 3,
+["fadeout"] = true,
+},
+["dogson"] = {
+["enabled"] = false,
+["fadeout"] = true,
+["position"] = {
+["y"] = 265.0000610351563,
+["x"] = 345.7030029296875,
+["point"] = "BOTTOM",
+},
+["version"] = 3,
+["fadeoutalpha"] = 0,
+["fadeoutdelay"] = 0.17,
+},
+["Qpcheese - Chamber of Aspects"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 74,
+["x"] = -212,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Qpebank - Draenor"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 74,
+["x"] = -212,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Zelení - Draenor"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 74,
+["x"] = -212,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["qpcheeso"] = {
+["enabled"] = false,
+["fadeout"] = true,
+["position"] = {
+["y"] = 265.0000610351563,
+["x"] = 345.7030029296875,
+["point"] = "BOTTOM",
+},
+["fadeoutdelay"] = 0.17,
+["version"] = 3,
+["fadeoutalpha"] = 0,
+},
+["Cyclosarin - Ragnaros"] = {
+["enabled"] = false,
+["version"] = 3,
+["position"] = {
+["y"] = 235.0978698730469,
+["x"] = -207.999755859375,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Qpcheese - Ragnaros"] = {
+["fadeoutdelay"] = 0.17,
+["position"] = {
+["y"] = 34.00002288818359,
+["x"] = 370.703369140625,
+["point"] = "BOTTOM",
+},
+["fadeoutalpha"] = 0,
+["version"] = 3,
+["fadeout"] = true,
+},
+["Qpfromage - Confrérie du Thorium"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 80,
+["x"] = -212,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Kaijid - Ragnaros"] = {
+["enabled"] = false,
+["fadeoutdelay"] = 0.17,
+["position"] = {
+["y"] = 265.0000610351563,
+["x"] = 345.7030029296875,
+["point"] = "BOTTOM",
+["scale"] = 0.9500000000000001,
+},
+["fadeoutalpha"] = 0,
+["version"] = 3,
+},
+["Gammelemil - Grim Batol"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 80,
+["x"] = -212,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Qubit - Ragnaros"] = {
+["enabled"] = false,
+["version"] = 3,
+["position"] = {
+["y"] = -252.0411987304688,
+["x"] = -207.999755859375,
+["point"] = "TOPRIGHT",
+},
+},
+["Qute - Sylvanas"] = {
+["fadeoutdelay"] = 0.17,
+["position"] = {
+["y"] = 265.0000610351563,
+["x"] = 345.7030029296875,
+["point"] = "BOTTOM",
+},
+["fadeout"] = true,
+["version"] = 3,
+["fadeoutalpha"] = 0,
+},
+["Myfficraider - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 74,
+["x"] = -212,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Fishanus - Ragnaros"] = {
+["fadeout"] = true,
+["position"] = {
+["y"] = 34.00002288818359,
+["x"] = 370.703369140625,
+["point"] = "BOTTOM",
+},
+["fadeoutdelay"] = 0.17,
+["fadeoutalpha"] = 0,
+["version"] = 3,
+},
+["Djagon - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 74,
+["x"] = -212,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Laurs - Ragnaros"] = {
+["fadeout"] = true,
+["fadeoutalpha"] = 0,
+["version"] = 3,
+["position"] = {
+["y"] = 41.95869064331055,
+["x"] = 371.500244140625,
+["point"] = "BOTTOM",
+},
+},
+["Qpe - Ravencrest"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 74,
+["x"] = -212,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Casiomage - Sylvanas"] = {
+["fadeoutdelay"] = 0.17,
+["position"] = {
+["y"] = 44.00020599365234,
+["x"] = 372.70263671875,
+["point"] = "BOTTOM",
+},
+["fadeout"] = true,
+["fadeoutalpha"] = 0,
+["version"] = 3,
+},
+["Jerwin - Ragnaros"] = {
+["enabled"] = false,
+["version"] = 3,
+["position"] = {
+["y"] = 235.0978698730469,
+["x"] = -207.999755859375,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Qpfromage - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 74,
+["x"] = -212,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Dogson - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 74,
+["x"] = -212,
+["point"] = "BOTTOMRIGHT",
+},
+},
+["Flurrq - Ragnaros"] = {
+["fadeout"] = true,
+["position"] = {
+["y"] = 34.00002288818359,
+["x"] = 370.703369140625,
+["point"] = "BOTTOM",
+},
+["version"] = 3,
+["fadeoutalpha"] = 0,
+["fadeoutdelay"] = 0.17,
+},
+},
+},
+["BlizzardArt"] = {
+["profiles"] = {
+["Sikducker - Sylvanas"] = {
+["artLayout"] = "MODERN",
+["version"] = 3,
+["position"] = {
+["y"] = 87,
+["x"] = -288.5,
+["point"] = "BOTTOM",
+},
+},
+["Qpfromage - Sylvanas"] = {
+["artLayout"] = "MODERN",
+["position"] = {
+["y"] = 87,
+["x"] = -288.5,
+["point"] = "BOTTOM",
+},
+["version"] = 3,
+},
+["Qpc - Draenor"] = {
+["enabled"] = true,
+["artLayout"] = "MODERN",
+["version"] = 3,
+["position"] = {
+["y"] = 87,
+["x"] = -288.5,
+["point"] = "BOTTOM",
+},
+},
+["Xiaoyuu - Sylvanas"] = {
+["enabled"] = true,
+["artLayout"] = "MODERN",
+["version"] = 3,
+["position"] = {
+["y"] = 87,
+["x"] = -288.5,
+["point"] = "BOTTOM",
+},
+},
+["Qope - Ragnaros"] = {
+["position"] = {
+["y"] = 87,
+["x"] = -288.5,
+["point"] = "BOTTOM",
+},
+["version"] = 3,
+["artLayout"] = "MODERN",
+},
+["Qtte - Sylvanas"] = {
+["enabled"] = true,
+["artLayout"] = "MODERN",
+["version"] = 3,
+["position"] = {
+["y"] = 87,
+["x"] = -288.5,
+["point"] = "BOTTOM",
+},
+},
+["Qudroformagi - Sylvanas"] = {
+["enabled"] = true,
+["artLayout"] = "MODERN",
+["version"] = 3,
+["position"] = {
+["y"] = 87,
+["x"] = -288.5,
+["point"] = "BOTTOM",
+},
+},
+["Jeaf - Sylvanas"] = {
+["artLayout"] = "MODERN",
+["version"] = 3,
+["position"] = {
+["y"] = 87,
+["x"] = -288.5,
+["point"] = "BOTTOM",
+},
+},
+["Helikåpter - Sylvanas"] = {
+["position"] = {
+["y"] = 87,
+["x"] = -288.5,
+["point"] = "BOTTOM",
+},
+["version"] = 3,
+["artLayout"] = "MODERN",
+},
+["Sørn - Ravencrest"] = {
+["position"] = {
+["y"] = 87,
+["x"] = -288.5,
+["point"] = "BOTTOM",
+},
+["version"] = 3,
+["artLayout"] = "MODERN",
+},
+["Qpew - Ragnaros"] = {
+["position"] = {
+["y"] = 87,
+["x"] = -288.5,
+["point"] = "BOTTOM",
+},
+["version"] = 3,
+["artLayout"] = "MODERN",
+},
+["Sörn - Ravencrest"] = {
+["position"] = {
+["y"] = 87,
+["x"] = -288.5,
+["point"] = "BOTTOM",
+},
+["version"] = 3,
+["artLayout"] = "MODERN",
+},
+["Qpaladin - Ragnaros"] = {
+["position"] = {
+["y"] = 87,
+["x"] = -288.5,
+["point"] = "BOTTOM",
+},
+["version"] = 3,
+["artLayout"] = "MODERN",
+},
+["dogson"] = {
+["position"] = {
+["y"] = 87,
+["x"] = -288.5,
+["point"] = "BOTTOM",
+},
+["version"] = 3,
+["artLayout"] = "MODERN",
+},
+["Qpcheese - Chamber of Aspects"] = {
+["enabled"] = true,
+["position"] = {
+["y"] = 87,
+["x"] = -288.5,
+["point"] = "BOTTOM",
+},
+["version"] = 3,
+["artLayout"] = "MODERN",
+},
+["Qpebank - Draenor"] = {
+["enabled"] = true,
+["artLayout"] = "MODERN",
+["version"] = 3,
+["position"] = {
+["y"] = 87,
+["x"] = -288.5,
+["point"] = "BOTTOM",
+},
+},
+["Zelení - Draenor"] = {
+["enabled"] = true,
+["position"] = {
+["y"] = 87,
+["x"] = -288.5,
+["point"] = "BOTTOM",
+},
+["version"] = 3,
+["artLayout"] = "MODERN",
+},
+["qpcheeso"] = {
+["artLayout"] = "MODERN",
+["version"] = 3,
+["position"] = {
+["y"] = 87,
+["x"] = -288.5,
+["point"] = "BOTTOM",
+},
+},
+["Cyclosarin - Ragnaros"] = {
+["artLayout"] = "MODERN",
+["version"] = 3,
+["position"] = {
+["y"] = 87,
+["x"] = -288.5,
+["point"] = "BOTTOM",
+},
+},
+["Qpcheese - Ragnaros"] = {
+["position"] = {
+["y"] = 87,
+["x"] = -288.5,
+["point"] = "BOTTOM",
+},
+["version"] = 3,
+["artLayout"] = "MODERN",
+},
+["Qpfromage - Confrérie du Thorium"] = {
+["enabled"] = true,
+["artLayout"] = "MODERN",
+["version"] = 3,
+["position"] = {
+["y"] = 87,
+["x"] = -288.5,
+["point"] = "BOTTOM",
+},
+},
+["Kaijid - Ragnaros"] = {
+["position"] = {
+["y"] = 87,
+["x"] = -288.5,
+["point"] = "BOTTOM",
+},
+["version"] = 3,
+["artLayout"] = "MODERN",
+},
+["Gammelemil - Grim Batol"] = {
+["enabled"] = true,
+["artLayout"] = "MODERN",
+["version"] = 3,
+["position"] = {
+["y"] = 87,
+["x"] = -288.5,
+["point"] = "BOTTOM",
+},
+},
+["Qubit - Ragnaros"] = {
+["position"] = {
+["y"] = 87,
+["x"] = -288.5,
+["point"] = "BOTTOM",
+},
+["version"] = 3,
+["artLayout"] = "MODERN",
+},
+["Qute - Sylvanas"] = {
+["artLayout"] = "MODERN",
+["version"] = 3,
+["position"] = {
+["y"] = 87,
+["x"] = -288.5,
+["point"] = "BOTTOM",
+},
+},
+["Myfficraider - Ragnaros"] = {
+["enabled"] = true,
+["position"] = {
+["y"] = 87,
+["x"] = -288.5,
+["point"] = "BOTTOM",
+},
+["version"] = 3,
+["artLayout"] = "MODERN",
+},
+["Fishanus - Ragnaros"] = {
+["artLayout"] = "MODERN",
+["version"] = 3,
+["position"] = {
+["y"] = 87,
+["x"] = -288.5,
+["point"] = "BOTTOM",
+},
+},
+["Djagon - Ragnaros"] = {
+["enabled"] = true,
+["position"] = {
+["y"] = 87,
+["x"] = -288.5,
+["point"] = "BOTTOM",
+},
+["version"] = 3,
+["artLayout"] = "MODERN",
+},
+["Laurs - Ragnaros"] = {
+["position"] = {
+["y"] = 87,
+["x"] = -288.5,
+["point"] = "BOTTOM",
+},
+["version"] = 3,
+["artLayout"] = "MODERN",
+},
+["Qpe - Ravencrest"] = {
+["enabled"] = true,
+["artLayout"] = "MODERN",
+["version"] = 3,
+["position"] = {
+["y"] = 87,
+["x"] = -288.5,
+["point"] = "BOTTOM",
+},
+},
+["Casiomage - Sylvanas"] = {
+["artLayout"] = "MODERN",
+["version"] = 3,
+["position"] = {
+["y"] = 87,
+["x"] = -288.5,
+["point"] = "BOTTOM",
+},
+},
+["Jerwin - Ragnaros"] = {
+["position"] = {
+["y"] = 87,
+["x"] = -288.5,
+["point"] = "BOTTOM",
+},
+["version"] = 3,
+["artLayout"] = "MODERN",
+},
+["Qpfromage - Ragnaros"] = {
+["enabled"] = true,
+["position"] = {
+["y"] = 87,
+["x"] = -288.5,
+["point"] = "BOTTOM",
+},
+["version"] = 3,
+["artLayout"] = "MODERN",
+},
+["Dogson - Ragnaros"] = {
+["enabled"] = true,
+["artLayout"] = "MODERN",
+["version"] = 3,
+["position"] = {
+["y"] = 87,
+["x"] = -288.5,
+["point"] = "BOTTOM",
+},
+},
+["Flurrq - Ragnaros"] = {
+["position"] = {
+["y"] = 87,
+["x"] = -288.5,
+["point"] = "BOTTOM",
+},
+["version"] = 3,
+["artLayout"] = "MODERN",
+},
+},
+},
+["StanceBar"] = {
+["profiles"] = {
+["Sikducker - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -14.99996185302734,
+["x"] = -82.5,
+["point"] = "CENTER",
+},
+},
+["Qpfromage - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -14.99996185302734,
+["x"] = -82.5,
+["point"] = "CENTER",
+},
+},
+["Qpc - Draenor"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -14.99996185302734,
+["x"] = -82.5,
+["point"] = "CENTER",
+},
+},
+["Xiaoyuu - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -14.99996185302734,
+["x"] = -82.5,
+["point"] = "CENTER",
+},
+},
+["Qope - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -14.99996185302734,
+["x"] = -82.5,
+["point"] = "CENTER",
+},
+},
+["Qtte - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -14.99996185302734,
+["x"] = -82.5,
+["point"] = "CENTER",
+},
+},
+["Qudroformagi - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -14.99997711181641,
+["x"] = -82.50003051757812,
+["point"] = "CENTER",
+},
+},
+["Jeaf - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -14.99996185302734,
+["x"] = -82.5,
+["point"] = "CENTER",
+},
+},
+["Helikåpter - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -14.99996185302734,
+["x"] = -82.5,
+["point"] = "CENTER",
+},
+},
+["Sørn - Ravencrest"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 236.7508163452148,
+["x"] = -319.1668243408203,
+["point"] = "BOTTOM",
+},
+},
+["Qpew - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -14.99996185302734,
+["x"] = -82.5,
+["point"] = "CENTER",
+},
+},
+["Sörn - Ravencrest"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 240.0843200683594,
+["x"] = -314.1667404174805,
+["point"] = "BOTTOM",
+},
+},
+["Qpaladin - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 194.4245452880859,
+["x"] = -441.4535522460938,
+["point"] = "BOTTOM",
+},
+},
+["dogson"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -14.99996185302734,
+["x"] = -82.5,
+["point"] = "CENTER",
+},
+},
+["Qpcheese - Chamber of Aspects"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -14.99996185302734,
+["x"] = -82.5,
+["point"] = "CENTER",
+},
+},
+["Qpebank - Draenor"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -14.99996185302734,
+["x"] = -82.5,
+["point"] = "CENTER",
+},
+},
+["Zelení - Draenor"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -14.99996185302734,
+["x"] = -82.5,
+["point"] = "CENTER",
+},
+},
+["qpcheeso"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -14.99996185302734,
+["x"] = -82.5,
+["point"] = "CENTER",
+},
+},
+["Cyclosarin - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -14.99996185302734,
+["x"] = -82.5,
+["point"] = "CENTER",
+},
+},
+["Qpcheese - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -14.99996185302734,
+["x"] = -82.5,
+["point"] = "CENTER",
+},
+},
+["Qpfromage - Confrérie du Thorium"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -14.99997711181641,
+["x"] = -82.50003051757812,
+["point"] = "CENTER",
+},
+},
+["Kaijid - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 151.2494888305664,
+["x"] = -347.4998931884766,
+["point"] = "BOTTOM",
+},
+},
+["Gammelemil - Grim Batol"] = {
+["version"] = 3,
+["position"] = {
+["scale"] = 1,
+["x"] = -285,
+["point"] = "BOTTOM",
+["y"] = 168,
+},
+},
+["Qubit - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -14.99996185302734,
+["x"] = -82.5,
+["point"] = "CENTER",
+},
+},
+["Qute - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -14.99996185302734,
+["x"] = -82.5,
+["point"] = "CENTER",
+},
+},
+["Myfficraider - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -14.99996185302734,
+["x"] = -82.5,
+["point"] = "CENTER",
+},
+},
+["Fishanus - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -14.99996185302734,
+["x"] = -82.5,
+["point"] = "CENTER",
+},
+},
+["Djagon - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -14.99996185302734,
+["x"] = -82.5,
+["point"] = "CENTER",
+},
+},
+["Laurs - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -258.9998893737793,
+["x"] = -304.4999542236328,
+["point"] = "CENTER",
+},
+},
+["Qpe - Ravencrest"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -14.99996185302734,
+["x"] = -82.5,
+["point"] = "CENTER",
+},
+},
+["Casiomage - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -14.99996185302734,
+["x"] = -82.5,
+["point"] = "CENTER",
+},
+},
+["Jerwin - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 121.8668060302734,
+["x"] = -455.6609344482422,
+["point"] = "BOTTOM",
+},
+},
+["Qpfromage - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -14.99996185302734,
+["x"] = -82.5,
+["point"] = "CENTER",
+},
+},
+["Dogson - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -14.99996185302734,
+["x"] = -82.5,
+["point"] = "CENTER",
+},
+},
+["Flurrq - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 202.5333938598633,
+["x"] = -336.0165710449219,
+["point"] = "BOTTOM",
+},
+},
+},
+},
+["PetBar"] = {
+["profiles"] = {
+["Sikducker - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 263.9426574707031,
+["x"] = 67.61184692382812,
+["point"] = "BOTTOMLEFT",
+},
+},
+["Qpfromage - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 230.4430389404297,
+["x"] = 458.7784423828125,
+["point"] = "BOTTOMLEFT",
+},
+},
+["Qpc - Draenor"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 168,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+["Xiaoyuu - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 168,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+["Qope - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 230.4430389404297,
+["x"] = 458.7784423828125,
+["point"] = "BOTTOMLEFT",
+},
+},
+["Qtte - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 168,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+["Qudroformagi - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 168,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+["Jeaf - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -260.55712890625,
+["x"] = 462.6118469238281,
+["point"] = "LEFT",
+},
+},
+["Helikåpter - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -260.55712890625,
+["x"] = 462.6118469238281,
+["point"] = "LEFT",
+},
+},
+["Sørn - Ravencrest"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -260.55712890625,
+["x"] = 462.6118469238281,
+["point"] = "LEFT",
+},
+},
+["Qpew - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 263.9426574707031,
+["x"] = 67.61184692382812,
+["point"] = "BOTTOMLEFT",
+},
+},
+["Sörn - Ravencrest"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -260.55712890625,
+["x"] = 462.6118469238281,
+["point"] = "LEFT",
+},
+},
+["Qpaladin - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 263.9426574707031,
+["x"] = 67.61184692382812,
+["point"] = "BOTTOMLEFT",
+},
+},
+["dogson"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 263.9426574707031,
+["x"] = 67.61184692382812,
+["point"] = "BOTTOMLEFT",
+},
+},
+["Qpcheese - Chamber of Aspects"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 168,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+["Qpebank - Draenor"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 168,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+["Zelení - Draenor"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 168,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+["qpcheeso"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 263.9426574707031,
+["x"] = 67.61184692382812,
+["point"] = "BOTTOMLEFT",
+},
+},
+["Cyclosarin - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 263.9426574707031,
+["x"] = 67.61184692382812,
+["point"] = "BOTTOMLEFT",
+},
+},
+["Qpcheese - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 263.9426574707031,
+["x"] = 67.61184692382812,
+["point"] = "BOTTOMLEFT",
+},
+},
+["Qpfromage - Confrérie du Thorium"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 168,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+["Kaijid - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 263.9426574707031,
+["x"] = 67.61184692382812,
+["point"] = "BOTTOMLEFT",
+},
+},
+["Gammelemil - Grim Batol"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 168,
+["x"] = -41,
+["point"] = "BOTTOM",
+},
+},
+["Qubit - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 263.9426574707031,
+["x"] = 67.61184692382812,
+["point"] = "BOTTOMLEFT",
+},
+},
+["Qute - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 263.9426574707031,
+["x"] = 67.61184692382812,
+["point"] = "BOTTOMLEFT",
+},
+},
+["Myfficraider - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 168,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+["Fishanus - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 263.9426574707031,
+["x"] = 67.61184692382812,
+["point"] = "BOTTOMLEFT",
+},
+},
+["Djagon - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 168,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+["Laurs - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 263.9426574707031,
+["x"] = 67.61184692382812,
+["point"] = "BOTTOMLEFT",
+},
+},
+["Qpe - Ravencrest"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 168,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+["Casiomage - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -261.5572204589844,
+["x"] = 439.61181640625,
+["point"] = "LEFT",
+},
+},
+["Jerwin - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 263.9426574707031,
+["x"] = 67.61184692382812,
+["point"] = "BOTTOMLEFT",
+},
+},
+["Qpfromage - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 168,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+["Dogson - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 168,
+["x"] = -285,
+["point"] = "BOTTOM",
+},
+},
+["Flurrq - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 263.9426574707031,
+["x"] = 67.61184692382812,
+["point"] = "BOTTOMLEFT",
+},
+},
+},
+},
+["Vehicle"] = {
+["profiles"] = {
+["Sikducker - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -2.89984130859375,
+["x"] = 257.6221008300781,
+["point"] = "LEFT",
+},
+},
+["Qpfromage - Sylvanas"] = {
+["position"] = {
+["y"] = -2.89984130859375,
+["x"] = 257.6221008300781,
+["point"] = "LEFT",
+},
+["version"] = 3,
+},
+["Qpc - Draenor"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 153,
+["x"] = -337,
+["point"] = "BOTTOM",
+},
+},
+["Xiaoyuu - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 153,
+["x"] = -337,
+["point"] = "BOTTOM",
+},
+},
+["Qope - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -2.89984130859375,
+["x"] = 257.6221008300781,
+["point"] = "LEFT",
+},
+},
+["Qtte - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 153,
+["x"] = -337,
+["point"] = "BOTTOM",
+},
+},
+["Qudroformagi - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 153,
+["x"] = -337,
+["point"] = "BOTTOM",
+},
+},
+["Jeaf - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -2.89984130859375,
+["x"] = 257.6221008300781,
+["point"] = "LEFT",
+},
+},
+["Helikåpter - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -2.89984130859375,
+["x"] = 257.6221008300781,
+["point"] = "LEFT",
+},
+},
+["Sørn - Ravencrest"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -2.89984130859375,
+["x"] = 257.6221008300781,
+["point"] = "LEFT",
+},
+},
+["Qpew - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 229.6000061035156,
+["x"] = 479.6221923828125,
+["point"] = "BOTTOMLEFT",
+},
+},
+["Sörn - Ravencrest"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -2.89984130859375,
+["x"] = 257.6221008300781,
+["point"] = "LEFT",
+},
+},
+["Qpaladin - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 229.6000061035156,
+["x"] = 479.6221923828125,
+["point"] = "BOTTOMLEFT",
+},
+},
+["dogson"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -2.89984130859375,
+["x"] = 257.6221008300781,
+["point"] = "LEFT",
+},
+},
+["Qpcheese - Chamber of Aspects"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 153,
+["x"] = -337,
+["point"] = "BOTTOM",
+},
+},
+["Qpebank - Draenor"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 153,
+["x"] = -337,
+["point"] = "BOTTOM",
+},
+},
+["Zelení - Draenor"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 153,
+["x"] = -337,
+["point"] = "BOTTOM",
+},
+},
+["qpcheeso"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -2.89984130859375,
+["x"] = 257.6221008300781,
+["point"] = "LEFT",
+},
+},
+["Cyclosarin - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 229.6000061035156,
+["x"] = 479.6221923828125,
+["point"] = "BOTTOMLEFT",
+},
+},
+["Qpcheese - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -2.89984130859375,
+["x"] = 257.6221008300781,
+["point"] = "LEFT",
+},
+},
+["Qpfromage - Confrérie du Thorium"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 153,
+["x"] = -337,
+["point"] = "BOTTOM",
+},
+},
+["Kaijid - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -2.89984130859375,
+["x"] = 257.6221008300781,
+["point"] = "LEFT",
+},
+},
+["Gammelemil - Grim Batol"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 153,
+["x"] = -337,
+["point"] = "BOTTOM",
+},
+},
+["Qubit - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 229.6000061035156,
+["x"] = 479.6221923828125,
+["point"] = "BOTTOMLEFT",
+},
+},
+["Qute - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -2.89984130859375,
+["x"] = 257.6221008300781,
+["point"] = "LEFT",
+},
+},
+["Myfficraider - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 153,
+["x"] = -337,
+["point"] = "BOTTOM",
+},
+},
+["Fishanus - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -2.89984130859375,
+["x"] = 257.6221008300781,
+["point"] = "LEFT",
+},
+},
+["Djagon - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 153,
+["x"] = -337,
+["point"] = "BOTTOM",
+},
+},
+["Laurs - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 229.6000061035156,
+["x"] = 479.6221923828125,
+["point"] = "BOTTOMLEFT",
+},
+},
+["Qpe - Ravencrest"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 153,
+["x"] = -337,
+["point"] = "BOTTOM",
+},
+},
+["Casiomage - Sylvanas"] = {
+["version"] = 3,
+["position"] = {
+["y"] = -2.89984130859375,
+["x"] = 257.6221008300781,
+["point"] = "LEFT",
+},
+},
+["Jerwin - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 229.6000061035156,
+["x"] = 479.6221923828125,
+["point"] = "BOTTOMLEFT",
+},
+},
+["Qpfromage - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 153,
+["x"] = -337,
+["point"] = "BOTTOM",
+},
+},
+["Dogson - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 153,
+["x"] = -337,
+["point"] = "BOTTOM",
+},
+},
+["Flurrq - Ragnaros"] = {
+["version"] = 3,
+["position"] = {
+["y"] = 229.6000061035156,
+["x"] = 479.6221923828125,
+["point"] = "BOTTOMLEFT",
+},
+},
+},
+},
+},
+["profileKeys"] = {
+["Sikducker - Sylvanas"] = "Sikducker - Sylvanas",
+["Qpfromage - Sylvanas"] = "Qpfromage - Sylvanas",
+["Qpc - Draenor"] = "Qpc - Draenor",
+["Xiaoyuu - Sylvanas"] = "Xiaoyuu - Sylvanas",
+["Qope - Ragnaros"] = "Qope - Ragnaros",
+["Qtte - Sylvanas"] = "Qtte - Sylvanas",
+["Qudroformagi - Sylvanas"] = "Qudroformagi - Sylvanas",
+["Jeaf - Sylvanas"] = "Jeaf - Sylvanas",
+["Helikåpter - Sylvanas"] = "Helikåpter - Sylvanas",
+["Sørn - Ravencrest"] = "Sørn - Ravencrest",
+["Qpew - Ragnaros"] = "Qpew - Ragnaros",
+["Sörn - Ravencrest"] = "Sörn - Ravencrest",
+["Qpaladin - Ragnaros"] = "Qpaladin - Ragnaros",
+["Qpcheese - Chamber of Aspects"] = "Qpcheese - Chamber of Aspects",
+["Qpcheese - Ragnaros"] = "Qpcheese - Ragnaros",
+["Zelení - Draenor"] = "Zelení - Draenor",
+["Flurrq - Ragnaros"] = "Flurrq - Ragnaros",
+["Cyclosarin - Ragnaros"] = "Cyclosarin - Ragnaros",
+["Qute - Sylvanas"] = "Qute - Sylvanas",
+["Kaijid - Ragnaros"] = "Kaijid - Ragnaros",
+["Gammelemil - Grim Batol"] = "Gammelemil - Grim Batol",
+["Qubit - Ragnaros"] = "Qubit - Ragnaros",
+["Qpfromage - Confrérie du Thorium"] = "Qpfromage - Confrérie du Thorium",
+["Myfficraider - Ragnaros"] = "Myfficraider - Ragnaros",
+["Fishanus - Ragnaros"] = "Fishanus - Ragnaros",
+["Laurs - Ragnaros"] = "Laurs - Ragnaros",
+["Dogson - Ragnaros"] = "dogson",
+["Qpe - Ravencrest"] = "Qpe - Ravencrest",
+["Casiomage - Sylvanas"] = "Casiomage - Sylvanas",
+["Jerwin - Ragnaros"] = "Jerwin - Ragnaros",
+["Qpfromage - Ragnaros"] = "qpcheeso",
+["Djagon - Ragnaros"] = "Djagon - Ragnaros",
+["Qpebank - Draenor"] = "Qpebank - Draenor",
+},
+["profiles"] = {
+["Sikducker - Sylvanas"] = {
+["focuscastmodifier"] = false,
+["minimapIcon"] = {
+["minimapPos"] = 189.8982565536861,
+["hide"] = false,
+},
+["blizzardVehicle"] = true,
+["snapping"] = false,
+["outofrange"] = "hotkey",
+},
+["Qpfromage - Sylvanas"] = {
+["minimapIcon"] = {
+["minimapPos"] = 169.2034568679007,
+["hide"] = false,
+},
+["focuscastmodifier"] = false,
+["outofrange"] = "hotkey",
+},
+["Qpc - Draenor"] = {
+["focuscastmodifier"] = false,
+["blizzardVehicle"] = true,
+["outofrange"] = "hotkey",
+},
+["Xiaoyuu - Sylvanas"] = {
+["snapping"] = false,
+["blizzardVehicle"] = true,
+["focuscastmodifier"] = false,
+["outofrange"] = "hotkey",
+},
+["Qope - Ragnaros"] = {
+["focuscastmodifier"] = false,
+["minimapIcon"] = {
+["minimapPos"] = 169.2034568679007,
+["hide"] = false,
+},
+["outofrange"] = "hotkey",
+},
+["Qtte - Sylvanas"] = {
+["focuscastmodifier"] = false,
+["blizzardVehicle"] = true,
+["snapping"] = false,
+["outofrange"] = "hotkey",
+},
+["Qudroformagi - Sylvanas"] = {
+["focuscastmodifier"] = false,
+["blizzardVehicle"] = true,
+["outofrange"] = "hotkey",
+},
+["Jeaf - Sylvanas"] = {
+["focuscastmodifier"] = false,
+["minimapIcon"] = {
+["minimapPos"] = 189.8982565536861,
+["hide"] = false,
+},
+["outofrange"] = "hotkey",
+},
+["Helikåpter - Sylvanas"] = {
+["focuscastmodifier"] = false,
+["minimapIcon"] = {
+["minimapPos"] = 189.8982565536861,
+["hide"] = false,
+},
+["snapping"] = false,
+["outofrange"] = "hotkey",
+},
+["Sørn - Ravencrest"] = {
+["snapping"] = false,
+["minimapIcon"] = {
+["minimapPos"] = 189.8982565536861,
+["hide"] = false,
+},
+["focuscastmodifier"] = false,
+["outofrange"] = "hotkey",
+},
+["Qpew - Ragnaros"] = {
+["focuscastmodifier"] = false,
+["blizzardVehicle"] = true,
+["minimapIcon"] = {
+["minimapPos"] = 189.8982565536861,
+},
+["outofrange"] = "hotkey",
+},
+["Sörn - Ravencrest"] = {
+["snapping"] = false,
+["minimapIcon"] = {
+["minimapPos"] = 189.8982565536861,
+["hide"] = false,
+},
+["focuscastmodifier"] = false,
+["outofrange"] = "hotkey",
+},
+["Qpaladin - Ragnaros"] = {
+["focuscastmodifier"] = false,
+["blizzardVehicle"] = true,
+["minimapIcon"] = {
+["minimapPos"] = 189.8982565536861,
+},
+["outofrange"] = "hotkey",
+},
+["dogson"] = {
+["snapping"] = false,
+["minimapIcon"] = {
+["minimapPos"] = 189.8982565536861,
+["hide"] = false,
+},
+["blizzardVehicle"] = true,
+["focuscastmodifier"] = false,
+["outofrange"] = "hotkey",
+},
+["Qpcheese - Chamber of Aspects"] = {
+["focuscastmodifier"] = false,
+["blizzardVehicle"] = true,
+["outofrange"] = "hotkey",
+},
+["Qpebank - Draenor"] = {
+["focuscastmodifier"] = false,
+["blizzardVehicle"] = true,
+["outofrange"] = "hotkey",
+},
+["Zelení - Draenor"] = {
+["focuscastmodifier"] = false,
+["blizzardVehicle"] = true,
+["outofrange"] = "hotkey",
+},
+["qpcheeso"] = {
+["snapping"] = false,
+["minimapIcon"] = {
+["minimapPos"] = 189.8982565536861,
+["hide"] = false,
+},
+["blizzardVehicle"] = true,
+["focuscastmodifier"] = false,
+["outofrange"] = "hotkey",
+},
+["Cyclosarin - Ragnaros"] = {
+["focuscastmodifier"] = false,
+["blizzardVehicle"] = true,
+["minimapIcon"] = {
+["minimapPos"] = 189.8982565536861,
+},
+["outofrange"] = "hotkey",
+},
+["Qpcheese - Ragnaros"] = {
+["snapping"] = false,
+["minimapIcon"] = {
+["minimapPos"] = 189.8982565536861,
+},
+["blizzardVehicle"] = true,
+["focuscastmodifier"] = false,
+["outofrange"] = "hotkey",
+},
+["Qpfromage - Confrérie du Thorium"] = {
+["focuscastmodifier"] = false,
+["blizzardVehicle"] = true,
+["snapping"] = false,
+["outofrange"] = "hotkey",
+},
+["Kaijid - Ragnaros"] = {
+["snapping"] = false,
+["minimapIcon"] = {
+["minimapPos"] = 189.8982565536861,
+["hide"] = false,
+},
+["blizzardVehicle"] = true,
+["focuscastmodifier"] = false,
+["outofrange"] = "hotkey",
+},
+["Gammelemil - Grim Batol"] = {
+["focuscastmodifier"] = false,
+["blizzardVehicle"] = true,
+["outofrange"] = "hotkey",
+},
+["Qubit - Ragnaros"] = {
+["focuscastmodifier"] = false,
+["blizzardVehicle"] = true,
+["minimapIcon"] = {
+["minimapPos"] = 189.8982565536861,
+},
+["outofrange"] = "hotkey",
+},
+["Qute - Sylvanas"] = {
+["focuscastmodifier"] = false,
+["minimapIcon"] = {
+["minimapPos"] = 189.8982565536861,
+["hide"] = false,
+},
+["blizzardVehicle"] = true,
+["snapping"] = false,
+["outofrange"] = "hotkey",
+},
+["Myfficraider - Ragnaros"] = {
+["focuscastmodifier"] = false,
+["blizzardVehicle"] = true,
+["outofrange"] = "hotkey",
+},
+["Fishanus - Ragnaros"] = {
+["snapping"] = false,
+["minimapIcon"] = {
+["minimapPos"] = 189.8982565536861,
+},
+["blizzardVehicle"] = true,
+["focuscastmodifier"] = false,
+["outofrange"] = "hotkey",
+},
+["Djagon - Ragnaros"] = {
+["snapping"] = false,
+["blizzardVehicle"] = true,
+["focuscastmodifier"] = false,
+["outofrange"] = "hotkey",
+},
+["Laurs - Ragnaros"] = {
+["focuscastmodifier"] = false,
+["blizzardVehicle"] = true,
+["minimapIcon"] = {
+["minimapPos"] = 189.8982565536861,
+},
+["outofrange"] = "hotkey",
+},
+["Qpe - Ravencrest"] = {
+["focuscastmodifier"] = false,
+["blizzardVehicle"] = true,
+["snapping"] = false,
+["outofrange"] = "hotkey",
+},
+["Casiomage - Sylvanas"] = {
+["focuscastmodifier"] = false,
+["minimapIcon"] = {
+["minimapPos"] = 189.8982565536861,
+["hide"] = false,
+},
+["snapping"] = false,
+["outofrange"] = "hotkey",
+},
+["Jerwin - Ragnaros"] = {
+["focuscastmodifier"] = false,
+["blizzardVehicle"] = true,
+["minimapIcon"] = {
+["minimapPos"] = 189.8982565536861,
+},
+["outofrange"] = "hotkey",
+},
+["Qpfromage - Ragnaros"] = {
+["focuscastmodifier"] = false,
+["blizzardVehicle"] = true,
+["outofrange"] = "hotkey",
+},
+["Dogson - Ragnaros"] = {
+["focuscastmodifier"] = false,
+["blizzardVehicle"] = true,
+["outofrange"] = "hotkey",
+},
+["Flurrq - Ragnaros"] = {
+["snapping"] = false,
+["minimapIcon"] = {
+["minimapPos"] = 189.8982565536861,
+},
+["blizzardVehicle"] = true,
+["focuscastmodifier"] = false,
+["outofrange"] = "hotkey",
+},
+},
+}

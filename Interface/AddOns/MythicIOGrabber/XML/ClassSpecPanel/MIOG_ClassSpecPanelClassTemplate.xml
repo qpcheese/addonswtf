@@ -1,0 +1,98 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+    <Frame name="MIOG_ClassSpecPanelClassTemplate" inherits="BackdropTemplate" virtual="true">
+        <Size x="26" y="26" />
+
+        <KeyValues>
+			<KeyValue key="align" value="bottom" type="string"/>"
+        </KeyValues>
+
+        <Layers>
+            <Layer level="BACKGROUND">
+                <Texture parentKey="Icon">
+                    <Anchors>
+                        <Anchor point="TOPLEFT"/>
+                        <Anchor point="BOTTOMRIGHT"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+
+            <Layer level="ARTWORK">
+                <Texture>
+                    <Color r="0.3" g="0.3" b="0.3" a="0.4" />
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.Icon" />
+                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.Icon" />
+                    </Anchors>
+                </Texture>
+            </Layer>
+
+            <Layer level="OVERLAY">
+                <FontString parentKey="FontString" font="GameFontHighlightLarge2" justifyH="CENTER" justifyV="MIDDLE" outline="NORMAL">
+                    <Anchors>
+                        <Anchor point="CENTER" relativeKey="$parent.Icon" y="-1"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+
+        <Frames>
+            <Frame parentKey="Specializations" inherits="VerticalLayoutFrame" hidden="true">
+                <KeyValues>
+                    <KeyValue key="spacing" value="1" type="number"/>"
+                </KeyValues>
+
+                <Anchors>
+                    <Anchor point="TOP" relativeKey="$parent" relativePoint="BOTTOM" y="-1"/>
+                </Anchors>
+
+                <Frames>
+                    <Frame parentKey="Spec1" inherits="MIOG_ClassSpecPanelSpecTemplate" hidden="true">
+                        <KeyValues>
+                            <KeyValue key="layoutIndex" value="1" type="number" />
+                        </KeyValues>
+                    </Frame>
+
+                    <Frame parentKey="Spec2" inherits="MIOG_ClassSpecPanelSpecTemplate" hidden="true">
+                        <KeyValues>
+                            <KeyValue key="layoutIndex" value="2" type="number" />
+                        </KeyValues>
+                    </Frame>
+
+                    <Frame parentKey="Spec3" inherits="MIOG_ClassSpecPanelSpecTemplate" hidden="true">
+                        <KeyValues>
+                            <KeyValue key="layoutIndex" value="3" type="number" />
+                        </KeyValues>
+                    </Frame>
+
+                    <Frame parentKey="Spec4" inherits="MIOG_ClassSpecPanelSpecTemplate" hidden="true">
+                        <KeyValues>
+                            <KeyValue key="layoutIndex" value="4" type="number" />
+                        </KeyValues>
+                    </Frame>
+                </Frames>
+            </Frame>
+        </Frames>
+
+        <Scripts>
+            <OnLoad>
+                local classColor = C_ClassColor.GetClassColor(self:GetParentKey())
+                local thickness = 2
+
+                self:SetBackdrop({
+                    edgeFile="Interface\\ChatFrame\\ChatFrameBackground",
+                    edgeSize=thickness}
+                )
+                self:SetBackdropColor(0, 0, 0, 0)
+                self:SetBackdropBorderColor(classColor:GetRGBA())
+
+                self.Icon:SetPoint("TOPLEFT", thickness, -thickness)
+                self.Icon:SetPoint("BOTTOMRIGHT", -thickness, thickness)
+            </OnLoad>
+
+            <OnLeave>
+                self.Specializations:Hide()
+            </OnLeave>
+        </Scripts>
+    </Frame>
+</Ui>

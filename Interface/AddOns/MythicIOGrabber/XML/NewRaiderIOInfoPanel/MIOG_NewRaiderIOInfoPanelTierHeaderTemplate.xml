@@ -1,0 +1,48 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+    <Frame name="MIOG_NewRaiderIOInfoPanelTierHeaderTemplate" virtual="true">
+        <Layers>
+            <Layer level="BORDER">
+                <Texture parentKey="Border" setAllPoints="true">
+                    <Size x="18" y="18" />
+                    <Color r="0" g="0" b="0" a="1" />
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent" relativePoint="TOPLEFT" y="-2"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+            
+            <Layer level="ARTWORK">
+                <Texture parentKey="Icon" enableMouseClicks="true">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.Border" relativePoint="TOPLEFT" x="1" y="-1" />
+                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.Border" relativePoint="BOTTOMRIGHT" x="-1" y="1" />
+                    </Anchors>
+                </Texture>
+            </Layer>
+
+            <Layer level="OVERLAY">
+                <FontString parentKey="Name" font="GameFontHighlight" justifyH="LEFT">
+                    <Size y="18" />
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.Icon" relativePoint="RIGHT" x="5" />
+                    </Anchors>
+                </FontString>
+
+                <FontString parentKey="Progress1" font="GameFontHighlight" justifyH="LEFT">
+                    <Size y="18" />
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.Name" relativePoint="LEFT" x="64" />
+                    </Anchors>
+                </FontString>
+
+                <FontString parentKey="Progress2" font="GameFontHighlight" justifyH="LEFT">
+                    <Size y="18" />
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.Progress1" relativePoint="LEFT" x="42" />
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+    </Frame>
+</Ui>

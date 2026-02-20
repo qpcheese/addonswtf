@@ -1,0 +1,122 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+    <Button name="MIOG_SortButtonTemplate" inherits="MIOG_MultiStateButtonTemplate" virtual="true">
+        <Layers>
+            <Layer level="OVERLAY">
+                <FontString parentKey="FontString" font="GameFontHighlight" justifyH="CENTER">
+                    <Anchors>
+                        <Anchor point="BOTTOMLEFT" relativeKey="$parent" relativePoint="BOTTOMLEFT"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+
+        <Scripts>
+            <OnClick>
+                local activeState = self:GetActiveState()
+
+                local numberOfActiveMethods = 0
+
+                for k, v in pairs(MIOG_NewSettings.sortMethods[self.panel]) do
+                    if(v.active) then
+                        numberOfActiveMethods = numberOfActiveMethods + 1
+                    end
+                end
+
+                if(button == "LeftButton") then
+                    if(activeState == 0 and 2 > numberOfActiveMethods) then
+                        --TO 1
+
+                        MIOG_NewSettings.sortMethods[self.panel][self.category].active = true
+                        MIOG_NewSettings.sortMethods[self.panel][self.category].currentLayer = numberOfActiveMethods + 1
+
+                        self.FontString:SetText(numberOfActiveMethods + 1)
+
+                    elseif(activeState == 1) then
+                        --TO 2
+
+
+                    elseif(activeState == 2) then
+                        --RESET TO 0
+
+                        MIOG_NewSettings.sortMethods[self.panel][self.category].active = false
+                        MIOG_NewSettings.sortMethods[self.panel][self.category].currentLayer = 0
+
+                        self.FontString:SetText("")
+
+                        for k, v in pairs(MIOG_NewSettings.sortMethods[self.panel]) do
+                            if(v.currentLayer == 2) then
+                                v.currentLayer = 1
+
+                                local buttonParent = type(self:GetParent()) ~= "Button" and self:GetParent() or type(self:GetParent():GetParent()) ~= "Button" and self:GetParent():GetParent()
+
+                                buttonArray[k].FontString:SetText(1)
+                                MIOG_NewSettings.sortMethods[self.panel][k].currentLayer = 1
+                            end
+                        end
+                    end
+
+                    if(2 > numberOfActiveMethods or numberOfActiveMethods == 2 and activeState ~= 0) then
+                        self:AdvanceState()
+
+                        MIOG_NewSettings.sortMethods[self.panel][self.category].currentState = self:GetActiveState()
+
+                        if(GameTooltip:GetOwner() == self) then
+                            GameTooltip:SetText("Current sort: "..self:GetStateName(self:GetActiveState()))
+                        end
+                    end
+
+                elseif(button == "RightButton") then
+                    if(activeState == 1 or activeState == 2) then
+                        MIOG_NewSettings.sortMethods[self.panel][self.category].active = false
+                        MIOG_NewSettings.sortMethods[self.panel][self.category].currentLayer = 0
+
+                        self.FontString:SetText("")
+
+                        for k, v in pairs(MIOG_NewSettings.sortMethods[self.panel]) do
+                            if(v.currentLayer == 2) then
+                                v.currentLayer = 1
+
+                                local buttonArray = self:GetParent().sortByCategoryButtons or self:GetParent():GetParent().sortByCategoryButtons
+
+                                buttonArray[k].FontString:SetText(1)
+                                MIOG_NewSettings.sortMethods[self.panel][k].currentLayer = 1
+                            end
+                        end
+
+                        self:SetState(false)
+
+                        if(2 > numberOfActiveMethods or numberOfActiveMethods == 2 and activeState ~= 0) then
+
+                            MIOG_NewSettings.sortMethods[self.panel][self.category].currentState = self:GetActiveState()
+
+                            if(GameTooltip:GetOwner() == self) then
+                                GameTooltip:SetText("Current sort: "..self:GetStateName(self:GetActiveState()))
+                            end
+                        end
+                    end
+                end
+            </OnClick>
+            <OnEnter>
+                GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+
+                local title
+
+                if(self.tooltipTitle) then
+                    title = self.tooltipTitle
+
+                else
+                    title = "Current"
+
+                end
+
+                GameTooltip:SetText(title .. " sort: "..self:GetStateName(self:GetActiveState()))
+                
+                GameTooltip:Show()
+            </OnEnter>
+            <OnLeave>
+                GameTooltip:Hide()
+            </OnLeave>
+        </Scripts>
+    </Button>
+</Ui>

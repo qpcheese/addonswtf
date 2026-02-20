@@ -1,0 +1,63 @@
+## Interface: 120001
+## Version: 12.0.8
+## Title: MadhousePack by |cffff6060Elschnagoo (Astrastar)|r
+## Notes: Madhouse Pack Addon with additional resources and more
+## Author: Elschnagoo (Astrastar)
+## IconTexture: Interface\ICONS\inv_dreamowl_firemount
+## SavedVariables: MadhouseAddonConfig MadhouseAddonSocial
+
+## Category-enUS: Madhouse
+## Category-deDE: Madhouse
+## Category-esES: Madhouse
+## Category-esMX: Madhouse
+## Category-frFR: Madhouse
+## Category-itIT: Madhouse
+## Category-koKR: Madhouse
+## Category-ptBR: Madhouse
+## Category-ruRU: Madhouse
+## Category-zhCN: Madhouse
+## Category-zhTW: Madhouse
+
+## OptionalDeps: RaiderIO, Auctionator, DebugLog
+ 
+Libs/LibStub/LibStub.lua
+Libs/CallbackHandler-1.0/CallbackHandler-1.0.lua
+Libs/LibDataBroker-1.1/LibDataBroker-1.1.lua
+Libs/LibDBIcon-1.0/LibDBIcon-1.0.lua
+Libs/LibSharedMedia-3.0/lib.xml
+Libs/LibSerialize/lib.xml
+Libs/LibDeflate/LibDeflate.lua
+
+Libs/AceAddon-3.0/AceAddon-3.0.xml
+Libs/AceGUI-3.0/AceGUI-3.0.xml 
+
+Lua/Sounds.lua
+Lua/Textures.lua
+
+Lua/Static.lua
+Lua/Lib.lua
+Lua/Init.lua
+Lua/Trigger.lua
+Lua/Window.lua
+Lua/Anchor.lua
+
+Lua/DB/AchivementDB.lua
+Lua/DB/PlayerStatDB.lua
+
+Lua/Windows/AchivementWindow.lua
+Lua/Windows/CharStatWindow.lua
+Lua/Windows/CurrencyWindow.lua
+Lua/Windows/FarmingWindow.lua
+Lua/Windows/PortalRoomWindow.lua
+Lua/Windows/PortalWindow.lua
+Lua/Windows/RatingWindow.lua
+Lua/Windows/SettingsWindow.lua
+Lua/Windows/StopMotion.lua
+Lua/Windows/TestWindow.lua
+Lua/Windows/UpgradeWindow.lua
+Lua/Windows/WindowManager.lua
+
+Lua/Feature/OldManCursor.lua
+Lua/Feature/SimpleActionBar.lua
+
+Lua/Main.lua

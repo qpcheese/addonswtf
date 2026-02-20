@@ -1,0 +1,46 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+    <Button name="MIOG_FilterManagerBossFrameTemplate" inherits="UIButtonTemplate" registerForClicks="LeftButtonDown, RightButtonDown" mixin="FilterMixin, NewMultiStateButtonMixin" virtual="true">
+        <Size x="18" y="18" />
+
+        <Layers>
+            <Layer level="BORDER">
+                <Texture parentKey="Border" setAllPoints="true" />
+            </Layer>
+            
+            <Layer level="ARTWORK">
+                <Texture parentKey="Icon">
+                    <Anchors>
+                        <Anchor point="TOPLEFT" relativeKey="$parent.Border" relativePoint="TOPLEFT" x="1" y="-1"/>
+                        <Anchor point="BOTTOMRIGHT" relativeKey="$parent.Border" relativePoint="BOTTOMRIGHT" x="-1" y="1"/>
+                    </Anchors>
+                </Texture>
+            </Layer>
+        </Layers>
+
+        <Scripts>
+            <OnLoad>
+                self:OnLoad("color")
+            </OnLoad>
+
+            <PostClick>
+                if(button == "LeftButton") then
+                    self:AdvanceState()
+
+                else
+                    self:SetState(1)
+                    
+                end
+            </PostClick>
+
+            <OnEnter>
+                if(self.name) then
+                    GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+                    GameTooltip:SetText(self.name)
+                    GameTooltip:Show()
+                end
+            </OnEnter>
+            <OnLeave function="GameTooltip_Hide" />
+        </Scripts>
+    </Button>
+</Ui>

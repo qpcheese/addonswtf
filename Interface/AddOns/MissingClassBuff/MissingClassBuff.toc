@@ -1,0 +1,21 @@
+## Interface: 120000, 120001
+## Title: Missing Class Buff
+## Notes: Notifies you if the class buff you provide is missing from one of your party or raid members
+## Author: Kaloryth
+## Version: 1.4.4
+## X-DB-Version: 137
+## RequiredDeps:
+## OptionalDeps: Masque, LibDualSpec-1.0
+## X-Curse-Project-ID: 1426028
+## SavedVariables: MissingClassBuffDB
+
+embeds.xml
+libs\LibEditMode\embed.xml
+
+#@no-lib-strip@
+libs\LibDualSpec-1.0\LibDualSpec-1.0.lua
+#@end-no-lib-strip@
+
+MissingClassBuff.lua
+Data.lua
+Settings.lua

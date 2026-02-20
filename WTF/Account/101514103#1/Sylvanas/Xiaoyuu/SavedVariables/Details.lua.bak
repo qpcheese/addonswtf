@@ -1,0 +1,1345 @@
+
+_detalhes_database = {
+["savedbuffs"] = {
+},
+["mythic_dungeon_id"] = 0,
+["tabela_historico"] = {
+["tabelas"] = {
+{
+{
+["combatId"] = 2,
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["totalabsorbed"] = 0.006904,
+["pets"] = {
+},
+["classe"] = "MONK",
+["total_without_pet"] = 70.00690399999999,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 70.00690399999999,
+["spec"] = 269,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-1597-0FA75568",
+["damage_from"] = {
+["Private Cole"] = true,
+},
+["targets"] = {
+["Private Cole"] = 70,
+},
+["colocacao"] = 1,
+["aID"] = "1597-0FA75568",
+["grupo"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1736483998,
+["nome"] = "Xiaoyuu",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 10,
+["targets"] = {
+["Private Cole"] = 30,
+},
+["n_total"] = 30,
+["n_min"] = 10,
+["g_dmg"] = 0,
+["counter"] = 3,
+["total"] = 30,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 3,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[100780] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 4,
+["targets"] = {
+["Private Cole"] = 12,
+},
+["n_total"] = 12,
+["n_min"] = 4,
+["g_dmg"] = 0,
+["counter"] = 3,
+["total"] = 12,
+["c_max"] = 0,
+["id"] = 100780,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 3,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[100784] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 14,
+["targets"] = {
+["Private Cole"] = 28,
+},
+["n_total"] = 28,
+["n_min"] = 14,
+["g_dmg"] = 0,
+["counter"] = 2,
+["total"] = 28,
+["c_max"] = 0,
+["id"] = 100784,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 2,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 5.181474650285488,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 3.006904,
+["start_time"] = 1736483985,
+["delay"] = 0,
+["last_event"] = 1736483993,
+},
+{
+["flag_original"] = 68136,
+["totalabsorbed"] = 0.007951,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 3.007951,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 3.007951,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-3774-2175-24588-157051-000000A47D",
+["aID"] = "157051",
+["damage_from"] = {
+["Xiaoyuu"] = true,
+},
+["targets"] = {
+["Xiaoyuu"] = 3,
+},
+["fight_component"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1736483998,
+["nome"] = "Private Cole",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 1,
+["targets"] = {
+["Xiaoyuu"] = 3,
+},
+["n_total"] = 3,
+["n_min"] = 1,
+["g_dmg"] = 0,
+["counter"] = 4,
+["total"] = 3,
+["c_max"] = 0,
+["DODGE"] = 1,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 3,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 70.00795099999999,
+["start_time"] = 1736483985,
+["delay"] = 0,
+["last_event"] = 1736483992,
+},
+},
+},
+{
+["combatId"] = 2,
+["tipo"] = 3,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 2,
+["tipo"] = 7,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 2,
+["tipo"] = 9,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "MONK",
+["grupo"] = true,
+["serial"] = "Player-1597-0FA75568",
+["aID"] = "1597-0FA75568",
+["nome"] = "Xiaoyuu",
+["spec"] = 269,
+["last_event"] = 0,
+["tipo"] = 4,
+},
+{
+["flag_original"] = 68136,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["serial"] = "Creature-0-3774-2175-24588-157051-000000A47D",
+["fight_component"] = true,
+["aID"] = "157051",
+["nome"] = "Private Cole",
+["last_event"] = 0,
+["tipo"] = 4,
+},
+},
+},
+{
+["combatId"] = 2,
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+["Xiaoyuu"] = "Player-1597-0FA75568",
+},
+["CombatStartedAt"] = 64880.336,
+["tempo_start"] = 1736483985,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["combat_counter"] = 7,
+["playerTalents"] = {
+},
+["totals"] = {
+73,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["player_last_events"] = {
+},
+["frags_need_refresh"] = false,
+["amountCasts"] = {
+["Private Cole"] = {
+["Jump Behind (DNT)"] = 2,
+},
+["Xiaoyuu"] = {
+["Blackout Kick"] = 2,
+["Tiger Palm"] = 2,
+},
+},
+["instance_type"] = "none",
+["zoneName"] = "9.0 NPE (New Player Experience) - Exile's Reach",
+["data_fim"] = "05:39:58",
+["hasTimer"] = 13.00699999999779,
+["pvp"] = true,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "Private Cole",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 13.5109999999986,
+["CombatEndedAt"] = 64893.847,
+["aura_timeline"] = {
+},
+["data_inicio"] = "05:39:45",
+["end_time"] = 64893.847,
+["mapId"] = 2175,
+["combat_id"] = 2,
+["overall_added"] = true,
+["playing_solo"] = true,
+["is_challenge"] = false,
+["frags"] = {
+},
+["boss_hp"] = 1,
+["cleu_events"] = {
+["n"] = 1,
+},
+["totals_grupo"] = {
+70,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage_section"] = {
+},
+["damage"] = {
+{
+["Xiaoyuu"] = 70.00690399999999,
+},
+},
+},
+["start_time"] = 64880.336,
+["TimeData"] = {
+},
+["spells_cast_timeline"] = {
+},
+},
+{
+{
+["combatId"] = 1,
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["totalabsorbed"] = 0.00229,
+["pets"] = {
+},
+["classe"] = "MONK",
+["total_without_pet"] = 58.00229,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 58.00229,
+["spec"] = 269,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-1597-0FA75568",
+["damage_from"] = {
+},
+["targets"] = {
+["Combat Dummy"] = 58,
+},
+["colocacao"] = 1,
+["aID"] = "1597-0FA75568",
+["grupo"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1736483964,
+["nome"] = "Xiaoyuu",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 9,
+["targets"] = {
+["Combat Dummy"] = 45,
+},
+["n_total"] = 45,
+["n_min"] = 9,
+["g_dmg"] = 0,
+["counter"] = 5,
+["total"] = 45,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 5,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[100780] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 4,
+["targets"] = {
+["Combat Dummy"] = 13,
+},
+["n_total"] = 13,
+["n_min"] = 3,
+["g_dmg"] = 0,
+["counter"] = 4,
+["total"] = 13,
+["c_max"] = 0,
+["id"] = 100780,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 4,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 2.90898691007489,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 0.00229,
+["start_time"] = 1736483944,
+["delay"] = 0,
+["last_event"] = 1736483958,
+},
+{
+["flag_original"] = 68136,
+["totalabsorbed"] = 0.007583,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 0.007583,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 0.007583,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-3774-2175-24588-160737-000000A35D",
+["aID"] = "160737",
+["damage_from"] = {
+["Noferit-Outland"] = true,
+["Xiaoyuu"] = true,
+},
+["targets"] = {
+},
+["fight_component"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1736483964,
+["nome"] = "Combat Dummy",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 111.007583,
+["start_time"] = 1736483964,
+["delay"] = 0,
+["last_event"] = 0,
+},
+},
+},
+{
+["combatId"] = 1,
+["tipo"] = 3,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 1,
+["tipo"] = 7,
+["_ActorTable"] = {
+},
+},
+{
+["combatId"] = 1,
+["tipo"] = 9,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["pets"] = {
+},
+["classe"] = "MONK",
+["grupo"] = true,
+["serial"] = "Player-1597-0FA75568",
+["aID"] = "1597-0FA75568",
+["nome"] = "Xiaoyuu",
+["spec"] = 269,
+["last_event"] = 0,
+["tipo"] = 4,
+},
+},
+},
+{
+["combatId"] = 1,
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+["Xiaoyuu"] = "Player-1597-0FA75568",
+},
+["CombatStartedAt"] = 64839.475,
+["tempo_start"] = 1736483944,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["bossTimers"] = {
+},
+["combat_counter"] = 6,
+["playerTalents"] = {
+},
+["totals"] = {
+111,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["player_last_events"] = {
+},
+["frags_need_refresh"] = true,
+["amountCasts"] = {
+["Xiaoyuu"] = {
+["Tiger Palm"] = 4,
+},
+},
+["instance_type"] = "none",
+["zoneName"] = "9.0 NPE (New Player Experience) - Exile's Reach",
+["data_fim"] = "05:39:24",
+["hasTimer"] = 19.01100000000588,
+["pvp"] = true,
+["bIsClosed"] = true,
+["cleu_timeline"] = {
+},
+["enemy"] = "Combat Dummy",
+["trinketProcs"] = {
+},
+["TotalElapsedCombatTime"] = 19.93900000000576,
+["CombatEndedAt"] = 64859.414,
+["aura_timeline"] = {
+},
+["data_inicio"] = "05:39:04",
+["end_time"] = 64859.414,
+["mapId"] = 2175,
+["combat_id"] = 1,
+["overall_added"] = true,
+["playing_solo"] = true,
+["is_challenge"] = false,
+["frags"] = {
+["Combat Dummy"] = 2,
+},
+["boss_hp"] = 1,
+["cleu_events"] = {
+["n"] = 1,
+},
+["totals_grupo"] = {
+58,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["heal_section"] = {
+},
+["heal"] = {
+{
+},
+},
+["damage_section"] = {
+},
+["damage"] = {
+{
+["Xiaoyuu"] = 58.00229,
+},
+},
+},
+["start_time"] = 64839.475,
+["TimeData"] = {
+},
+["spells_cast_timeline"] = {
+},
+},
+},
+},
+["ocd_tracker"] = {
+["show_title"] = true,
+["current_cooldowns"] = {
+},
+["lines_per_column"] = 12,
+["group_frames"] = true,
+["show_options"] = false,
+["frames"] = {
+["defensive-raid"] = {
+},
+["main"] = {
+},
+["ofensive"] = {
+},
+["defensive-target"] = {
+},
+["utility"] = {
+},
+["defensive-personal"] = {
+},
+},
+["width"] = 120,
+["ignored_cooldowns"] = {
+},
+["framme_locked"] = false,
+["cooldowns"] = {
+},
+["own_frame"] = {
+["defensive-raid"] = false,
+["ofensive"] = false,
+["defensive-target"] = false,
+["utility"] = false,
+["defensive-personal"] = false,
+},
+["height"] = 18,
+["show_conditions"] = {
+["only_inside_instance"] = true,
+["only_in_group"] = true,
+},
+["enabled"] = false,
+["filters"] = {
+["itemutil"] = false,
+["itempower"] = false,
+["defensive-target"] = false,
+["itemheal"] = false,
+["defensive-personal"] = false,
+["defensive-raid"] = false,
+["ofensive"] = true,
+["crowdcontrol"] = false,
+["utility"] = false,
+},
+},
+["last_version"] = "11.0.7 13317",
+["player_stats"] = {
+},
+["force_font_outline"] = "",
+["tabela_instancias"] = {
+},
+["coach"] = {
+["enabled"] = false,
+["welcome_panel_pos"] = {
+},
+["last_coach_name"] = false,
+},
+["local_instances_config"] = {
+{
+["modo"] = 2,
+["sub_attribute"] = 1,
+["sub_atributo_last"] = {
+1,
+1,
+1,
+1,
+1,
+},
+["is_open"] = true,
+["isLocked"] = true,
+["snap"] = {
+},
+["segment"] = 0,
+["mode"] = 2,
+["attribute"] = 1,
+["pos"] = {
+["normal"] = {
+["y"] = -447.0000228881836,
+["x"] = 562.0003662109375,
+["w"] = 309.9999389648438,
+["h"] = 157.9999847412109,
+},
+["solo"] = {
+["y"] = 2,
+["x"] = 1,
+["w"] = 300,
+["h"] = 200,
+},
+},
+},
+},
+["cached_talents"] = {
+},
+["last_instance_id"] = 0,
+["data_harvest_for_charsts"] = {
+["players"] = {
+{
+["playerKey"] = "total",
+["combatObjectContainer"] = 1,
+["name"] = "Damage of Each Individual Player",
+["playerOnly"] = true,
+},
+},
+["totals"] = {
+{
+["combatObjectSubTableKey"] = 1,
+["name"] = "Damage of All Player Combined",
+["combatObjectSubTableName"] = "totals",
+},
+},
+},
+["announce_interrupts"] = {
+["enabled"] = false,
+["whisper"] = "",
+["channel"] = "SAY",
+["custom"] = "",
+["next"] = "",
+},
+["announce_prepots"] = {
+["enabled"] = false,
+["channel"] = "SELF",
+["reverse"] = false,
+},
+["active_profile"] = "Xiaoyuu-Sylvanas",
+["mythic_dungeon_currentsaved"] = {
+["dungeon_name"] = "",
+["started"] = false,
+["segment_id"] = 0,
+["ej_id"] = 0,
+["started_at"] = 0,
+["run_id"] = 0,
+["level"] = 0,
+["dungeon_zone_id"] = 0,
+["previous_boss_killed_at"] = 0,
+},
+["benchmark_db"] = {
+["frame"] = {
+},
+},
+["combat_log"] = {
+["inverse_deathlog_overalldata"] = false,
+["merge_gemstones_1007"] = false,
+["track_hunter_frenzy"] = false,
+["merge_critical_heals"] = false,
+["inverse_deathlog_raid"] = false,
+["calc_evoker_damage"] = true,
+["evoker_show_realtimedps"] = false,
+["inverse_deathlog_mplus"] = false,
+},
+["combat_counter"] = 7,
+["mythic_plus_log"] = {
+},
+["data_harvested_for_charts"] = {
+},
+["announce_damagerecord"] = {
+["enabled"] = true,
+["channel"] = "SELF",
+},
+["on_death_menu"] = false,
+["nick_tag_cache"] = {
+["nextreset"] = 1737779836,
+["last_version"] = 16,
+},
+["SoloTablesSaved"] = {
+["Mode"] = 1,
+},
+["last_realversion"] = 161,
+["last_instance_time"] = 0,
+["combat_id"] = 2,
+["savedStyles"] = {
+},
+["last_day"] = "10",
+["character_data"] = {
+["logons"] = 2,
+},
+["announce_deaths"] = {
+["enabled"] = false,
+["last_hits"] = 1,
+["only_first"] = 5,
+["where"] = 1,
+},
+["tabela_overall"] = {
+{
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["totalabsorbed"] = 0.012204,
+["pets"] = {
+},
+["classe"] = "MONK",
+["total_without_pet"] = 128.012204,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 128.012204,
+["spec"] = 269,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Player-1597-0FA75568",
+["aID"] = "1597-0FA75568",
+["damage_from"] = {
+["Private Cole"] = true,
+},
+["targets"] = {
+["Private Cole"] = 70,
+["Combat Dummy"] = 58,
+},
+["grupo"] = true,
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1736483964,
+["nome"] = "Xiaoyuu",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 10,
+["targets"] = {
+["Private Cole"] = 30,
+["Combat Dummy"] = 45,
+},
+["n_total"] = 75,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 8,
+["total"] = 75,
+["c_max"] = 0,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 8,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[100780] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 4,
+["targets"] = {
+["Private Cole"] = 12,
+["Combat Dummy"] = 13,
+},
+["n_total"] = 25,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 7,
+["total"] = 25,
+["c_max"] = 0,
+["id"] = 100780,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 7,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+[100784] = {
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 14,
+["targets"] = {
+["Private Cole"] = 28,
+},
+["n_total"] = 28,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 2,
+["total"] = 28,
+["c_max"] = 0,
+["id"] = 100784,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 2,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 3.012204,
+["start_time"] = 1736483928,
+["delay"] = 0,
+["last_event"] = 0,
+},
+{
+["flag_original"] = 68136,
+["totalabsorbed"] = 0.009482,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 0.009482,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 0.009482,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-3774-2175-24588-160737-000000A35D",
+["aID"] = "160737",
+["fight_component"] = true,
+["damage_from"] = {
+["Noferit-Outland"] = true,
+["Xiaoyuu"] = true,
+},
+["targets"] = {
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1736483964,
+["nome"] = "Combat Dummy",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 111.009482,
+["start_time"] = 1736483961,
+["delay"] = 0,
+["last_event"] = 0,
+},
+{
+["flag_original"] = 68136,
+["totalabsorbed"] = 0.01229,
+["pets"] = {
+},
+["classe"] = "UNKNOW",
+["total_without_pet"] = 3.01229,
+["last_dps_realtime"] = 0,
+["dps_started"] = false,
+["total"] = 3.01229,
+["on_hold"] = false,
+["total_extra"] = 0,
+["serial"] = "Creature-0-3774-2175-24588-157051-000000A47D",
+["aID"] = "157051",
+["fight_component"] = true,
+["damage_from"] = {
+["Xiaoyuu"] = true,
+},
+["targets"] = {
+["Xiaoyuu"] = 3,
+},
+["friendlyfire_total"] = 0,
+["raid_targets"] = {
+},
+["end_time"] = 1736483998,
+["nome"] = "Private Cole",
+["spells"] = {
+["tipo"] = 2,
+["_ActorTable"] = {
+{
+["c_amt"] = 0,
+["b_amt"] = 0,
+["g_amt"] = 0,
+["n_max"] = 1,
+["targets"] = {
+["Xiaoyuu"] = 3,
+},
+["n_total"] = 3,
+["n_min"] = 0,
+["g_dmg"] = 0,
+["counter"] = 4,
+["total"] = 3,
+["c_max"] = 0,
+["DODGE"] = 1,
+["id"] = 1,
+["r_dmg"] = 0,
+["spellschool"] = 1,
+["extra"] = {
+},
+["a_dmg"] = 0,
+["a_amt"] = 0,
+["c_min"] = 0,
+["successful_casted"] = 0,
+["c_total"] = 0,
+["n_amt"] = 3,
+["b_dmg"] = 0,
+["r_amt"] = 0,
+},
+},
+},
+["friendlyfire"] = {
+},
+["last_dps"] = 0,
+["custom"] = 0,
+["tipo"] = 1,
+["damage_taken"] = 70.01229,
+["start_time"] = 1736483982,
+["delay"] = 0,
+["last_event"] = 0,
+},
+},
+},
+{
+["tipo"] = 3,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 7,
+["_ActorTable"] = {
+},
+},
+{
+["tipo"] = 9,
+["_ActorTable"] = {
+{
+["flag_original"] = 1297,
+["tipo"] = 4,
+["pets"] = {
+},
+["classe"] = "MONK",
+["grupo"] = true,
+["serial"] = "Player-1597-0FA75568",
+["aID"] = "1597-0FA75568",
+["nome"] = "Xiaoyuu",
+["spec"] = 269,
+["last_event"] = 0,
+},
+{
+["flag_original"] = 68136,
+["tipo"] = 4,
+["pets"] = {
+},
+["fight_component"] = true,
+["classe"] = "UNKNOW",
+["serial"] = "Creature-0-3774-2175-24588-157051-000000A47D",
+["aID"] = "157051",
+["nome"] = "Private Cole",
+["last_event"] = 0,
+},
+},
+},
+{
+["tipo"] = 2,
+["_ActorTable"] = {
+},
+},
+["raid_roster"] = {
+},
+["totals_grupo"] = {
+128.009194,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+},
+["tempo_start"] = 1736483944,
+["last_events_tables"] = {
+},
+["alternate_power"] = {
+},
+["cleu_timeline"] = {
+},
+["bossTimers"] = {
+},
+["trinketProcs"] = {
+},
+["playerTalents"] = {
+},
+["totals"] = {
+184.038492,
+0,
+{
+0,
+[0] = 0,
+["alternatepower"] = 0,
+[3] = 0,
+[6] = 0,
+},
+{
+["buff_uptime"] = 0,
+["ress"] = 0,
+["debuff_uptime"] = 0,
+["cooldowns_defensive"] = 0,
+["interrupt"] = 0,
+["dispell"] = 0,
+["cc_break"] = 0,
+["dead"] = 0,
+},
+["frags_total"] = 0,
+["voidzone_damage"] = 0,
+},
+["player_last_events"] = {
+},
+["segments_added"] = {
+{
+["elapsed"] = 13.5109999999986,
+["type"] = 0,
+["name"] = "Private Cole",
+["clock"] = "05:39:45",
+},
+{
+["elapsed"] = 19.93900000000576,
+["type"] = 0,
+["name"] = "Combat Dummy",
+["clock"] = "05:39:04",
+},
+},
+["frags_need_refresh"] = false,
+["aura_timeline"] = {
+},
+["data_inicio"] = "05:39:04",
+["amountCasts"] = {
+["Xiaoyuu"] = {
+["Blackout Kick"] = 2,
+["Tiger Palm"] = 6,
+},
+["Private Cole"] = {
+["Jump Behind (DNT)"] = 2,
+},
+},
+["mapId"] = 2175,
+["cleu_events"] = {
+["n"] = 1,
+},
+["zoneName"] = "9.0 NPE (New Player Experience) - Exile's Reach",
+["end_time"] = 64893.847,
+["boss_hp"] = 1,
+["is_challenge"] = false,
+["frags"] = {
+},
+["data_fim"] = "05:39:58",
+["overall_enemy_name"] = "-- x -- x --",
+["spells_cast_timeline"] = {
+},
+["PhaseData"] = {
+{
+1,
+1,
+},
+["heal_section"] = {
+},
+["heal"] = {
+},
+["damage_section"] = {
+},
+["damage"] = {
+},
+},
+["start_time"] = 64860.397,
+["TimeData"] = {
+["Raid Damage Done"] = {
+},
+},
+["combat_counter"] = 5,
+},
+["plugin_database"] = {
+["DETAILS_PLUGIN_ENCOUNTER_DETAILS"] = {
+["enabled"] = true,
+["encounter_timers_bw"] = {
+},
+["max_emote_segments"] = 3,
+["last_section_selected"] = "main",
+["author"] = "Terciob",
+["window_scale"] = 1,
+["encounter_timers_dbm"] = {
+},
+["show_icon"] = 5,
+["opened"] = 0,
+["hide_on_combat"] = false,
+},
+["DETAILS_PLUGIN_COMPARETWO_WINDOW"] = {
+["enabled"] = true,
+["author"] = "Terciob",
+["max_compares"] = 4,
+["compare_type"] = 1,
+},
+["DETAILS_PLUGIN_RAIDCHECK"] = {
+["enabled"] = true,
+["food_tier1"] = true,
+["mythic_1_4"] = true,
+["food_tier2"] = true,
+["author"] = "Terciob",
+["use_report_panel"] = true,
+["pre_pot_healers"] = false,
+["pre_pot_tanks"] = false,
+["food_tier3"] = true,
+},
+},
+["ignore_nicktag"] = false,
+["announce_firsthit"] = {
+["enabled"] = true,
+["channel"] = "SELF",
+},
+["announce_cooldowns"] = {
+["ignored_cooldowns"] = {
+},
+["enabled"] = false,
+["custom"] = "",
+["channel"] = "RAID",
+},
+["rank_window"] = {
+["last_difficulty"] = 15,
+["last_raid"] = "",
+},
+["cached_roles"] = {
+},
+["cached_specs"] = {
+["Player-1597-0FA75568"] = 1450,
+},
+}

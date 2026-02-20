@@ -1,0 +1,8 @@
+package-as: CanOpener
+ignore:
+  - .gitattributes
+  - .gitignore
+  - .github
+  - Changelog.txt
+  - README.md
+  - tools

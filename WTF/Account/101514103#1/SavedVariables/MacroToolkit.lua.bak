@@ -1,0 +1,50 @@
+
+MacroToolkitDB = {
+["char"] = {
+["Qpfromage - Sylvanas"] = {
+["classFile"] = "MAGE",
+["macros"] = {
+[121] = {
+["icon"] = "135932",
+["name"] = "AI self",
+["body"] = "#showtooltip\n/cast [@player] Arcane Intellect\n",
+},
+[122] = {
+["icon"] = "4555546",
+["name"] = "DB / NOVA",
+["body"] = "#showtooltip\n/cast Supernova\n/cast Dragon's Breath\n",
+},
+[123] = {
+["icon"] = "2399288",
+["name"] = "mount",
+["body"] = "/use surf jelly\n/use Ashes of Al'ar\n/dismount\n",
+},
+[124] = {
+["icon"] = "134400",
+["name"] = "surge",
+["body"] = "#showtooltip\n/cast arcane surge\n/use Kindness of chi-ji\n",
+},
+},
+["backups"] = {
+},
+},
+},
+["global"] = {
+["backups"] = {
+},
+["ebackups"] = {
+},
+},
+["profileKeys"] = {
+["Qpfromage - Sylvanas"] = "profile",
+["Gammelemil - Grim Batol"] = "profile",
+},
+["profiles"] = {
+["profile"] = {
+["y"] = 371.9997253417969,
+["x"] = 239.4998626708984,
+["height"] = 423.9999084472656,
+["width"] = 638.0001220703125,
+},
+},
+}

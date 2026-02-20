@@ -1,0 +1,250 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+	<Script file="DataFunctions.lua" />
+	<Script file="DisplayFunctions.lua" />
+	<Script file="SortFunctions.lua" />
+	<Script file="Metadata.lua" />
+	<Script file="MerchantPlus.lua" />
+	<Script file="MerchantPlusTable.lua" />
+	<Script file="MerchantPlusItemList.lua" />
+	<Script file="MerchantPlusItemListLine.lua" />
+	<Frame name="MerchantPlusFrame" parent="MerchantFrame" mixin="MerchantPlusFrameMixin" hidden="true">
+		<Anchors>
+			<Anchor point="TOPLEFT" x="0" y="-62" />
+			<Anchor point="BOTTOMRIGHT" x="-6" y="79" />
+		</Anchors>
+		<Layers>
+			<Layer level="BACKGROUND" textureSubLevel="-6">
+				<Texture file="Interface\FrameGeneral\UI-Background-Rock" horizTile="true" vertTile="true" parentKey="Background">
+					<Anchors>
+						<Anchor point="TOPLEFT" x="0" y="2"/>
+						<Anchor point="BOTTOMRIGHT" x="0" y="0"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Frames>
+			<Frame name="MerchantPlusItemList" mixin="MerchantPlusItemListMixin" virtual="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" />
+					<Anchor point="BOTTOMRIGHT" />
+				</Anchors>
+				<Frames>
+					<Frame parentKey="NineSlice" useParentLevel="true" inherits="NineSlicePanelTemplate">
+						<KeyValues>
+							<KeyValue key="layoutType" value="InsetFrameTemplate" type="string" />
+						</KeyValues>
+					</Frame>
+					<Frame parentKey="HeaderContainer" clipChildren="true">
+						<Size x="0" y="19" />
+						<Anchors>
+							<Anchor point="TOPLEFT" x="4" y="-1"/>
+							<Anchor point="TOPRIGHT" x="-26" y="-1"/>
+						</Anchors>
+					</Frame>
+					<Frame parentKey="ScrollBox" inherits="WowScrollBoxList">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeKey="$parent.HeaderContainer" relativePoint="BOTTOMLEFT" x="0" y="-6"/>
+							<Anchor point="RIGHT" relativeKey="$parent.HeaderContainer" relativePoint="RIGHT"/>
+							<Anchor point="BOTTOM" x="0" y="3"/>
+						</Anchors>
+					</Frame>
+					<EventFrame parentKey="ScrollBar" inherits="MinimalScrollBar">
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeKey="$parent.ScrollBox" relativePoint="TOPRIGHT" x="9" y="0"/>
+							<Anchor point="BOTTOMLEFT" relativeKey="$parent.ScrollBox" relativePoint="BOTTOMRIGHT" x="9" y="4"/>
+						</Anchors>
+					</EventFrame>
+				</Frames>
+				<Layers>
+					<Layer>
+						<Texture parentKey="Background" atlas="auctionhouse-background-index" useAtlasSize="true">
+							<Anchors>
+								<Anchor point="TOPLEFT" relativeKey="$parent.HeaderContainer" relativePoint="BOTTOMLEFT" x="3" y="-3" />
+								<Anchor point="BOTTOMRIGHT" x="-3" y="2" />
+							</Anchors>
+						</Texture>
+					</Layer>
+					<Layer level="OVERLAY">
+						<FontString parentKey="ResultsText" inherits="GameFontNormal" hidden="true">
+							<Anchors>
+								<Anchor point="TOP" relativeKey="$parent.ScrollFrame" relativePoint="TOP" x="0" y="-45"/>
+								<Anchor point="LEFT" x="45"/>
+								<Anchor point="RIGHT" x="-67"/>
+							</Anchors>
+							<Color color="NORMAL_FONT_COLOR"/>
+							<Shadow>
+								<Offset>
+									<AbsDimension x="1" y="-1"/>
+								</Offset>
+								<Color r="0" g="0" b="0"/>
+							</Shadow>
+						</FontString>
+					</Layer>
+				</Layers>
+				<Scripts>
+					<OnLoad method="OnLoad" />
+					<OnShow method="OnShow" />
+					<OnHide method="OnHide" />
+				</Scripts>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnLoad method="OnLoad" />
+		</Scripts>
+	</Frame>
+	<Frame name="MerchantPlusTabFrame" parent="MerchantFrame">
+		<Frames>
+			<Button name="MerchantPlusTab" inherits="PanelTabButtonTemplate" mixin="MerchantPlusTabMixin" text="Merchant Plus" id="1">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="MerchantFrameTab2" relativePoint="TOPRIGHT" x="3" y="0" />
+				</Anchors>
+				<Scripts>
+					<OnLoad method="OnLoad" />
+					<OnClick method="OnClick" />
+				</Scripts>
+			</Button>
+		</Frames>
+	</Frame>
+	<Frame name="MerchantPlusTablePriceTemplate" mixin="MerchantPlusTablePriceMixin" virtual="true">
+		<Frames>
+			<Frame parentKey="MoneyDisplay" inherits="MoneyDisplayFrameTemplate" setAllPoints="true">
+				<KeyValues>
+					<KeyValue key="hideCopper" value="false" type="boolean"/>
+					<KeyValue key="useAuctionHouseIcons" value="true" type="boolean"/>
+				</KeyValues>
+			</Frame>
+			<Frame parentKey="AltCurrencyDisplay" hidden="true" setAllPoints="true">
+				<Size x="128" y="13"/>
+				<Frames>
+					<Button parentKey="Item1" inherits="SmallDenominationTemplate" hidden="true">
+						<Size x="32" y="13" />
+						<Anchors>
+							<Anchor point="RIGHT" />
+						</Anchors>
+					</Button>
+					<Button parentKey="Item2" inherits="SmallDenominationTemplate" hidden="true">
+						<Size x="32" y="13" />
+						<Anchors>
+							<Anchor point="RIGHT" RelativeKey="$parent.Item1" RelativePoint="LEFT" x="-4" />
+						</Anchors>
+					</Button>
+					<Button parentKey="Item3" inherits="SmallDenominationTemplate" hidden="true">
+						<Size x="32" y="13" />
+						<Anchors>
+							<Anchor point="RIGHT" RelativeKey="$parent.Item2" RelativePoint="LEFT" x="-4" />
+						</Anchors>
+					</Button>
+				</Frames>
+			</Frame>
+		</Frames>
+	</Frame>
+	<Frame name="MerchantPlusTableTextTemplate" mixin="MerchantPlusTableTextMixin" virtual="true">
+		<Size x="0" y="16"/>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString parentKey="Text" inherits="Number14FontWhite" justifyH="LEFT" setAllPoints="true" />
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MerchantPlusTableNumberTemplate" mixin="MerchantPlusTableNumberMixin" virtual="true">
+		<Size x="0" y="16"/>
+		<Layers>
+			<Layer level="BACKGROUND">
+				<FontString parentKey="Text" inherits="Number14FontWhite" justifyH="RIGHT" setAllPoints="true" />
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MerchantPlusTableIconTemplate" mixin="MerchantPlusTableIconMixin" virtual="true">
+		<Size x="0" y="16"/>
+		<Layers>
+			<Layer level="BACKGROUND" textureSubLevel="1">
+				<Texture parentKey="Icon">
+					<Size x="14" y="14"/>
+					<Anchors>
+						<Anchor point="CENTER" />
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MerchantPlusTableBooleanTemplate" mixin="MerchantPlusTableBooleanMixin" virtual="true">
+		<Size x="0" y="16"/>
+		<Layers>
+			<Layer level="BACKGROUND" textureSubLevel="1">
+				<Texture parentKey="Icon" atlas="checkmark-minimal" useAtlasSize="false" hidden="true">
+					<Size x="14" y="14"/>
+					<Anchors>
+						<Anchor point="CENTER" />
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Frame name="MerchantPlusTableItemTemplate" mixin="MerchantPlusTableItemMixin" virtual="true">
+		<Size x="0" y="16"/>
+		<Layers>
+			<Layer level="BACKGROUND" textureSubLevel="1">
+				<Texture parentKey="Icon">
+					<Size x="14" y="14"/>
+					<Anchors>
+						<Anchor point="LEFT"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="BACKGROUND" textureSubLevel="2">
+				<Texture parentKey="IconBorder" atlas="auctionhouse-itemicon-small-border" useAtlasSize="false">
+					<Size x="16" y="16"/>
+					<Anchors>
+						<Anchor point="CENTER" relativeKey="$parent.Icon"/>
+					</Anchors>
+				</Texture>
+
+				<FontString parentKey="Text" inherits="Number14FontWhite" justifyH="LEFT" maxLines="1">
+					<Size x="0" y="1"/>
+					<Anchors>
+						<Anchor point="LEFT" relativeKey="$parent.Icon" relativePoint="RIGHT" x="4" y="-1"/>
+						<Anchor point="RIGHT" x="1"/>
+					</Anchors>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+	<Button name="MerchantPlusItemListLineTemplate" mixin="MerchantPlusItemListLineMixin" registerForClicks="LeftButtonUp, RightButtonUp" registerForDrag="LeftButton" virtual="true">
+		<Size x="0" y="20" />
+		<Anchors>
+			<Anchor point="LEFT" />
+			<Anchor point="RIGHT" />
+		</Anchors>
+		<Layers>
+			<Layer level="OVERLAY">
+
+				<Texture parentKey="SelectedHighlight" atlas="auctionhouse-ui-row-select" alphaMode="ADD" hidden="true" />
+				<Texture parentKey="HighlightTexture" atlas="auctionhouse-ui-row-highlight" alphaMode="ADD" setAllPoints="true" hidden="true" />
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnClick method="OnClick" />
+			<OnDragStart method="OnClick" />
+			<OnEnter method="OnEnter" />
+			<OnLeave method="OnLeave" />
+			<OnHide method="OnHide" />
+		</Scripts>
+		<NormalTexture parentKey="NormalTexture" atlas="auctionhouse-rowstripe-1" setAllPoints="true" />
+	</Button>
+	<Button name="MerchantPlusTableHeaderStringTemplate" mixin="MerchantPlusTableHeaderStringMixin" inherits="ColumnDisplayButtonShortTemplate" virtual="true">
+		<Size x="0" y="19" />
+		<Layers>
+			<Layer level="OVERLAY">
+				<Texture parentKey="Arrow" atlas="auctionhouse-ui-sortarrow" useAtlasSize="true">
+					<Anchors>
+						<Anchor point="LEFT" relativeKey="$parent.Text" relativePoint="RIGHT" x="3" y="0"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+		</Layers>
+		<Scripts>
+			<OnClick method="OnClick" />
+		</Scripts>
+	</Button>
+</Ui>

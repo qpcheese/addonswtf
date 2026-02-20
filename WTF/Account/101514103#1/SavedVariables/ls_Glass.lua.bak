@@ -1,0 +1,18 @@
+
+LS_GLASS_GLOBAL_CONFIG = {
+["profileKeys"] = {
+["Kaijid - Ragnaros"] = "Default",
+["Jeaf - Sylvanas"] = "Default",
+["Helikåpter - Sylvanas"] = "Default",
+["Sørn - Ravencrest"] = "Default",
+["Qpaladin - Ragnaros"] = "Default",
+["Qute - Sylvanas"] = "Default",
+["Qpfromage - Sylvanas"] = "Default",
+["Sörn - Ravencrest"] = "Default",
+},
+["profiles"] = {
+["Default"] = {
+["version"] = 11020702,
+},
+},
+}

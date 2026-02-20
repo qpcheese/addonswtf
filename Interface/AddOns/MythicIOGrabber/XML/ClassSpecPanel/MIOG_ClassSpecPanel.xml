@@ -1,0 +1,182 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\..\FrameXML\UI.xsd">
+    <Frame name="MIOG_ClassSpecPanel" virtual="true">
+        <Size y="40" />
+        <Layers>
+            <Layer level="OVERLAY">
+                <Texture parentKey="TankIcon">
+                    <Size x="16" y="16"/>
+                    <Anchors>
+                        <Anchor point="BOTTOMLEFT" y="3"/>
+                    </Anchors>
+                </Texture>
+
+                <FontString parentKey="TankString" font="GameFontHighlight" justifyH="CENTER" justifyV="MIDDLE" outline="NORMAL">
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.TankIcon" relativePoint="RIGHT"/>
+                    </Anchors>
+                </FontString>
+
+                <Texture parentKey="HealerIcon">
+                    <Size x="16" y="16"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.TankString" relativePoint="RIGHT" x="16"/>
+                    </Anchors>
+                </Texture>
+
+                <FontString parentKey="HealerString" font="GameFontHighlight" justifyH="CENTER" justifyV="MIDDLE" outline="NORMAL">
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.HealerIcon" relativePoint="RIGHT" x="2"/>
+                    </Anchors>
+                </FontString>
+
+                <Texture parentKey="DamagerIcon">
+                    <Size x="16" y="16"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.HealerString" relativePoint="RIGHT" x="16"/>
+                    </Anchors>
+                </Texture>
+
+                <FontString parentKey="DamagerString" font="GameFontHighlight" justifyH="CENTER" justifyV="MIDDLE" outline="NORMAL">
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.DamagerIcon" relativePoint="RIGHT" x="2"/>
+                    </Anchors>
+                </FontString>
+
+                <Texture parentKey="InspectionIcon" atlas="communities-icon-searchmagnifyingglass">
+                    <Size x="14" y="14"/>
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.DamagerString" relativePoint="RIGHT" x="15"/>
+                    </Anchors>
+                    <TexCoords left="1" right="0" top="0" bottom="1" />
+                </Texture>
+
+                <FontString parentKey="InspectionString" font="GameFontHighlight" justifyH="CENTER" justifyV="MIDDLE" outline="NORMAL" text="0">
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.InspectionIcon" relativePoint="RIGHT" x="3"/>
+                    </Anchors>
+
+                    <Scripts>
+                        <OnLeave function="GameTooltip_Hide" />
+                    </Scripts>
+                </FontString>
+            </Layer>
+        </Layers>
+
+        <Frames>
+            <Frame parentKey="Classes" inherits="HorizontalLayoutFrame">
+                <Anchors>
+                    <Anchor point="BOTTOMRIGHT" relativeKey="$parent"/>
+                </Anchors>
+
+                <Frames>
+                    <Frame parentKey="EVOKER" inherits="MIOG_ClassSpecPanelClassTemplate">
+                        <KeyValues>
+                            <KeyValue key="layoutIndex" value="13" type="number" />
+                        </KeyValues>
+                    </Frame>
+
+                    <Frame parentKey="DEMONHUNTER" inherits="MIOG_ClassSpecPanelClassTemplate">
+                        <KeyValues>
+                            <KeyValue key="layoutIndex" value="12" type="number" />
+                        </KeyValues>
+                    </Frame>
+
+                    <Frame parentKey="DRUID" inherits="MIOG_ClassSpecPanelClassTemplate">
+                        <KeyValues>
+                            <KeyValue key="layoutIndex" value="11" type="number" />
+                        </KeyValues>
+                    </Frame>
+
+                    <Frame parentKey="MONK" inherits="MIOG_ClassSpecPanelClassTemplate">
+                        <KeyValues>
+                            <KeyValue key="layoutIndex" value="10" type="number" />
+                        </KeyValues>
+                    </Frame>
+
+                    <Frame parentKey="WARLOCK" inherits="MIOG_ClassSpecPanelClassTemplate">
+                        <KeyValues>
+                            <KeyValue key="layoutIndex" value="9" type="number" />
+                        </KeyValues>
+                    </Frame>
+
+                    <Frame parentKey="MAGE" inherits="MIOG_ClassSpecPanelClassTemplate">
+                        <KeyValues>
+                            <KeyValue key="layoutIndex" value="8" type="number" />
+                        </KeyValues>
+                    </Frame>
+
+                    <Frame parentKey="SHAMAN" inherits="MIOG_ClassSpecPanelClassTemplate">
+                        <KeyValues>
+                            <KeyValue key="layoutIndex" value="7" type="number" />
+                        </KeyValues>
+                    </Frame>
+
+                    <Frame parentKey="DEATHKNIGHT" inherits="MIOG_ClassSpecPanelClassTemplate">
+                        <KeyValues>
+                            <KeyValue key="layoutIndex" value="6" type="number" />
+                        </KeyValues>
+                    </Frame>
+
+                    <Frame parentKey="PRIEST" inherits="MIOG_ClassSpecPanelClassTemplate">
+                        <KeyValues>
+                            <KeyValue key="layoutIndex" value="5" type="number" />
+                        </KeyValues>
+                    </Frame>
+
+                    <Frame parentKey="ROGUE" inherits="MIOG_ClassSpecPanelClassTemplate">
+                        <KeyValues>
+                            <KeyValue key="layoutIndex" value="4" type="number" />
+                        </KeyValues>
+                    </Frame>
+
+                    <Frame parentKey="HUNTER" inherits="MIOG_ClassSpecPanelClassTemplate">
+                        <KeyValues>
+                            <KeyValue key="layoutIndex" value="3" type="number" />
+                        </KeyValues>
+                    </Frame>
+
+                    <Frame parentKey="PALADIN" inherits="MIOG_ClassSpecPanelClassTemplate">
+                        <KeyValues>
+                            <KeyValue key="layoutIndex" value="2" type="number" />
+                        </KeyValues>
+                    </Frame>
+
+                    <Frame parentKey="WARRIOR" inherits="MIOG_ClassSpecPanelClassTemplate">
+                        <KeyValues>
+                            <KeyValue key="layoutIndex" value="1" type="number" />
+                        </KeyValues>
+                    </Frame>
+                </Frames>
+            </Frame>
+
+            <Frame parentKey="LoadingSpinner" inherits="LoadingSpinnerTemplate" hidden="true">
+                <Size x="28" y="28" />
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeKey="$parent" x="-6"/>
+                </Anchors>
+            </Frame>
+            
+			<StatusBar parentKey="ProgressBar" mixin="SmoothStatusBarMixin" hidden="true">
+                <BarTexture atlas="activities-bar-fill"/>
+                activities-bar-fill
+                _honorsystem-bar-fill
+                <Size y="4" />
+				<Anchors>
+					<Anchor point="BOTTOMLEFT" relativeKey="$parent" relativePoint="BOTTOMLEFT"/>
+					<Anchor point="BOTTOMRIGHT" relativeKey="$parent.Classes" relativePoint="BOTTOMLEFT"/>
+				</Anchors>
+            </StatusBar>
+        </Frames>
+
+        <Layers>
+            <Layer level="OVERLAY">
+                <FontString parentKey="InspectCharacterName" font="GameFontHighlight" justifyH="CENTER" justifyV="MIDDLE" outline="NORMAL">
+                    <Anchors>
+                        <Anchor point="LEFT" relativeKey="$parent.LoadingSpinner" relativePoint="RIGHT" x="-2"/>
+                    </Anchors>
+                </FontString>
+            </Layer>
+        </Layers>
+    </Frame>
+</Ui>

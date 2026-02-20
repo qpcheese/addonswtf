@@ -1,0 +1,147 @@
+
+FrameColorDB = {
+["profileKeys"] = {
+["Kaijid - Ragnaros"] = "Default",
+["Gammelemil - Grim Batol"] = "Default",
+["Qpaladin - Ragnaros"] = "Default",
+["Qute - Sylvanas"] = "Default",
+["Qpfromage - Sylvanas"] = "Default",
+["Dogson - Ragnaros"] = "Default",
+},
+["profiles"] = {
+["Default"] = {
+["ActionBars"] = {
+["ClassTalentFrame"] = {
+},
+["CharacterFrame"] = {
+},
+["InspectFrame"] = {
+},
+["TargetFrame"] = {
+},
+["FrameColor_Skin"] = {
+},
+["FriendsFrame"] = {
+},
+["DelvesFrame"] = {
+},
+["PlayerSpellsFrame"] = {
+},
+["Ace3_Skin"] = {
+},
+["PlayerFrame"] = {
+},
+},
+["Group"] = {
+["InspectFrame"] = {
+},
+["ClassTalentFrame"] = {
+},
+["CharacterFrame"] = {
+},
+["FriendsFrame"] = {
+},
+["DelvesFrame"] = {
+},
+["PlayerSpellsFrame"] = {
+},
+["PlayerFrame"] = {
+},
+["FrameColor_Skin"] = {
+},
+["Ace3_Skin"] = {
+},
+["TargetFrame"] = {
+},
+},
+["UnitFrames"] = {
+["InspectFrame"] = {
+},
+["ClassTalentFrame"] = {
+},
+["FrameColor_Skin"] = {
+},
+["FriendsFrame"] = {
+},
+["DelvesFrame"] = {
+},
+["PlayerSpellsFrame"] = {
+},
+["PlayerFrame"] = {
+},
+["CharacterFrame"] = {
+},
+["Ace3_Skin"] = {
+},
+["TargetFrame"] = {
+},
+},
+["Windows"] = {
+["ClassTalentFrame"] = {
+},
+["CharacterFrame"] = {
+},
+["Ace3_Skin"] = {
+},
+["PlayerFrame"] = {
+},
+["InspectFrame"] = {
+},
+["TargetFrame"] = {
+},
+["FrameColor_Skin"] = {
+},
+["FriendsFrame"] = {
+},
+["DelvesFrame"] = {
+},
+["PlayerSpellsFrame"] = {
+},
+},
+["Skins"] = {
+["InspectFrame"] = {
+},
+["DelvesFrame"] = {
+},
+["ClassTalentFrame"] = {
+},
+["PlayerSpellsFrame"] = {
+},
+["PlayerFrame"] = {
+},
+["CharacterFrame"] = {
+},
+["FrameColor_Skin"] = {
+},
+["TargetFrame"] = {
+},
+["FriendsFrame"] = {
+},
+["Ace3_Skin"] = {
+},
+},
+["HUD"] = {
+["InspectFrame"] = {
+},
+["TargetFrame"] = {
+},
+["CharacterFrame"] = {
+},
+["FriendsFrame"] = {
+},
+["DelvesFrame"] = {
+},
+["Ace3_Skin"] = {
+},
+["PlayerFrame"] = {
+},
+["PlayerSpellsFrame"] = {
+},
+["FrameColor_Skin"] = {
+},
+["ClassTalentFrame"] = {
+},
+},
+},
+},
+}

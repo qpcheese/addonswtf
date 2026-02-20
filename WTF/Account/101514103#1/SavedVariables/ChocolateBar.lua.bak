@@ -1,0 +1,155 @@
+
+ChocolateBarDB = {
+["addonVersion"] = "v3.16",
+["profileKeys"] = {
+["Qpfromage - Sylvanas"] = "Default",
+},
+["profiles"] = {
+["Default"] = {
+["fixedStrata"] = true,
+["objSettings"] = {
+["Plater"] = {
+["isNew"] = false,
+["barName"] = "ChocolateBar1",
+},
+["BugSack"] = {
+["isNew"] = false,
+["barName"] = "ChocolateBar1",
+},
+["SimulationCraft"] = {
+["isNew"] = false,
+["barName"] = "ChocolateBar1",
+},
+["tdBattlePetScript"] = {
+["align"] = "right",
+["isNew"] = false,
+["showText"] = false,
+["barName"] = "ChocolateBar1",
+},
+["Leatrix_Plus"] = {
+["isNew"] = false,
+["barName"] = "ChocolateBar1",
+},
+["Narcissus"] = {
+["align"] = "right",
+["isNew"] = false,
+["showText"] = false,
+["barName"] = "ChocolateBar1",
+},
+["Rematch"] = {
+["align"] = "right",
+["isNew"] = false,
+["showText"] = false,
+["barName"] = "ChocolateBar1",
+},
+["Time Played"] = {
+["isNew"] = false,
+["barName"] = "ChocolateBar1",
+},
+["FarmHud"] = {
+["align"] = "right",
+["isNew"] = false,
+["showText"] = false,
+["barName"] = "ChocolateBar1",
+},
+["WeakAuras"] = {
+["align"] = "right",
+["isNew"] = false,
+["showText"] = false,
+["barName"] = "ChocolateBar1",
+},
+["MRT"] = {
+["align"] = "right",
+["isNew"] = false,
+["showText"] = false,
+["barName"] = "ChocolateBar1",
+},
+["|cffb4b4ffALL THE THINGS|r"] = {
+["align"] = "right",
+["isNew"] = false,
+["showText"] = false,
+["barName"] = "ChocolateBar1",
+},
+["Bartender4"] = {
+["align"] = "right",
+["isNew"] = false,
+["showText"] = false,
+["barName"] = "ChocolateBar1",
+},
+["CrossGamblingIcon"] = {
+["isNew"] = false,
+["barName"] = "ChocolateBar1",
+},
+["UltraSquirt"] = {
+["align"] = "right",
+["isNew"] = false,
+["showText"] = false,
+["barName"] = "ChocolateBar1",
+},
+["Details"] = {
+["isNew"] = false,
+["barName"] = "ChocolateBar1",
+},
+["TwitchEmotes_Solaris"] = {
+["isNew"] = false,
+["barName"] = "ChocolateBar1",
+},
+["Chat_Sound_Customizer"] = {
+["align"] = "right",
+["isNew"] = false,
+["showText"] = false,
+["barName"] = "ChocolateBar1",
+},
+["SimpleAddonManager"] = {
+["align"] = "right",
+["isNew"] = false,
+["showText"] = false,
+["barName"] = "ChocolateBar1",
+},
+["Leatrix_Maps"] = {
+["isNew"] = false,
+["barName"] = "ChocolateBar1",
+},
+["TwitchEmotes"] = {
+["align"] = "right",
+["isNew"] = false,
+["showText"] = false,
+["barName"] = "ChocolateBar1",
+},
+["BigWigs"] = {
+["align"] = "right",
+["isNew"] = false,
+["showText"] = false,
+["barName"] = "ChocolateBar1",
+},
+["MythicDungeonTools"] = {
+["isNew"] = false,
+["barName"] = "ChocolateBar1",
+},
+["ProfessionShoppingList"] = {
+["isNew"] = false,
+["barName"] = "ChocolateBar1",
+},
+["PasteNG"] = {
+["align"] = "right",
+["isNew"] = false,
+["showText"] = false,
+["barName"] = "ChocolateBar1",
+},
+["RaiderIO"] = {
+["align"] = "right",
+["isNew"] = false,
+["showText"] = false,
+["barName"] = "ChocolateBar1",
+},
+["Masque"] = {
+["align"] = "right",
+["isNew"] = false,
+["showText"] = false,
+["barName"] = "ChocolateBar1",
+},
+},
+},
+},
+}
+CB_PlayedTime = nil

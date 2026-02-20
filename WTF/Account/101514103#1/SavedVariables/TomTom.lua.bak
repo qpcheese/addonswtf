@@ -1,0 +1,567 @@
+
+TomTomDB = {
+["profileKeys"] = {
+["Sikducker - Sylvanas"] = "Default",
+["Qpfromage - Sylvanas"] = "Default",
+["Qpc - Draenor"] = "Default",
+["Xiaoyuu - Sylvanas"] = "Default",
+["Qope - Ragnaros"] = "Default",
+["Qtte - Sylvanas"] = "Default",
+["Qudroformagi - Sylvanas"] = "Default",
+["Jeaf - Sylvanas"] = "Default",
+["Helikåpter - Sylvanas"] = "Default",
+["Sørn - Ravencrest"] = "Default",
+["Qpew - Ragnaros"] = "Default",
+["Sörn - Ravencrest"] = "Default",
+["Qpaladin - Ragnaros"] = "Default",
+["Qpcheese - Chamber of Aspects"] = "Default",
+["Qpcheese - Ragnaros"] = "Default",
+["Zelení - Draenor"] = "Default",
+["Qpebank - Draenor"] = "Default",
+["Cyclosarin - Ragnaros"] = "Default",
+["Flurrq - Ragnaros"] = "Default",
+["Qpsilver - Silvermoon"] = "Default",
+["Kaijid - Ragnaros"] = "Default",
+["Gammelemil - Grim Batol"] = "Default",
+["Qubit - Ragnaros"] = "Default",
+["Qpfromage - Confrérie du Thorium"] = "Default",
+["Myfficraider - Ragnaros"] = "Default",
+["Fishanus - Ragnaros"] = "Default",
+["Djagon - Ragnaros"] = "Default",
+["Dogson - Ragnaros"] = "Default",
+["Qpe - Ravencrest"] = "Default",
+["Casiomage - Sylvanas"] = "Default",
+["Jerwin - Ragnaros"] = "Default",
+["Qpfromage - Ragnaros"] = "Default",
+["Qute - Sylvanas"] = "Default",
+["Laurs - Ragnaros"] = "Default",
+},
+["profiles"] = {
+["Default"] = {
+["arrow"] = {
+["position"] = {
+"TOP",
+nil,
+"TOP",
+76.83261108398438,
+-24.16684722900391,
+},
+},
+["minimap"] = {
+["default_iconsize"] = 20,
+},
+["persistence"] = {
+["cleardistance"] = 5,
+},
+["block"] = {
+["position"] = {
+"TOPRIGHT",
+nil,
+"TOPRIGHT",
+-61.99757385253906,
+-19.99922943115234,
+},
+},
+["worldmap"] = {
+["default_icon"] = "Interface\\AddOns\\TomTom\\Images\\GoldRedDotNew",
+["theme"] = "classic-purple-ring",
+["default_iconsize"] = 14,
+},
+},
+},
+}
+TomTomWaypoints = nil
+TomTomWaypointsM = {
+["profileKeys"] = {
+["Sikducker - Sylvanas"] = "Sikducker - Sylvanas",
+["Qpfromage - Sylvanas"] = "Qpfromage - Sylvanas",
+["Qpc - Draenor"] = "Qpc - Draenor",
+["Xiaoyuu - Sylvanas"] = "Xiaoyuu - Sylvanas",
+["Qope - Ragnaros"] = "Qope - Ragnaros",
+["Qtte - Sylvanas"] = "Qtte - Sylvanas",
+["Qudroformagi - Sylvanas"] = "Qudroformagi - Sylvanas",
+["Jeaf - Sylvanas"] = "Jeaf - Sylvanas",
+["Helikåpter - Sylvanas"] = "Helikåpter - Sylvanas",
+["Sørn - Ravencrest"] = "Sørn - Ravencrest",
+["Qpew - Ragnaros"] = "Qpew - Ragnaros",
+["Sörn - Ravencrest"] = "Sörn - Ravencrest",
+["Qpaladin - Ragnaros"] = "Qpaladin - Ragnaros",
+["Qpcheese - Chamber of Aspects"] = "Qpcheese - Chamber of Aspects",
+["Qpcheese - Ragnaros"] = "Qpcheese - Ragnaros",
+["Zelení - Draenor"] = "Zelení - Draenor",
+["Qpebank - Draenor"] = "Qpebank - Draenor",
+["Cyclosarin - Ragnaros"] = "Cyclosarin - Ragnaros",
+["Flurrq - Ragnaros"] = "Flurrq - Ragnaros",
+["Qpsilver - Silvermoon"] = "Qpsilver - Silvermoon",
+["Kaijid - Ragnaros"] = "Kaijid - Ragnaros",
+["Gammelemil - Grim Batol"] = "Gammelemil - Grim Batol",
+["Qubit - Ragnaros"] = "Qubit - Ragnaros",
+["Qpfromage - Confrérie du Thorium"] = "Qpfromage - Confrérie du Thorium",
+["Myfficraider - Ragnaros"] = "Myfficraider - Ragnaros",
+["Fishanus - Ragnaros"] = "Fishanus - Ragnaros",
+["Djagon - Ragnaros"] = "Djagon - Ragnaros",
+["Dogson - Ragnaros"] = "Dogson - Ragnaros",
+["Qpe - Ravencrest"] = "Qpe - Ravencrest",
+["Casiomage - Sylvanas"] = "Casiomage - Sylvanas",
+["Jerwin - Ragnaros"] = "Jerwin - Ragnaros",
+["Qpfromage - Ragnaros"] = "Qpfromage - Ragnaros",
+["Qute - Sylvanas"] = "Qute - Sylvanas",
+["Laurs - Ragnaros"] = "Laurs - Ragnaros",
+},
+["profiles"] = {
+["Sikducker - Sylvanas"] = {
+[554] = {
+["554:497000000:695000000:Gleaming Treasure Chest"] = {
+554,
+0.4970000000000001,
+0.695,
+["arrivaldistance"] = 15,
+["crazy"] = true,
+["persistent"] = true,
+["desc"] = "Gleaming Treasure Chest",
+["silent"] = true,
+["cleardistance"] = 0,
+["title"] = "Gleaming Treasure Chest",
+["from"] = "TomTom/way",
+["callbacks"] = {
+["distance"] = {
+},
+["minimap"] = {
+},
+["world"] = {
+},
+},
+["minimap"] = true,
+["world"] = true,
+},
+["554:404000000:923000000:Sunken Treasure"] = {
+554,
+0.404,
+0.9229999999999999,
+["arrivaldistance"] = 15,
+["crazy"] = true,
+["persistent"] = true,
+["desc"] = "Sunken Treasure",
+["silent"] = true,
+["cleardistance"] = 0,
+["title"] = "Sunken Treasure",
+["from"] = "TomTom/way",
+["callbacks"] = {
+["distance"] = {
+},
+["minimap"] = {
+},
+["world"] = {
+},
+},
+["minimap"] = true,
+["world"] = true,
+},
+["554:539000000:471000000:Rope-Bound Treasure Chest"] = {
+554,
+0.539,
+0.471,
+["arrivaldistance"] = 15,
+["crazy"] = true,
+["persistent"] = true,
+["desc"] = "Rope-Bound Treasure Chest",
+["silent"] = true,
+["cleardistance"] = 0,
+["title"] = "Rope-Bound Treasure Chest",
+["from"] = "TomTom/way",
+["callbacks"] = {
+["distance"] = {
+},
+["minimap"] = {
+},
+["world"] = {
+},
+},
+["minimap"] = true,
+["world"] = true,
+},
+["554:590000000:600000000:Gleaming Crane Statue (Mist Covered Treasure game start)"] = {
+554,
+0.59,
+0.6,
+["arrivaldistance"] = 15,
+["crazy"] = true,
+["persistent"] = true,
+["desc"] = "Gleaming Crane Statue (Mist Covered Treasure game start)",
+["silent"] = true,
+["cleardistance"] = 0,
+["title"] = "Gleaming Crane Statue (Mist Covered Treasure game start)",
+["from"] = "TomTom/way",
+["callbacks"] = {
+["distance"] = {
+},
+["minimap"] = {
+},
+["world"] = {
+},
+},
+["minimap"] = true,
+["world"] = true,
+},
+["554:707000000:809000000:Gleaming Treasure Satchel"] = {
+554,
+0.7070000000000001,
+0.809,
+["arrivaldistance"] = 15,
+["crazy"] = true,
+["persistent"] = true,
+["desc"] = "Gleaming Treasure Satchel",
+["silent"] = true,
+["cleardistance"] = 0,
+["title"] = "Gleaming Treasure Satchel",
+["from"] = "TomTom/way",
+["callbacks"] = {
+["distance"] = {
+},
+["minimap"] = {
+},
+["world"] = {
+},
+},
+["minimap"] = true,
+["world"] = true,
+},
+},
+},
+["Qpfromage - Sylvanas"] = {
+},
+["Qpc - Draenor"] = {
+},
+["Xiaoyuu - Sylvanas"] = {
+},
+["Qope - Ragnaros"] = {
+},
+["Qtte - Sylvanas"] = {
+},
+["Qudroformagi - Sylvanas"] = {
+},
+["Jeaf - Sylvanas"] = {
+[680] = {
+["680:440000000:600000000:TomTom waypoint"] = {
+680,
+0.44,
+0.6,
+["arrivaldistance"] = 15,
+["crazy"] = true,
+["persistent"] = true,
+["desc"] = "TomTom waypoint",
+["silent"] = true,
+["cleardistance"] = 0,
+["title"] = "TomTom waypoint",
+["from"] = "TomTom/way",
+["callbacks"] = {
+["distance"] = {
+},
+["world"] = {
+},
+["minimap"] = {
+},
+},
+["minimap"] = true,
+["world"] = true,
+},
+},
+[630] = {
+["630:320000000:500000000:TomTom waypoint"] = {
+630,
+0.32,
+0.5,
+["arrivaldistance"] = 15,
+["crazy"] = true,
+["persistent"] = true,
+["desc"] = "TomTom waypoint",
+["silent"] = true,
+["cleardistance"] = 0,
+["title"] = "TomTom waypoint",
+["from"] = "TomTom/way",
+["callbacks"] = {
+["distance"] = {
+},
+["world"] = {
+},
+["minimap"] = {
+},
+},
+["minimap"] = true,
+["world"] = true,
+},
+},
+},
+["Helikåpter - Sylvanas"] = {
+},
+["Sørn - Ravencrest"] = {
+},
+["Qpew - Ragnaros"] = {
+},
+["Sörn - Ravencrest"] = {
+},
+["Qpaladin - Ragnaros"] = {
+},
+["Qpcheese - Chamber of Aspects"] = {
+},
+["Qpcheese - Ragnaros"] = {
+[85] = {
+["85:482000000:756000000:Goram"] = {
+85,
+0.482,
+0.7559999999999999,
+["arrivaldistance"] = 15,
+["crazy"] = true,
+["persistent"] = true,
+["desc"] = "Goram",
+["silent"] = true,
+["cleardistance"] = 0,
+["title"] = "Goram",
+["from"] = "TomTom/way",
+["callbacks"] = {
+["distance"] = {
+},
+["world"] = {
+},
+["minimap"] = {
+},
+},
+["minimap"] = true,
+["world"] = true,
+},
+},
+[2151] = {
+["2151:452800000:428700000:1 Rumbling Deposit 2 Cave"] = {
+2151,
+0.4528,
+0.4287,
+["arrivaldistance"] = 15,
+["crazy"] = true,
+["persistent"] = true,
+["desc"] = "1 Rumbling Deposit 2 Cave",
+["silent"] = true,
+["cleardistance"] = 0,
+["title"] = "1 Rumbling Deposit 2 Cave",
+["from"] = "TomTom/way",
+["callbacks"] = {
+["distance"] = {
+},
+["world"] = {
+},
+["minimap"] = {
+},
+},
+["minimap"] = true,
+["world"] = true,
+},
+["2151:620900000:814200000:1 Rumbling Deposit 3"] = {
+2151,
+0.6209,
+0.8142,
+["arrivaldistance"] = 15,
+["crazy"] = true,
+["persistent"] = true,
+["desc"] = "1 Rumbling Deposit 3",
+["silent"] = true,
+["cleardistance"] = 0,
+["title"] = "1 Rumbling Deposit 3",
+["from"] = "TomTom/way",
+["callbacks"] = {
+["distance"] = {
+},
+["world"] = {
+},
+["minimap"] = {
+},
+},
+["minimap"] = true,
+["world"] = true,
+},
+["2151:786800000:352500000:1 Rumbling Deposit 1"] = {
+2151,
+0.7868,
+0.3525,
+["arrivaldistance"] = 15,
+["crazy"] = true,
+["persistent"] = true,
+["desc"] = "1 Rumbling Deposit 1",
+["silent"] = true,
+["cleardistance"] = 0,
+["title"] = "1 Rumbling Deposit 1",
+["from"] = "TomTom/way",
+["callbacks"] = {
+["distance"] = {
+},
+["world"] = {
+},
+["minimap"] = {
+},
+},
+["minimap"] = true,
+["world"] = true,
+},
+["2151:747200000:361400000:1 Rumbling Deposit 1 Cave"] = {
+2151,
+0.7472,
+0.3614,
+["arrivaldistance"] = 15,
+["crazy"] = true,
+["persistent"] = true,
+["desc"] = "1 Rumbling Deposit 1 Cave",
+["silent"] = true,
+["cleardistance"] = 0,
+["title"] = "1 Rumbling Deposit 1 Cave",
+["from"] = "TomTom/way",
+["callbacks"] = {
+["distance"] = {
+},
+["world"] = {
+},
+["minimap"] = {
+},
+},
+["minimap"] = true,
+["world"] = true,
+},
+},
+[2150] = {
+["2150:571500000:721100000:TomTom waypoint"] = {
+2150,
+0.5715,
+0.7211,
+["arrivaldistance"] = 15,
+["crazy"] = true,
+["persistent"] = true,
+["desc"] = "TomTom waypoint",
+["silent"] = true,
+["cleardistance"] = 0,
+["title"] = "TomTom waypoint",
+["from"] = "TomTom/way",
+["callbacks"] = {
+["distance"] = {
+},
+["world"] = {
+},
+["minimap"] = {
+},
+},
+["minimap"] = true,
+["world"] = true,
+},
+},
+},
+["Zelení - Draenor"] = {
+},
+["Qpebank - Draenor"] = {
+},
+["Cyclosarin - Ragnaros"] = {
+},
+["Flurrq - Ragnaros"] = {
+},
+["Qpsilver - Silvermoon"] = {
+},
+["Kaijid - Ragnaros"] = {
+},
+["Gammelemil - Grim Batol"] = {
+},
+["Qubit - Ragnaros"] = {
+[2023] = {
+["2023:540000000:730000000:Steamgill"] = {
+2023,
+0.54,
+0.73,
+["arrivaldistance"] = 15,
+["crazy"] = true,
+["persistent"] = true,
+["desc"] = "Steamgill",
+["silent"] = true,
+["cleardistance"] = 0,
+["title"] = "Steamgill",
+["from"] = "Xirev's Dragonflight 30 Minute Rare Timer",
+["callbacks"] = {
+["distance"] = {
+},
+["minimap"] = {
+},
+["world"] = {
+},
+},
+["minimap"] = true,
+["world"] = true,
+},
+},
+},
+["Qpfromage - Confrérie du Thorium"] = {
+},
+["Myfficraider - Ragnaros"] = {
+},
+["Fishanus - Ragnaros"] = {
+},
+["Djagon - Ragnaros"] = {
+},
+["Dogson - Ragnaros"] = {
+},
+["Qpe - Ravencrest"] = {
+},
+["Casiomage - Sylvanas"] = {
+},
+["Jerwin - Ragnaros"] = {
+},
+["Qpfromage - Ragnaros"] = {
+[1527] = {
+["1527:730000000:730000000:TomTom waypoint"] = {
+1527,
+0.73,
+0.73,
+["arrivaldistance"] = 15,
+["crazy"] = true,
+["persistent"] = true,
+["desc"] = "TomTom waypoint",
+["silent"] = true,
+["cleardistance"] = 0,
+["title"] = "TomTom waypoint",
+["from"] = "TomTom/way",
+["callbacks"] = {
+["distance"] = {
+},
+["minimap"] = {
+},
+["world"] = {
+},
+},
+["minimap"] = true,
+["world"] = true,
+},
+},
+},
+["Qute - Sylvanas"] = {
+[2022] = {
+["2022:764000000:344000000:Grun Ashbeard"] = {
+2022,
+0.764,
+0.344,
+["arrivaldistance"] = 15,
+["crazy"] = true,
+["persistent"] = true,
+["desc"] = "Grun Ashbeard",
+["silent"] = true,
+["cleardistance"] = 0,
+["title"] = "Grun Ashbeard",
+["from"] = "TomTom/way",
+["callbacks"] = {
+["distance"] = {
+},
+["minimap"] = {
+},
+["world"] = {
+},
+},
+["minimap"] = true,
+["world"] = true,
+},
+},
+},
+["Laurs - Ragnaros"] = {
+},
+},
+}
