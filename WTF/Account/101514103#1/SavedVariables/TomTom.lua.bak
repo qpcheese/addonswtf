@@ -53,6 +53,11 @@ nil,
 ["persistence"] = {
 ["cleardistance"] = 5,
 },
+["worldmap"] = {
+["default_icon"] = "Interface\\AddOns\\TomTom\\Images\\GoldRedDotNew",
+["theme"] = "classic-purple-ring",
+["default_iconsize"] = 14,
+},
 ["block"] = {
 ["position"] = {
 "TOPRIGHT",
@@ -62,10 +67,10 @@ nil,
 -19.99922943115234,
 },
 },
-["worldmap"] = {
-["default_icon"] = "Interface\\AddOns\\TomTom\\Images\\GoldRedDotNew",
-["theme"] = "classic-purple-ring",
-["default_iconsize"] = 14,
+["paste"] = {
+["button"] = {
+["showInCompartment"] = true,
+},
 },
 },
 },

@@ -106,7 +106,8 @@ function CraftSim.ReagentData:IsOrderReagent(itemID)
     if not self.recipeData.orderData then return false end
 
     for _, reagentInfo in ipairs(self.recipeData.orderData.reagents or {}) do
-        if reagentInfo.reagent.reagent.itemID == itemID then
+        local reagentItemID = CraftSim.RecipeData.GetItemIDFromReagentInfo(reagentInfo, self.recipeData)
+        if reagentItemID == itemID then
             if reagentInfo.source == Enum.CraftingOrderReagentSource.Customer then
                 return true
             end
@@ -128,6 +129,8 @@ function CraftSim.ReagentData:GetProfessionStatsByOptionals()
         function(slot)
             if slot.activeReagent then
                 return slot.activeReagent.professionStats
+            else
+                return nil
             end
         end)
 
@@ -142,10 +145,10 @@ function CraftSim.ReagentData:GetProfessionStatsByOptionals()
     end
 
     -- TODO
-    local statPercentModTable = CraftSim.CONST.PERCENT_MODS[CraftSim.CONST.EXPANSION_IDS.THE_WAR_WITHIN]
+    local percentDivisionFactors = CraftSim.CONST.PERCENT_DIVISION_FACTORS[CraftSim.CONST.EXPANSION_IDS.THE_WAR_WITHIN]
 
     -- since ooey gooey chocolate gives us math.huge on multicraft we need to limit it to 100%
-    totalStats.multicraft.value = math.min(1 / statPercentModTable.MULTICRAFT, totalStats.multicraft.value)
+    totalStats.multicraft.value = math.min(percentDivisionFactors.MULTICRAFT, totalStats.multicraft.value)
 
 
     return totalStats
@@ -215,22 +218,38 @@ function CraftSim.ReagentData:GetActiveOptionalReagents()
 
     local allSlots = GUTIL:Concat({ self.optionalReagentSlots, self.finishingReagentSlots })
 
-    table.foreach(allSlots, function(_, slot)
+    for _, slot in pairs(allSlots) do
         if slot.activeReagent then
             table.insert(activeReagents, slot.activeReagent)
         end
-    end)
+    end
 
     return activeReagents
 end
 
---- Sets a optional Reagent active in a recipe if supported, if not does nothing
+-- Sets an optional Reagent active in a recipe if supported, if not does nothing
 ---@param itemID number
 function CraftSim.ReagentData:SetOptionalReagent(itemID)
     for _, slot in pairs(GUTIL:Concat({ self.optionalReagentSlots, self.finishingReagentSlots })) do
         local optionalReagent = GUTIL:Find(slot.possibleReagents,
             function(optionalReagent)
-                return optionalReagent.item:GetItemID() == itemID
+                return not optionalReagent:IsCurrency() and optionalReagent.item:GetItemID() == itemID
+            end)
+
+        if optionalReagent then
+            slot.activeReagent = optionalReagent
+            return
+        end
+    end
+end
+
+-- Sets an optional currency Reagent active in a recipe if supported, if not does nothing
+---@param currencyID number
+function CraftSim.ReagentData:SetOptionalCurrencyReagent(currencyID)
+    for _, slot in pairs(self.optionalReagentSlots) do
+        local optionalReagent = GUTIL:Find(slot.possibleReagents,
+            function(optionalReagent)
+                return optionalReagent:IsCurrency() and optionalReagent.currencyID == currencyID
             end)
 
         if optionalReagent then
@@ -407,14 +426,14 @@ function CraftSim.ReagentData:SetReagentsMaxByQuality(qualityID)
     if not qualityID or qualityID < 1 or qualityID > 3 then
         error("CraftSim.ReagentData:SetReagentsMaxByQuality(qualityID) -> qualityID has to be between 1 and 3")
     end
-    table.foreach(self.requiredReagents, function(_, reagent)
+    for _, reagent in pairs(self.requiredReagents) do
         if reagent.hasQuality then
             reagent:Clear()
             reagent.items[qualityID].quantity = reagent.requiredQuantity
         else
             reagent.items[1].quantity = reagent.requiredQuantity
         end
-    end)
+    end
 end
 
 ---@param optimizationResult? CraftSim.ReagentOptimizationResult
@@ -731,8 +750,8 @@ function CraftSim.ReagentData:UpdateItemCountCacheForAllocatedReagents()
     local craftingReagentInfoTbl = self:GetCraftingReagentInfoTbl()
 
     for _, craftingReagentInfo in pairs(craftingReagentInfoTbl) do
-        --- itemID now nested, remove comment when wow doc extension is caught up
         local itemCount = C_Item.GetItemCount(craftingReagentInfo.reagent.itemID, true, false, true)
+        -- TODO requires update: Save() doesn't exist, only per-location values exist but this is the sum of inventory and bank
         CraftSim.DB.ITEM_COUNT:Save(crafterUID, craftingReagentInfo.reagent.itemID, itemCount)
     end
 end

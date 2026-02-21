@@ -50,7 +50,7 @@ ArcAuras.frames = {}           -- arcID -> frame
 ArcAuras.updateTicker = nil    -- C_Timer ticker for updates
 ArcAuras.isEnabled = false
 ArcAuras.initialized = false
-ArcAuras.masqueGroup = nil     -- Masque group for skinning
+-- Masque registration handled by unified ns.Masque system (ArcUI_Masque.lua)
 
 -- ═══════════════════════════════════════════════════════════════════════════
 -- PERFORMANCE: CACHED REFERENCES (avoid repeated lookups)
@@ -66,56 +66,9 @@ end
 
 -- ═══════════════════════════════════════════════════════════════════════════
 -- MASQUE INTEGRATION
--- Register ArcAura buttons with Masque for skinning
+-- Registration handled by unified ns.Masque system (ArcUI_Masque.lua)
+-- No local Masque group needed - prevents dual registration conflicts
 -- ═══════════════════════════════════════════════════════════════════════════
-
-local function GetMasqueGroup()
-    if ArcAuras.masqueGroup then return ArcAuras.masqueGroup end
-    
-    local Masque = LibStub and LibStub("Masque", true)
-    if not Masque then return nil end
-    
-    -- Create group: Masque:Group(addon, group)
-    ArcAuras.masqueGroup = Masque:Group("ArcUI", "Arc Auras")
-    return ArcAuras.masqueGroup
-end
-
-local function RegisterWithMasque(frame)
-    -- Check if Masque skinning is enabled in ArcUI settings
-    if ns.Masque and ns.Masque.IsEnabled and not ns.Masque.IsEnabled() then
-        -- Masque skinning is disabled - don't register
-        return
-    end
-    
-    local group = GetMasqueGroup()
-    if not group then return end
-    
-    -- AddButton expects: button, buttonData
-    -- ONLY pass Icon - Masque will only control the icon texture/border
-    -- We use _arcStackText instead of Count so Masque can't auto-detect it
-    group:AddButton(frame, {
-        Icon = frame.Icon,
-    })
-    
-    frame._arcAuraMasqueRegistered = true
-    
-    -- Deferred ReSkin after frame size is finalized by CDMGroups
-    C_Timer.After(0.2, function()
-        if frame and group and group.ReSkin then
-            group:ReSkin(frame)
-        end
-    end)
-end
-
-local function UnregisterFromMasque(frame)
-    local group = ArcAuras.masqueGroup
-    if not group then return end
-    
-    if frame._arcAuraMasqueRegistered then
-        group:RemoveButton(frame)
-        frame._arcAuraMasqueRegistered = nil
-    end
-end
 
 -- Settings cache per frame - invalidated only when settings change
 local settingsCache = {}  -- arcID -> { settings = {}, timestamp = time }
@@ -1081,8 +1034,10 @@ function ArcAuras.CreateFrame(arcID, config)
     -- Register with CDMEnhance for visual style integration
     ArcAuras.RegisterWithCDMEnhance(arcID, frame)
     
-    -- Register with Masque for skinning (if available)
-    RegisterWithMasque(frame)
+    -- Register with Masque for skinning via unified system (if available)
+    if ns.Masque and ns.Masque.AddFrame then
+        ns.Masque.AddFrame(frame, "ArcAuras", arcID)
+    end
     
     -- Initialize stack cache for this frame
     InvalidateStackCache(arcID)
@@ -1098,8 +1053,10 @@ function ArcAuras.DestroyFrame(arcID)
     InvalidateSettingsCache(arcID)
     InvalidateStackCache(arcID)
     
-    -- Unregister from Masque (if registered)
-    UnregisterFromMasque(frame)
+    -- Unregister from Masque via unified system
+    if ns.Masque and ns.Masque.RemoveFrame then
+        ns.Masque.RemoveFrame(frame)
+    end
     
     -- ═══════════════════════════════════════════════════════════════════════════
     -- SPELL CLEANUP: Clear ArcAurasCooldown state tables
@@ -1257,21 +1214,43 @@ function ArcAuras.UpdateFrameIcon(frame, config)
     local icon = nil
     
     if config.type == "trinket" and config.slotID then
-        local itemID, itemName, itemIcon = GetSlotItemInfo(config.slotID)
-        icon = itemIcon
+        -- Check for icon override on trinket/item frames
+        local db2 = GetDB()
+        local trackedItemConfig = db2 and db2.trackedItems and db2.trackedItems[frame._arcAuraID]
+        if trackedItemConfig and trackedItemConfig.iconOverride then
+            icon = trackedItemConfig.iconOverride
+        else
+            local itemID, itemName, itemIcon = GetSlotItemInfo(config.slotID)
+            icon = itemIcon
+        end
+        local itemID, itemName = GetSlotItemInfo(config.slotID)
         frame._currentItemID = itemID
         frame._currentItemName = itemName
     elseif config.type == "item" and config.itemID then
-        local itemName, itemIcon = GetItemNameAndIcon(config.itemID)
-        icon = itemIcon
+        local db2 = GetDB()
+        local trackedItemConfig = db2 and db2.trackedItems and db2.trackedItems[frame._arcAuraID]
+        if trackedItemConfig and trackedItemConfig.iconOverride then
+            icon = trackedItemConfig.iconOverride
+        else
+            local itemName, itemIcon = GetItemNameAndIcon(config.itemID)
+            icon = itemIcon
+        end
         frame._currentItemID = config.itemID
+        local itemName = GetItemNameAndIcon(config.itemID)
         frame._currentItemName = itemName
     elseif config.type == "spell" and config.spellID then
-        local spellInfo = C_Spell.GetSpellInfo(config.spellID)
-        if spellInfo then
-            icon = spellInfo.iconID or spellInfo.originalIconID
-            frame._currentItemName = spellInfo.name
+        -- Check for user icon override first (stored in trackedSpells config)
+        local db = GetDB()
+        local trackedConfig = db and db.trackedSpells and db.trackedSpells[frame._arcAuraID]
+        if trackedConfig and trackedConfig.iconOverride then
+            icon = trackedConfig.iconOverride
+        else
+            local spellInfo = C_Spell.GetSpellInfo(config.spellID)
+            if spellInfo then
+                icon = spellInfo.iconID or spellInfo.originalIconID
+            end
         end
+        frame._currentItemName = config.name or (C_Spell.GetSpellInfo(config.spellID) or {}).name
         frame._currentItemID = nil
     end
     
@@ -1893,9 +1872,11 @@ local function OnArcAurasUpdate()
                     
                     -- Track current glow state
                     local glowCurrentlyShowing = frame._arcReadyGlowActive or false
+                    -- Detect if glow needs restart (sig cleared by resize in ApplySettingsToFrame)
+                    local glowNeedsRestart = glowCurrentlyShowing and not frame._arcCurrentGlowSig
                     
                     -- Only start/stop glow on state change (not every tick!)
-                    if shouldShowGlow and (stateJustChanged or not glowCurrentlyShowing) then
+                    if shouldShowGlow and (stateJustChanged or not glowCurrentlyShowing or glowNeedsRestart) then
                         -- START glow
                         frame._arcReadyGlowActive = true
                         frame._arcPreviewGlowActive = isGlowPreview
@@ -2151,6 +2132,13 @@ function ArcAuras.ApplySettingsToFrame(arcID, frame)
     
     frame:SetSize(width, height)
     
+    -- CRITICAL: Invalidate glow signature when size changes. LCG glow textures
+    -- are sized at creation time — if the frame was resized after glow started
+    -- (common during loading when CDMGroups enforces group sizes), the glow
+    -- stays at the old size. Clearing the sig causes the next glow evaluation
+    -- to detect a mismatch and restart with correct dimensions.
+    frame._arcCurrentGlowSig = nil
+    
     -- Ensure scale is 1 (size is handled above)
     frame:SetScale(1)
     
@@ -2339,6 +2327,29 @@ function ArcAuras.ShowTooltip(frame)
         GameTooltip:AddLine("|cff88ff88Auto-Tracked Slot|r", 0.5, 1, 0.5)
     end
     
+    -- Show forceShow and iconOverride indicators for spell frames
+    if config.type == "spell" and frame._arcAuraID then
+        local db = GetDB()
+        local trackedConfig = db and db.trackedSpells and db.trackedSpells[frame._arcAuraID]
+        if trackedConfig then
+            if trackedConfig.forceShow then
+                GameTooltip:AddLine("|cff00FF00Always Show|r (spec check bypassed)", 0, 1, 0)
+            end
+            if trackedConfig.iconOverride then
+                GameTooltip:AddLine("|cffFFCC00Custom Icon|r (ID: " .. (trackedConfig.iconOverrideID or "?") .. ")", 1, 0.8, 0)
+            end
+        end
+    end
+    
+    -- Show iconOverride indicator for item/trinket frames
+    if (config.type == "item" or config.type == "trinket") and frame._arcAuraID then
+        local db = GetDB()
+        local trackedConfig = db and db.trackedItems and db.trackedItems[frame._arcAuraID]
+        if trackedConfig and trackedConfig.iconOverride then
+            GameTooltip:AddLine("|cffFFCC00Custom Icon|r (ID: " .. (trackedConfig.iconOverrideID or "?") .. ")", 1, 0.8, 0)
+        end
+    end
+    
     GameTooltip:AddLine("Right-click for options", 0.7, 0.7, 0.7)
     
     if frame._isOnCooldown and frame._remaining then
@@ -2353,21 +2364,21 @@ function ArcAuras.ShowContextMenu(frame)
         return
     end
     
-    local menu = {
-        { text = "Arc Auras: " .. (frame._currentItemName or frame._arcAuraID), isTitle = true },
-        { text = "Configure Icon", func = function()
+    MenuUtil.CreateContextMenu(frame, function(ownerRegion, rootDescription)
+        rootDescription:CreateTitle("Arc Auras: " .. (frame._currentItemName or frame._arcAuraID))
+        rootDescription:CreateButton("Configure Icon", function()
             ArcAuras.OpenIconConfig(frame._arcAuraID)
-        end },
-        { text = "Reset Position", func = function()
+        end)
+        rootDescription:CreateButton("Change Icon...", function()
+            ArcAuras.ShowIconOverridePicker(frame._arcAuraID, frame)
+        end)
+        rootDescription:CreateButton("Reset Position", function()
             ArcAuras.ResetFramePosition(frame._arcAuraID)
-        end },
-        { text = "Hide This Frame", func = function()
+        end)
+        rootDescription:CreateButton("Hide This Frame", function()
             ArcAuras.SetTrackedItemEnabled(frame._arcAuraID, false)
-        end },
-        { text = "Cancel", func = function() end },
-    }
-    
-    EasyMenu(menu, CreateFrame("Frame", "ArcAurasContextMenu", UIParent, "UIDropDownMenuTemplate"), "cursor", 0, 0, "MENU")
+        end)
+    end)
 end
 
 function ArcAuras.OpenIconConfig(arcID)
@@ -2376,6 +2387,115 @@ function ArcAuras.OpenIconConfig(arcID)
     else
         print("|cff00CCFF[Arc Auras]|r Icon configuration panel not available")
     end
+end
+
+-- ═══════════════════════════════════════════════════════════════════════════
+-- ICON OVERRIDE (for item frames)
+-- Spell frames use ArcAurasCooldown.ShowIconOverridePicker instead.
+-- Accepts a Spell ID or Item ID to source the icon texture from.
+-- ═══════════════════════════════════════════════════════════════════════════
+
+StaticPopupDialogs["ARCAURAS_ICON_OVERRIDE"] = {
+    text = "Enter a Spell ID or Item ID for the new icon:\n(Enter 0 or leave blank to reset to default)",
+    button1 = "Apply", button2 = "Cancel",
+    hasEditBox = true,
+    OnShow = function(self)
+        self.editBox:SetNumeric(true)
+        self.editBox:SetFocus()
+        local data = self.data
+        if data and data.currentOverrideID then
+            self.editBox:SetText(tostring(data.currentOverrideID))
+            self.editBox:HighlightText()
+        end
+    end,
+    OnAccept = function(self, data)
+        local inputID = tonumber(self.editBox:GetText())
+        if data and data.arcID then
+            ArcAuras.ApplyIconOverride(data.arcID, inputID)
+        end
+    end,
+    EditBoxOnEnterPressed = function(self)
+        local dialog = self:GetParent()
+        local inputID = tonumber(self:GetText())
+        local data = dialog.data
+        if data and data.arcID then
+            ArcAuras.ApplyIconOverride(data.arcID, inputID)
+        end
+        dialog:Hide()
+    end,
+    timeout = 0, whileDead = true, hideOnEscape = true,
+}
+
+function ArcAuras.ShowIconOverridePicker(arcID, frame)
+    local db = GetDB()
+    if not db then return end
+    
+    -- Find config in either trackedItems or trackedTrinkets
+    local config = db.trackedItems and db.trackedItems[arcID]
+    local currentOverrideID = config and config.iconOverrideID or nil
+    
+    local dialog = StaticPopup_Show("ARCAURAS_ICON_OVERRIDE")
+    if dialog then
+        dialog.data = { arcID = arcID, currentOverrideID = currentOverrideID }
+        if currentOverrideID and dialog.editBox then
+            dialog.editBox:SetText(tostring(currentOverrideID))
+            dialog.editBox:HighlightText()
+        end
+    end
+end
+
+function ArcAuras.ApplyIconOverride(arcID, overrideID)
+    local db = GetDB()
+    if not db then return end
+    
+    local config = db.trackedItems and db.trackedItems[arcID]
+    if not config then return end
+    
+    -- Reset if 0 or nil
+    if not overrideID or overrideID <= 0 then
+        config.iconOverride = nil
+        config.iconOverrideID = nil
+        -- Restore original icon
+        local frame = ArcAuras.frames and ArcAuras.frames[arcID]
+        if frame then
+            ArcAuras.SetFrameIcon(frame, config)
+        end
+        print("|cff00CCFF[Arc Auras]|r Icon reset to default for " .. (config.name or arcID))
+        return
+    end
+    
+    -- Try as spell ID first, then item ID
+    local newIcon, sourceName = nil, nil
+    
+    local spellInfo = C_Spell.GetSpellInfo(overrideID)
+    if spellInfo and (spellInfo.iconID or spellInfo.originalIconID) then
+        newIcon = spellInfo.iconID or spellInfo.originalIconID
+        sourceName = spellInfo.name
+    end
+    
+    if not newIcon then
+        local itemIcon = C_Item.GetItemIconByID(overrideID)
+        if itemIcon then
+            newIcon = itemIcon
+            sourceName = C_Item.GetItemNameByID(overrideID) or ("Item " .. overrideID)
+        end
+    end
+    
+    if not newIcon then
+        print("|cff00CCFF[Arc Auras]|r Could not find icon for ID " .. overrideID)
+        return
+    end
+    
+    config.iconOverride = newIcon
+    config.iconOverrideID = overrideID
+    
+    local frame = ArcAuras.frames and ArcAuras.frames[arcID]
+    if frame and frame.Icon then
+        frame.Icon:SetTexture(newIcon)
+    end
+    
+    print(string.format("|cff00CCFF[Arc Auras]|r Icon changed to %s (%d) for %s",
+        sourceName or "?", overrideID, config.name or arcID))
 end
 
 function ArcAuras.ResetFramePosition(arcID)
@@ -3299,24 +3419,53 @@ function ArcAuras.Enable()
         if not db2 or not db2.trackedSpells then return end
         
         for arcID, config in pairs(db2.trackedSpells) do
-            if not ArcAuras.frames[arcID] then
-                local spellID = config.spellID
-                local knows = (IsPlayerSpell and IsPlayerSpell(spellID)) or (IsSpellKnown and IsSpellKnown(spellID))
-                if knows then
-                    local spellConfig = {
-                        type = "spell",
-                        spellID = spellID,
-                        name = config.name,
-                        icon = config.icon,
-                        enabled = true,
-                    }
-                    local frame = ArcAuras.CreateFrame(arcID, spellConfig)
-                    if frame then
-                        frame:Show()
-                        -- Let ArcAurasCooldown engine take over
-                        if ns.ArcAurasCooldown and ns.ArcAurasCooldown.InitializeSpellFrame then
-                            ns.ArcAurasCooldown.InitializeSpellFrame(arcID, frame, spellConfig)
-                        end
+            local existingFrame = ArcAuras.frames[arcID]
+            local spellID = config.spellID
+            
+            -- Use full visibility check (spec filter + talent conditions),
+            -- not just IsPlayerSpell. Without this, frames that should be
+            -- hidden by spec/talent conditions get created on reload,
+            -- registering with CDMGroups and corrupting saved positions.
+            local shouldShow = false
+            if ns.ArcAurasCooldown and ns.ArcAurasCooldown.ShouldFrameBeVisible then
+                shouldShow = ns.ArcAurasCooldown.ShouldFrameBeVisible(config, spellID)
+            else
+                -- Fallback if cooldown module not loaded yet (shouldn't happen after 0.3s)
+                shouldShow = config.forceShow or (IsPlayerSpell and IsPlayerSpell(spellID)) or (IsSpellKnown and IsSpellKnown(spellID))
+            end
+            
+            if existingFrame then
+                -- Frame already exists (hidden by Disable) - re-show if appropriate
+                if shouldShow then
+                    existingFrame:Show()
+                    ArcAuras.ApplyInitialStateVisuals(arcID, existingFrame)
+                    -- Re-initialize with cooldown engine so state tracking resumes
+                    if ns.ArcAurasCooldown and ns.ArcAurasCooldown.InitializeSpellFrame then
+                        local spellConfig = {
+                            type = "spell",
+                            spellID = spellID,
+                            name = config.name,
+                            icon = config.iconOverride or config.icon,
+                            enabled = true,
+                        }
+                        ns.ArcAurasCooldown.InitializeSpellFrame(arcID, existingFrame, spellConfig)
+                    end
+                end
+            elseif shouldShow then
+                -- No frame yet - create it
+                local spellConfig = {
+                    type = "spell",
+                    spellID = spellID,
+                    name = config.name,
+                    icon = config.iconOverride or config.icon,
+                    enabled = true,
+                }
+                local frame = ArcAuras.CreateFrame(arcID, spellConfig)
+                if frame then
+                    frame:Show()
+                    -- Let ArcAurasCooldown engine take over
+                    if ns.ArcAurasCooldown and ns.ArcAurasCooldown.InitializeSpellFrame then
+                        ns.ArcAurasCooldown.InitializeSpellFrame(arcID, frame, spellConfig)
                     end
                 end
             end
@@ -3476,13 +3625,13 @@ function ArcAuras.RefreshAllFrames()
     if db.trackedSpells then
         for arcID, config in pairs(db.trackedSpells) do
             local spellID = config.spellID
-            local knows = (IsPlayerSpell and IsPlayerSpell(spellID)) or (IsSpellKnown and IsSpellKnown(spellID))
+            local knows = config.forceShow or (IsPlayerSpell and IsPlayerSpell(spellID)) or (IsSpellKnown and IsSpellKnown(spellID))
             if knows then
                 local spellConfig = {
                     type = "spell",
                     spellID = spellID,
                     name = config.name,
-                    icon = config.icon,
+                    icon = config.iconOverride or config.icon,
                     enabled = true,
                 }
                 local frame = ArcAuras.CreateFrame(arcID, spellConfig)
@@ -3879,18 +4028,22 @@ function ArcAuras.RefreshMasqueState()
     
     for arcID, frame in pairs(ArcAuras.frames) do
         if masqueEnabled then
-            -- Masque is now enabled - register if not already
-            if not frame._arcAuraMasqueRegistered then
-                RegisterWithMasque(frame)
+            -- Masque is now enabled - register via unified system if not already
+            if not frame._arcMasqueAdded then
+                if ns.Masque and ns.Masque.AddFrame then
+                    ns.Masque.AddFrame(frame, "ArcAuras", arcID)
+                end
             end
             -- Reset icon texture to default 1:1 for Masque to control
             if frame.Icon and frame.Icon.SetTexCoord then
                 frame.Icon:SetTexCoord(0, 1, 0, 1)
             end
         else
-            -- Masque is now disabled - unregister if registered
-            if frame._arcAuraMasqueRegistered then
-                UnregisterFromMasque(frame)
+            -- Masque is now disabled - unregister via unified system
+            if frame._arcMasqueAdded then
+                if ns.Masque and ns.Masque.RemoveFrame then
+                    ns.Masque.RemoveFrame(frame)
+                end
                 -- Reset icon texture to default
                 if frame.Icon and frame.Icon.SetTexCoord then
                     frame.Icon:SetTexCoord(0, 1, 0, 1)
@@ -3949,6 +4102,35 @@ function ArcAuras.Initialize()
             C_Timer.After(0.5, function()
                 -- nil = use onlyOnUseTrinkets setting, true = create slot trackers (arc_trinket_13)
                 ArcAuras.AutoAddTrinkets(nil, true)
+            end)
+            
+            -- VISIBILITY FIX: Enable() creates frames and calls frame:Show(), but
+            -- at login time GetInventoryItemID may return nil (items not loaded yet),
+            -- causing frames to get _arcSlotEmpty=true incorrectly. Re-check actual
+            -- slot state after items are loaded and call ShowTrinketSlotFrame.
+            C_Timer.After(1.5, function()
+                if not ArcAuras.isEnabled then return end
+                local db2 = GetDB()
+                if not db2 then return end
+                local onlyOnUse2 = db2.onlyOnUseTrinkets
+                for _, slot in ipairs(TRINKET_SLOTS) do
+                    if ArcAuras.IsAutoTrackSlotEnabled(slot.slotID) then
+                        local arcID = ArcAuras.MakeTrinketID(slot.slotID)
+                        local frame = ArcAuras.frames[arcID]
+                        if frame then
+                            -- Re-check actual slot state (items should be loaded by now)
+                            local itemID = GetInventoryItemID("player", slot.slotID)
+                            if itemID then
+                                local isPassive = onlyOnUse2 and IsItemPassive(itemID)
+                                if not isPassive then
+                                    -- Clear the stale flag so ShowTrinketSlotFrame works
+                                    frame._arcSlotEmpty = nil
+                                    ArcAuras.ShowTrinketSlotFrame(arcID)
+                                end
+                            end
+                        end
+                    end
+                end
             end)
         end
         

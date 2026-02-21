@@ -821,6 +821,16 @@ ns.CDMGroups.initialLoadInProgress = true  -- Block saves until initial load com
 ns.CDMGroups._profileNotLoaded = true  -- Profile positions not loaded yet - don't force save
 ns.CDMGroups.inCombat = false  -- Track combat state for visibility
 ns.CDMGroups.isMounted = false  -- Track mounted state for visibility
+ns.CDMGroups.inVehicle = false     -- Track vehicle/taxi state for visibility
+ns.CDMGroups.inPetBattle = false   -- Track pet battle state for visibility
+ns.CDMGroups.isDead = false        -- Track dead/ghost state for visibility
+ns.CDMGroups.inGroup = false       -- Track group (party/raid) state for visibility
+ns.CDMGroups.inRaid = false        -- Track raid state for visibility
+ns.CDMGroups.inInstance = false    -- Track instance state for visibility
+ns.CDMGroups.isResting = false     -- Track resting (city/inn) state for visibility
+ns.CDMGroups.inEncounter = false   -- Track boss encounter state for visibility
+ns.CDMGroups.isPvP = false         -- Track PvP flag state for visibility
+ns.CDMGroups.isDragonriding = false -- Track skyriding state for visibility
 ns.CDMGroups.fightStats = { parent = 0, strata = 0, scale = 0, size = 0, show = 0, alpha = 0, position = 0, lastReport = 0 }
 
 -- NOTE: Hook functions moved to ArcUI_CDMGroups_Maintain.lua
@@ -2600,6 +2610,14 @@ local function HookCDMOptionsPanel()
                         if ns.CDMGroups.UpdateGroupVisibility then
                             ns.CDMGroups.UpdateGroupVisibility()
                         end
+                        
+                        -- Force-refresh visual states after CDM panel close
+                        -- CDM panel edits can change which auras are tracked, affecting state visuals
+                        C_Timer.After(0.15, function()
+                            if ns.CDMEnhance and ns.CDMEnhance.ForceRefreshAllVisualStates then
+                                ns.CDMEnhance.ForceRefreshAllVisualStates()
+                            end
+                        end)
                     end)
                 end
             end)
@@ -5219,6 +5237,40 @@ function ns.CDMGroups.RestoreArcAurasPositions(debugPrefix)
         return 0, 0
     end
     
+    -- ═══════════════════════════════════════════════════════════════════════════
+    -- PRE-PASS: Sync profile.freeIcons into savedPositions for Arc Aura frames
+    -- OnSpecChange saves freeIcons to profile.freeIcons (step 0) but savedPositions
+    -- may be missing entries (never persisted or wiped). profile.freeIcons is the
+    -- authoritative source for free icon positions — populate savedPositions from it.
+    -- Without this, PRIORITY 2 (savedPositions) has no data and the restore falls
+    -- through to stale frame cache or orphan placement, losing the user's position.
+    -- ═══════════════════════════════════════════════════════════════════════════
+    local profileSavedPositions = GetProfileSavedPositions and GetProfileSavedPositions()
+    if profileSavedPositions then
+        -- Get current profile's freeIcons data
+        local specData = GetSpecData and GetSpecData()
+        local profile = nil
+        if specData then
+            local activeProfileName = specData.activeProfile or "Default"
+            profile = specData.layoutProfiles and specData.layoutProfiles[activeProfileName]
+        end
+        
+        if profile and profile.freeIcons then
+            for arcID, _ in pairs(ns.ArcAuras.frames) do
+                if not profileSavedPositions[arcID] and profile.freeIcons[arcID] then
+                    local freeData = profile.freeIcons[arcID]
+                    profileSavedPositions[arcID] = {
+                        type = "free",
+                        x = freeData.x,
+                        y = freeData.y,
+                        iconSize = freeData.iconSize,
+                    }
+                    DebugPrint(debugPrefix, "Synced missing savedPosition from profile.freeIcons:", arcID, "x=", freeData.x, "y=", freeData.y)
+                end
+            end
+        end
+    end
+    
     local restoredCount = 0
     local orphanCount = 0
     local orphanIndex = 0
@@ -5284,11 +5336,22 @@ function ns.CDMGroups.RestoreArcAurasPositions(debugPrefix)
                         end
                     elseif frame._arcWasFreeIcon then
                         -- PRIORITY 1b: Frame-cached FREE position from HideFrame
-                        -- Same pattern as group cache above. During spec changes,
-                        -- HideFrame caches x/y/size from freeIcons data before
-                        -- UnregisterExternalFrame clears the runtime tracking.
-                        -- ShowFrame skips position restore during specChangeActive,
-                        -- so this cache is preserved for us to use here.
+                        -- ONLY use if savedPositions has NO entry for this frame.
+                        -- The pre-pass above synced profile.freeIcons → savedPositions,
+                        -- so if savedPositions has data, it's authoritative (from the
+                        -- profile DB saved during OnSpecChange step 0). The frame cache
+                        -- can be stale — set from a DIFFERENT spec's HideFrame call.
+                        local saved = ns.CDMGroups.savedPositions and ns.CDMGroups.savedPositions[arcID]
+                        if saved then
+                            -- savedPositions has data — defer to PRIORITY 2
+                            DebugPrint(debugPrefix, "Free cache exists but savedPositions has data, deferring:", arcID)
+                            -- Clear stale cache flags so they don't confuse future restores
+                            frame._arcWasFreeIcon = nil
+                            frame._arcSavedFreeX = nil
+                            frame._arcSavedFreeY = nil
+                            frame._arcSavedFreeSize = nil
+                        else
+                        -- No savedPositions entry — use frame cache as fallback
                         local cachedX = frame._arcSavedFreeX or 0
                         local cachedY = frame._arcSavedFreeY or 0
                         local cachedSize = frame._arcSavedFreeSize or 36
@@ -5324,6 +5387,7 @@ function ns.CDMGroups.RestoreArcAurasPositions(debugPrefix)
                         frame._arcSavedFreeSize = nil
                         restoredCount = restoredCount + 1
                         restoredFromCache = true
+                        end
                     end
                     
                     if not restoredFromCache then
@@ -10599,6 +10663,19 @@ function ns.CDMGroups.CreateGroup(name)
         self.position.y = y
         local db = getDB()
         if db then db.position = self.position end
+        
+        -- CRITICAL: Clear dynamic container offset state.
+        -- SetPosition places the container at exact (x, y) with NO offset.
+        -- If _appliedOffsetX/Y is stale from a previous dynamic layout cycle,
+        -- the next Layout() will compute the wrong delta and move the container
+        -- to a bogus position (e.g. bottom of screen).
+        self._appliedOffsetX = nil
+        self._appliedOffsetY = nil
+        self._contentCenterX = nil
+        self._contentCenterY = nil
+        self._pendingContentCenterX = nil
+        self._pendingContentCenterY = nil
+        
         self.container:ClearAllPoints()
         self.container:SetPoint("CENTER", UIParent, "CENTER", x, y)
         self.UpdateDragBarPosition()
@@ -11894,6 +11971,13 @@ function ns.CDMGroups.UpdateGroupSelectionVisuals()
         if ns.CDMGroups.RefreshIconSettings then
             ns.CDMGroups.RefreshIconSettings()
         end
+        -- Force-refresh ALL visual states (alpha, desat, glow, tint)
+        -- Without this, frames get stuck at panel-open preview state
+        C_Timer.After(0.15, function()
+            if ns.CDMEnhance and ns.CDMEnhance.ForceRefreshAllVisualStates then
+                ns.CDMEnhance.ForceRefreshAllVisualStates()
+            end
+        end)
     end
     ns.CDMGroups._optionsPanelWasOpen = optionsPanelOpen or false
     
@@ -12028,6 +12112,39 @@ function ns.CDMGroups.UpdateGroupVisibility()
                     end
                     if vis.hideMounted and ns.CDMGroups.isMounted then
                         shouldShow = false  -- Hide when mounted
+                    end
+                    if vis.hideInVehicle and ns.CDMGroups.inVehicle then
+                        shouldShow = false  -- Hide when in vehicle/taxi
+                    end
+                    if vis.hideInPetBattle and ns.CDMGroups.inPetBattle then
+                        shouldShow = false  -- Hide when in pet battle
+                    end
+                    if vis.hideDead and ns.CDMGroups.isDead then
+                        shouldShow = false  -- Hide when dead/ghost
+                    end
+                    if vis.hideSolo and not ns.CDMGroups.inGroup then
+                        shouldShow = false  -- Hide when not in a group (solo)
+                    end
+                    if vis.hideInGroup and ns.CDMGroups.inGroup then
+                        shouldShow = false  -- Hide when in any group
+                    end
+                    if vis.hideInRaid and ns.CDMGroups.inRaid then
+                        shouldShow = false  -- Hide when in a raid
+                    end
+                    if vis.hideInInstance and ns.CDMGroups.inInstance then
+                        shouldShow = false  -- Hide when in an instance
+                    end
+                    if vis.hideResting and ns.CDMGroups.isResting then
+                        shouldShow = false  -- Hide when resting (city/inn)
+                    end
+                    if vis.hideInEncounter and ns.CDMGroups.inEncounter then
+                        shouldShow = false  -- Hide during boss encounters
+                    end
+                    if vis.hidePvP and ns.CDMGroups.isPvP then
+                        shouldShow = false  -- Hide when PvP flagged
+                    end
+                    if vis.hideDragonriding and ns.CDMGroups.isDragonriding then
+                        shouldShow = false  -- Hide when skyriding
                     end
                 end
             else
@@ -12185,6 +12302,10 @@ function ns.CDMGroups.PLAYER_ENTERING_WORLD(event, isInitialLogin, isReloadingUI
             -- Refresh mounted/combat state (may have changed during loading screen)
             ns.CDMGroups.inCombat = InCombatLockdown()
             ns.CDMGroups.isMounted = IsMounted()
+            ns.CDMGroups.inVehicle = UnitInVehicle("player") or UnitOnTaxi("player") or false
+            ns.CDMGroups.inInstance = IsInInstance() or false
+            ns.CDMGroups.isResting = IsResting()
+            ns.CDMGroups.isDragonriding = (UnitPowerBarID("player") == 631)
             
             return  -- Don't do regular zone change handling
         end
@@ -12198,6 +12319,14 @@ function ns.CDMGroups.PLAYER_ENTERING_WORLD(event, isInitialLogin, isReloadingUI
         -- isMounted stays true even though you're now dismounted in the instance.
         ns.CDMGroups.inCombat = InCombatLockdown()
         ns.CDMGroups.isMounted = IsMounted()
+        ns.CDMGroups.inVehicle = UnitInVehicle("player") or UnitOnTaxi("player") or false
+        ns.CDMGroups.isDead = UnitIsDeadOrGhost("player")
+        ns.CDMGroups.inGroup = IsInGroup()
+        ns.CDMGroups.inRaid = IsInRaid()
+        ns.CDMGroups.inInstance = IsInInstance() or false
+        ns.CDMGroups.isResting = IsResting()
+        ns.CDMGroups.isPvP = UnitIsPVP("player") or UnitIsPVPFreeForAll("player") or false
+        ns.CDMGroups.isDragonriding = (UnitPowerBarID("player") == 631)
         
         -- Update group visibility with fresh state
         if ns.CDMGroups.UpdateGroupVisibility then
@@ -12210,6 +12339,14 @@ function ns.CDMGroups.PLAYER_ENTERING_WORLD(event, isInitialLogin, isReloadingUI
             local wasMounted = ns.CDMGroups.isMounted
             ns.CDMGroups.isMounted = IsMounted()
             ns.CDMGroups.inCombat = InCombatLockdown()
+            ns.CDMGroups.inVehicle = UnitInVehicle("player") or UnitOnTaxi("player") or false
+            ns.CDMGroups.isDead = UnitIsDeadOrGhost("player")
+            ns.CDMGroups.inGroup = IsInGroup()
+            ns.CDMGroups.inRaid = IsInRaid()
+            ns.CDMGroups.inInstance = IsInInstance() or false
+            ns.CDMGroups.isResting = IsResting()
+            ns.CDMGroups.isPvP = UnitIsPVP("player") or UnitIsPVPFreeForAll("player") or false
+            ns.CDMGroups.isDragonriding = (UnitPowerBarID("player") == 631)
             if wasMounted ~= ns.CDMGroups.isMounted then
                 DebugPrint("|cff00ccff[ZoneChange]|r Mounted state corrected:", tostring(wasMounted), "->", tostring(ns.CDMGroups.isMounted))
             end
@@ -12591,6 +12728,16 @@ function ns.CDMGroups.PLAYER_ENTERING_WORLD(event, isInitialLogin, isReloadingUI
                 -- Initialize combat and mounted state and update visibility
                 ns.CDMGroups.inCombat = InCombatLockdown()
                 ns.CDMGroups.isMounted = IsMounted()
+                ns.CDMGroups.inVehicle = UnitInVehicle("player") or UnitOnTaxi("player") or false
+                ns.CDMGroups.inPetBattle = C_PetBattles and C_PetBattles.IsInBattle() or false
+                ns.CDMGroups.isDead = UnitIsDeadOrGhost("player")
+                ns.CDMGroups.inGroup = IsInGroup()
+                ns.CDMGroups.inRaid = IsInRaid()
+                ns.CDMGroups.inInstance = IsInInstance() or false
+                ns.CDMGroups.isResting = IsResting()
+                ns.CDMGroups.inEncounter = false  -- No active encounter on fresh init
+                ns.CDMGroups.isPvP = UnitIsPVP("player") or UnitIsPVPFreeForAll("player") or false
+                ns.CDMGroups.isDragonriding = (UnitPowerBarID("player") == 631)
                 ns.CDMGroups.UpdateGroupVisibility()
                 
                 -- CRITICAL: Ensure container click-through state is correct on initial load
@@ -12969,6 +13116,21 @@ CDMGroupsInitFrame:RegisterEvent("TRAIT_CONFIG_UPDATED")
 CDMGroupsInitFrame:RegisterEvent("PLAYER_REGEN_DISABLED")  -- Entering combat
 CDMGroupsInitFrame:RegisterEvent("PLAYER_REGEN_ENABLED")   -- Leaving combat
 CDMGroupsInitFrame:RegisterEvent("PLAYER_MOUNT_DISPLAY_CHANGED")  -- Mounting/dismounting
+CDMGroupsInitFrame:RegisterEvent("UNIT_ENTERED_VEHICLE")          -- Vehicle entered
+CDMGroupsInitFrame:RegisterEvent("UNIT_EXITED_VEHICLE")           -- Vehicle exited
+CDMGroupsInitFrame:RegisterEvent("PET_BATTLE_OPENING_START")      -- Pet battle start
+CDMGroupsInitFrame:RegisterEvent("PET_BATTLE_CLOSE")              -- Pet battle end
+CDMGroupsInitFrame:RegisterEvent("PLAYER_DEAD")                   -- Player died
+CDMGroupsInitFrame:RegisterEvent("PLAYER_ALIVE")                  -- Player resurrected
+CDMGroupsInitFrame:RegisterEvent("PLAYER_UNGHOST")                -- Player unghosted
+CDMGroupsInitFrame:RegisterEvent("GROUP_ROSTER_UPDATE")           -- Group composition changed
+CDMGroupsInitFrame:RegisterEvent("PLAYER_UPDATE_RESTING")         -- Resting state changed
+CDMGroupsInitFrame:RegisterEvent("ENCOUNTER_START")               -- Boss encounter started
+CDMGroupsInitFrame:RegisterEvent("ENCOUNTER_END")                 -- Boss encounter ended
+CDMGroupsInitFrame:RegisterEvent("UNIT_FLAGS")                    -- PvP flag changes
+CDMGroupsInitFrame:RegisterEvent("UNIT_POWER_BAR_SHOW")           -- Skyriding detection
+CDMGroupsInitFrame:RegisterEvent("UNIT_POWER_BAR_HIDE")           -- Skyriding detection
+CDMGroupsInitFrame:RegisterEvent("ZONE_CHANGED_NEW_AREA")         -- Instance detection
 
 CDMGroupsInitFrame:SetScript("OnEvent", function(self, event, ...)
     if event == "ADDON_LOADED" then
@@ -13019,6 +13181,55 @@ CDMGroupsInitFrame:SetScript("OnEvent", function(self, event, ...)
     elseif event == "PLAYER_MOUNT_DISPLAY_CHANGED" then
         -- Mounting or dismounting
         ns.CDMGroups.isMounted = IsMounted()
+        ns.CDMGroups.UpdateGroupVisibility()
+    elseif event == "UNIT_ENTERED_VEHICLE" or event == "UNIT_EXITED_VEHICLE" then
+        local unit = ...
+        if unit == "player" then
+            ns.CDMGroups.inVehicle = UnitInVehicle("player") or UnitOnTaxi("player") or false
+            ns.CDMGroups.UpdateGroupVisibility()
+        end
+    elseif event == "PET_BATTLE_OPENING_START" then
+        ns.CDMGroups.inPetBattle = true
+        ns.CDMGroups.UpdateGroupVisibility()
+    elseif event == "PET_BATTLE_CLOSE" then
+        -- PET_BATTLE_CLOSE fires twice; only process when battle is actually over
+        if not C_PetBattles.IsInBattle() then
+            ns.CDMGroups.inPetBattle = false
+            ns.CDMGroups.UpdateGroupVisibility()
+        end
+    elseif event == "PLAYER_DEAD" then
+        ns.CDMGroups.isDead = true
+        ns.CDMGroups.UpdateGroupVisibility()
+    elseif event == "PLAYER_ALIVE" or event == "PLAYER_UNGHOST" then
+        ns.CDMGroups.isDead = false
+        ns.CDMGroups.UpdateGroupVisibility()
+    elseif event == "GROUP_ROSTER_UPDATE" then
+        ns.CDMGroups.inGroup = IsInGroup()
+        ns.CDMGroups.inRaid = IsInRaid()
+        ns.CDMGroups.UpdateGroupVisibility()
+    elseif event == "PLAYER_UPDATE_RESTING" then
+        ns.CDMGroups.isResting = IsResting()
+        ns.CDMGroups.UpdateGroupVisibility()
+    elseif event == "ENCOUNTER_START" then
+        ns.CDMGroups.inEncounter = true
+        ns.CDMGroups.UpdateGroupVisibility()
+    elseif event == "ENCOUNTER_END" then
+        ns.CDMGroups.inEncounter = false
+        ns.CDMGroups.UpdateGroupVisibility()
+    elseif event == "UNIT_FLAGS" then
+        local unit = ...
+        if unit == "player" then
+            ns.CDMGroups.isPvP = UnitIsPVP("player") or UnitIsPVPFreeForAll("player") or false
+            ns.CDMGroups.UpdateGroupVisibility()
+        end
+    elseif event == "UNIT_POWER_BAR_SHOW" or event == "UNIT_POWER_BAR_HIDE" then
+        local unit = ...
+        if unit == "player" then
+            ns.CDMGroups.isDragonriding = (UnitPowerBarID("player") == 631)
+            ns.CDMGroups.UpdateGroupVisibility()
+        end
+    elseif event == "ZONE_CHANGED_NEW_AREA" then
+        ns.CDMGroups.inInstance = IsInInstance() or false
         ns.CDMGroups.UpdateGroupVisibility()
     end
 end)

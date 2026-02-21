@@ -41,16 +41,8 @@ function VE:CreateMainWindow()
     local frame = VE.UI:CreateMainFrame("VE_MainFrame", "Vamoose's Endeavors v" .. version)
     frame:Hide()
 
-    -- Escape closes window only when mouse is over it (not when interacting with other UI)
-    frame:EnableKeyboard(true)
-    frame:SetScript("OnKeyDown", function(f, key)
-        if key == "ESCAPE" and f:IsMouseOver() then
-            f:SetPropagateKeyboardInput(false)
-            f:Hide()
-        else
-            f:SetPropagateKeyboardInput(true)
-        end
-    end)
+    -- Escape closes window (standard WoW behavior via UISpecialFrames)
+    table.insert(UISpecialFrames, "VE_MainFrame")
 
     -- Restore saved position
     RestoreWindowPosition(frame)

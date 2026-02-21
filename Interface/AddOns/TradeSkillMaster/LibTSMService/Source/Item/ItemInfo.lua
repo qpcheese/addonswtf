@@ -42,7 +42,7 @@ local ITEM_INFO_INTERVAL = 0.05
 local MAX_REQUESTED_ITEM_INFO = 50
 local MAX_REQUESTS_PER_ITEM = 5
 local UNKNOWN_ITEM_TEXTURE = 136254
-local DB_VERSION = 14
+local DB_VERSION = 15
 local PENDING_STATE = EnumType.New("ITEM_INFO_PENDING_STATE", {
 	NEW = EnumType.NewValue(),
 	CREATED = EnumType.NewValue(),
@@ -336,7 +336,7 @@ function ItemInfo.GetItemLevel(item)
 		if itemStringLevelIsAbs then
 			return itemStringLevel
 		else
-			-- level is relative to the base item
+			-- Level is relative to the base item
 			local baseItemLevel = ItemInfo.GetItemLevel(ItemString.GetBaseFast(itemString))
 			if not baseItemLevel then
 				return nil
@@ -352,23 +352,26 @@ function ItemInfo.GetItemLevel(item)
 	randOrLevel = tonumber(randOrLevel)
 	bonusOrQuality = tonumber(bonusOrQuality)
 	if itemType == "p" then
-		-- we can fetch info instantly for pets so try again
+		-- We can fetch info instantly for pets so try again
 		ItemInfo.FetchInfo(itemString)
 		itemLevel = private.cache:GetField(itemString, "itemLevel")
 		if not itemLevel then
-			-- just get the level from the item string
+			-- Just get the level from the item string
 			itemLevel = randOrLevel or ItemString.GetItemLevel(itemString) or 0
 			private.DeferSetSingleField(itemString, "itemLevel", itemLevel)
 		end
 	elseif itemType == "i" then
 		if randOrLevel and not bonusOrQuality then
-			-- there is a random enchant, but no bonusIds, so the itemLevel is the same as the base item
+			-- There is a random enchant, but no bonusIds, so the itemLevel is the same as the base item
 			itemLevel = ItemInfo.GetItemLevel(ItemString.GetBaseFast(itemString))
+		else
+			itemLevel = BonusIds.GetItemLevel(itemString)
 		end
 		if itemLevel then
 			private.DeferSetSingleField(itemString, "itemLevel", itemLevel)
+		else
+			ItemInfo.FetchInfo(itemString)
 		end
-		ItemInfo.FetchInfo(itemString)
 	else
 		error("Invalid item: "..tostring(itemString))
 	end
@@ -1080,11 +1083,11 @@ function private.GetDBVersionStr()
 end
 
 function private.ToWowItemString(itemString)
-	local itemStringLevel, isAbsItemStringLevel = ItemString.ParseLevel(itemString)
+	local itemStringLevel = ItemString.ParseLevel(itemString)
 	local itemId, rand, extraPart = nil, nil, nil
 	if itemStringLevel then
 		itemId, rand = select(2, strsplit(":", itemString))
-		extraPart = BonusIds.GetBonusStringForLevel(itemStringLevel, isAbsItemStringLevel)
+		extraPart = BonusIds.GetBonusStringForLevel(itemStringLevel)
 	else
 		local _, extra = nil, nil
 		itemId, rand, extra = select(2, strsplit(":", itemString))

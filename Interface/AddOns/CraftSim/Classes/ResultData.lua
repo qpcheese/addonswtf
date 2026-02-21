@@ -63,6 +63,13 @@ function CraftSim.ResultData:UpdatePossibleResultItems()
         for _, itemLink in pairs(itemLinks) do
             table.insert(self.itemsByQuality, Item:CreateFromItemLink(itemLink))
         end
+    elseif recipeData.supportsQualities and not recipeData.isSalvageRecipe and not recipeData.recipeInfo.isGatheringRecipe then
+        print("fetching quality ids itemids:", false, true)
+        local itemIDs = C_TradeSkillUI.GetRecipeQualityItemIDs(recipeData.recipeID)
+        for _, itemID in pairs(itemIDs or {}) do
+            print("itemID: " .. itemID)
+            table.insert(self.itemsByQuality, Item:CreateFromItemID(itemID))
+        end
     else
         print("fetching quality ids itemids:", false, true)
         local itemIDs = CraftSim.UTIL:GetDifferentQualityIDsByCraftingReagentTbl(recipeData.recipeID,
@@ -178,9 +185,6 @@ function CraftSim.ResultData:Debug()
     for q, item in pairs(self.itemsByQuality) do
         table.insert(debugLines, "Possible Result Q" .. q .. " " .. (item:GetItemLink() or item:GetItemID()))
     end
-    for q, chance in pairs(self.chanceByQuality) do
-        table.insert(debugLines, "Q" .. q .. " Chance: " .. chance * 100 .. " %")
-    end
     return CraftSim.GUTIL:Concat({ debugLines,
         {
             "expectedQuality: " .. tostring(self.expectedQuality),
@@ -246,9 +250,9 @@ function CraftSim.ResultData:GetJSON(indent)
     local jb = CraftSim.JSONBuilder(indent)
     jb:Begin()
     local itemList = {}
-    table.foreach(self.itemsByQuality, function(_, item)
+    for _, item in pairs(self.itemsByQuality) do
         table.insert(itemList, tostring(CraftSim.GUTIL:GetItemStringFromLink(item:GetItemLink())))
-    end)
+    end
 
     jb:AddList("itemsByQuality", itemList)
     jb:Add("expectedQuality", self.expectedQuality)

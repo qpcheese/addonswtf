@@ -12,6 +12,7 @@ NewSettingsSeen = {
 ["panelItemQualityColorOverrides"] = true,
 ["GameplaySoundEffects"] = true,
 ["raidFramesDisplayLargerRoleSpecificDebuffs"] = true,
+["enableConnectToPhotoSharing"] = true,
 ["DAMAGE_METER_LABEL"] = true,
 ["cooldownViewerEnabled"] = true,
 ["CAA_COMBAT_AUDIO_ALERTS_LABEL"] = true,

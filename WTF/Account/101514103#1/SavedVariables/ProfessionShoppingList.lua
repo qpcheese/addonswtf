@@ -95,12 +95,6 @@ ProfessionShoppingList_Data = {
 },
 },
 ["Recipes"] = {
-[435385] = {
-["quantity"] = 1,
-["simRecipe"] = false,
-["recraft"] = true,
-["link"] = "|cnIQ4:|Hitem:215136::::::::80:64:::::::::|h[Amulet of Earthen Craftsmanship]|h|r",
-},
 },
 ["Pets"] = {
 ["ragnaros"] = {
@@ -13457,7 +13451,7 @@ ProfessionShoppingList_Library = {
 ["abilityID"] = 42452,
 },
 [443570] = {
-["learned"] = false,
+["learned"] = true,
 ["abilityID"] = 50198,
 ["itemID"] = 219403,
 ["tradeskillID"] = 202,
@@ -49345,60 +49339,6 @@ ProfessionShoppingList_Cache = {
 ["SimulatedRecipes"] = {
 },
 ["FakeRecipes"] = {
-["order:608954367:447319"] = {
-["reagents"] = {
-{
-["reagentInfo"] = {
-["reagent"] = {
-["itemID"] = 219150,
-},
-["dataSlotIndex"] = 1,
-["quantity"] = 10,
-},
-["isBasicReagent"] = true,
-["source"] = 0,
-["slotIndex"] = 1,
-},
-{
-["reagentInfo"] = {
-["reagent"] = {
-["itemID"] = 230906,
-},
-["dataSlotIndex"] = 1,
-["quantity"] = 1,
-},
-["isBasicReagent"] = false,
-["source"] = 1,
-["slotIndex"] = 2,
-},
-{
-["reagentInfo"] = {
-["reagent"] = {
-["itemID"] = 219893,
-},
-["dataSlotIndex"] = 2,
-["quantity"] = 3,
-},
-["isBasicReagent"] = true,
-["source"] = 0,
-["slotIndex"] = 3,
-},
-{
-["reagentInfo"] = {
-["reagent"] = {
-["itemID"] = 221860,
-},
-["dataSlotIndex"] = 3,
-["quantity"] = 9,
-},
-["isBasicReagent"] = true,
-["source"] = 0,
-["slotIndex"] = 4,
-},
-},
-["tradeskillID"] = 1,
-["spellID"] = 447319,
-},
 },
 ["ReagentTiers"] = {
 [222609] = {
@@ -50098,57 +50038,5 @@ ProfessionShoppingList_Cache = {
 },
 },
 ["Reagents"] = {
-[219892] = {
-["icon"] = 5976696,
-["link"] = "|cnIQ3:|Hitem:219892::::::::80:64:::::::::|h[Leyfused Hide |A:Professions-ChatIcon-Quality-Tier1:17:15::1|a]|h|r",
-},
-[221859] = {
-["icon"] = 6031069,
-["link"] = "|cnIQ1:|Hitem:221859::::::::80:64:::::::::|h[Gyrating Gear |A:Professions-ChatIcon-Quality-Tier1:17:15::1|a]|h|r",
-},
-[221865] = {
-["icon"] = 6031071,
-["link"] = "|cnIQ1:|Hitem:221865::::::::80:64:::::::::|h[Chaos Circuit |A:Professions-ChatIcon-Quality-Tier1:17:15::1|a]|h|r",
-},
-[210814] = {
-["icon"] = 4643976,
-["link"] = "|cnIQ3:|Hitem:210814::::::::80:64:::::::::|h[Artisan's Acuity]|h|r",
-},
-[221856] = {
-["icon"] = 2437247,
-["link"] = "|cnIQ1:|Hitem:221856::::::::80:64:::::::::|h[Whimsical Wiring |A:Professions-ChatIcon-Quality-Tier1:17:15::1|a]|h|r",
-},
-[222555] = {
-["icon"] = 5536645,
-["link"] = "|cnIQ3:|Hitem:222555::::::::80:64:::::::::|h[Codified Greenwood |A:Professions-ChatIcon-Quality-Tier1:17:15::1|a]|h|r",
-},
-[219150] = {
-["icon"] = 134070,
-["link"] = "|cnIQ2:|Hitem:219150::::::::80:64:::::::::|h[Pile of Rusted Scrap]|h|r",
-},
-[224832] = {
-["icon"] = 4549298,
-["link"] = "|cnIQ3:|Hitem:224832::::::::80:62:::::::::|h[Exquisite Weavercloth Bolt |A:Professions-ChatIcon-Quality-Tier1:17:15::1|a]|h|r",
-},
-[219949] = {
-["icon"] = 5929581,
-["link"] = "|cnIQ3:|Hitem:219949::::::::80:62:::::::::|h[Gleaming Shard |A:Professions-ChatIcon-Quality-Tier1:17:15::1|a]|h|r",
-},
-[228930] = {
-["icon"] = 5976252,
-["link"] = "|cnIQ2:|Hitem:228930::::::::80:62:::::::::|h[Adorning Ribbon]|h|r",
-},
-[222558] = {
-["icon"] = 4643986,
-["link"] = "|cnIQ3:|Hitem:222558::::::::80:64:::::::::|h[Boundless Cipher |A:Professions-ChatIcon-Quality-Tier1:17:15::1|a]|h|r",
-},
-[212505] = {
-["icon"] = 5931413,
-["link"] = "|cnIQ3:|Hitem:212505::::::::80:64:::::::::|h[Extravagant Emerald]|h|r",
-},
-[213756] = {
-["icon"] = 442737,
-["link"] = "|cnIQ1:|Hitem:213756::::::::80:64:::::::::|h[Marbled Stone |A:Professions-ChatIcon-Quality-Tier1:17:15::1|a]|h|r",
-},
 },
 }

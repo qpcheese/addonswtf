@@ -2,6 +2,21 @@
 Vamoose's Endeavors - Changelog
 ================================================================================
 
+Version 1.9.9 (February 2026)
+--------------------------------------------------------------------------------
+
+IMPROVED:
+- Font system: Added "Game Default" font option using WoW's locale-appropriate
+  font (STANDARD_TEXT_FONT) for proper CJK/Korean glyph coverage
+- Non-Latin locale auto-detection: CJK locales (zhCN/zhTW/koKR) default to
+  Game Default font, Cyrillic locales (ruRU/ukUA) default to Friz Quadrata
+- Changed default font from Arial Narrow to Game Default for better
+  international support
+- Escape key now closes the VE window from anywhere (standard WoW behavior),
+  no longer requires mouse to be over the window
+
+--------------------------------------------------------------------------------
+
 Version 1.9.8 (February 2026)
 --------------------------------------------------------------------------------
 

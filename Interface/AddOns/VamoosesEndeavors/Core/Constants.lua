@@ -98,13 +98,14 @@ VE.Constants.ThemeDisplayNames = {
 }
 
 -- Font families available
-VE.Constants.FontOrder = { "ARIALN", "FRIZQT__", "skurri", "MORPHEUS", "Expressway" }
+VE.Constants.FontOrder = { "GameDefault", "ARIALN", "FRIZQT__", "skurri", "MORPHEUS", "Expressway" }
 VE.Constants.FontDisplayNames = {
     ARIALN = "Arial Narrow",
     FRIZQT__ = "Friz Quadrata",
     skurri = "Skurri",
     MORPHEUS = "Morpheus",
     Expressway = "Expressway",
+    GameDefault = "Game Default",
 }
 VE.Constants.FontFiles = {
     ARIALN = "Fonts\\ARIALN.TTF",
@@ -112,17 +113,30 @@ VE.Constants.FontFiles = {
     skurri = "Fonts\\skurri.TTF",
     MORPHEUS = "Fonts\\MORPHEUS.TTF",
     Expressway = "Interface\\AddOns\\VamoosesEndeavors\\Fonts\\expressway.ttf",
+    GameDefault = STANDARD_TEXT_FONT, -- WoW's locale-appropriate font (CJK/Korean/etc)
 }
+
+-- Non-Latin locales: auto-select a font with proper glyph coverage
+-- Cyrillic: ruRU/ukUA -> Friz Quadrata has Cyrillic glyphs
+-- CJK: zhCN/zhTW/koKR -> WoW's STANDARD_TEXT_FONT (region-mapped)
+local NON_LATIN_LOCALES = {
+    ruRU = "FRIZQT__",
+    ukUA = "FRIZQT__",
+    zhCN = "GameDefault",
+    zhTW = "GameDefault",
+    koKR = "GameDefault",
+}
+local DEFAULT_FONT = NON_LATIN_LOCALES[GetLocale()] or "GameDefault"
 
 -- Get current font family file path
 function VE.Constants:GetFontFile()
-    local family = "ARIALN"
+    local family = DEFAULT_FONT
     if VE.Store and VE.Store.state and VE.Store.state.config then
-        family = VE.Store.state.config.fontFamily or "ARIALN"
+        family = VE.Store.state.config.fontFamily or DEFAULT_FONT
     elseif VE_DB and VE_DB.config and VE_DB.config.fontFamily then
         family = VE_DB.config.fontFamily
     end
-    return self.FontFiles[family] or self.FontFiles.ARIALN
+    return self.FontFiles[family] or self.FontFiles[DEFAULT_FONT]
 end
 
 -- Get colors for current theme

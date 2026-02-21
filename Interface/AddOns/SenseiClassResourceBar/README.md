@@ -30,7 +30,9 @@ Mana, Rage, Energy, Focus, Fury, Runic Power, Astral Power, Maelstrom Weapon and
 *   **Evoker** → Essence
 *   **Mage** → Arcane Charges
 *   **Druid** → Combo Points (Cat Form)
-*   **Demon Hunter** → Soul Fragments (Devourer)
+*   **Demon Hunter** → Soul Fragments (Devourer, Vengeance)
+*   **Hunter** → Tip of the Spear (Survival)
+*   **Warrior** → Whirlwind (Fury)
 
 **Ebon Might as a standalone bar**
 
@@ -57,7 +59,7 @@ Each bar (Primary & Secondary) has its own configuration:
 
 *   📏 Adjustable **width**, **height**, and **overall scale**
 *   ✏️ Customizable **font**, **size**, and **outline**
-*   🖼 Multiple **foreground textures**, **backgrounds**, and **border styles**
+*   🖼 Multiple **bar textures**, **backgrounds**, and **border styles**
 *   🎯 Text alignment (Left / Center / Right), Font, Size
 *   🎨 All the resources color are editable
 *   ⭐ Support for LibSharedMedia-3.0

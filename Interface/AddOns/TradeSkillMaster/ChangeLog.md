@@ -1,5 +1,6 @@
-## v4.14.55 Changes
+## v4.14.56 Changes
 
-* [Retail] Updated for 12.0.1
+* [Retail] Initial support for new bonus ID system in Midnight to calculate item levels
+* [Retail] Support for new enchanting recipes
 
 [Known Issues](https://support.tradeskillmaster.com/en_US/known_issues)

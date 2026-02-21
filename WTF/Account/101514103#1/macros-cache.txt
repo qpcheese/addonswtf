@@ -23,16 +23,16 @@ VER 3 0000000000000005 "2r3" "135838"
 /use 13
 /use item:191383
 END
-VER 3 0000000000000013 "a" "134400"
-/use Rogues Deck
-/script AcceptQuest()
-END
 VER 3 000000000000002D "a" "134400"
 /target Grizzlefur Cub
 /cleartarget [dead]
 /stopmacro [dead][noexists]
 /run SetRaidTarget("target", 8)
 /cast arcane barrage
+END
+VER 3 0000000000000013 "a" "134400"
+/use Rogues Deck
+/script AcceptQuest()
 END
 VER 3 000000000000000E "asd" "134400"
 /targetenemy [noharm][dead]

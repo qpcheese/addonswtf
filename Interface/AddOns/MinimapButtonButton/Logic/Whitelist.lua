@@ -1,6 +1,7 @@
 local _, addon = ...;
 
 local format = _G.format;
+local strlower = _G.strlower;
 local wipe = _G.wipe;
 
 local Utils = addon.import('Core/Utils');
@@ -9,44 +10,48 @@ local options = addon.import('Logic/Options').getAll();
 
 local module = addon.export('Logic/Whitelist', {});
 
-function module.findButton (buttonName)
-  local matches, path, keys = Main.searchButtonByName(buttonName);
+local function findButtonPathInWhitelist (path)
+  path = strlower(path);
 
-  if (#matches == 0) then
-    Utils.printAddonMessage(format('No frame named "%s" was found.', buttonName));
-    return nil;
+  for key in pairs(options.whitelist) do
+    if (strlower(key) == path) then
+      return key;
+    end
   end
 
-  if (#matches > 1) then
-    Utils.printAddonMessage(format('More than one frame containing "%s" was found:', buttonName));
-    Utils.sortAndPrintList(Main.getFoundButtonPaths(path, keys));
-    return nil;
-  end
+  return nil;
+end
 
-  if (not Main.isValidFrame(matches[1])) then
-    Utils.printAddonMessage(format('"%s" is not a valid frame.', path));
-    return nil;
-  end
-
-  return matches[1], path;
+function module.isButtonWhitelisted (path)
+  return (findButtonPathInWhitelist(path) ~= nil);
 end
 
 function module.addToWhitelist (path)
   options.whitelist[path] = true;
   Main.collectMinimapButtonsAndUpdateLayout();
-  Utils.printAddonMessage(format('Button "%s" is now manually being collected.',
-      path));
+  Utils.printAddonMessage(format('Button "%s" is now manually being collected.', path));
 end
 
-function module.removeFromWhitelist (buttonName)
-  if (options.whitelist[buttonName] == nil) then
-    Utils.printAddonMessage(format('Button "%s" is not currently being manually collected.', buttonName));
+function module.removeFromWhitelist (path)
+  if (options.whitelist[path] == nil) then
+    Utils.printAddonMessage(format('Button "%s" is not currently being manually collected.', path));
     return;
   end
 
-  options.whitelist[buttonName] = nil;
-  Utils.printReloadMessage(format('Button "%s" is no longer being collected manually.',
-      buttonName));
+  options.whitelist[path] = nil;
+  Utils.printReloadMessage(format('Button "%s" is no longer being collected manually.', path));
+end
+
+function module.removeFromWhitelistCaseInsensitive (path)
+  local matchingPath = findButtonPathInWhitelist(path);
+
+  if (matchingPath == nil) then
+    Utils.printAddonMessage(format('Button "%s" is not currently being manually collected.', path));
+    return;
+  end
+
+  options.whitelist[matchingPath] = nil;
+  Utils.printReloadMessage(format('Button "%s" is no longer being collected manually.', path));
 end
 
 function module.clearWhitelist ()

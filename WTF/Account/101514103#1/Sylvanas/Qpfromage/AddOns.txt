@@ -595,7 +595,7 @@ EnhanceQoLSharedMedia: disabled
 HomeDecor: disabled
 DecorVendor: disabled
 OPieExtraConditions: disabled
-AdvancedDecorationTools: disabled
+AdvancedDecorationTools: enabled
 DreamHouse: disabled
 HousingVendor: disabled
 IconFileNames: disabled

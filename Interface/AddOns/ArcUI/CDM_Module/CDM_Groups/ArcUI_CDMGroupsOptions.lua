@@ -2528,6 +2528,17 @@ local function GetOptionsTable()
                     ["hideOOC"] = "Out of Combat",
                     ["hideInCombat"] = "In Combat",
                     ["hideMounted"] = "Mounted",
+                    ["hideInVehicle"] = "In Vehicle / Taxi",
+                    ["hideDead"] = "Dead / Ghost",
+                    ["hideResting"] = "Resting (City/Inn)",
+                    ["hideSolo"] = "Solo (Not in Group)",
+                    ["hideInGroup"] = "In Group",
+                    ["hideInRaid"] = "In Raid",
+                    ["hideInInstance"] = "In Instance",
+                    ["hideInEncounter"] = "Boss Encounter",
+                    ["hideInPetBattle"] = "In Pet Battle",
+                    ["hidePvP"] = "PvP Flagged",
+                    ["hideDragonriding"] = "Skyriding",
                     ["hideAlways"] = "Always (Disabled)",
                 },
                 get = function(_, key)
@@ -2577,6 +2588,17 @@ local function GetOptionsTable()
                             g.visibility.hideOOC = nil
                             g.visibility.hideInCombat = nil
                             g.visibility.hideMounted = nil
+                            g.visibility.hideInVehicle = nil
+                            g.visibility.hideInPetBattle = nil
+                            g.visibility.hideDead = nil
+                            g.visibility.hideSolo = nil
+                            g.visibility.hideInGroup = nil
+                            g.visibility.hideInRaid = nil
+                            g.visibility.hideInInstance = nil
+                            g.visibility.hideResting = nil
+                            g.visibility.hideInEncounter = nil
+                            g.visibility.hidePvP = nil
+                            g.visibility.hideDragonriding = nil
                         elseif val and g.visibility.hideAlways then
                             -- If setting another option, clear hideAlways
                             g.visibility.hideAlways = nil

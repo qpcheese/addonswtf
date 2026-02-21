@@ -49,11 +49,24 @@ end
 
 -- ===================================================================
 -- HELPER: APPLY SMOOTHING TO STATUSBAR
+-- WoW 12.0 native StatusBar:SetValue(value, interpolation) provides
+-- engine-level C++ interpolation — much smoother than Lua-based mixins.
+-- Store the interpolation enum on the bar for use in SetValue calls.
 -- ===================================================================
+local INTERP_SMOOTH = Enum.StatusBarInterpolation and Enum.StatusBarInterpolation.ExponentialEaseOut
+local INTERP_NONE = Enum.StatusBarInterpolation and Enum.StatusBarInterpolation.None
+
 local function ApplyBarSmoothing(bar, enableSmooth)
   if not bar then return end
+  -- Disable old Lua-based mixin smoothing if present (conflicts with native)
   if bar.SetSmoothing then
-    bar:SetSmoothing(enableSmooth)
+    bar:SetSmoothing(false)
+  end
+  -- Store interpolation enum for SetValue calls
+  if enableSmooth and INTERP_SMOOTH then
+    bar._arcInterpolation = INTERP_SMOOTH
+  else
+    bar._arcInterpolation = INTERP_NONE
   end
 end
 
@@ -474,6 +487,7 @@ local cachedMaxPower = {}  -- [powerType] = maxValue
 
 -- Cache for ColorCurves
 local resourceColorCurves = {}  -- [barNumber] = { curve, settingsHash }
+local resourceMaxColorCurves = {}  -- [barNumber] = { curve, hash }
 
 -- Default threshold colors
 local RESOURCE_THRESHOLD_DEFAULT_COLORS = {
@@ -523,7 +537,7 @@ local function SafeColorRGBA(color, defaultR, defaultG, defaultB, defaultA)
 end
 
 -- Hash function for cache invalidation
-local function GetResourceThresholdHash(cfg, baseColor)
+local function GetResourceThresholdHash(cfg, baseColor, powerType)
   local parts = {}
   local bcR, bcG, bcB, bcA = SafeColorRGBA(baseColor, 0, 0.8, 1, 1)
   table.insert(parts, string.format("bc:%.2f,%.2f,%.2f,%.2f", bcR, bcG, bcB, bcA))
@@ -540,7 +554,20 @@ local function GetResourceThresholdHash(cfg, baseColor)
   
   table.insert(parts, cfg.colorCurveThresholdAsPercent and "pct" or "num")
   table.insert(parts, (cfg.colorCurveDirection == "fill" or cfg.colorCurveDirectionFilling) and "fill" or "drain")
-  table.insert(parts, tostring(cfg.colorCurveMaxValue or 100))
+  -- Include actual max power for numeric mode so curve rebuilds when talents change max
+  local effectiveMax = cfg.colorCurveMaxValue or 100
+  if not cfg.colorCurveThresholdAsPercent and powerType then
+    local cachedMax = GetCachedMaxPower(powerType)
+    if cachedMax and cachedMax > 0 then
+      effectiveMax = cachedMax
+    end
+  end
+  table.insert(parts, tostring(effectiveMax))
+  -- Include maxColor so curve rebuilds when max color settings change
+  if cfg.enableMaxColor then
+    local mc = cfg.maxColor or {r=0, g=1, b=0, a=1}
+    table.insert(parts, string.format("mc:%.2f,%.2f,%.2f,%.2f", mc.r or 0, mc.g or 1, mc.b or 0, mc.a or 1))
+  end
   return table.concat(parts, "|")
 end
 
@@ -559,6 +586,10 @@ local function GetResourceColorCurve(barNumber, barConfig, powerType)
     return nil
   end
   
+  -- Max color integration: when enabled, inject a step at 100% into the curve
+  local enableMaxColor = cfg.enableMaxColor
+  local maxColor = cfg.maxColor or {r=0, g=1, b=0, a=1}
+  
   -- Get base bar color (used above all thresholds - "healthy" color)
   -- Check display.barColor first, then fall back to thresholds[1].color for older configs
   local baseColor = cfg.barColor
@@ -568,7 +599,7 @@ local function GetResourceColorCurve(barNumber, barConfig, powerType)
   baseColor = baseColor or {r = 0, g = 0.8, b = 1, a = 1}
   
   -- Check if we need to rebuild the curve
-  local currentHash = GetResourceThresholdHash(cfg, baseColor)
+  local currentHash = GetResourceThresholdHash(cfg, baseColor, powerType)
   local cached = resourceColorCurves[barNumber]
   
   if cached and cached.settingsHash == currentHash then
@@ -655,10 +686,18 @@ local function GetResourceColorCurve(barNumber, barConfig, powerType)
       curve:AddPoint(pct, CreateColor(tR, tG, tB, tA))
     end
     
-    -- End at 100% with highest threshold color
+    -- End at 100% with highest threshold color (or max color if enabled)
     local highestColor = thresholds[#thresholds].color
-    local hR, hG, hB, hA = SafeColorRGBA(highestColor)
-    curve:AddPoint(1.0, CreateColor(hR, hG, hB, hA))
+    if enableMaxColor then
+      -- Step: highest threshold color just below max, then max color at exactly 100%
+      local hR, hG, hB, hA = SafeColorRGBA(highestColor)
+      curve:AddPoint(1.0 - EPSILON, CreateColor(hR, hG, hB, hA))
+      local mcR, mcG, mcB, mcA = SafeColorRGBA(maxColor)
+      curve:AddPoint(1.0, CreateColor(mcR, mcG, mcB, mcA))
+    else
+      local hR, hG, hB, hA = SafeColorRGBA(highestColor)
+      curve:AddPoint(1.0, CreateColor(hR, hG, hB, hA))
+    end
     
   else
     -- DRAINING MODE (default): threshold colors at low %, base color at full
@@ -704,9 +743,17 @@ local function GetResourceColorCurve(barNumber, barConfig, powerType)
       curve:AddPoint(pct, CreateColor(nR, nG, nB, nA))
     end
     
-    -- End with base color at 100%
-    local bR, bG, bB, bA = SafeColorRGBA(baseColor)
-    curve:AddPoint(1.0, CreateColor(bR, bG, bB, bA))
+    -- End with base color at 100% (or max color step if enabled)
+    if enableMaxColor then
+      -- Step: base color just below max, then max color at exactly 100%
+      local bR, bG, bB, bA = SafeColorRGBA(baseColor)
+      curve:AddPoint(1.0 - EPSILON, CreateColor(bR, bG, bB, bA))
+      local mcR, mcG, mcB, mcA = SafeColorRGBA(maxColor)
+      curve:AddPoint(1.0, CreateColor(mcR, mcG, mcB, mcA))
+    else
+      local bR, bG, bB, bA = SafeColorRGBA(baseColor)
+      curve:AddPoint(1.0, CreateColor(bR, bG, bB, bA))
+    end
   end
   
   -- Cache
@@ -717,10 +764,47 @@ end
 -- Clear cached curve (called when settings change)
 function ns.Resources.ClearResourceColorCurve(barNumber)
   resourceColorCurves[barNumber] = nil
+  resourceMaxColorCurves[barNumber] = nil
 end
 
 function ns.Resources.ClearAllResourceColorCurves()
   wipe(resourceColorCurves)
+  wipe(resourceMaxColorCurves)
+end
+
+-- ═══════════════════════════════════════════════════════════════
+-- MAX-COLOR-ONLY CURVE
+-- For simple/folded modes that don't use full colorCurve thresholds
+-- but still want the max-value color change via secret-safe tinting.
+-- Creates a 2-step curve: topColor below max, maxColor at 100%.
+-- ═══════════════════════════════════════════════════════════════
+
+local function GetMaxColorOnlyCurve(barNumber, barConfig, topColor, powerType)
+  if not barConfig or not barConfig.display then return nil end
+  local cfg = barConfig.display
+  if not cfg.enableMaxColor then return nil end
+  if not C_CurveUtil or not C_CurveUtil.CreateColorCurve then return nil end
+
+  local maxColor = cfg.maxColor or {r=0, g=1, b=0, a=1}
+
+  -- Build hash for cache (topColor + maxColor)
+  local tR, tG, tB, tA = SafeColorRGBA(topColor)
+  local mR, mG, mB, mA = SafeColorRGBA(maxColor)
+  local hash = string.format("%.2f,%.2f,%.2f,%.2f|%.2f,%.2f,%.2f,%.2f", tR, tG, tB, tA, mR, mG, mB, mA)
+
+  local cached = resourceMaxColorCurves[barNumber]
+  if cached and cached.hash == hash then
+    return cached.curve
+  end
+
+  local EPSILON = 0.0001
+  local curve = C_CurveUtil.CreateColorCurve()
+  curve:AddPoint(0.0, CreateColor(tR, tG, tB, tA))
+  curve:AddPoint(1.0 - EPSILON, CreateColor(tR, tG, tB, tA))
+  curve:AddPoint(1.0, CreateColor(mR, mG, mB, mA))
+
+  resourceMaxColorCurves[barNumber] = { curve = curve, hash = hash }
+  return curve
 end
 
 -- Cache max power for all common power types (call on PLAYER_ENTERING_WORLD, etc.)
@@ -1092,7 +1176,7 @@ local function UpdateThresholdLayers(barNumber, secretValue, passedMaxValue)
     bar1:SetRotatesTexture(isVertical)
     bar1:SetFrameLevel(mainFrame:GetFrameLevel() + 6)
     ApplyBarSmoothing(bar1, enableSmooth)
-    bar1:SetValue(secretValue)  -- Will cap at midpoint naturally
+    bar1:SetValue(secretValue, bar1._arcInterpolation)  -- Will cap at midpoint naturally
     bar1:Show()
     
     -- Bar 2: Second half color (midpoint to max) - overlays bar1 directly
@@ -1108,35 +1192,30 @@ local function UpdateThresholdLayers(barNumber, secretValue, passedMaxValue)
     bar2:SetRotatesTexture(isVertical)
     bar2:SetFrameLevel(mainFrame:GetFrameLevel() + 7)
     ApplyBarSmoothing(bar2, enableSmooth)
-    bar2:SetValue(secretValue)  -- Only fills when value > midpoint
+    bar2:SetValue(secretValue, bar2._arcInterpolation)  -- Only fills when value > midpoint
     bar2:Show()
     
-    -- MAX COLOR OVERLAY for folded mode
+    -- MAX COLOR via ColorCurve on bar2's texture (replaces old maxColorBar overlay)
     local enableMaxColor = cfg.display.enableMaxColor
-    if enableMaxColor and maxValue > 1 then
-      if not mainFrame.maxColorBar then
-        mainFrame.maxColorBar = CreateFrame("StatusBar", nil, mainFrame)
-        mainFrame.maxColorBar:SetOrientation(orientation)
-        mainFrame.maxColorBar:SetReverseFill(reverseFill)
-        mainFrame.maxColorBar:SetRotatesTexture(isVertical)
+    local powerType = cfg.tracking.powerType
+    if enableMaxColor and powerType and powerType >= 0 then
+      local maxCurve = GetMaxColorOnlyCurve(barNumber, cfg, color2, powerType)
+      if maxCurve then
+        local barTexture = bar2:GetStatusBarTexture()
+        local colorOK = pcall(function()
+          local colorResult = UnitPowerPercent("player", powerType, false, maxCurve)
+          if colorResult and colorResult.GetRGBA then
+            barTexture:SetVertexColor(colorResult:GetRGBA())
+          end
+        end)
+        if not colorOK then
+          -- Fallback: just use color2
+          bar2:SetStatusBarColor(color2.r, color2.g, color2.b, color2.a or 1)
+        end
       end
-      
-      local maxColor = cfg.display.maxColor or {r=0, g=1, b=0, a=1}
-      local maxBar = mainFrame.maxColorBar
-      
-      maxBar:ClearAllPoints()
-      maxBar:SetAllPoints(mainFrame)
-      maxBar:SetMinMaxValues(maxValue - 1, maxValue)
-      maxBar:SetStatusBarTexture(texturePath)
-      maxBar:SetStatusBarColor(maxColor.r, maxColor.g, maxColor.b, maxColor.a or 1)
-      maxBar:SetOrientation(orientation)
-      maxBar:SetReverseFill(reverseFill)
-      maxBar:SetRotatesTexture(isVertical)
-      maxBar:SetFrameLevel(mainFrame:GetFrameLevel() + 8)
-      ApplyBarSmoothing(maxBar, enableSmooth)
-      maxBar:SetValue(secretValue)
-      maxBar:Show()
-    elseif mainFrame.maxColorBar then
+    end
+    -- Hide legacy maxColorBar if it exists from previous code
+    if mainFrame.maxColorBar then
       mainFrame.maxColorBar:Hide()
     end
     
@@ -1359,7 +1438,7 @@ local function UpdateThresholdLayers(barNumber, secretValue, passedMaxValue)
       end
       
       segFrame.fill:SetStatusBarColor(segmentColor.r, segmentColor.g, segmentColor.b, segmentColor.a or 1)
-      segFrame.fill:SetValue(fillPercent)
+      segFrame.fill:SetValue(fillPercent, segFrame.fill._arcInterpolation)
       
       -- Update cooldown text
       segFrame.cdText:SetFont(STANDARD_TEXT_FONT, textSize, "OUTLINE")
@@ -1437,7 +1516,7 @@ local function UpdateThresholdLayers(barNumber, secretValue, passedMaxValue)
               end
               
               segFrame.fill:SetStatusBarColor(col.r, col.g, col.b, col.a or 1)
-              segFrame.fill:SetValue(fillPct)
+              segFrame.fill:SetValue(fillPct, segFrame.fill._arcInterpolation)
               
               -- Update text
               if showText and not ready and data[i].start and data[i].duration and data[i].duration > 0 then
@@ -1874,7 +1953,7 @@ local function UpdateThresholdLayers(barNumber, secretValue, passedMaxValue)
     bar:SetRotatesTexture(isVertical)
     bar:SetFrameLevel(mainFrame:GetFrameLevel() + 6)
     ApplyBarSmoothing(bar, enableSmooth)
-    bar:SetValue(secretValue)
+    bar:SetValue(secretValue, bar._arcInterpolation)
     bar:Show()
     
     -- Get the bar texture for color application
@@ -1899,28 +1978,9 @@ local function UpdateThresholdLayers(barNumber, secretValue, passedMaxValue)
       barTexture:SetVertexColor(bcR, bcG, bcB, bcA)
     end
     
-    -- AT MAX COLOR OVERLAY for colorCurve mode
-    local enableMaxColor = cfg.display.enableMaxColor
-    if enableMaxColor and maxValue > 1 then
-      if not mainFrame.maxColorBar then
-        mainFrame.maxColorBar = CreateFrame("StatusBar", nil, mainFrame)
-      end
-      local maxColor = cfg.display.maxColor or {r=0, g=1, b=0, a=1}
-      local mcR, mcG, mcB, mcA = SafeColorRGBA(maxColor, 0, 1, 0, 1)
-      local maxBar = mainFrame.maxColorBar
-      maxBar:ClearAllPoints()
-      maxBar:SetAllPoints(mainFrame)
-      maxBar:SetMinMaxValues(maxValue - 1, maxValue)
-      maxBar:SetStatusBarTexture(texturePath)
-      maxBar:SetStatusBarColor(mcR, mcG, mcB, mcA)
-      maxBar:SetOrientation(orientation)
-      maxBar:SetReverseFill(reverseFill)
-      maxBar:SetRotatesTexture(isVertical)
-      maxBar:SetFrameLevel(mainFrame:GetFrameLevel() + 7)
-      ApplyBarSmoothing(maxBar, enableSmooth)
-      maxBar:SetValue(secretValue)
-      maxBar:Show()
-    elseif mainFrame.maxColorBar then
+    -- Max color is now part of the ColorCurve (injected as a step at 100%)
+    -- Hide legacy maxColorBar if it exists from previous code
+    if mainFrame.maxColorBar then
       mainFrame.maxColorBar:Hide()
     end
     
@@ -1931,10 +1991,9 @@ local function UpdateThresholdLayers(barNumber, secretValue, passedMaxValue)
     
   else
     -- ═══════════════════════════════════════════════════════════════
-    -- SIMPLE MODE: 2 bars (base color + optional max color overlay)
+    -- SIMPLE MODE: Single bar with optional max color via ColorCurve
     -- ═══════════════════════════════════════════════════════════════
-    -- Bar 1: Full width, 0 to max - base color
-    -- Bar 2: Full width, (max-1) to max - max color overlay (on top)
+    -- Bar 1: Full width, 0 to max - base color (tinted to maxColor at 100% via curve)
     
     -- Hide fragment frames if they exist
     if mainFrame.fragmentFrames then
@@ -1950,7 +2009,6 @@ local function UpdateThresholdLayers(barNumber, secretValue, passedMaxValue)
     mainFrame.iconsOnUpdate = nil
     
     local baseColor = thresholds[1] and thresholds[1].color or {r=0, g=0.8, b=1, a=1}
-    local maxColor = cfg.display.maxColor or {r=0, g=1, b=0, a=1}
     local enableMaxColor = cfg.display.enableMaxColor
     
     -- Get smoothing and orientation settings
@@ -1959,7 +2017,7 @@ local function UpdateThresholdLayers(barNumber, secretValue, passedMaxValue)
     local reverseFill = GetBarReverseFill(cfg)
     local isVertical = (orientation == "VERTICAL")
     
-    -- Hide maxColorBar from continuous mode (simple mode uses stackedBars[2] instead)
+    -- Hide legacy maxColorBar if it exists
     if mainFrame.maxColorBar then
       mainFrame.maxColorBar:Hide()
     end
@@ -1969,8 +2027,8 @@ local function UpdateThresholdLayers(barNumber, secretValue, passedMaxValue)
       mainFrame.stackedBars = {}
     end
     
-    -- Ensure we have 2 stacked bars
-    while #mainFrame.stackedBars < 2 do
+    -- Ensure we have at least 1 bar
+    if #mainFrame.stackedBars < 1 then
       local bar = CreateFrame("StatusBar", nil, mainFrame)
       bar:SetStatusBarTexture(texturePath)
       bar:SetOrientation(orientation)
@@ -1979,61 +2037,47 @@ local function UpdateThresholdLayers(barNumber, secretValue, passedMaxValue)
       table.insert(mainFrame.stackedBars, bar)
     end
     
-    if enableMaxColor and maxValue > 1 then
-      -- TWO BARS: base (full width) + max color overlay (full width, on top)
-      
-      -- Bar 1: Base color (0 to max) - full width
-      local bar1 = mainFrame.stackedBars[1]
-      
-      bar1:ClearAllPoints()
-      bar1:SetAllPoints(mainFrame)  -- Fill entire frame like MWRB
-      bar1:SetMinMaxValues(0, maxValue)
-      bar1:SetStatusBarTexture(texturePath)
-      bar1:SetStatusBarColor(baseColor.r, baseColor.g, baseColor.b, baseColor.a or 1)
-      bar1:SetOrientation(orientation)
-      bar1:SetReverseFill(reverseFill)
-      bar1:SetRotatesTexture(isVertical)
-      bar1:SetFrameLevel(mainFrame:GetFrameLevel() + 6)
-      ApplyBarSmoothing(bar1, enableSmooth)
-      bar1:SetValue(secretValue)
-      bar1:Show()
-      
-      -- Bar 2: Max color overlay (max-1 to max) - full width, on top
-      -- Only fills when at max value
-      local bar2 = mainFrame.stackedBars[2]
-      
-      bar2:ClearAllPoints()
-      bar2:SetAllPoints(mainFrame)  -- Fill entire frame like MWRB
-      bar2:SetMinMaxValues(maxValue - 1, maxValue)
-      bar2:SetStatusBarTexture(texturePath)
-      bar2:SetStatusBarColor(maxColor.r, maxColor.g, maxColor.b, maxColor.a or 1)
-      bar2:SetOrientation(orientation)
-      bar2:SetReverseFill(reverseFill)
-      bar2:SetRotatesTexture(isVertical)
-      bar2:SetFrameLevel(mainFrame:GetFrameLevel() + 7)
-      ApplyBarSmoothing(bar2, enableSmooth)
-      bar2:SetValue(secretValue)
-      bar2:Show()
-      
+    -- Single bar: 0 to max
+    local bar1 = mainFrame.stackedBars[1]
+    bar1:ClearAllPoints()
+    bar1:SetAllPoints(mainFrame)
+    bar1:SetMinMaxValues(0, maxValue)
+    bar1:SetStatusBarTexture(texturePath)
+    bar1:SetOrientation(orientation)
+    bar1:SetReverseFill(reverseFill)
+    bar1:SetRotatesTexture(isVertical)
+    bar1:SetFrameLevel(mainFrame:GetFrameLevel() + 6)
+    ApplyBarSmoothing(bar1, enableSmooth)
+    bar1:SetValue(secretValue, bar1._arcInterpolation)
+    bar1:Show()
+    
+    -- Apply color: max color curve via UnitPowerPercent, or static base color
+    local powerType = cfg.tracking.powerType
+    if enableMaxColor and powerType and powerType >= 0 then
+      local maxCurve = GetMaxColorOnlyCurve(barNumber, cfg, baseColor, powerType)
+      if maxCurve then
+        local barTexture = bar1:GetStatusBarTexture()
+        local colorOK = pcall(function()
+          local colorResult = UnitPowerPercent("player", powerType, false, maxCurve)
+          if colorResult and colorResult.GetRGBA then
+            barTexture:SetVertexColor(colorResult:GetRGBA())
+          else
+            barTexture:SetVertexColor(baseColor.r, baseColor.g, baseColor.b, baseColor.a or 1)
+          end
+        end)
+        if not colorOK then
+          bar1:SetStatusBarColor(baseColor.r, baseColor.g, baseColor.b, baseColor.a or 1)
+        end
+      else
+        bar1:SetStatusBarColor(baseColor.r, baseColor.g, baseColor.b, baseColor.a or 1)
+      end
     else
-      -- SINGLE BAR: just base color
-      local bar1 = mainFrame.stackedBars[1]
-      
-      bar1:ClearAllPoints()
-      bar1:SetAllPoints(mainFrame)  -- Fill entire frame like MWRB
-      bar1:SetMinMaxValues(0, maxValue)
-      bar1:SetStatusBarTexture(texturePath)
       bar1:SetStatusBarColor(baseColor.r, baseColor.g, baseColor.b, baseColor.a or 1)
-      bar1:SetOrientation(orientation)
-      bar1:SetReverseFill(reverseFill)
-      bar1:SetRotatesTexture(isVertical)
-      bar1:SetFrameLevel(mainFrame:GetFrameLevel() + 6)
-      ApplyBarSmoothing(bar1, enableSmooth)
-      bar1:SetValue(secretValue)
-      bar1:Show()
-      
-      -- Hide bar 2
-      mainFrame.stackedBars[2]:Hide()
+    end
+    
+    -- Hide any extra stacked bars from other modes
+    for i = 2, #mainFrame.stackedBars do
+      mainFrame.stackedBars[i]:Hide()
     end
   end
 end
@@ -2998,6 +3042,8 @@ eventFrame:SetScript("OnEvent", function(self, event, arg1, arg2)
     
   elseif event == "UNIT_MAXPOWER" and arg1 == "player" then
     if not isInitialized then return end
+    -- Cache new max power values (talents like Swelling Maelstrom change max)
+    ns.Resources.CacheAllMaxPowerValues()
     ns.Resources.UpdateAllBars()
     
   elseif event == "UNIT_DISPLAYPOWER" and arg1 == "player" then

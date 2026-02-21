@@ -7,7 +7,6 @@ local GUTIL = CraftSim.GUTIL
 local concentrationCostCache = {}
 local concentrationCacheStats = { hits = 0, misses = 0 }
 
-local systemPrint = print
 local print = CraftSim.DEBUG:RegisterDebugID("Classes.RecipeData")
 
 -- Helper function to generate cache key for UpdateConcentrationCost
@@ -423,7 +422,7 @@ function CraftSim.RecipeData:SetReagentsByCraftingReagentInfoTbl(craftingReagent
 
     self:SetOptionalReagents(optionalReagentIDs)
     local reagentListItems = GUTIL:Map(requiredReagents, function (craftingReagentInfo)
-        return CraftSim.ReagentListItem {craftingReagentInfo.reagent.itemID, craftingReagentInfo.quantity, craftingReagentInfo.reagent.currencyID}
+        return CraftSim.ReagentListItem (craftingReagentInfo.reagent.itemID, craftingReagentInfo.quantity, craftingReagentInfo.reagent.currencyID)
     end)
     
     self:SetReagents(reagentListItems) -- 'type conversion' to ReagentListItem should be fine, both have itemID and quantity
@@ -435,6 +434,7 @@ function CraftSim.RecipeData:SetSalvageItem(itemID)
         self.reagentData.salvageReagentSlot:SetItem(itemID)
         local itemLocation = GUTIL:GetItemLocationFromItemID(itemID, true)
         if itemLocation then
+            ---@cast itemLocation ItemLocation
             local item = Item:CreateFromItemLocation(itemLocation)
             if item then
                 self.allocationItemGUID = Item:CreateFromItemLocation(itemLocation):GetItemGUID()
@@ -563,9 +563,9 @@ end
 
 ---@param itemIDList number[]
 function CraftSim.RecipeData:SetOptionalReagents(itemIDList)
-    table.foreach(itemIDList, function(_, itemID)
+    for _, itemID in pairs(itemIDList) do
         self:SetOptionalReagent(itemID)
-    end)
+    end
     self:Update()
 end
 
@@ -775,7 +775,7 @@ function CraftSim.RecipeData:UpdateProfessionStats()
     self.professionStats:add(self.professionStatModifiers)
 
     -- since ooey gooey chocolate gives us math.huge on multicraft we need to limit it to 100%
-    self.professionStats.multicraft.value = math.min(1 / self.professionStats.multicraft.percentMod,
+    self.professionStats.multicraft.value = math.min(self.professionStats.multicraft.percentDivisionFactor,
         self.professionStats.multicraft.value)
 
     if self.supportsQualities then
@@ -1322,7 +1322,7 @@ end
 ---@field optimizeGear? boolean
 ---@field optimizeReagentOptions? CraftSim.RecipeData.OptimizeReagentOptions
 
----@deprecated
+---@deprecated use CraftSim.RecipeData:Optimize
 ---Optimizes the recipeData's reagents and gear for highest profit and caches result for crafter
 ---@param options? CraftSim.RecipeData.OptimizeProfitOptions
 function CraftSim.RecipeData:OptimizeProfit(options)
@@ -1425,6 +1425,10 @@ function CraftSim.RecipeData:GetResultQuality(idLinkOrMixin)
         item = Item:CreateFromItemLink(idLinkOrMixin)
     elseif type(idLinkOrMixin) == 'table' and idLinkOrMixin.ContinueOnItemLoad then
         item = idLinkOrMixin
+    end
+
+    if not item then
+        return nil
     end
 
     for qualityID, _item in pairs(self.resultData.itemsByQuality) do
@@ -1607,6 +1611,42 @@ function CraftSim.RecipeData:GetEasycraftExport(indent)
     return jb.json
 end
 
+--- Helper function to safely extract itemID from reagentInfo (handles both basic and quality reagents)
+---@param reagentInfo table The reagent info from orderData.reagents
+---@param recipeData CraftSim.RecipeData The recipe data containing reagentData
+---@return number? itemID The itemID if found, nil otherwise
+function CraftSim.RecipeData.GetItemIDFromReagentInfo(reagentInfo, recipeData)
+    if not reagentInfo then
+        return nil
+    end
+    
+    -- Try various possible paths for quality reagents (handles different API structures)
+    if reagentInfo.reagent then
+        if reagentInfo.reagent.reagent and reagentInfo.reagent.reagent.itemID then
+            return reagentInfo.reagent.reagent.itemID
+        elseif reagentInfo.reagent.itemID then
+            return reagentInfo.reagent.itemID
+        end
+    end
+    
+    if reagentInfo.reagentInfo and reagentInfo.reagentInfo.reagent and reagentInfo.reagentInfo.reagent.itemID then
+        return reagentInfo.reagentInfo.reagent.itemID
+    end
+    
+    -- Basic reagents (or any reagent without reagent field) use slotIndex to find the reagent in requiredReagents
+    if reagentInfo.slotIndex and recipeData and recipeData.reagentData then
+        local matchingReagent = CraftSim.GUTIL:Find(recipeData.reagentData.requiredReagents, function(reagent)
+            return reagent.dataSlotIndex == reagentInfo.slotIndex
+        end)
+        
+        if matchingReagent and matchingReagent.items and #matchingReagent.items > 0 then
+            return matchingReagent.items[1].item:GetItemID()
+        end
+    end
+    
+    return nil
+end
+
 --- Requires a hardware event
 ---@param amount number? default: 1, how many crafts should be queued
 function CraftSim.RecipeData:Craft(amount)
@@ -1620,6 +1660,7 @@ function CraftSim.RecipeData:Craft(amount)
             local salvageLocation = GUTIL:GetItemLocationFromItemID(self.reagentData.salvageReagentSlot.activeItem
                 :GetItemID(), true)
             if salvageLocation then
+                ---@cast salvageLocation ItemLocation
                 C_TradeSkillUI.CraftSalvage(self.recipeID, amount, salvageLocation, craftingReagentInfoTbl,
                     self.concentrating)
             end
@@ -1628,13 +1669,14 @@ function CraftSim.RecipeData:Craft(amount)
     if self.isEnchantingRecipe then
         local vellumLocation = GUTIL:GetItemLocationFromItemID(CraftSim.CONST.ENCHANTING_VELLUM_ID)
         if vellumLocation then
+            ---@cast vellumLocation ItemLocation
             C_TradeSkillUI.CraftEnchant(self.recipeID, amount, craftingReagentInfoTbl, vellumLocation, self
                 .concentrating)
         end
     else
         if self.orderData then
             local suppliedIDs = GUTIL:Map(self.orderData.reagents or {}, function(reagentInfo)
-                return reagentInfo.reagent.reagent.itemID
+                return CraftSim.RecipeData.GetItemIDFromReagentInfo(reagentInfo, self)
             end)
 
             craftingReagentInfoTbl = GUTIL:Filter(craftingReagentInfoTbl, function(craftingReagentInfo)
@@ -1965,10 +2007,11 @@ function CraftSim.RecipeData:OptimizeSubRecipes(optimizeOptions, visitedRecipeID
                             recipeData:SetSubRecipeCostsUsage(true)
 
                             -- caches the expect costs info automatically
+                            -- TODO replace call to deprecated method
                             recipeData:OptimizeProfit(optimizeOptions)
                             local profit = recipeData.averageProfitCached or recipeData:GetAverageProfit()
                             print("- Profit: " ..
-                                CraftSim.UTIL:FormatMoney(profit, true, nil, true))
+                                CraftSim.UTIL:FormatMoney(profit, true, nil))
 
                             -- if the necessary item quality is reachable, map it to the recipe
                             local reagentQualityReachable, concentrationOnly = recipeData.resultData

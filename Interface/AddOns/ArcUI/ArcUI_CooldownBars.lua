@@ -6804,6 +6804,9 @@ UpdateTimerBar = function(barData)
   end
 end
 
+-- Forward declarations for cancel method tracking (defined fully in aura scan section)
+local timerAuraStates = {}    -- timerID -> { wasActive = bool, cdmFrame = frame }
+
 -- ===================================================================
 -- START TIMER
 -- ===================================================================
@@ -6826,7 +6829,9 @@ function ns.CooldownBars.StartTimer(timerID)
   local isUnlimited = cfg.tracking.unlimitedDuration == true
   
   -- TOGGLE BEHAVIOR for unlimited: if already active, cancel it on re-trigger
-  if isUnlimited and barData.isActive and barData.isUnlimited then
+  -- Only toggle off when cancelMethod is "sameSpell" (default)
+  local cancelMethod = cfg.tracking.cancelMethod or "sameSpell"
+  if isUnlimited and barData.isActive and barData.isUnlimited and cancelMethod == "sameSpell" then
     barData.isActive = false
     barData.isUnlimited = false
     barData.durObj = nil
@@ -6887,6 +6892,10 @@ function ns.CooldownBars.StartTimer(timerID)
     end
     
     Log("Timer started (unlimited): " .. timerID)
+    
+    -- auraLost/auraGained cancel methods are handled by UNIT_AURA event
+    -- checking CDM frame's auraInstanceID via IsAuraActive(cooldownID)
+    
     return
   end
   
@@ -7174,8 +7183,26 @@ end
 -- ===================================================================
 -- TIMER AURA STATE TRACKING
 -- Stores previous aura presence state to detect gained/lost transitions
+-- (timerAuraStates is forward-declared above StartTimer)
 -- ===================================================================
-local timerAuraStates = {}  -- timerID -> { wasActive = bool, cdmFrame = frame }
+
+-- Helper: Find a player aura by spellID and return its auraInstanceID
+-- REMOVED: Was comparing secret .spellId values in ForEachAura loops.
+-- Aura presence is now detected via CDM frame's auraInstanceID (IsAuraActive).
+
+-- Helper: Cancel an active unlimited timer
+local function CancelUnlimitedTimer(timerID, reason)
+  local barIndex = ns.CooldownBars.activeTimers[timerID]
+  local barData = barIndex and ns.CooldownBars.timerBars[barIndex]
+  if barData and barData.isActive and barData.isUnlimited then
+    barData.isActive = false
+    barData.isUnlimited = false
+    barData.durObj = nil
+    barData.bar:SetScript("OnUpdate", nil)
+    UpdateTimerBar(barData)
+    Log("Timer cancelled (" .. (reason or "unknown") .. "): " .. timerID)
+  end
+end
 
 -- Find CDM frame by cooldownID using same pattern as Core.lua
 -- Must check CDMEnhance, CDMGroups, and direct viewer scans
@@ -7292,6 +7319,8 @@ end
 local timerEventFrame = CreateFrame("Frame")
 timerEventFrame:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
 timerEventFrame:RegisterEvent("PLAYER_DEAD")
+timerEventFrame:RegisterEvent("UNIT_AURA")
+timerEventFrame:RegisterEvent("SPELL_ACTIVATION_OVERLAY_GLOW_HIDE")
 
 -- Aura detection uses polling since we need to check CDM frames
 local AURA_CHECK_INTERVAL = 0.1  -- 10fps for aura checks
@@ -7307,6 +7336,63 @@ timerEventFrame:SetScript("OnEvent", function(self, event, ...)
       if cfg and cfg.tracking.enabled and cfg.tracking.triggerType == "spellcast" then
         if cfg.tracking.triggerSpellID == spellID then
           ns.CooldownBars.StartTimer(timerID)
+        end
+      end
+      
+      -- Check for differentSpell cancel method
+      if cfg and cfg.tracking.enabled and cfg.tracking.unlimitedDuration then
+        local cancelMethod = cfg.tracking.cancelMethod
+        if cancelMethod == "differentSpell" then
+          local cancelSpellID = cfg.tracking.cancelSpellID
+          if cancelSpellID and cancelSpellID > 0 and cancelSpellID == spellID then
+            CancelUnlimitedTimer(timerID, "different spell")
+          end
+        end
+      end
+    end
+    
+  elseif event == "UNIT_AURA" then
+    local unit, updateInfo = ...
+    if unit ~= "player" or not updateInfo then return end
+    
+    -- Check for auraLost and auraGained cancels using CDM frame state.
+    -- The CDM frame's auraInstanceID tells us if the aura is active or not —
+    -- no secret value comparisons needed.
+    for timerID in pairs(ns.CooldownBars.activeTimers) do
+      local cfg = ns.CooldownBars.GetTimerConfig(timerID)
+      if cfg and cfg.tracking.enabled and cfg.tracking.unlimitedDuration then
+        local cancelMethod = cfg.tracking.cancelMethod
+        if cancelMethod == "auraLost" or cancelMethod == "auraGained" then
+          local cancelCdID = cfg.tracking.cancelCooldownID
+          if not cancelCdID or cancelCdID <= 0 then
+            cancelCdID = cfg.tracking.triggerCooldownID
+          end
+          if cancelCdID and cancelCdID > 0 then
+            local isActive = IsAuraActive(cancelCdID)
+            if cancelMethod == "auraLost" and not isActive then
+              CancelUnlimitedTimer(timerID, "aura lost")
+            elseif cancelMethod == "auraGained" and isActive then
+              CancelUnlimitedTimer(timerID, "aura gained")
+            end
+          end
+        end
+      end
+    end
+    
+  elseif event == "SPELL_ACTIVATION_OVERLAY_GLOW_HIDE" then
+    local spellID = ...
+    for timerID in pairs(ns.CooldownBars.activeTimers) do
+      local cfg = ns.CooldownBars.GetTimerConfig(timerID)
+      if cfg and cfg.tracking.enabled and cfg.tracking.unlimitedDuration then
+        local cancelMethod = cfg.tracking.cancelMethod
+        if cancelMethod == "overlayHide" then
+          local cancelSpellID = cfg.tracking.cancelSpellID
+          if not cancelSpellID or cancelSpellID <= 0 then
+            cancelSpellID = cfg.tracking.triggerSpellID
+          end
+          if spellID == cancelSpellID then
+            CancelUnlimitedTimer(timerID, "overlay glow hide")
+          end
         end
       end
     end

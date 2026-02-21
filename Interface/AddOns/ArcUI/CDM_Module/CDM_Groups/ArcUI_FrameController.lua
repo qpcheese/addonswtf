@@ -2152,6 +2152,18 @@ local function Reconcile()
                 ns.CDMEnhance.RefreshAllIcons()
             end
             
+            -- ═══════════════════════════════════════════════════════════════════════════
+            -- CRITICAL: Force-refresh alpha/desat/glow visual states after talent change.
+            -- RefreshIconType only handles borders, textures, and config cache. It does NOT
+            -- call OptimizedApplyIconVisuals (aura alpha) or ApplyCooldownStateVisuals.
+            -- Without this, aura frames with missing-alpha=0 get stuck at alpha=1.0 after
+            -- talent changes until the options panel is opened (which calls this same function).
+            -- ═══════════════════════════════════════════════════════════════════════════
+            if ns.CDMEnhance and ns.CDMEnhance.ForceRefreshAllVisualStates then
+                TimelineAdd("ACTION", "FORCE_REFRESH_VISUALS", "Recalculating alpha/desat/glow after followup sweep")
+                ns.CDMEnhance.ForceRefreshAllVisualStates()
+            end
+            
             -- Notify DynamicLayout that frames are now stable
             -- This triggers fill gaps logic to re-sync after talent changes
             local DL = ns.CDMGroups.DynamicLayout

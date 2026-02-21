@@ -173,7 +173,7 @@ local function StartGlow(frame, glowType, color, opts)
             end
         end
     end
-    -- Elevate glow frames above swipe but below charge count
+    -- Elevate glow frames above swipe but below border (+5) and count text (+10/+50)
     local baseLevel = frame:GetFrameLevel()
     local gf
     if glowType == "button" then gf = frame._ButtonGlow  -- ButtonGlow has no key
@@ -181,7 +181,7 @@ local function StartGlow(frame, glowType, color, opts)
     elseif glowType == "autocast" then gf = frame["_AutoCastGlow" .. key]
     elseif glowType == "glow" then gf = frame["_ProcGlow" .. key]
     end
-    if gf and gf.SetFrameLevel then gf:SetFrameLevel(baseLevel + 15) end
+    if gf and gf.SetFrameLevel then gf:SetFrameLevel(baseLevel + 3) end
 end
 
 local function StopGlow(frame, glowType, key)
@@ -625,7 +625,7 @@ function ArcAurasCooldown.ApplySpellStateVisuals(fd, isOnCD)
     if isUsableGlowPreview then
         -- Preview always shows (regardless of CD state or usability)
         shouldShowUsableGlow = true
-    elseif not isOnCD and not fd.lastIsOnGCD and su and su.usableGlow then
+    elseif not isOnCD and su and su.usableGlow then
         if usabilityState == "usable" then
             local combatOnly = su.usableGlowCombatOnly
             shouldShowUsableGlow = not combatOnly or InCombatLockdown()
@@ -1062,19 +1062,56 @@ function ArcAurasCooldown.ShowContextMenu(frame)
     if not frame or not frame._arcAuraID then return end
     local arcID = frame._arcAuraID
     local spellName = GetSpellNameAndIcon(frame._arcSpellID) or arcID
-    local menuList = {
-        {text = spellName, isTitle = true},
-        {text = "Configure in CDM Icons", func = function()
+    
+    -- Get config for current state
+    local db = GetDB()
+    local config = db and db.trackedSpells and db.trackedSpells[arcID]
+    local isForceShow = config and config.forceShow or false
+    
+    MenuUtil.CreateContextMenu(frame, function(ownerRegion, rootDescription)
+        rootDescription:CreateTitle(spellName)
+        rootDescription:CreateButton("Configure in CDM Icons", function()
             if ns.CDMEnhanceOptions and ns.CDMEnhanceOptions.SelectIcon then
                 ns.CDMEnhanceOptions.SelectIcon(arcID, false)
             end
-        end},
-        {text = "Remove Spell", func = function()
+        end)
+        local forceLabel = isForceShow and "|cff00FF00✓|r Always Show (bypass spec check)" or "Always Show (bypass spec check)"
+        rootDescription:CreateButton(forceLabel, function()
+            if config then
+                config.forceShow = not config.forceShow
+                if config.forceShow then
+                    print("|cff00CCFF[Arc Auras]|r " .. spellName .. " will now always show regardless of spec.")
+                    if frame._arcHiddenNotInSpec then
+                        ArcAurasCooldown.ShowFrame(arcID)
+                    end
+                    if not ArcAurasCooldown.spellData[arcID] and ArcAuras.isEnabled then
+                        local spellConfig = {
+                            type = "spell",
+                            spellID = config.spellID,
+                            name = config.name,
+                            icon = config.iconOverride or config.icon,
+                            enabled = true,
+                        }
+                        local newFrame = ArcAuras.CreateFrame(arcID, spellConfig)
+                        if newFrame then
+                            ArcAuras.LoadFramePosition(arcID, newFrame)
+                            newFrame:Show()
+                            ArcAurasCooldown.InitializeSpellFrame(arcID, newFrame, spellConfig)
+                        end
+                    end
+                else
+                    print("|cff00CCFF[Arc Auras]|r " .. spellName .. " will respect spec checks again.")
+                    ArcAurasCooldown.RefreshSpecVisibility()
+                end
+            end
+        end)
+        rootDescription:CreateButton("Change Icon...", function()
+            ArcAurasCooldown.ShowIconOverridePicker(arcID, frame)
+        end)
+        rootDescription:CreateButton("Remove Spell", function()
             StaticPopup_Show("ARCAURAS_CD_REMOVE_SPELL", spellName, nil, {arcID = arcID})
-        end},
-    }
-    local menuFrame = CreateFrame("Frame", "ArcAurasCDContextMenu", UIParent, "UIDropDownMenuTemplate")
-    EasyMenu(menuList, menuFrame, "cursor", 0, 0, "MENU")
+        end)
+    end)
 end
 
 StaticPopupDialogs["ARCAURAS_CD_REMOVE_SPELL"] = {
@@ -1090,6 +1127,127 @@ StaticPopupDialogs["ARCAURAS_CD_REMOVE_SPELL"] = {
     end,
     timeout = 0, whileDead = true, hideOnEscape = true,
 }
+
+-- ═══════════════════════════════════════════════════════════════════════════
+-- ICON OVERRIDE
+-- Lets users change the displayed icon for any Arc Aura spell frame.
+-- Accepts a spell ID or item ID; stores iconOverride in trackedSpells config.
+-- ═══════════════════════════════════════════════════════════════════════════
+
+StaticPopupDialogs["ARCAURAS_CD_ICON_OVERRIDE"] = {
+    text = "Enter a Spell ID or Item ID for the new icon:\n(Enter 0 or leave blank to reset to default)",
+    button1 = "Apply", button2 = "Cancel",
+    hasEditBox = true,
+    OnShow = function(self)
+        self.editBox:SetNumeric(true)
+        self.editBox:SetFocus()
+        -- Pre-fill with current override if any
+        local data = self.data
+        if data and data.currentOverrideID then
+            self.editBox:SetText(tostring(data.currentOverrideID))
+            self.editBox:HighlightText()
+        end
+    end,
+    OnAccept = function(self, data)
+        local inputID = tonumber(self.editBox:GetText())
+        if data and data.arcID then
+            ArcAurasCooldown.ApplyIconOverride(data.arcID, inputID)
+        end
+    end,
+    EditBoxOnEnterPressed = function(self)
+        local dialog = self:GetParent()
+        local inputID = tonumber(self:GetText())
+        local data = dialog.data
+        if data and data.arcID then
+            ArcAurasCooldown.ApplyIconOverride(data.arcID, inputID)
+        end
+        dialog:Hide()
+    end,
+    timeout = 0, whileDead = true, hideOnEscape = true,
+}
+
+function ArcAurasCooldown.ShowIconOverridePicker(arcID, frame)
+    local db = GetDB()
+    local config = db and db.trackedSpells and db.trackedSpells[arcID]
+    
+    local currentOverrideID = nil
+    if config and config.iconOverrideID then
+        currentOverrideID = config.iconOverrideID
+    end
+    
+    local dialog = StaticPopup_Show("ARCAURAS_CD_ICON_OVERRIDE")
+    if dialog then
+        dialog.data = {
+            arcID = arcID,
+            currentOverrideID = currentOverrideID,
+        }
+        if currentOverrideID and dialog.editBox then
+            dialog.editBox:SetText(tostring(currentOverrideID))
+            dialog.editBox:HighlightText()
+        end
+    end
+end
+
+function ArcAurasCooldown.ApplyIconOverride(arcID, overrideID)
+    local db = GetDB()
+    if not db or not db.trackedSpells or not db.trackedSpells[arcID] then return end
+    
+    local config = db.trackedSpells[arcID]
+    
+    -- Reset if 0 or nil
+    if not overrideID or overrideID <= 0 then
+        config.iconOverride = nil
+        config.iconOverrideID = nil
+        -- Restore original icon
+        local name, originalIcon = GetSpellNameAndIcon(config.spellID)
+        config.icon = originalIcon or config.icon
+        
+        local frame = ArcAuras.frames and ArcAuras.frames[arcID]
+        if frame and frame.Icon then
+            frame.Icon:SetTexture(config.icon or 134400)
+        end
+        print("|cff00CCFF[Arc Auras]|r Icon reset to default for " .. (config.name or arcID))
+        return
+    end
+    
+    -- Try as spell ID first, then item ID
+    local newIcon = nil
+    local sourceName = nil
+    
+    local spellInfo = C_Spell.GetSpellInfo(overrideID)
+    if spellInfo and (spellInfo.iconID or spellInfo.originalIconID) then
+        newIcon = spellInfo.iconID or spellInfo.originalIconID
+        sourceName = spellInfo.name
+    end
+    
+    if not newIcon then
+        -- Try as item ID
+        local itemIcon = C_Item.GetItemIconByID(overrideID)
+        if itemIcon then
+            newIcon = itemIcon
+            local itemName = C_Item.GetItemNameByID(overrideID)
+            sourceName = itemName or ("Item " .. overrideID)
+        end
+    end
+    
+    if not newIcon then
+        print("|cff00CCFF[Arc Auras]|r Could not find icon for ID " .. overrideID)
+        return
+    end
+    
+    -- Save override
+    config.iconOverride = newIcon
+    config.iconOverrideID = overrideID
+    
+    -- Apply immediately
+    local frame = ArcAuras.frames and ArcAuras.frames[arcID]
+    if frame and frame.Icon then
+        frame.Icon:SetTexture(newIcon)
+    end
+    
+    print(string.format("|cff00CCFF[Arc Auras]|r Icon changed to %s (%d) for %s",
+        sourceName or "?", overrideID, config.name or arcID))
+end
 
 -- ═══════════════════════════════════════════════════════════════════════════
 -- FRAME LIFECYCLE (hide / show for spec changes)
@@ -1271,10 +1429,13 @@ function ArcAurasCooldown.AddTrackedSpell(spellID)
     if db.trackedSpells[arcID] then return true end -- already tracked
 
     local name, icon = GetSpellNameAndIcon(spellID)
+    
     db.trackedSpells[arcID] = {
         spellID = spellID,
         name = name or ("Spell " .. spellID),
         icon = icon or 134400,
+        -- forceShow defaults to nil (off). User can enable via options or right-click menu
+        -- for engineering enchants, items-as-spells, profession abilities, etc.
     }
 
     if ArcAuras.InvalidateSettingsCache then ArcAuras.InvalidateSettingsCache(arcID) end
@@ -1293,7 +1454,13 @@ function ArcAurasCooldown.AddTrackedSpell(spellID)
             frame:Show()
             ArcAurasCooldown.InitializeSpellFrame(arcID, frame, spellConfig)
         end
+    elseif not PlayerKnowsSpell(spellID) then
+        -- Spell not known — inform user they can enable Always Show
+        print(string.format(
+            "|cff00CCFF[Arc Auras]|r %s (%d) not detected as a class spell — enable |cff00FF00Always Show|r in options or right-click to make it visible.",
+            name or "Spell", spellID))
     end
+    
     return true
 end
 
@@ -1334,8 +1501,15 @@ end
 function ArcAurasCooldown.ShouldFrameBeVisible(config, spellID)
     if not spellID then return false end
 
-    -- 1) Spell must be known in current spec
-    if not PlayerKnowsSpell(spellID) then return false end
+    -- forceShow bypasses the "spell known" check entirely.
+    -- Used for engineering enchants, items-as-spells, and other non-class spells
+    -- that return false from IsPlayerSpell/IsSpellKnown but are still usable.
+    if config.forceShow then
+        -- Still respect per-spell spec filter and talent conditions
+    else
+        -- 1) Spell must be known in current spec
+        if not PlayerKnowsSpell(spellID) then return false end
+    end
 
     -- 2) Per-spell spec filter (showOnSpecs = { 1, 3 } etc.)
     if config.showOnSpecs and #config.showOnSpecs > 0 then
@@ -1381,7 +1555,7 @@ function ArcAurasCooldown.RefreshSpecVisibility()
                     type = "spell",
                     spellID = spellID,
                     name = config.name,
-                    icon = config.icon,
+                    icon = config.iconOverride or config.icon,
                     enabled = true,
                 }
                 local frame = ArcAuras.CreateFrame(arcID, spellConfig)
@@ -1525,9 +1699,23 @@ eventFrame:SetScript("OnEvent", function(self, event, arg1, arg2, arg3)
     elseif event == "PLAYER_SPECIALIZATION_CHANGED" or event == "ACTIVE_TALENT_GROUP_CHANGED" then
         if not specChangePending then
             specChangePending = true
-            C_Timer.After(3.5, function()
+            -- CRITICAL: Must run BEFORE CDMGroups.RestoreArcAurasPositions (at 0.8s)
+            -- so that _arcHiddenNotInSpec flags are correct when the restore pass
+            -- decides which frames to position. Old 3.5s delay meant RestoreArcAurasPositions
+            -- skipped all hidden frames, and ShowFrame at 3.5s skipped position restore
+            -- because specChangeActive was still true → frames lost positions/groups.
+            C_Timer.After(0.3, function()
+                ArcAurasCooldown.RefreshSpecVisibility()
+            end)
+            -- Safety retry after CDMGroups' post-protection restore (1.7s) completes
+            -- Catches frames that weren't ready at 0.3s (e.g. newly created spells)
+            C_Timer.After(2.5, function()
                 specChangePending = false
                 ArcAurasCooldown.RefreshSpecVisibility()
+                -- Catch any frames that ShowFrame showed but CDMGroups missed
+                if ns.CDMGroups and ns.CDMGroups.RestoreArcAurasPositions then
+                    ns.CDMGroups.RestoreArcAurasPositions("|cffff9900[ArcAurasCooldown Safety]|r")
+                end
             end)
         end
     end
@@ -1573,6 +1761,13 @@ function ArcAurasCooldown.Initialize()
     end
 
     ArcAurasCooldown.initialized = true
+
+    -- Catch-up: Early SPELLS_CHANGED/TRAIT_CONFIG_UPDATED events fire before
+    -- initialized=true, so RefreshSpecVisibility never ran for them.
+    -- Run it now to hide any frames that Enable() created but shouldn't be visible.
+    C_Timer.After(0.3, function()
+        ArcAurasCooldown.RefreshSpecVisibility()
+    end)
 
     -- Delayed re-feed to catch timing issues
     C_Timer.After(1.5, function()

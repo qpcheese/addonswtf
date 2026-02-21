@@ -53,6 +53,11 @@ nil,
 ["persistence"] = {
 ["cleardistance"] = 5,
 },
+["paste"] = {
+["button"] = {
+["showInCompartment"] = true,
+},
+},
 ["block"] = {
 ["position"] = {
 "TOPRIGHT",

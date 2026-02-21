@@ -1,4 +1,4 @@
-local MODULE_MAJOR, BASE_MAJOR, MINOR = "LibEQOLEditMode-1.0", "LibEQOL-1.0", 12000001
+local MODULE_MAJOR, BASE_MAJOR, MINOR = "LibEQOLEditMode-1.0", "LibEQOL-1.0", 17010001
 local LibStub = _G.LibStub
 assert(LibStub, MODULE_MAJOR .. " requires LibStub")
 local C_Timer = _G.C_Timer
@@ -51,6 +51,11 @@ local State = {
 	widgetPools = lib.widgetPools or {},
 	overlayToggleFlags = lib.overlayToggleFlags or {},
 	dragPredicates = lib.dragPredicates or {},
+	managerToggleSpecs = lib.managerToggleSpecs or {},
+	managerToggleState = lib.managerToggleState or {},
+	managerToggleOrder = lib.managerToggleOrder or {},
+	managerCategorySpecs = lib.managerCategorySpecs or {},
+	managerCategoryOrder = lib.managerCategoryOrder or {},
 	layoutSnapshot = Internal.layoutNameSnapshot,
 	pendingDeletedLayouts = lib.pendingDeletedLayouts or {},
 }
@@ -71,12 +76,38 @@ lib.rowHeightOverrides = State.rowHeightOverrides
 lib.widgetPools = State.widgetPools
 lib.overlayToggleFlags = State.overlayToggleFlags
 lib.dragPredicates = State.dragPredicates
+lib.managerToggleSpecs = State.managerToggleSpecs
+lib.managerToggleState = State.managerToggleState
+lib.managerToggleOrder = State.managerToggleOrder
+lib.managerCategorySpecs = State.managerCategorySpecs
+lib.managerCategoryOrder = State.managerCategoryOrder
 lib.pendingDeletedLayouts = State.pendingDeletedLayouts
 
 local DEFAULT_SETTINGS_SPACING = 2
 local DEFAULT_SLIDER_HEIGHT = 32
 local COLOR_BUTTON_WIDTH = 22
+local DEFAULT_INPUT_MAX_WIDTH = 193
 local DROPDOWN_COLOR_MAX_WIDTH = 200
+local DEFAULT_MANAGER_TOGGLE_MAX_HEIGHT = 220
+local DEFAULT_MANAGER_TOGGLE_ROW_HEIGHT = 32
+local MANAGER_TOGGLE_PANEL_PADDING = 12
+local MANAGER_TOGGLE_CATEGORY_SPACING = 8
+local MANAGER_TOGGLE_SECTION_SPACING = 4
+local MANAGER_TOGGLE_COLUMN_SPACING = 12
+local MANAGER_TOGGLE_EXPANDER_HEIGHT = 24
+local MANAGER_TOGGLE_EXPANDER_SPACING = 2
+local DEFAULT_MANAGER_TOGGLE_CATEGORY_ID = "_default"
+local DEFAULT_MANAGER_TOGGLE_CATEGORY_LABEL = "Other"
+
+local function normalizeManagerCategoryId(id, label)
+	if id and id ~= "" then
+		return id
+	end
+	if label and label ~= "" then
+		return label
+	end
+	return DEFAULT_MANAGER_TOGGLE_CATEGORY_ID
+end
 
 local function normalizeSpacing(value, fallback)
 	local numberValue = tonumber(value)
@@ -169,26 +200,37 @@ local function FixScrollBarInside(scroll)
 	end
 	scroll._eqolScrollBarFixed = true
 
+	local keepW = sb:GetWidth()
+
 	sb:ClearAllPoints()
 	sb:SetPoint("TOPRIGHT", scroll, "TOPRIGHT", -2, -16)
 	sb:SetPoint("BOTTOMRIGHT", scroll, "BOTTOMRIGHT", -2, 16)
+
+	if (sb:GetWidth() or 0) < 1 then
+		sb:SetWidth((keepW and keepW > 0) and keepW or 16)
+	end
 end
 
-local function UpdateScrollChildWidth(dialog)
-	local scroll = dialog and dialog.SettingsScroll
-	local child = dialog and dialog.Settings
+local function UpdateScrollChildWidthFor(scroll, child)
 	if not (scroll and child) then
 		return
 	end
 
 	local sb = scroll.ScrollBar
-	local sbW = (sb and sb:IsShown() and sb:GetWidth()) or 0
-	local paddingRight = 6
+	local sbW = 0
+	if sb and sb:IsShown() then
+		sbW = sb:GetWidth() or 0
+		if sbW < 1 then
+			sbW = 16
+		end
+	end
 
+	local paddingRight = 6
 	local w = (scroll:GetWidth() or 0) - sbW - paddingRight
 	if w < 1 then
 		return
 	end
+
 	if child._eqolLastWidth ~= w then
 		child._eqolLastWidth = w
 		child:SetWidth(w)
@@ -201,6 +243,15 @@ local function UpdateScrollChildWidth(dialog)
 			end
 		end
 	end
+end
+
+local function UpdateScrollChildWidth(dialog)
+	local scroll = dialog and dialog.SettingsScroll
+	local child = dialog and dialog.Settings
+	if not (scroll and child) then
+		return
+	end
+	UpdateScrollChildWidthFor(scroll, child)
 end
 
 -- Blizzard frames we also toggle via the manager eye (if they exist)
@@ -267,6 +318,8 @@ Internal.managerExtraFrames = Internal.managerExtraFrames
 		"ExternalDefensivesFrame",
 	}
 Internal.managerHiddenFrames = Internal.managerHiddenFrames or {}
+Internal.managerToggleMaxHeight = Internal.managerToggleMaxHeight or DEFAULT_MANAGER_TOGGLE_MAX_HEIGHT
+Internal.managerToggleExpanded = Internal.managerToggleExpanded ~= false
 Internal.managerEyeLocales = Internal.managerEyeLocales
 	or {
 		enUS = {
@@ -330,7 +383,11 @@ Internal.managerEyeLocales = Internal.managerEyeLocales
 			body = "切換所有編輯模式視窗（包含暴雪框體）。",
 		},
 	}
-setmetatable(Internal.managerEyeLocales, { __index = function(t) return t.enUS end })
+setmetatable(Internal.managerEyeLocales, {
+	__index = function(t)
+		return t.enUS
+	end,
+})
 
 -- frequently used globals ----------------------------------------------------------
 local CreateFrame = _G.CreateFrame
@@ -367,6 +424,8 @@ local select = _G.select
 local next = _G.next
 local table = _G.table
 local UIErrorsFrame = _G.UIErrorsFrame
+local HUD_EDIT_MODE_COLLAPSE_OPTIONS = _G.HUD_EDIT_MODE_COLLAPSE_OPTIONS
+local HUD_EDIT_MODE_EXPAND_OPTIONS = _G.HUD_EDIT_MODE_EXPAND_OPTIONS
 
 local C_EditMode = _G.C_EditMode
 local C_EditMode_GetLayouts = C_EditMode and C_EditMode.GetLayouts
@@ -374,23 +433,56 @@ local C_EditMode_ConvertLayoutInfoToString = C_EditMode and C_EditMode.ConvertLa
 local C_SpecializationInfo = _G.C_SpecializationInfo
 local GetSpecialization = C_SpecializationInfo and C_SpecializationInfo.GetSpecialization
 
--- layout names are lazily resolved so we do not need early API availability
+-- layout names are lazily resolved and cached to avoid repeated C_EditMode.GetLayouts calls.
 local layoutNames = lib.layoutNames
 	or setmetatable({ _G.LAYOUT_STYLE_MODERN or "Modern", _G.LAYOUT_STYLE_CLASSIC or "Classic" }, {
 		__index = function(t, key)
-			if key <= 2 then
+			if type(key) ~= "number" or key <= 2 then
 				return rawget(t, key)
+			end
+			local idx = key - 2
+			local snapshot = State.layoutSnapshot or Internal.layoutNameSnapshot
+			local cached = snapshot and snapshot[idx]
+			if cached and cached ~= "" then
+				rawset(t, key, cached)
+				return cached
 			end
 			local layouts = C_EditMode_GetLayouts and C_EditMode_GetLayouts()
 			layouts = layouts and layouts.layouts
 			if not layouts then
 				return nil
 			end
-			local idx = key - 2
-			return layouts[idx] and layouts[idx].layoutName
+			local name = layouts[idx] and layouts[idx].layoutName
+			if name and name ~= "" then
+				rawset(t, key, name)
+			end
+			return name
 		end,
 	})
 lib.layoutNames = layoutNames
+
+local function syncLayoutNameCache(snapshot)
+	snapshot = snapshot or {}
+	for key in pairs(layoutNames) do
+		if type(key) == "number" and key > 2 then
+			local idx = key - 2
+			local name = snapshot[idx]
+			if name and name ~= "" then
+				rawset(layoutNames, key, name)
+			else
+				rawset(layoutNames, key, nil)
+			end
+		end
+	end
+	for idx, name in ipairs(snapshot) do
+		local uiIndex = idx + 2
+		if name and name ~= "" then
+			rawset(layoutNames, uiIndex, name)
+		else
+			rawset(layoutNames, uiIndex, nil)
+		end
+	end
+end
 
 -- Setting types: we keep Blizzard enums but extend for custom widgets
 lib.SettingType = lib.SettingType or CopyTable(Enum.EditModeSettingDisplayType)
@@ -400,6 +492,7 @@ lib.SettingType.DropdownColor = "DropdownColor"
 lib.SettingType.MultiDropdown = "MultiDropdown"
 lib.SettingType.Divider = "Divider"
 lib.SettingType.Collapsible = "Collapsible"
+lib.SettingType.Input = "Input"
 
 -- Debug toggle lives on internal; defaults to false
 Internal.debugEnabled = Internal.debugEnabled or false
@@ -565,8 +658,12 @@ local function evaluateVisibility(data, layoutName, layoutIndex)
 	if not data then
 		return true
 	end
-	if layoutName == nil then layoutName = lib.activeLayoutName end
-	if layoutIndex == nil then layoutIndex = lib:GetActiveLayoutIndex() end
+	if layoutName == nil then
+		layoutName = lib.activeLayoutName
+	end
+	if layoutIndex == nil then
+		layoutIndex = lib:GetActiveLayoutIndex()
+	end
 	if data.isShown then
 		local ok, result = pcall(data.isShown, layoutName, layoutIndex)
 		if ok and result == false then
@@ -723,7 +820,9 @@ local function ensureMagnetismAPI(frame, selection)
 				end
 			end
 			local left, bottom, width, height = self:GetRect()
-			return (left or 0) * scale, ((left or 0) + (width or 0)) * scale, (bottom or 0) * scale,
+			return (left or 0) * scale,
+				((left or 0) + (width or 0)) * scale,
+				(bottom or 0) * scale,
 				((bottom or 0) + (height or 0)) * scale
 		end
 	end
@@ -929,9 +1028,11 @@ local function ensureMagnetismAPI(frame, selection)
 			end
 			local myLeft, myRight, myBottom, myTop = self:GetScaledSelectionSides()
 			local otherLeft, otherRight, otherBottom, otherTop = systemFrame:GetScaledSelectionSides()
-			local horizontalEligible = (myTop >= otherBottom) and (myBottom <= otherTop)
+			local horizontalEligible = (myTop >= otherBottom)
+				and (myBottom <= otherTop)
 				and (myRight < otherLeft or myLeft > otherRight)
-			local verticalEligible = (myRight >= otherLeft) and (myLeft <= otherRight)
+			local verticalEligible = (myRight >= otherLeft)
+				and (myLeft <= otherRight)
 				and (myBottom > otherTop or myTop < otherBottom)
 			return horizontalEligible, verticalEligible
 		end
@@ -1079,6 +1180,10 @@ local function updateManagerEyeButton()
 	if not button then
 		return
 	end
+	if not lib.isEditing then
+		button:Hide()
+		return
+	end
 	local allHidden, hasSelections = areAllOverlayTogglesHidden()
 	button:SetShown(hasSelections)
 	if not hasSelections then
@@ -1138,6 +1243,620 @@ local function ensureManagerEyeButton()
 	button:SetScript("OnLeave", GameTooltip_Hide)
 	Internal.managerEyeButton = button
 	updateManagerEyeButton()
+end
+
+-- Manager toggle panel -----------------------------------------------------------
+local function ensureManagerCategory(id, label, sort)
+	if not label or label == "" then
+		label = id
+	end
+	if not label or label == "" then
+		label = DEFAULT_MANAGER_TOGGLE_CATEGORY_LABEL
+	end
+	id = normalizeManagerCategoryId(id, label)
+	local spec = State.managerCategorySpecs[id]
+	if not spec then
+		spec = {
+			id = id,
+			label = label,
+		}
+		State.managerCategorySpecs[id] = spec
+		table.insert(State.managerCategoryOrder, id)
+	end
+	spec.label = label
+	if sort ~= nil then
+		spec.sort = sort
+	end
+	return id, spec
+end
+
+local function getManagerCategoryById(id)
+	if id and id ~= "" then
+		local spec = State.managerCategorySpecs[id]
+		if spec then
+			return id, spec
+		end
+	end
+	return nil
+end
+
+local function resolveManagerToggleCategory(data)
+	if not data then
+		return ensureManagerCategory(DEFAULT_MANAGER_TOGGLE_CATEGORY_ID, DEFAULT_MANAGER_TOGGLE_CATEGORY_LABEL)
+	end
+	local category = data.category or data.categoryId or data.categoryName
+	if type(category) == "table" then
+		local label = category.label or category.name or category.id
+		local id = category.id or category.name or category.label
+		local sort = category.sort
+		if id and (not label or label == "") then
+			local existingId, existingSpec = getManagerCategoryById(id)
+			if existingSpec then
+				return existingId, existingSpec
+			end
+		end
+		return ensureManagerCategory(id, label, sort)
+	end
+	if type(category) == "string" then
+		local existingId, existingSpec = getManagerCategoryById(category)
+		if existingSpec then
+			return existingId, existingSpec
+		end
+		return ensureManagerCategory(nil, category)
+	end
+	return ensureManagerCategory(DEFAULT_MANAGER_TOGGLE_CATEGORY_ID, DEFAULT_MANAGER_TOGGLE_CATEGORY_LABEL)
+end
+
+local function getManagerToggleSort(categorySpec)
+	if not categorySpec then
+		return nil
+	end
+	local sort = categorySpec.sort
+	if type(sort) == "string" then
+		local key = sort:lower()
+		if key == "label" then
+			return function(a, b)
+				local al = (a.label or ""):lower()
+				local bl = (b.label or ""):lower()
+				if al == bl then
+					return (a.order or 0) < (b.order or 0)
+				end
+				return al < bl
+			end
+		end
+	elseif type(sort) == "function" then
+		return function(a, b)
+			local ok, result = pcall(sort, a, b)
+			if ok and result ~= nil then
+				return result and true or false
+			end
+			return (a.order or 0) < (b.order or 0)
+		end
+	end
+	return nil
+end
+
+local function resolveManagerToggleFrames(data)
+	if not data then
+		return nil
+	end
+	local frames = data.frames or data.frame
+	if type(frames) == "function" then
+		local ok, result = pcall(frames)
+		if ok then
+			frames = result
+		else
+			frames = nil
+		end
+	end
+	if frames == nil then
+		return nil
+	end
+	if type(frames) == "string" or (type(frames) == "table" and (frames.GetObjectType or frames.IsObjectType)) then
+		frames = { frames }
+	end
+	if type(frames) ~= "table" then
+		return nil
+	end
+
+	local resolved = {}
+	for _, entry in ipairs(frames) do
+		local frame = resolveFrame(entry)
+		if frame then
+			resolved[#resolved + 1] = frame
+		end
+	end
+	if #resolved == 0 then
+		for _, entry in pairs(frames) do
+			local frame = resolveFrame(entry)
+			if frame then
+				resolved[#resolved + 1] = frame
+			end
+		end
+	end
+	if #resolved == 0 then
+		return nil
+	end
+	return resolved
+end
+
+local function getManagerToggleValue(data)
+	if not data then
+		return true
+	end
+	if data.get then
+		local ok, value = pcall(data.get, lib.activeLayoutName, lib:GetActiveLayoutIndex())
+		if ok and value ~= nil then
+			return not not value
+		end
+	end
+	local stored = State.managerToggleState[data.id]
+	if stored ~= nil then
+		return stored
+	end
+	local frames = resolveManagerToggleFrames(data)
+	if frames and frames[1] and frames[1].IsShown then
+		return frames[1]:IsShown() and true or false
+	end
+	if data.default ~= nil then
+		return not not data.default
+	end
+	return true
+end
+
+local function applyManagerToggleValue(data, value)
+	if not data then
+		return false
+	end
+	if isInCombat() and not data.allowInCombat then
+		return false
+	end
+	local layoutName = lib.activeLayoutName
+	local layoutIndex = lib:GetActiveLayoutIndex()
+	if data.set then
+		local ok, result = pcall(data.set, layoutName, value, layoutIndex)
+		if not ok or result == false then
+			return false
+		end
+	else
+		local frames = resolveManagerToggleFrames(data)
+		if frames then
+			for _, frame in ipairs(frames) do
+				if frame then
+					if frame.SetShown then
+						frame:SetShown(value)
+					elseif value and frame.Show then
+						frame:Show()
+					elseif (not value) and frame.Hide then
+						frame:Hide()
+					end
+				end
+			end
+		end
+	end
+	State.managerToggleState[data.id] = not not value
+	return true
+end
+
+local function createManagerToggleButton(parent)
+	local button = CreateFrame("Frame", nil, parent, "EditModeManagerSettingCheckButtonTemplate")
+	button.fixedHeight = DEFAULT_MANAGER_TOGGLE_ROW_HEIGHT
+	button:SetHeight(DEFAULT_MANAGER_TOGGLE_ROW_HEIGHT)
+	function button:ApplyLayout()
+		if self.EditModeManagerSettingCheckButton_OnLoad then
+			self:EditModeManagerSettingCheckButton_OnLoad()
+			return
+		end
+		local width = self:GetWidth() or 0
+		if width < 1 or not self.Label then
+			return
+		end
+		local offset = select(4, self.Label:GetPoint(1)) or 0
+		local labelWidth = width - (self.Button:GetWidth() or 0) - offset
+		if labelWidth < 1 then
+			labelWidth = 1
+		end
+		self.Label:SetWidth(labelWidth)
+	end
+	function button:OnCheckButtonClick()
+		if not self.data then
+			return
+		end
+		local value = self.Button:GetChecked() and true or false
+		if not applyManagerToggleValue(self.data, value) then
+			self.Button:SetChecked(getManagerToggleValue(self.data))
+			return
+		end
+		if Internal.RefreshManagerTogglePanel then
+			Internal:RefreshManagerTogglePanel()
+		end
+	end
+	function button:ShouldEnable()
+		if not self.data then
+			return true
+		end
+		if isInCombat() and not self.data.allowInCombat then
+			return false
+		end
+		local layoutName = lib.activeLayoutName
+		local layoutIndex = lib:GetActiveLayoutIndex()
+		if self.data.isEnabled then
+			local ok, result = pcall(self.data.isEnabled, layoutName, layoutIndex)
+			if ok then
+				return result ~= false
+			end
+		elseif self.data.disabled then
+			local ok, result = pcall(self.data.disabled, layoutName, layoutIndex)
+			if ok then
+				return result ~= true
+			end
+		end
+		return true
+	end
+	return button
+end
+
+local function getManagerToggleExpanderLabel(expanded)
+	if expanded then
+		return HUD_EDIT_MODE_COLLAPSE_OPTIONS or "Collapse options"
+	end
+	return HUD_EDIT_MODE_EXPAND_OPTIONS or "Expand options"
+end
+
+local function ensureManagerTogglePanel()
+	if Internal.managerTogglePanel or not EditModeManagerFrame then
+		return Internal.managerTogglePanel
+	end
+
+	local panel = CreateFrame("Frame", nil, EditModeManagerFrame)
+	panel.ignoreInLayout = true
+	panel:SetPoint("TOPLEFT", EditModeManagerFrame, "BOTTOMLEFT", 0, -6)
+	panel:SetPoint("TOPRIGHT", EditModeManagerFrame, "BOTTOMRIGHT", 0, -6)
+	panel:SetHeight(1)
+	panel:SetFrameStrata(EditModeManagerFrame:GetFrameStrata())
+	panel:SetFrameLevel(EditModeManagerFrame:GetFrameLevel())
+	panel:Hide()
+
+	local border = CreateFrame("Frame", nil, panel, "DialogBorderTranslucentTemplate")
+	border.ignoreInLayout = true
+
+	local scroll = CreateFrame("ScrollFrame", nil, panel, "ScrollFrameTemplate")
+	scroll:SetPoint("TOPLEFT", panel, "TOPLEFT", MANAGER_TOGGLE_PANEL_PADDING, -MANAGER_TOGGLE_PANEL_PADDING)
+	scroll:SetPoint("TOPRIGHT", panel, "TOPRIGHT", -(MANAGER_TOGGLE_PANEL_PADDING + 6), -MANAGER_TOGGLE_PANEL_PADDING)
+	scroll:SetHeight(1)
+	scroll:EnableMouseWheel(true)
+	if scroll.ScrollBar and scroll.ScrollBar.SetHideIfUnscrollable then
+		scroll.ScrollBar:SetHideIfUnscrollable(true)
+	end
+	FixScrollBarInside(scroll)
+
+	local list = CreateFrame("Frame", nil, scroll, "VerticalLayoutFrame")
+	list:SetWidth(1)
+	list.spacing = MANAGER_TOGGLE_CATEGORY_SPACING
+	scroll:SetScrollChild(list)
+
+	local expander = CreateFrame("Frame", nil, panel, "ResizeLayoutFrame")
+	expander.ignoreInLayout = true
+	expander:SetPoint("BOTTOMLEFT", panel, "BOTTOMLEFT", MANAGER_TOGGLE_PANEL_PADDING, MANAGER_TOGGLE_PANEL_PADDING)
+	expander:SetPoint("BOTTOMRIGHT", panel, "BOTTOMRIGHT", -MANAGER_TOGGLE_PANEL_PADDING, MANAGER_TOGGLE_PANEL_PADDING)
+	expander:SetHeight(MANAGER_TOGGLE_EXPANDER_HEIGHT)
+	expander:EnableMouse(true)
+
+	local divider = expander:CreateTexture(nil, "ARTWORK")
+	divider:SetTexture([[Interface\FriendsFrame\UI-FriendsFrame-OnlineDivider]])
+	divider:SetPoint("TOPLEFT", expander, "TOPLEFT", 0, 0)
+	divider:SetPoint("TOPRIGHT", expander, "TOPRIGHT", 0, 0)
+	divider:SetHeight(16)
+	expander.Divider = divider
+
+	local label = expander:CreateFontString(nil, "ARTWORK", "GameFontHighlightMedium")
+	label:SetPoint("TOP", divider, "BOTTOM", 0, 4)
+	expander.Label = label
+
+	expander:SetScript("OnMouseUp", function()
+		panel:ToggleExpandedState()
+	end)
+
+	panel.Scroll = scroll
+	panel.List = list
+	panel.Expander = expander
+	panel.padding = MANAGER_TOGGLE_PANEL_PADDING
+	panel.maxHeight = Internal.managerToggleMaxHeight or DEFAULT_MANAGER_TOGGLE_MAX_HEIGHT
+	panel.expanderHeight = MANAGER_TOGGLE_EXPANDER_HEIGHT
+	panel.expanderSpacing = MANAGER_TOGGLE_EXPANDER_SPACING
+	panel.expanded = Internal.managerToggleExpanded ~= false
+
+	function panel:ApplyScrollLimit()
+		local isExpanded = self.expanded ~= false
+		scroll:SetShown(isExpanded)
+		local targetHeight = 0
+		local needsScroll = false
+
+		if isExpanded then
+			if scroll.UpdateScrollChildRect then
+				scroll:UpdateScrollChildRect()
+			end
+			if list.Layout then
+				list:Layout()
+			end
+
+			local contentHeight = list:GetHeight() or 1
+			targetHeight = contentHeight
+			local maxHeight = self.maxHeight
+			if maxHeight and contentHeight > maxHeight then
+				targetHeight = maxHeight
+				needsScroll = true
+			end
+			if targetHeight < 1 then
+				targetHeight = 1
+			end
+		end
+
+		if scroll._eqolLastHeight ~= targetHeight then
+			scroll._eqolLastHeight = targetHeight
+			scroll:SetHeight(targetHeight)
+			scroll.fixedHeight = targetHeight
+		end
+
+		local panelHeight = self.expanderHeight + (self.padding * 2)
+		if isExpanded then
+			panelHeight = panelHeight + targetHeight + self.expanderSpacing
+		end
+		if panel._eqolLastHeight ~= panelHeight then
+			panel._eqolLastHeight = panelHeight
+			panel:SetHeight(panelHeight)
+		end
+
+		if scroll.ScrollBar and scroll.ScrollBar.SetShown then
+			scroll.ScrollBar:SetShown(isExpanded and needsScroll)
+		end
+
+		if isExpanded and scroll.UpdateScrollChildRect then
+			scroll:UpdateScrollChildRect()
+		end
+
+		if isExpanded then
+			UpdateScrollChildWidthFor(scroll, list)
+			if Internal.UpdateManagerToggleLayout then
+				Internal:UpdateManagerToggleLayout()
+			end
+		end
+
+		if (not isExpanded) or (not needsScroll) then
+			scroll:SetVerticalScroll(0)
+		else
+			local maxScroll = scroll:GetVerticalScrollRange()
+			scroll:SetVerticalScroll(math.min(scroll:GetVerticalScroll(), maxScroll))
+		end
+	end
+
+	function panel:SetExpandedState(expanded)
+		local wasExpanded = self.expanded ~= false
+		self.expanded = not not expanded
+		Internal.managerToggleExpanded = self.expanded
+		self.Expander.Label:SetText(getManagerToggleExpanderLabel(self.expanded))
+		self:ApplyScrollLimit()
+		if self.expanded and not wasExpanded and C_Timer and C_Timer.After then
+			C_Timer.After(0, function()
+				if self and self.expanded and self.ApplyScrollLimit and self:IsShown() then
+					self:ApplyScrollLimit()
+				end
+			end)
+		end
+	end
+
+	function panel:ToggleExpandedState()
+		self:SetExpandedState(not self.expanded)
+	end
+
+	panel:SetExpandedState(panel.expanded)
+
+	Internal.managerTogglePanel = panel
+	return panel
+end
+
+local function createManagerToggleCategoryBlock(parent)
+	local block = CreateFrame("Frame", nil, parent, "VerticalLayoutFrame")
+	block.spacing = MANAGER_TOGGLE_SECTION_SPACING
+
+	local title = CreateFrame("Frame", nil, block)
+	title:SetHeight(24)
+	title.layoutIndex = 1
+	title.Text = title:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
+	title.Text:SetPoint("LEFT", 4, 0)
+	title.Text:SetPoint("RIGHT", -4, 0)
+	title.Text:SetJustifyH("LEFT")
+	block.Title = title
+
+	local container = CreateFrame("Frame", nil, block, "GridLayoutFrame")
+	container.layoutIndex = 2
+	container.childXPadding = MANAGER_TOGGLE_COLUMN_SPACING
+	container.childYPadding = DEFAULT_SETTINGS_SPACING
+	container.isHorizontal = true
+	container.stride = 2
+	container.layoutFramesGoingRight = true
+	container.layoutFramesGoingUp = false
+	container.alwaysUpdateLayout = true
+	block.Container = container
+
+	return block
+end
+
+function Internal:UpdateManagerToggleLayout()
+	local panel = self.managerTogglePanel
+	if not panel then
+		return
+	end
+	local list = panel.List
+	local width = list and list._eqolLastWidth or nil
+	if not width or width < 1 then
+		return
+	end
+	local columnWidth = math.floor((width - MANAGER_TOGGLE_COLUMN_SPACING) / 2)
+	if columnWidth < 1 then
+		columnWidth = width
+	end
+	local blocks = self.managerToggleCategoryBlocks
+	if not blocks then
+		return
+	end
+	for _, block in pairs(blocks) do
+		if block:IsShown() then
+			block:SetWidth(width)
+			if block.Title then
+				block.Title:SetWidth(width)
+			end
+			local container = block.Container
+			if container then
+				container:SetWidth(width)
+				container.childXPadding = MANAGER_TOGGLE_COLUMN_SPACING
+				for _, row in ipairs({ container:GetChildren() }) do
+					if row and row.SetWidth then
+						row.fixedWidth = columnWidth
+						row:SetWidth(columnWidth)
+						if row.ApplyLayout then
+							row:ApplyLayout()
+						end
+					end
+				end
+				if container.Layout then
+					container:Layout()
+				end
+			end
+			if block.Layout then
+				block:Layout()
+			end
+		end
+	end
+end
+
+function Internal:RefreshManagerTogglePanel()
+	local panel = ensureManagerTogglePanel()
+	if not panel then
+		return
+	end
+
+	local list = panel.List
+	local buttons = Internal.managerToggleButtons or {}
+	local blocks = Internal.managerToggleCategoryBlocks or {}
+	Internal.managerToggleButtons = buttons
+	Internal.managerToggleCategoryBlocks = blocks
+
+	local categories = {}
+	local orderIndex = 0
+	for _, id in ipairs(State.managerToggleOrder) do
+		local data = State.managerToggleSpecs[id]
+		if data then
+			orderIndex = orderIndex + 1
+			local categoryId, categorySpec = resolveManagerToggleCategory(data)
+			local entryList = categories[categoryId]
+			if not entryList then
+				entryList = { id = categoryId, spec = categorySpec, entries = {} }
+				categories[categoryId] = entryList
+			end
+			local label = data.label or data.name or data.id or id
+			entryList.entries[#entryList.entries + 1] = {
+				id = id,
+				data = data,
+				label = label,
+				order = orderIndex,
+			}
+		end
+	end
+
+	local orderedCategories = {}
+	local queued = {}
+	for _, categoryId in ipairs(State.managerCategoryOrder) do
+		local entryList = categories[categoryId]
+		if entryList and #entryList.entries > 0 then
+			orderedCategories[#orderedCategories + 1] = entryList
+			queued[categoryId] = true
+		end
+	end
+	for categoryId, entryList in pairs(categories) do
+		if not queued[categoryId] and #entryList.entries > 0 then
+			orderedCategories[#orderedCategories + 1] = entryList
+		end
+	end
+
+	local usedButtons = {}
+	local usedBlocks = {}
+	local blockIndex = 0
+	for _, category in ipairs(orderedCategories) do
+		blockIndex = blockIndex + 1
+		local block = blocks[category.id]
+		if not block then
+			block = createManagerToggleCategoryBlock(list)
+			blocks[category.id] = block
+		end
+		block.layoutIndex = blockIndex
+		block.ignoreInLayout = nil
+		block:Show()
+
+		local title = block.Title
+		if title and title.Text then
+			title.Text:SetText(category.spec and category.spec.label or category.id)
+		end
+
+		local container = block.Container
+		if container then
+			local sorter = getManagerToggleSort(category.spec)
+			if sorter then
+				table.sort(category.entries, sorter)
+			end
+			local rowIndex = 0
+			for _, entry in ipairs(category.entries) do
+				rowIndex = rowIndex + 1
+				local row = buttons[entry.id]
+				if not row then
+					row = createManagerToggleButton(container)
+					buttons[entry.id] = row
+				elseif row:GetParent() ~= container then
+					row:SetParent(container)
+				end
+				row.data = entry.data
+				row.layoutIndex = rowIndex
+				row.ignoreInLayout = nil
+				row.Label:SetText(entry.label)
+				row.Button:SetChecked(getManagerToggleValue(entry.data))
+				row:Show()
+				if row.EditModeCheckButton_OnShow then
+					row:EditModeCheckButton_OnShow()
+				end
+				usedButtons[entry.id] = true
+			end
+			if container.Layout then
+				container:Layout()
+			end
+		end
+		if block.Layout then
+			block:Layout()
+		end
+		usedBlocks[category.id] = true
+	end
+
+	for id, row in pairs(buttons) do
+		if not usedButtons[id] then
+			row:Hide()
+			row.ignoreInLayout = true
+			row.layoutIndex = nil
+			row.data = nil
+		end
+	end
+
+	for id, block in pairs(blocks) do
+		if not usedBlocks[id] then
+			block:Hide()
+			block.ignoreInLayout = true
+			block.layoutIndex = nil
+		end
+	end
+
+	if list.Layout then
+		list:Layout()
+	end
+	panel:ApplyScrollLimit()
+	panel:SetShown(blockIndex > 0)
 end
 
 local function snapshotLayoutNames(layoutInfo)
@@ -1206,6 +1925,7 @@ local function updateActiveLayoutFromAPI()
 	end
 	State.layoutSnapshot = snapshotLayoutNames(layouts)
 	Internal.layoutNameSnapshot = State.layoutSnapshot
+	syncLayoutNameCache(State.layoutSnapshot)
 end
 
 if not lib.activeLayoutName and C_EditMode and C_EditMode.GetLayouts then
@@ -1216,9 +1936,11 @@ if not lib.activeLayoutName and C_EditMode and C_EditMode.GetLayouts then
 	end
 	State.layoutSnapshot = snapshotLayoutNames(layouts)
 	Internal.layoutNameSnapshot = State.layoutSnapshot
+	syncLayoutNameCache(State.layoutSnapshot)
 end
 
 function Layout:HandleLayoutsChanged(_, layoutInfo)
+	-- if not lib.isEditing then return end
 	local layoutIndex = layoutInfo and layoutInfo.activeLayout
 	if not layoutIndex then
 		updateActiveLayoutFromAPI()
@@ -1228,12 +1950,17 @@ function Layout:HandleLayoutsChanged(_, layoutInfo)
 
 	local newSnapshot = snapshotLayoutNames(layoutInfo)
 	local oldSnapshot = State.layoutSnapshot or {}
-	for index, newName in pairs(newSnapshot) do
-		local oldName = oldSnapshot[index]
-		if oldName and newName and oldName ~= newName then
-			local uiIndex = index + 2
-			for _, callback in next, lib.eventHandlersLayoutRenamed do
-				securecallfunction(callback, oldName, newName, uiIndex)
+	local didLayoutCountShrink = #newSnapshot < #oldSnapshot
+	-- Blizzard shifts custom layout indices on delete, which makes unchanged names
+	-- look like rename diffs across the remaining entries.
+	if not didLayoutCountShrink then
+		for index, newName in ipairs(newSnapshot) do
+			local oldName = oldSnapshot[index]
+			if oldName and newName and oldName ~= newName then
+				local uiIndex = index + 2
+				for _, callback in next, lib.eventHandlersLayoutRenamed do
+					securecallfunction(callback, oldName, newName, uiIndex)
+				end
 			end
 		end
 	end
@@ -1242,6 +1969,7 @@ function Layout:HandleLayoutsChanged(_, layoutInfo)
 	end
 	State.layoutSnapshot = newSnapshot
 	Internal.layoutNameSnapshot = State.layoutSnapshot
+	syncLayoutNameCache(State.layoutSnapshot)
 
 	if layoutName and layoutIndex and (layoutName ~= lib.activeLayoutName or layoutIndex ~= lib.activeLayoutIndex) then
 		lib.activeLayoutName = layoutName
@@ -1253,6 +1981,7 @@ function Layout:HandleLayoutsChanged(_, layoutInfo)
 end
 
 function Layout:HandleSpecChanged()
+	-- if not lib.isEditing then return end
 	if C_EditMode and C_EditMode.GetLayouts then
 		local layouts = C_EditMode.GetLayouts()
 		self:HandleLayoutsChanged(nil, layouts)
@@ -1460,7 +2189,9 @@ local function buildDropdown()
 			self.OldDropdown:Show()
 			self.Dropdown = self.OldDropdown
 		else
-			if self.OldDropdown then self.OldDropdown:Hide() end
+			if self.OldDropdown then
+				self.OldDropdown:Hide()
+			end
 			self.Control:Show()
 			self.Dropdown = self.Control.Dropdown
 		end
@@ -1481,7 +2212,7 @@ local function buildDropdown()
 					rootDescription:CreateRadio(value.text, dropdownGet, dropdownSet, {
 						get = data.get,
 						set = data.set,
-						value = value.text,
+						value = value.value or value.text,
 					})
 				end
 			end)
@@ -1510,8 +2241,12 @@ local function buildDropdown()
 		control:SetPoint("LEFT", label, "RIGHT", 5, 0)
 		frame.Control = control
 
-		if control.DecrementButton then control.DecrementButton:Hide() end
-		if control.IncrementButton then control.IncrementButton:Hide() end
+		if control.DecrementButton then
+			control.DecrementButton:Hide()
+		end
+		if control.IncrementButton then
+			control.IncrementButton:Hide()
+		end
 
 		local dropdown = control.Dropdown
 		dropdown:SetPoint("LEFT", label, "RIGHT", 5, 0)
@@ -1558,14 +2293,20 @@ local function buildMultiDropdown()
 			self.OldDropdown:Show()
 			self.Dropdown = self.OldDropdown
 		else
-			if self.OldDropdown then self.OldDropdown:Hide() end
+			if self.OldDropdown then
+				self.OldDropdown:Hide()
+			end
 			self.Control:Show()
 			self.Dropdown = self.Control.Dropdown
 		end
 
 		-- Keep both dropdown variants in sync so switching styles doesn't bring back "Custom"
-		if self.Control and self.Control.Dropdown then self.Control.Dropdown:SetDefaultText(defaultText) end
-		if self.OldDropdown then self.OldDropdown:SetDefaultText(defaultText) end
+		if self.Control and self.Control.Dropdown then
+			self.Control.Dropdown:SetDefaultText(defaultText)
+		end
+		if self.OldDropdown then
+			self.OldDropdown:SetDefaultText(defaultText)
+		end
 		self.Dropdown:SetDefaultText(defaultText)
 
 		if self.Summary then
@@ -1807,18 +2548,6 @@ local function buildMultiDropdown()
 		oldDropdown:Hide()
 		frame.OldDropdown = oldDropdown
 
-		local button = CreateFrame("Button", nil, frame)
-		button:SetSize(36, 22)
-		button:SetPoint("LEFT", dropdown, "RIGHT", 6, 0)
-
-		do
-			local gap = 6
-			local base = dropdown:GetWidth() or 200
-			local ddW = math.max(80, base - (button:GetWidth() + gap))
-			dropdown:SetWidth(ddW)
-			oldDropdown:SetWidth(ddW)
-		end
-
 		local summary = frame:CreateFontString(nil, nil, "GameFontHighlightSmall")
 		summary:SetPoint("TOPLEFT", dropdown, "BOTTOMLEFT", 0, -2)
 		summary:SetPoint("TOPRIGHT", dropdown, "BOTTOMRIGHT", 0, -2)
@@ -1858,8 +2587,8 @@ local function buildColor()
 	end
 
 	function mixin:SetColor(r, g, b, a)
-			self.r, self.g, self.b, self.a = r, g, b, a
-			self.Swatch:SetColorTexture(r, g, b, a or 1)
+		self.r, self.g, self.b, self.a = r, g, b, a
+		self.Swatch:SetColorTexture(r, g, b, a or 1)
 	end
 
 	function mixin:OnClick()
@@ -1870,35 +2599,35 @@ local function buildColor()
 			b = prev.b,
 			opacity = prev.a,
 			hasOpacity = self.hasOpacity,
-				swatchFunc = function()
-					local r, g, b = ColorPickerFrame:GetColorRGB()
-					local a = self.hasOpacity
-						and (ColorPickerFrame.GetColorAlpha and ColorPickerFrame:GetColorAlpha() or prev.a)
-					self:SetColor(r, g, b, a)
-					self.setting.set(lib.activeLayoutName, { r = r, g = g, b = b, a = a }, lib:GetActiveLayoutIndex())
-					Internal:RequestRefreshSettings()
-				end,
-				opacityFunc = function()
-					if not self.hasOpacity then
-						return
-					end
+			swatchFunc = function()
 				local r, g, b = ColorPickerFrame:GetColorRGB()
-					local a = ColorPickerFrame.GetColorAlpha and ColorPickerFrame:GetColorAlpha() or prev.a
-					self:SetColor(r, g, b, a)
-					self.setting.set(lib.activeLayoutName, { r = r, g = g, b = b, a = a }, lib:GetActiveLayoutIndex())
-					Internal:RequestRefreshSettings()
-				end,
-				cancelFunc = function()
-					self:SetColor(prev.r, prev.g, prev.b, prev.a)
-					self.setting.set(
-						lib.activeLayoutName,
-						{ r = prev.r, g = prev.g, b = prev.b, a = prev.a },
-						lib:GetActiveLayoutIndex()
-					)
-					Internal:RequestRefreshSettings()
-				end,
-			})
-		end
+				local a = self.hasOpacity
+					and (ColorPickerFrame.GetColorAlpha and ColorPickerFrame:GetColorAlpha() or prev.a)
+				self:SetColor(r, g, b, a)
+				self.setting.set(lib.activeLayoutName, { r = r, g = g, b = b, a = a }, lib:GetActiveLayoutIndex())
+				Internal:RequestRefreshSettings()
+			end,
+			opacityFunc = function()
+				if not self.hasOpacity then
+					return
+				end
+				local r, g, b = ColorPickerFrame:GetColorRGB()
+				local a = ColorPickerFrame.GetColorAlpha and ColorPickerFrame:GetColorAlpha() or prev.a
+				self:SetColor(r, g, b, a)
+				self.setting.set(lib.activeLayoutName, { r = r, g = g, b = b, a = a }, lib:GetActiveLayoutIndex())
+				Internal:RequestRefreshSettings()
+			end,
+			cancelFunc = function()
+				self:SetColor(prev.r, prev.g, prev.b, prev.a)
+				self.setting.set(
+					lib.activeLayoutName,
+					{ r = prev.r, g = prev.g, b = prev.b, a = prev.a },
+					lib:GetActiveLayoutIndex()
+				)
+				Internal:RequestRefreshSettings()
+			end,
+		})
+	end
 
 	function mixin:SetEnabled(enabled)
 		if enabled then
@@ -1998,8 +2727,8 @@ local function buildCheckboxColor()
 	end
 
 	function mixin:SetColor(r, g, b, a)
-			self.r, self.g, self.b, self.a = r, g, b, a
-			self.Swatch:SetColorTexture(r, g, b, a or 1)
+		self.r, self.g, self.b, self.a = r, g, b, a
+		self.Swatch:SetColorTexture(r, g, b, a or 1)
 	end
 
 	function mixin:OnCheckboxClick()
@@ -2024,35 +2753,35 @@ local function buildCheckboxColor()
 			b = prev.b,
 			opacity = prev.a,
 			hasOpacity = self.hasOpacity,
-				swatchFunc = function()
-					local r, g, b = ColorPickerFrame:GetColorRGB()
-					local a = self.hasOpacity
-						and (ColorPickerFrame.GetColorAlpha and ColorPickerFrame:GetColorAlpha() or prev.a)
-					self:SetColor(r, g, b, a)
-					apply(lib.activeLayoutName, { r = r, g = g, b = b, a = a }, lib:GetActiveLayoutIndex())
-					Internal:RequestRefreshSettings()
-				end,
-				opacityFunc = function()
-					if not self.hasOpacity then
-						return
+			swatchFunc = function()
+				local r, g, b = ColorPickerFrame:GetColorRGB()
+				local a = self.hasOpacity
+					and (ColorPickerFrame.GetColorAlpha and ColorPickerFrame:GetColorAlpha() or prev.a)
+				self:SetColor(r, g, b, a)
+				apply(lib.activeLayoutName, { r = r, g = g, b = b, a = a }, lib:GetActiveLayoutIndex())
+				Internal:RequestRefreshSettings()
+			end,
+			opacityFunc = function()
+				if not self.hasOpacity then
+					return
 				end
 				local r, g, b = ColorPickerFrame:GetColorRGB()
-					local a = ColorPickerFrame.GetColorAlpha and ColorPickerFrame:GetColorAlpha() or prev.a
-					self:SetColor(r, g, b, a)
-					apply(lib.activeLayoutName, { r = r, g = g, b = b, a = a }, lib:GetActiveLayoutIndex())
-					Internal:RequestRefreshSettings()
-				end,
-				cancelFunc = function()
-					self:SetColor(prev.r, prev.g, prev.b, prev.a)
-					apply(
-						lib.activeLayoutName,
-						{ r = prev.r, g = prev.g, b = prev.b, a = prev.a },
-						lib:GetActiveLayoutIndex()
-					)
-					Internal:RequestRefreshSettings()
-				end,
-			})
-		end
+				local a = ColorPickerFrame.GetColorAlpha and ColorPickerFrame:GetColorAlpha() or prev.a
+				self:SetColor(r, g, b, a)
+				apply(lib.activeLayoutName, { r = r, g = g, b = b, a = a }, lib:GetActiveLayoutIndex())
+				Internal:RequestRefreshSettings()
+			end,
+			cancelFunc = function()
+				self:SetColor(prev.r, prev.g, prev.b, prev.a)
+				apply(
+					lib.activeLayoutName,
+					{ r = prev.r, g = prev.g, b = prev.b, a = prev.a },
+					lib:GetActiveLayoutIndex()
+				)
+				Internal:RequestRefreshSettings()
+			end,
+		})
+	end
 
 	function mixin:SetEnabled(enabled)
 		self.Check:SetEnabled(enabled)
@@ -2113,32 +2842,6 @@ end
 local function buildDropdownColor()
 	local mixin = {}
 
-	function mixin:ApplyLayout()
-		if not (self.Label and self.Button and self.Dropdown) then
-			return
-		end
-
-		local labelWidth = self.Label:GetWidth() or 100
-		local buttonWidth = self.Button:GetWidth() or COLOR_BUTTON_WIDTH
-		local rowWidth = self:GetWidth() or 0
-		local leftGap = 5
-		local buttonGap = 6
-		local rightMargin = 2
-		local available = rowWidth - labelWidth - buttonWidth - leftGap - buttonGap - rightMargin
-		if available < 1 then
-			return
-		end
-		local targetWidth = math.min(DROPDOWN_COLOR_MAX_WIDTH, available)
-
-		self.Dropdown:ClearAllPoints()
-		self.Dropdown:SetPoint("LEFT", self.Label, "RIGHT", leftGap, 0)
-		self.Dropdown:SetWidth(targetWidth)
-
-		self.Button:ClearAllPoints()
-		self.Button:SetPoint("LEFT", self.Dropdown, "RIGHT", rightMargin, 0)
-
-	end
-
 	function mixin:Setup(data, selection)
 		self.setting = data
 		self.Label:SetText(data.name)
@@ -2164,7 +2867,6 @@ local function buildDropdownColor()
 			self.Control:Show()
 			self.Dropdown = self.Control.Dropdown
 		end
-		self:ApplyLayout()
 
 		local function createEntries(rootDescription)
 			if data.height then
@@ -2183,7 +2885,7 @@ local function buildDropdownColor()
 				for _, value in next, data.values do
 					rootDescription:CreateRadio(value.text, function()
 						return getCurrent() == value.text
-					end, makeSetter(value.text))
+					end, makeSetter(value.value or value.text))
 				end
 			end
 		end
@@ -2216,8 +2918,8 @@ local function buildDropdownColor()
 	end
 
 	function mixin:SetColor(r, g, b, a)
-			self.r, self.g, self.b, self.a = r, g, b, a
-			self.Swatch:SetColorTexture(r, g, b, a or 1)
+		self.r, self.g, self.b, self.a = r, g, b, a
+		self.Swatch:SetColorTexture(r, g, b, a or 1)
 	end
 
 	function mixin:OnColorClick()
@@ -2301,18 +3003,20 @@ local function buildDropdownColor()
 		local dropdown = control.Dropdown
 		dropdown:SetPoint("LEFT", label, "RIGHT", 5, 0)
 		dropdown:SetHeight(30)
+		dropdown:SetWidth(175)
 		frame.Dropdown = dropdown
 
 		-- old style control (hidden by default)
 		local oldDropdown = CreateFrame("DropdownButton", nil, frame, "WowStyle1DropdownTemplate")
 		oldDropdown:SetPoint("LEFT", label, "RIGHT", 5, 0)
 		oldDropdown:SetHeight(30)
+		oldDropdown:SetWidth(175)
 		oldDropdown:Hide()
 		frame.OldDropdown = oldDropdown
 
 		local button = CreateFrame("Button", nil, frame)
 		button:SetSize(COLOR_BUTTON_WIDTH, 22)
-		button:SetPoint("RIGHT", frame, "RIGHT", -2, 0)
+		button:SetPoint("LEFT", frame.Dropdown, "RIGHT", 2, 0)
 
 		local border = button:CreateTexture(nil, "BACKGROUND")
 		border:SetColorTexture(0.7, 0.7, 0.7, 1)
@@ -2336,37 +3040,179 @@ local function buildDropdownColor()
 	end
 end
 
-local function buildSlider()
-	local mixin = {}
-
-	function mixin:ApplyInputLayout()
-		if not (self.Slider and self.Label) then
-			return
-		end
-		local input = self.Input
-		local inputShown = input and input:IsShown()
-		local inputWidth = inputShown and (input:GetWidth() or 0) or 0
-		local inputGap = inputShown and 6 or 0
-
-		self.Slider:ClearAllPoints()
-		self.Slider:SetPoint("LEFT", self.Label, "RIGHT", 5, 0)
-		if inputShown then
-			self.Slider:SetPoint("RIGHT", self, "RIGHT", -(inputWidth + inputGap), 0)
-		else
-			self.Slider:SetPoint("RIGHT", self, "RIGHT", -2, 0)
-		end
-
-		if input then
-			input:ClearAllPoints()
-			if inputShown then
-				input:SetPoint("RIGHT", self, "RIGHT", -2, 0)
-			elseif self.Slider.RightText then
-				input:SetPoint("CENTER", self.Slider.RightText, "CENTER", 0, 0)
-			else
-				input:SetPoint("RIGHT", self.Slider, "RIGHT", -2, 0)
-			end
+local function formatInputValue(data, value)
+	if data and data.formatter then
+		local ok, formatted = pcall(data.formatter, value)
+		if ok and formatted ~= nil then
+			return tostring(formatted)
 		end
 	end
+	if value == nil then
+		return ""
+	end
+	return tostring(value)
+end
+
+local function buildInput()
+	local mixin = {}
+
+	function mixin:ApplyLayout()
+		local data = self.setting or self.data
+		local labelWidth = tonumber(data and data.labelWidth) or 100
+		self.Label:SetWidth(labelWidth)
+		local inputWidth = tonumber(data and data.inputWidth)
+		self.Input:ClearAllPoints()
+		self.Input:SetPoint("LEFT", self.Label, "RIGHT", 12, 0)
+		local maxWidth = DEFAULT_INPUT_MAX_WIDTH
+		local totalWidth = self:GetWidth() or 0
+		if totalWidth > 0 then
+			local available = totalWidth - labelWidth - 6 - 2
+			if available < 1 then
+				available = 1
+			end
+			if available < maxWidth then
+				maxWidth = available
+			end
+		end
+		if inputWidth and inputWidth > 0 then
+			if inputWidth > maxWidth then
+				inputWidth = maxWidth
+			end
+			self.Input:SetWidth(inputWidth)
+		else
+			self.Input:SetWidth(maxWidth)
+		end
+	end
+
+	function mixin:SetValue(value)
+		self.currentValue = value
+		self._suppressInput = true
+		self.Input:SetText(formatInputValue(self.setting, value))
+		self._suppressInput = nil
+	end
+
+	function mixin:CommitInput()
+		if not self.setting or self.readOnly then
+			self:SetValue(self.currentValue)
+			return
+		end
+		local text = self.Input:GetText() or ""
+		local value = text
+		if self.numeric then
+			local num = tonumber((text or ""):gsub(",", "."))
+			if not num then
+				self:SetValue(self.currentValue)
+				return
+			end
+			value = num
+		end
+		if value ~= self.currentValue then
+			self.setting.set(lib.activeLayoutName, value, lib:GetActiveLayoutIndex())
+			self.currentValue = value
+			Internal:RequestRefreshSettings()
+		end
+		self:SetValue(self.currentValue)
+	end
+
+	function mixin:Setup(data, selection)
+		self.setting = data
+		self.data = data
+		self.Label:SetText(data.name or "")
+		applyRowHeightOverride(self, selection and selection.parent, "input")
+
+		self.numeric = not not data.numeric
+		self.readOnly = not not data.readOnly
+		self.selectAllOnFocus = data.selectAllOnFocus or self.readOnly
+
+		if data.maxChars then
+			self.Input:SetMaxLetters(data.maxChars)
+		else
+			self.Input:SetMaxLetters(0)
+		end
+
+		if data.justifyH then
+			self.Input:SetJustifyH(data.justifyH)
+		else
+			self.Input:SetJustifyH("LEFT")
+		end
+
+		if data.inputHeight then
+			self.Input:SetHeight(data.inputHeight)
+		end
+
+		local value = data.get(lib.activeLayoutName, lib:GetActiveLayoutIndex())
+		if value == nil then
+			value = data.default
+		end
+		self:SetValue(value)
+		self:ApplyLayout()
+		Util:ApplyTooltip(self, self.Input, data.tooltip)
+	end
+
+	function mixin:SetEnabled(enabled)
+		if enabled then
+			self.Input:Enable()
+			self.Label:SetFontObject("GameFontHighlightMedium")
+		else
+			self.Input:Disable()
+			self.Label:SetFontObject("GameFontDisable")
+		end
+	end
+
+	return function()
+		local frame = CreateFrame("Frame", nil, UIParent, "ResizeLayoutFrame")
+		frame.fixedHeight = DEFAULT_SLIDER_HEIGHT
+		frame:SetHeight(DEFAULT_SLIDER_HEIGHT)
+		Mixin(frame, mixin)
+
+		local label = frame:CreateFontString(nil, nil, "GameFontHighlightMedium")
+		label:SetPoint("LEFT")
+		label:SetWidth(100)
+		label:SetJustifyH("LEFT")
+		frame.Label = label
+
+		local input = CreateFrame("EditBox", nil, frame, "InputBoxTemplate")
+		input:SetAutoFocus(false)
+		input:SetHeight(20)
+		input:SetJustifyH("LEFT")
+		input:SetScript("OnEnterPressed", function(box)
+			box:ClearFocus()
+			frame:CommitInput()
+		end)
+		input:SetScript("OnEscapePressed", function(box)
+			frame:SetValue(frame.currentValue)
+			box:ClearFocus()
+		end)
+		input:SetScript("OnEditFocusLost", function()
+			frame:CommitInput()
+		end)
+		input:SetScript("OnEditFocusGained", function()
+			if frame.selectAllOnFocus then
+				input:HighlightText()
+			end
+		end)
+		input:SetScript("OnTextChanged", function(box, userInput)
+			if frame._suppressInput then
+				return
+			end
+			if frame.readOnly and userInput then
+				frame._suppressInput = true
+				box:SetText(formatInputValue(frame.setting, frame.currentValue))
+				box:HighlightText()
+				frame._suppressInput = nil
+			end
+		end)
+		frame.Input = input
+
+		return frame
+	end, function(_, frame)
+		frame:Hide()
+		frame.layoutIndex = nil
+	end
+end
+
+local function buildSlider()
+	local mixin = {}
 
 	function mixin:Setup(data, selection)
 		self.setting = data
@@ -2425,7 +3271,6 @@ local function buildSlider()
 					self.Slider.RightText:Show()
 				end
 			end
-			self:ApplyInputLayout()
 		end
 
 		self.initInProgress = false
@@ -2435,14 +3280,14 @@ local function buildSlider()
 	function mixin:OnSliderValueChanged(value)
 		if not self.initInProgress then
 			-- Avoid redundant setter calls on identical values (helps rapid slider drags).
-				if value ~= self.currentValue then
-					self.setting.set(lib.activeLayoutName, value, lib:GetActiveLayoutIndex())
-					self.currentValue = value
-					Internal:RequestRefreshSettings()
-				end
-				if self.Input and self.Input:IsShown() then
-					local fmt = self.formatters and self.formatters[MinimalSliderWithSteppersMixin.Label.Right]
-					self.Input:SetText(fmt and fmt(value) or tostring(value))
+			if value ~= self.currentValue then
+				self.setting.set(lib.activeLayoutName, value, lib:GetActiveLayoutIndex())
+				self.currentValue = value
+				Internal:RequestRefreshSettings()
+			end
+			if self.Input and self.Input:IsShown() then
+				local fmt = self.formatters and self.formatters[MinimalSliderWithSteppersMixin.Label.Right]
+				self.Input:SetText(fmt and fmt(value) or tostring(value))
 				if self.Slider.RightText and self.Slider.RightText:IsShown() then
 					self.Slider.RightText:Hide()
 				end
@@ -2467,16 +3312,16 @@ local function buildSlider()
 		Mixin(frame, mixin)
 
 		frame:SetHeight(DEFAULT_SLIDER_HEIGHT)
-		frame.Slider:SetWidth(200)
+		frame.Slider:SetWidth(160)
 		frame.Slider.MinText:Hide()
 		frame.Slider.MaxText:Hide()
 		frame.Label:SetPoint("LEFT")
 
 		local input = CreateFrame("EditBox", nil, frame, "InputBoxTemplate")
 		input:SetAutoFocus(false)
-		input:SetSize(38, 20)
+		input:SetSize(34, 20)
 		input:SetJustifyH("CENTER")
-		input:SetPoint("RIGHT", frame, "RIGHT", -2, 0)
+		input:SetPoint("LEFT", frame.Slider, "RIGHT", 5, 0)
 		input:Hide()
 		frame.Input = input
 
@@ -2502,7 +3347,9 @@ local function buildSlider()
 			local val = tonumber(inputText)
 			if not val then
 				local fmt = owner.formatters and owner.formatters[MinimalSliderWithSteppersMixin.Label.Right]
-				box:SetText(fmt and owner.currentValue and fmt(owner.currentValue) or tostring(owner.currentValue or ""))
+				box:SetText(
+					fmt and owner.currentValue and fmt(owner.currentValue) or tostring(owner.currentValue or "")
+				)
 				return
 			end
 			if val < minV then
@@ -2710,6 +3557,7 @@ local builders = {
 	[lib.SettingType.Dropdown] = buildDropdown,
 	[lib.SettingType.MultiDropdown] = buildMultiDropdown,
 	[lib.SettingType.Slider] = buildSlider,
+	[lib.SettingType.Input] = buildInput,
 	[lib.SettingType.Color] = buildColor,
 	[lib.SettingType.CheckboxColor] = buildCheckboxColor,
 	[lib.SettingType.DropdownColor] = buildDropdownColor,
@@ -2854,6 +3702,7 @@ function Dialog:UpdateSettings()
 						enabled = not (ok and result == true)
 					end
 					setting:SetEnabled(enabled)
+					setting._eqolEnabled = enabled
 				end
 				if visible then
 					setting.ignoreInLayout = nil
@@ -3113,11 +3962,11 @@ function Internal.CreateDialog()
 			scroll.ScrollBar:SetShown(needsScroll)
 		end
 
-		UpdateScrollChildWidth(self)
-
 		if scroll.UpdateScrollChildRect then
 			scroll:UpdateScrollChildRect()
 		end
+
+		UpdateScrollChildWidth(self)
 
 		if not needsScroll then
 			scroll:SetVerticalScroll(0)
@@ -3239,7 +4088,10 @@ local function adjustPosition(frame, dx, dy)
 	Internal:TriggerCallback(frame, point, roundOffset(x), roundOffset(y))
 end
 
-local function resetSelectionIndicators()
+local function resetSelectionIndicators(force)
+	if not force and not lib.isEditing then
+		return
+	end
 	if Internal.dialog then
 		Internal.dialog:Hide()
 	end
@@ -3298,7 +4150,12 @@ local function finishSelectionDrag(self)
 	if not isDragAllowed(parent) then
 		return
 	end
-	if EditModeManagerFrame and EditModeManagerFrame.IsSnapEnabled and EditModeManagerFrame:IsSnapEnabled() and EditModeMagnetismManager then
+	if
+		EditModeManagerFrame
+		and EditModeManagerFrame.IsSnapEnabled
+		and EditModeManagerFrame:IsSnapEnabled()
+		and EditModeMagnetismManager
+	then
 		EditModeMagnetismManager:ApplyMagnetism(parent)
 	end
 	local point, x, y = deriveAnchorAndOffset(parent)
@@ -3496,6 +4353,7 @@ local function onEditModeEnter()
 	restoreManagerExtraFrames(true)
 	lib.isEditing = true
 	resetSelectionIndicators()
+	Internal:RefreshManagerTogglePanel()
 	for _, callback in next, lib.eventHandlersEnter do
 		securecallfunction(callback)
 	end
@@ -3503,7 +4361,7 @@ end
 
 local function onEditModeExit()
 	lib.isEditing = false
-	resetSelectionIndicators()
+	resetSelectionIndicators(true)
 	hideOverlapMenu()
 	updateManagerEyeButton()
 	for _, callback in next, lib.eventHandlersExit do
@@ -3643,6 +4501,9 @@ function lib:AddFrame(frame, callback, default)
 		if default.dropdownColorHeight ~= nil then
 			setRowHeightOverride(frame, "dropdownColor", default.dropdownColorHeight)
 		end
+		if default.inputHeight ~= nil then
+			setRowHeightOverride(frame, "input", default.inputHeight)
+		end
 		if default.dividerHeight ~= nil then
 			setRowHeightOverride(frame, "divider", default.dividerHeight)
 		end
@@ -3661,7 +4522,7 @@ function lib:AddFrame(frame, callback, default)
 		local combatWatcher = CreateFrame("Frame")
 		combatWatcher:RegisterEvent("PLAYER_REGEN_DISABLED")
 		combatWatcher:RegisterEvent("PLAYER_REGEN_ENABLED")
-		combatWatcher:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED")
+		combatWatcher:RegisterUnitEvent("PLAYER_SPECIALIZATION_CHANGED", "player")
 		combatWatcher:SetScript("OnEvent", function(_, event)
 			if event == "PLAYER_REGEN_DISABLED" then
 				resetSelectionIndicators()
@@ -3669,6 +4530,9 @@ function lib:AddFrame(frame, callback, default)
 				resetSelectionIndicators()
 			elseif event == "PLAYER_SPECIALIZATION_CHANGED" then
 				Layout:HandleSpecChanged()
+			end
+			if lib.isEditing then
+				Internal:RefreshManagerTogglePanel()
 			end
 		end)
 
@@ -3720,6 +4584,68 @@ function lib:AddFrameSettingsButton(frame, data)
 		State.buttonSpecs[frame] = {}
 	end
 	table.insert(State.buttonSpecs[frame], data)
+end
+
+function lib:AddManagerToggle(data)
+	assert(type(data) == "table", "data must be a table")
+	local id = data.id or data.name or data.label
+	assert(type(id) == "string" and id ~= "", "manager toggle requires id or label")
+	data.id = id
+	resolveManagerToggleCategory(data)
+	if not State.managerToggleSpecs[id] then
+		table.insert(State.managerToggleOrder, id)
+	end
+	State.managerToggleSpecs[id] = data
+
+	if State.managerToggleState[id] == nil and data.default ~= nil then
+		State.managerToggleState[id] = not not data.default
+		if data.applyDefault ~= false then
+			applyManagerToggleValue(data, State.managerToggleState[id])
+		end
+	end
+
+	Internal:RefreshManagerTogglePanel()
+end
+
+function lib:AddManagerCheckbox(data)
+	return lib:AddManagerToggle(data)
+end
+
+function lib:AddManagerCategory(data)
+	assert(type(data) == "table", "data must be a table")
+	local label = data.label or data.name
+	assert(type(label) == "string" and label ~= "", "category requires label")
+	local id = data.id or label
+	ensureManagerCategory(id, label, data.sort)
+	Internal:RefreshManagerTogglePanel()
+end
+
+function lib:RemoveManagerToggle(id)
+	if not id then
+		return
+	end
+	State.managerToggleSpecs[id] = nil
+	State.managerToggleState[id] = nil
+	for index, entry in ipairs(State.managerToggleOrder) do
+		if entry == id then
+			table.remove(State.managerToggleOrder, index)
+			break
+		end
+	end
+	Internal:RefreshManagerTogglePanel()
+end
+
+function lib:RefreshManagerToggles()
+	Internal:RefreshManagerTogglePanel()
+end
+
+function lib:SetManagerTogglePanelMaxHeight(height)
+	Internal.managerToggleMaxHeight = normalizePositive(height, DEFAULT_MANAGER_TOGGLE_MAX_HEIGHT)
+	local panel = Internal.managerTogglePanel
+	if panel then
+		panel.maxHeight = Internal.managerToggleMaxHeight
+		panel:ApplyScrollLimit()
+	end
 end
 
 function lib:SetFrameResetVisible(frame, showReset)
@@ -3875,39 +4801,47 @@ function Internal:RequestRefreshSettings()
 		self:RefreshSettings()
 		return
 	end
-	Internal._refreshRunner = Internal._refreshRunner or function()
-		Internal._refreshQueued = false
-		Internal:RefreshSettings()
-	end
+	Internal._refreshRunner = Internal._refreshRunner
+		or function()
+			Internal._refreshQueued = false
+			Internal:RefreshSettings()
+		end
 	C_Timer.After(0, Internal._refreshRunner)
 end
 
-
 function Internal:RefreshSettings()
-	if not (Internal.dialog and Internal.dialog:IsShown()) then return end
+	if not (Internal.dialog and Internal.dialog:IsShown()) then
+		return
+	end
 	local parent = Internal.dialog.Settings
-	if not parent then return end
+	if not parent then
+		return
+	end
 	local selectionParent = Internal.dialog.selection and Internal.dialog.selection.parent
 	local layoutName = lib.activeLayoutName
 	local layoutIndex = lib:GetActiveLayoutIndex()
 	local layoutDirty = false
 	for _, child in ipairs({ parent:GetChildren() }) do
-		if child.SetEnabled and child.setting then
+		if child.setting then
 			local data = child.setting
-			local enabled = true
-			if data.isEnabled then
-				local ok, result = pcall(data.isEnabled, layoutName, layoutIndex)
-				enabled = ok and result ~= false
-			elseif data.disabled then
-				local ok, result = pcall(data.disabled, layoutName, layoutIndex)
-				enabled = not (ok and result == true)
-			end
-			if child._eqolEnabled ~= enabled then
-				child._eqolEnabled = enabled
-				child:SetEnabled(enabled)
+			if child.SetEnabled then
+				local enabled = true
+				if data.isEnabled then
+					local ok, result = pcall(data.isEnabled, layoutName, layoutIndex)
+					enabled = ok and result ~= false
+				elseif data.disabled then
+					local ok, result = pcall(data.disabled, layoutName, layoutIndex)
+					enabled = not (ok and result == true)
+				end
+				if child._eqolEnabled ~= enabled then
+					child._eqolEnabled = enabled
+					child:SetEnabled(enabled)
+				end
 			end
 
-			local collapsedParent = (data.kind ~= lib.SettingType.Collapsible) and data.parentId and Collapse:Get(selectionParent, data.parentId)
+			local collapsedParent = (data.kind ~= lib.SettingType.Collapsible)
+				and data.parentId
+				and Collapse:Get(selectionParent, data.parentId)
 			local visible = evaluateVisibilityFast(data, layoutName, layoutIndex) and not collapsedParent
 			local wantIgnore = not visible
 			local haveIgnore = child.ignoreInLayout == true
@@ -3926,12 +4860,16 @@ function Internal:RefreshSettings()
 		end
 	end
 	if layoutDirty then
-		if parent.Layout then parent:Layout() end
+		if parent.Layout then
+			parent:Layout()
+		end
 		if Internal.dialog then
 			FixScrollBarInside(Internal.dialog.SettingsScroll)
 			UpdateScrollChildWidth(Internal.dialog)
 		end
-		if Internal.dialog and Internal.dialog.Layout then Internal.dialog:Layout() end
+		if Internal.dialog and Internal.dialog.Layout then
+			Internal.dialog:Layout()
+		end
 	end
 end
 
@@ -3993,6 +4931,7 @@ function Internal:RefreshSettingValues(targetSettings)
 					enabled = not (ok and result == true)
 				end
 				child:SetEnabled(enabled)
+				child._eqolEnabled = enabled
 			end
 			local collapsed = (data.kind ~= lib.SettingType.Collapsible)
 				and Collapse:Get(selectionParent, data.parentId)

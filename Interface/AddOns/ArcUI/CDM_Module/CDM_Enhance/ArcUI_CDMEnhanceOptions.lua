@@ -89,6 +89,8 @@ local SECTION_FIELDS = {
     "cooldownStateVisuals.readyState.glowParticles",
     "cooldownStateVisuals.readyState.glowXOffset",
     "cooldownStateVisuals.readyState.glowYOffset",
+    "cooldownStateVisuals.readyState.glowFrameStrata",
+    "cooldownStateVisuals.readyState.glowFrameLevel",
   },
   -- On Cooldown State / Aura Missing - all actual stored fields
   inactiveState = { 
@@ -3350,6 +3352,66 @@ function ns.GetCDMAuraIconsOptionsTable()
         return c.cooldownStateVisuals.readyState.glowType == "button"
       end,
     },
+    activeStateGlowFrameStrata = {
+      type = "select",
+      name = "Glow Strata",
+      desc = "Override the frame strata of the glow effect.\n\n|cffffd700Inherit (Default)|r - Uses the icon's frame strata\n|cffffd700MEDIUM|r - Standard UI level\n|cffffd700HIGH|r - Above most UI elements\n|cffffd700DIALOG|r - Above HIGH frames\n\nThis only changes the glow's strata, NOT the icon itself.",
+      values = {
+        ["inherit"] = "Inherit (Default)",
+        ["MEDIUM"] = "MEDIUM",
+        ["HIGH"] = "HIGH",
+        ["DIALOG"] = "DIALOG",
+      },
+      sorting = {"inherit", "MEDIUM", "HIGH", "DIALOG"},
+      get = function()
+        local c = GetAuraCfg()
+        if c and c.cooldownStateVisuals and c.cooldownStateVisuals.readyState then
+          return c.cooldownStateVisuals.readyState.glowFrameStrata or "inherit"
+        end
+        return "inherit"
+      end,
+      set = function(_, v)
+        ApplyAuraReadyStateGlowSetting(function(c)
+          if not c.cooldownStateVisuals then c.cooldownStateVisuals = {} end
+          if not c.cooldownStateVisuals.readyState then c.cooldownStateVisuals.readyState = {} end
+          c.cooldownStateVisuals.readyState.glowFrameStrata = (v ~= "inherit") and v or nil
+        end)
+      end,
+      order = 107.8496, width = 0.85,
+      hidden = function()
+        if HideIfNoAuraSelection() or collapsedSections.activeState then return true end
+        local c = GetAuraCfg()
+        return not (c and c.cooldownStateVisuals and c.cooldownStateVisuals.readyState and c.cooldownStateVisuals.readyState.glow)
+      end,
+    },
+    activeStateGlowFrameLevel = {
+      type = "input",
+      name = "Glow Frame Level",
+      desc = "Set the frame level of the glow.\n\nHigher values render above other frames in the same strata. Works with both inherited and custom strata.\n\nAccepts a number from 1 to 10000.",
+      get = function()
+        local c = GetAuraCfg()
+        if c and c.cooldownStateVisuals and c.cooldownStateVisuals.readyState and c.cooldownStateVisuals.readyState.glowFrameLevel then
+          return tostring(c.cooldownStateVisuals.readyState.glowFrameLevel)
+        end
+        return ""
+      end,
+      set = function(_, v)
+        local num = tonumber(v)
+        if not num then return end
+        num = math.floor(math.max(1, math.min(10000, num)))
+        ApplyAuraReadyStateGlowSetting(function(c)
+          if not c.cooldownStateVisuals then c.cooldownStateVisuals = {} end
+          if not c.cooldownStateVisuals.readyState then c.cooldownStateVisuals.readyState = {} end
+          c.cooldownStateVisuals.readyState.glowFrameLevel = num
+        end)
+      end,
+      order = 107.8497, width = 0.55,
+      hidden = function()
+        if HideIfNoAuraSelection() or collapsedSections.activeState then return true end
+        local c = GetAuraCfg()
+        return not (c and c.cooldownStateVisuals and c.cooldownStateVisuals.readyState and c.cooldownStateVisuals.readyState.glow)
+      end,
+    },
     activeStateGlowThreshold = {
       type = "range",
       name = "Threshold %",
@@ -3561,7 +3623,7 @@ function ns.GetCDMAuraIconsOptionsTable()
     },
     
     -- ═══════════════════════════════════════════════════════════════════
-    -- RANGE INDICATOR SECTION
+    -- RANGE INDICATOR SECTION (HIDDEN for auras - only applies to cooldown frames)
     -- ═══════════════════════════════════════════════════════════════════
     rangeIndicatorHeader = {
       type = "toggle",
@@ -3572,14 +3634,14 @@ function ns.GetCDMAuraIconsOptionsTable()
       set = function(_, v) collapsedSections.rangeIndicator = not v end,
       order = 108,
       width = "full",
-      hidden = HideIfNoAuraSelection,
+      hidden = function() return true end,  -- Aura frames don't have range/usability
     },
     rangeEnabled = {
       type = "toggle", name = "Show Range Overlay",
       desc = "Show the out-of-range darkening overlay when spells are out of range",
       get = function() return GetAuraBoolSetting(function(c) return c and c.rangeIndicator and c.rangeIndicator.enabled ~= false end, function() local c = GetAuraCfg(); return c and c.rangeIndicator and c.rangeIndicator.enabled ~= false end) end,
       set = function(_, v) ApplyAuraSetting(function(c) if not c.rangeIndicator then c.rangeIndicator = {} end; c.rangeIndicator.enabled = v end) end,
-      order = 108.1, width = 1.0, hidden = HideAuraRangeIndicator,
+      order = 108.1, width = 1.0, hidden = function() return true end,
     },
     resetRangeIndicator = {
       type = "execute",
@@ -3587,7 +3649,7 @@ function ns.GetCDMAuraIconsOptionsTable()
       desc = "Reset Range Indicator settings to defaults for selected icon(s)",
       order = 108.9,
       width = 0.7,
-      hidden = HideAuraRangeIndicator,
+      hidden = function() return true end,
       func = function() ResetAuraSectionSettings("rangeIndicator") end,
     },
     
@@ -4457,12 +4519,8 @@ function ns.GetCDMAuraIconsOptionsTable()
     end
   end
   
-  -- Merge Spell Usability options from external module
-  if ns.SpellUsabilityOptions and ns.SpellUsabilityOptions.GetAuraArgs then
-    for k, v in pairs(ns.SpellUsabilityOptions.GetAuraArgs()) do
-      args[k] = v
-    end
-  end
+  -- Spell Usability is COOLDOWN FRAMES ONLY - aura frames don't have usability state
+  -- (options are available in the Cooldown Icons tab instead)
   
   return {
     type = "group",
@@ -5511,6 +5569,66 @@ function ns.GetCDMCooldownIconsOptionsTable()
         if not (c and c.cooldownStateVisuals and c.cooldownStateVisuals.readyState and c.cooldownStateVisuals.readyState.glow) then return true end
         -- Button glow doesn't support offset
         return c.cooldownStateVisuals.readyState.glowType == "button"
+      end,
+    },
+    readyStateGlowFrameStrata = {
+      type = "select",
+      name = "Glow Strata",
+      desc = "Override the frame strata of the glow effect.\n\n|cffffd700Inherit (Default)|r - Uses the icon's frame strata\n|cffffd700MEDIUM|r - Standard UI level\n|cffffd700HIGH|r - Above most UI elements\n|cffffd700DIALOG|r - Above HIGH frames\n\nThis only changes the glow's strata, NOT the icon itself.",
+      values = {
+        ["inherit"] = "Inherit (Default)",
+        ["MEDIUM"] = "MEDIUM",
+        ["HIGH"] = "HIGH",
+        ["DIALOG"] = "DIALOG",
+      },
+      sorting = {"inherit", "MEDIUM", "HIGH", "DIALOG"},
+      get = function()
+        local c = GetCooldownCfg()
+        if c and c.cooldownStateVisuals and c.cooldownStateVisuals.readyState then
+          return c.cooldownStateVisuals.readyState.glowFrameStrata or "inherit"
+        end
+        return "inherit"
+      end,
+      set = function(_, v)
+        ApplyReadyStateGlowSetting(function(c)
+          if not c.cooldownStateVisuals then c.cooldownStateVisuals = {} end
+          if not c.cooldownStateVisuals.readyState then c.cooldownStateVisuals.readyState = {} end
+          c.cooldownStateVisuals.readyState.glowFrameStrata = (v ~= "inherit") and v or nil
+        end)
+      end,
+      order = 107.8496, width = 0.85,
+      hidden = function()
+        if HideIfNoCooldownSelection() or collapsedSections.readyState then return true end
+        local c = GetCooldownCfg()
+        return not (c and c.cooldownStateVisuals and c.cooldownStateVisuals.readyState and c.cooldownStateVisuals.readyState.glow)
+      end,
+    },
+    readyStateGlowFrameLevel = {
+      type = "input",
+      name = "Glow Frame Level",
+      desc = "Set the frame level of the glow.\n\nHigher values render above other frames in the same strata. Works with both inherited and custom strata.\n\nAccepts a number from 1 to 10000.",
+      get = function()
+        local c = GetCooldownCfg()
+        if c and c.cooldownStateVisuals and c.cooldownStateVisuals.readyState and c.cooldownStateVisuals.readyState.glowFrameLevel then
+          return tostring(c.cooldownStateVisuals.readyState.glowFrameLevel)
+        end
+        return ""
+      end,
+      set = function(_, v)
+        local num = tonumber(v)
+        if not num then return end
+        num = math.floor(math.max(1, math.min(10000, num)))
+        ApplyReadyStateGlowSetting(function(c)
+          if not c.cooldownStateVisuals then c.cooldownStateVisuals = {} end
+          if not c.cooldownStateVisuals.readyState then c.cooldownStateVisuals.readyState = {} end
+          c.cooldownStateVisuals.readyState.glowFrameLevel = num
+        end)
+      end,
+      order = 107.8497, width = 0.55,
+      hidden = function()
+        if HideIfNoCooldownSelection() or collapsedSections.readyState then return true end
+        local c = GetCooldownCfg()
+        return not (c and c.cooldownStateVisuals and c.cooldownStateVisuals.readyState and c.cooldownStateVisuals.readyState.glow)
       end,
     },
     resetReadyState = {

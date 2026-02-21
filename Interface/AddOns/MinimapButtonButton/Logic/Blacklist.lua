@@ -1,6 +1,7 @@
 local _, addon = ...;
 
 local format = _G.format;
+local strlower = _G.strlower;
 local wipe = _G.wipe;
 
 local Utils = addon.import('Core/Utils');
@@ -9,33 +10,27 @@ local options = addon.import('Logic/Options').getAll();
 
 local module = addon.export('Logic/Blacklist', {});
 
+local function findButtonNameInBlacklist (buttonName)
+  buttonName = strlower(buttonName);
+
+  for key in pairs(options.blacklist) do
+    if (strlower(key) == buttonName) then
+      return key;
+    end
+  end
+
+  return nil;
+end
+
 function module.isButtonBlacklisted (frame)
   local frameName = Utils.getFrameName(frame);
 
-  return (frameName ~= nil and
-      options.blacklist[frameName] == true);
+  return (frameName ~= nil and options.blacklist[frameName] ~= nil);
 end
 
-function module.findButton (buttonName)
-  local matches, path, keys = Main.searchButtonByName(buttonName);
-
-  if (#matches == 0) then
-    Utils.printAddonMessage(format('No frame named "%s" was found.', buttonName));
-    return nil;
-  end
-
-  if (#matches > 1) then
-    Utils.printAddonMessage(format('More than one frame containing "%s" was found:', buttonName));
-    Utils.sortAndPrintList(Main.getFoundButtonPaths(path, keys));
-    return nil;
-  end
-
-  return matches[1], path;
-end
-
-function module.addToBlacklist (path)
-  options.blacklist[path] = true;
-  Utils.printReloadMessage(format('Button "%s" is now being ignored.', path));
+function module.addToBlacklist (buttonName)
+  options.blacklist[buttonName] = true;
+  Utils.printReloadMessage(format('Button "%s" is now being ignored.', buttonName));
 end
 
 function module.removeFromBlacklist (buttonName)
@@ -47,8 +42,21 @@ function module.removeFromBlacklist (buttonName)
   options.blacklist[buttonName] = nil;
   Main.collectMinimapButtonsAndUpdateLayout();
 
-  Utils.printAddonMessage(format('Button "%s" is no longer being ignored.',
-      buttonName));
+  Utils.printAddonMessage(format('Button "%s" is no longer being ignored.', buttonName));
+end
+
+function module.removeFromBlackListCaseInsensitive (buttonName)
+  local matchingButtonName = findButtonNameInBlacklist(buttonName);
+
+  if (matchingButtonName == nil) then
+    Utils.printAddonMessage(format('Button "%s" is not currently being ignored.', buttonName));
+    return;
+  end
+
+  options.blacklist[matchingButtonName] = nil;
+  Main.collectMinimapButtonsAndUpdateLayout();
+
+  Utils.printAddonMessage(format('Button "%s" is no longer being ignored.', buttonName));
 end
 
 function module.clearBlacklist ()

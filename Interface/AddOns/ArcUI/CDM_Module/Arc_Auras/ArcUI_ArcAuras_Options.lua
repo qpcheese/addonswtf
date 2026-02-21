@@ -75,11 +75,12 @@ local function GetTrackedItemsList()
                 arcType = arcType,       -- "trinket" or "item"
                 itemID = itemID,
                 name = name or "Unknown",
-                icon = icon or 134400,
+                icon = config.iconOverride or icon or 134400,
                 config = config,
                 enabled = config.enabled,
                 isAutoTrackSlot = config.isAutoTrackSlot,
                 hideWhenUnequipped = config.hideWhenUnequipped,
+                hasIconOverride = config.iconOverride ~= nil,
             })
         end
     end
@@ -103,6 +104,10 @@ local function GetTrackedItemsList()
             local inSpec = true
             if PlayerKnowsSpell then
                 inSpec = PlayerKnowsSpell(spellID)
+            end
+            -- forceShow bypasses spec check
+            if config.forceShow and not inSpec then
+                inSpec = true
             end
 
             -- Check user's per-spell spec filter
@@ -131,6 +136,11 @@ local function GetTrackedItemsList()
                 end
             end
             
+            -- Use icon override if set
+            if config.iconOverride then
+                icon = config.iconOverride
+            end
+            
             table.insert(items, {
                 arcID = arcID,
                 arcType = "spell",
@@ -144,6 +154,8 @@ local function GetTrackedItemsList()
                 talentFiltered = talentFiltered,
                 hasSpecFilter = config.showOnSpecs and #config.showOnSpecs > 0,
                 hasTalentFilter = config.talentConditions and #config.talentConditions > 0,
+                forceShow = config.forceShow,
+                hasIconOverride = config.iconOverride ~= nil,
             })
         end
     end
@@ -226,6 +238,8 @@ local function CreateCatalogIconEntry(index)
                     status = "|cffff8800T|r "   -- Orange T = talent-filtered (hidden)
                 elseif entry.specFiltered then
                     status = "|cffff8800S|r "   -- Orange S = spec-filtered (user disabled)
+                elseif entry.forceShow then
+                    status = "|cff00ff00F|r "   -- Green F = force-shown (bypasses spec check)
                 elseif entry.inCurrentSpec == false then
                     status = "|cff666666S|r "   -- Dimmed S = not in current spec
                 else
@@ -259,6 +273,12 @@ local function CreateCatalogIconEntry(index)
                 desc = desc .. "\nSpell ID: " .. (entry.spellID or "?")
                 desc = desc .. "\nArc ID: " .. entry.arcID
                 desc = desc .. "\nType: |cff88ccffSpell|r"
+                if entry.forceShow then
+                    desc = desc .. "\n|cff00ff00Always Show|r (spec check bypassed)"
+                end
+                if entry.hasIconOverride then
+                    desc = desc .. "\n|cffFFCC00Custom Icon|r (ID: " .. (entry.config.iconOverrideID or "?") .. ")"
+                end
                 if entry.specFiltered then
                     desc = desc .. "\n|cffff8800Hidden on this spec (user filter)|r"
                 elseif entry.inCurrentSpec == false then
@@ -296,6 +316,9 @@ local function CreateCatalogIconEntry(index)
                 end
                 if entry.hideWhenUnequipped then
                     desc = desc .. "\n|cff88aaeeHides when unequipped|r"
+                end
+                if entry.hasIconOverride then
+                    desc = desc .. "\n|cffFFCC00Custom Icon|r (ID: " .. (entry.config.iconOverrideID or "?") .. ")"
                 end
                 if not entry.enabled then
                     desc = desc .. "\n|cffff4444Disabled|r"
@@ -429,6 +452,11 @@ end
 -- ═══════════════════════════════════════════════════════════════════════════
 
 function ns.GetArcAurasOptionsTable()
+    -- Helper: returns true when Arc Auras is disabled (grays out controls)
+    local function IsArcDisabled()
+        return not (ArcAuras and ArcAuras.IsEnabled and ArcAuras.IsEnabled())
+    end
+    
     local args = {
         -- ═══════════════════════════════════════════════════════════════
         -- HEADER
@@ -453,12 +481,20 @@ function ns.GetArcAurasOptionsTable()
                 if val then ArcAuras.Enable() else ArcAuras.Disable() end
             end,
         },
+        disabledNotice = {
+            type = "description",
+            name = "\n|cffFF4444Arc Auras is currently disabled.|r  Toggle the checkbox above to enable tracking.\n",
+            order = 2.5,
+            fontSize = "medium",
+            hidden = function() return not IsArcDisabled() end,
+        },
         refreshBtn = {
             type = "execute",
             name = "Refresh",
             desc = "Show all frames at their saved positions (fixes missing icons after spec change)",
             order = 3,
             width = 0.6,
+            disabled = IsArcDisabled,
             func = function()
                 if ArcAuras and ArcAuras.ForceShowAllFrames then
                     local count = ArcAuras.ForceShowAllFrames()
@@ -481,6 +517,7 @@ function ns.GetArcAurasOptionsTable()
             desc = "Add frames for your currently equipped on-use trinkets.\n\n|cff88ff88These frames track the SPECIFIC ITEM|r - they won't change when you swap trinkets.\n\nUse this to add individual trinkets you want to track permanently.",
             order = 11,
             width = 1.1,
+            disabled = IsArcDisabled,
             func = function()
                 if not ArcAuras then return end
                 local added = ArcAuras.AutoAddTrinkets(true)
@@ -498,6 +535,7 @@ function ns.GetArcAurasOptionsTable()
             desc = "Enter an Item ID and press Enter to track it (e.g., 212456)",
             order = 12,
             width = 0.8,
+            disabled = IsArcDisabled,
             get = function() return pendingItemID end,
             set = function(_, val)
                 val = val:gsub("%D", "")
@@ -534,6 +572,7 @@ function ns.GetArcAurasOptionsTable()
             desc = "Enter a Spell ID and press Enter to track it (e.g., 116011)",
             order = 13,
             width = 0.8,
+            disabled = IsArcDisabled,
             get = function() return pendingSpellID end,
             set = function(_, val)
                 val = val:gsub("[^%d]", "")
@@ -603,7 +642,7 @@ function ns.GetArcAurasOptionsTable()
                     return "|cff888888No items or spells tracked. Use buttons above to add.|r"
                 end
                 local sel = GetSelectedCount()
-                local legendStr = "|cff888888Legend: |cff88ff88A|r=Auto-Track  |cff88aaeeH|r=Hide Unequipped  |cff88ccffS|r=Spell  |cffaa55ff*|r=Custom Settings|r"
+                local legendStr = "|cff888888Legend: |cff88ff88A|r=Auto-Track  |cff88aaeeH|r=Hide Unequipped  |cff88ccffS|r=Spell  |cff00ff00F|r=Always Show  |cffaa55ff*|r=Custom Settings|r"
                 if sel > 0 then
                     return string.format("|cff00ff00%d selected|r  |cff888888Click to select • Shift+Click multi-select|r\n%s", sel, legendStr)
                 end
@@ -806,9 +845,7 @@ function ns.GetArcAurasOptionsTable()
         end,
     }
 
-    -- ═══════════════════════════════════════════════════════════════
-    -- SHOW ON SPECS (spell entries only)
-    -- ═══════════════════════════════════════════════════════════════
+    -- Helper functions for spell-specific options (must be defined before use in closures)
     local function IsSpellSelected()
         local item = GetSelectedItem()
         return item and item.arcType == "spell"
@@ -819,6 +856,183 @@ function ns.GetArcAurasOptionsTable()
         local db = ns.db and ns.db.char and ns.db.char.arcAuras
         return db and db.trackedSpells and db.trackedSpells[selectedArcAura]
     end
+
+    -- ═══════════════════════════════════════════════════════════════
+    -- ALWAYS SHOW (spell entries only — bypasses spec check)
+    -- ═══════════════════════════════════════════════════════════════
+    args.alwaysShowToggle = {
+        type = "toggle",
+        name = "|cff00FF00Always Show|r (bypass spec check)",
+        desc = "When enabled, this spell frame will always show regardless of whether the game thinks you \"know\" the spell.\n\n|cff88ff88Use this for:|r\n• Engineering enchants (e.g., Nitro Boosts)\n• Profession abilities\n• Cross-class spells\n• Any spell that says \"not in current spec\" but you can still use\n\n|cff888888Spec filter and talent conditions still apply when set.|r",
+        order = 106,
+        width = 1.5,
+        hidden = function()
+            if collapsedSections.trackedItems or HideIfNoSelection() or GetSelectedCount() > 1 then
+                return true
+            end
+            return not IsSpellSelected()
+        end,
+        get = function()
+            local cfg = GetSpellConfig()
+            return cfg and cfg.forceShow or false
+        end,
+        set = function(_, val)
+            local cfg = GetSpellConfig()
+            if not cfg then return end
+            cfg.forceShow = val or nil
+            
+            if val then
+                -- If frame is hidden, show it now
+                local fd = ns.ArcAurasCooldown and ns.ArcAurasCooldown.spellData and ns.ArcAurasCooldown.spellData[selectedArcAura]
+                if fd and fd.frame and fd.frame._arcHiddenNotInSpec then
+                    if ns.ArcAurasCooldown.ShowFrame then
+                        ns.ArcAurasCooldown.ShowFrame(selectedArcAura)
+                    end
+                elseif not fd and ArcAuras.isEnabled then
+                    -- Frame doesn't exist, create it
+                    local arcID = selectedArcAura
+                    local spellID = cfg.spellID
+                    local spellConfig = {
+                        type = "spell",
+                        spellID = spellID,
+                        name = cfg.name,
+                        icon = cfg.iconOverride or cfg.icon,
+                        enabled = true,
+                    }
+                    local frame = ArcAuras.CreateFrame(arcID, spellConfig)
+                    if frame then
+                        ArcAuras.LoadFramePosition(arcID, frame)
+                        frame:Show()
+                        if ns.ArcAurasCooldown and ns.ArcAurasCooldown.InitializeSpellFrame then
+                            ns.ArcAurasCooldown.InitializeSpellFrame(arcID, frame, spellConfig)
+                        end
+                    end
+                end
+            else
+                -- Re-evaluate visibility
+                if ns.ArcAurasCooldown and ns.ArcAurasCooldown.RefreshSpecVisibility then
+                    ns.ArcAurasCooldown.RefreshSpecVisibility()
+                end
+            end
+            
+            Options.InvalidateCache()
+            LibStub("AceConfigRegistry-3.0"):NotifyChange("ArcUI")
+        end,
+    }
+
+    -- ═══════════════════════════════════════════════════════════════
+    -- ICON OVERRIDE (both items and spells)
+    -- ═══════════════════════════════════════════════════════════════
+    args.iconOverrideHeader = {
+        type = "description",
+        name = "\n|cffffd700Icon Override:|r",
+        order = 107,
+        width = "full",
+        fontSize = "medium",
+        hidden = function()
+            return collapsedSections.trackedItems or HideIfNoSelection() or GetSelectedCount() > 1
+        end,
+    }
+    args.iconOverrideDesc = {
+        type = "description",
+        name = function()
+            local item = GetSelectedItem()
+            if not item then return "" end
+            if item.hasIconOverride then
+                local overrideID = item.config and (item.config.iconOverrideID or "?") or "?"
+                return "|cffFFCC00Current: Custom Icon|r (Source ID: " .. tostring(overrideID) .. ")\n|cff888888Enter a new Spell ID or Item ID below, or 0 to reset.|r"
+            end
+            return "|cff888888Enter a Spell ID or Item ID to use its icon instead of the default. Enter 0 or leave blank to reset.|r"
+        end,
+        order = 108,
+        width = "full",
+        fontSize = "small",
+        hidden = function()
+            return collapsedSections.trackedItems or HideIfNoSelection() or GetSelectedCount() > 1
+        end,
+    }
+    args.iconOverrideInput = {
+        type = "input",
+        name = "Icon Source ID",
+        desc = "Enter a Spell ID or Item ID to use its icon.\nEnter 0 to reset to the default icon.",
+        order = 109,
+        width = 0.8,
+        get = function()
+            local item = GetSelectedItem()
+            if item and item.config and item.config.iconOverrideID then
+                return tostring(item.config.iconOverrideID)
+            end
+            return ""
+        end,
+        set = function(_, val)
+            val = val:gsub("[^%d]", "")
+            local overrideID = tonumber(val)
+            if not selectedArcAura then return end
+            
+            local item = GetSelectedItem()
+            if not item then return end
+            
+            if item.arcType == "spell" then
+                -- Use ArcAurasCooldown's icon override
+                if ns.ArcAurasCooldown and ns.ArcAurasCooldown.ApplyIconOverride then
+                    ns.ArcAurasCooldown.ApplyIconOverride(selectedArcAura, overrideID)
+                end
+            else
+                -- Use ArcAuras' icon override for items
+                if ArcAuras and ArcAuras.ApplyIconOverride then
+                    ArcAuras.ApplyIconOverride(selectedArcAura, overrideID)
+                end
+            end
+            
+            Options.InvalidateCache()
+            if ns.CDMEnhanceOptions and ns.CDMEnhanceOptions.InvalidateCache then
+                ns.CDMEnhanceOptions.InvalidateCache()
+            end
+            LibStub("AceConfigRegistry-3.0"):NotifyChange("ArcUI")
+        end,
+        hidden = function()
+            return collapsedSections.trackedItems or HideIfNoSelection() or GetSelectedCount() > 1
+        end,
+    }
+    args.iconOverrideResetBtn = {
+        type = "execute",
+        name = "Reset Icon",
+        desc = "Remove the custom icon and use the default spell/item icon",
+        order = 109.5,
+        width = 0.6,
+        hidden = function()
+            if collapsedSections.trackedItems or HideIfNoSelection() or GetSelectedCount() > 1 then
+                return true
+            end
+            local item = GetSelectedItem()
+            return not item or not item.hasIconOverride
+        end,
+        func = function()
+            if not selectedArcAura then return end
+            local item = GetSelectedItem()
+            if not item then return end
+            
+            if item.arcType == "spell" then
+                if ns.ArcAurasCooldown and ns.ArcAurasCooldown.ApplyIconOverride then
+                    ns.ArcAurasCooldown.ApplyIconOverride(selectedArcAura, nil)
+                end
+            else
+                if ArcAuras and ArcAuras.ApplyIconOverride then
+                    ArcAuras.ApplyIconOverride(selectedArcAura, nil)
+                end
+            end
+            
+            Options.InvalidateCache()
+            if ns.CDMEnhanceOptions and ns.CDMEnhanceOptions.InvalidateCache then
+                ns.CDMEnhanceOptions.InvalidateCache()
+            end
+            LibStub("AceConfigRegistry-3.0"):NotifyChange("ArcUI")
+        end,
+    }
+
+    -- ═══════════════════════════════════════════════════════════════
+    -- SHOW ON SPECS (spell entries only)
+    -- ═══════════════════════════════════════════════════════════════
 
     local function ToggleSpecInList(showOnSpecs, specNum, value)
         if value then
@@ -1287,6 +1501,19 @@ function ns.GetArcAurasOptionsTable()
             LibStub("AceConfigRegistry-3.0"):NotifyChange("ArcUI")
         end,
     }
+    
+    -- ═══════════════════════════════════════════════════════════════
+    -- AUTO-DISABLE: Gray out all interactive controls when Arc Auras is off
+    -- Skip the enable toggle itself, descriptions, and headers
+    -- ═══════════════════════════════════════════════════════════════
+    local skipKeys = { enabled = true, description = true, disabledNotice = true }
+    for key, entry in pairs(args) do
+        if not skipKeys[key] and entry.type ~= "header" and entry.type ~= "description" then
+            if not entry.disabled then
+                entry.disabled = IsArcDisabled
+            end
+        end
+    end
     
     return {
         type = "group",

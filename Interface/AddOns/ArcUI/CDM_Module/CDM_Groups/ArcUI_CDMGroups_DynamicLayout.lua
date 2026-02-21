@@ -804,6 +804,146 @@ function DL.BuildAvailableSlots(rows, cols, alignment, blockedSlots)
 end
 
 -- ═══════════════════════════════════════════════════════════════════════════
+-- SAVED POSITION DEDUPLICATION
+-- Detects and auto-repairs duplicate saved positions within a group.
+-- When two cdIDs share the same (row, col), the one with the higher cdID
+-- (or the one processed second) gets moved to the next available slot.
+-- This fixes corrupted save data that causes ACTIVE_NO_SLOT issues.
+-- ═══════════════════════════════════════════════════════════════════════════
+function DL.DeduplicateGroupPositions(group)
+    if not group or not group.name then return false end
+    
+    -- Throttle: Only check once every 5 seconds per group
+    -- Duplicates are a saved-data issue, not a per-frame issue
+    local now = GetTime()
+    local lastCheck = state.lastDedupCheck and state.lastDedupCheck[group.name]
+    if lastCheck and (now - lastCheck) < 5 then return false end
+    if not state.lastDedupCheck then state.lastDedupCheck = {} end
+    state.lastDedupCheck[group.name] = now
+    
+    local savedPositions = ns.CDMGroups and ns.CDMGroups.savedPositions
+    if not savedPositions then return false end
+    
+    local groupName = group.name
+    local maxCols = group.layout and group.layout.gridCols or 4
+    local maxRows = group.layout and group.layout.gridRows or 2
+    local maxSlots = maxRows * maxCols
+    
+    -- Pass 1: Collect all saved positions for this group, sorted by cdID for determinism
+    -- SKIP placeholders — they're temporary reservations, not real position conflicts.
+    -- Including them would (a) create false duplicates with the real icon they reserve for,
+    -- and (b) overwrite their isPlaceholder flag when "fixing", corrupting placeholder state.
+    local groupEntries = {}  -- { cdID, row, col, sortIndex }
+    for cdID, saved in pairs(savedPositions) do
+        if saved.type == "group" and saved.target == groupName and not saved.isPlaceholder then
+            table.insert(groupEntries, {
+                cdID = cdID,
+                row = saved.row or 0,
+                col = saved.col or 0,
+                sortIndex = saved.sortIndex,
+            })
+        end
+    end
+    
+    -- Sort by (row*cols+col) then cdID for stable ordering
+    -- The first entry at each position "wins" and keeps it
+    table.sort(groupEntries, function(a, b)
+        local aLinear = a.row * maxCols + a.col
+        local bLinear = b.row * maxCols + b.col
+        if aLinear ~= bLinear then return aLinear < bLinear end
+        -- Tiebreaker: numeric cdIDs before string, then by value
+        local aType, bType = type(a.cdID), type(b.cdID)
+        if aType ~= bType then return aType == "number" end
+        return a.cdID < b.cdID
+    end)
+    
+    -- Pass 2: Detect duplicates
+    local occupiedSlots = {}  -- linearIdx -> cdID (first occupant wins)
+    local duplicates = {}     -- list of entries that need new positions
+    
+    for _, entry in ipairs(groupEntries) do
+        local linearIdx = entry.row * maxCols + entry.col
+        if occupiedSlots[linearIdx] then
+            -- DUPLICATE - this entry shares a slot with another cdID
+            table.insert(duplicates, entry)
+        else
+            occupiedSlots[linearIdx] = entry.cdID
+        end
+    end
+    
+    if #duplicates == 0 then return false end
+    
+    -- Pass 3: Assign duplicates to next available slots
+    local fixed = 0
+    for _, dup in ipairs(duplicates) do
+        -- Find next empty slot (linear scan from 0)
+        for slot = 0, maxSlots - 1 do
+            if not occupiedSlots[slot] then
+                local newRow = math.floor(slot / maxCols)
+                local newCol = slot % maxCols
+                local newSortIndex = newRow * maxCols + newCol
+                
+                -- Preserve existing viewerType from the saved entry
+                local existing = savedPositions[dup.cdID]
+                local viewerType = existing and existing.viewerType
+                
+                -- Update saved position
+                savedPositions[dup.cdID] = {
+                    type = "group",
+                    target = groupName,
+                    row = newRow,
+                    col = newCol,
+                    sortIndex = newSortIndex,
+                    viewerType = viewerType,
+                }
+                
+                -- Mark slot as occupied
+                occupiedSlots[slot] = dup.cdID
+                
+                -- Update member position if they exist in the group
+                if group.members and group.members[dup.cdID] then
+                    local member = group.members[dup.cdID]
+                    member.row = newRow
+                    member.col = newCol
+                end
+                
+                -- Update grid if it exists
+                if group.grid then
+                    -- Clear old grid position if it pointed to this cdID
+                    if group.grid[dup.row] and group.grid[dup.row][dup.col] == dup.cdID then
+                        group.grid[dup.row][dup.col] = nil
+                    end
+                    -- Set new grid position
+                    if not group.grid[newRow] then group.grid[newRow] = {} end
+                    if not group.grid[newRow][newCol] then
+                        group.grid[newRow][newCol] = dup.cdID
+                    end
+                end
+                
+                fixed = fixed + 1
+                LogEvent("DEDUP_FIX", groupName, string.format(
+                    "cdID %s moved from r%d,c%d to r%d,c%d (was duplicate)",
+                    tostring(dup.cdID), dup.row, dup.col, newRow, newCol
+                ))
+                break
+            end
+        end
+    end
+    
+    if fixed > 0 then
+        LogEvent("DEDUP_COMPLETE", groupName, string.format(
+            "Fixed %d duplicate saved positions", fixed
+        ))
+        -- Mark grid dirty so Layout re-reads positions
+        if group.MarkGridDirty then
+            group:MarkGridDirty()
+        end
+    end
+    
+    return fixed > 0
+end
+
+-- ═══════════════════════════════════════════════════════════════════════════
 -- UNIFIED PIXEL POSITIONING (v2.0)
 -- Computes pixel {x,y} offsets from container CENTER for ALL alignments.
 -- Replaces the old grid-slot system (Fill Gaps) and the center-only pixel system.
@@ -848,6 +988,14 @@ function DL.CalculateDynamicSlots(group, rows, cols, excludeInactiveAuras)
         
         return dynamicPositions, activeAuras
     end
+    
+    -- ═══════════════════════════════════════════════════════════════════════
+    -- AUTO-FIX: Detect and repair duplicate saved positions
+    -- Two cdIDs at the same (row,col) causes ACTIVE_NO_SLOT issues.
+    -- This is a cheap check (one pass through saved positions) that only
+    -- does work when duplicates actually exist.
+    -- ═══════════════════════════════════════════════════════════════════════
+    DL.DeduplicateGroupPositions(group)
     
     -- ═══════════════════════════════════════════════════════════════════════
     -- COLLECT ACTIVE ITEMS
@@ -2188,6 +2336,9 @@ function DL.ReflowGroup(group)
     local maxRows = group.layout and group.layout.gridRows or 2
     local maxCols = group.layout and group.layout.gridCols or 4
     
+    -- AUTO-FIX: Repair duplicate saved positions before reflow
+    DL.DeduplicateGroupPositions(group)
+    
     -- Collect and categorize members
     local members = DL.CollectMembersForReflow(group)
     
@@ -2291,6 +2442,8 @@ function DL.ClearTracking()
     wipe(state.tickAuraFrameCache)
     state.talentChangeTime = 0
     state.pendingPostTalentRefresh = false
+    -- Reset dedup throttle so positions are re-checked after spec/talent changes
+    if state.lastDedupCheck then wipe(state.lastDedupCheck) end
 end
 
 -- Force refresh all dynamic groups

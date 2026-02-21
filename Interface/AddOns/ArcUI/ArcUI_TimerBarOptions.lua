@@ -23,6 +23,16 @@ local TRIGGER_TYPES = {
 
 local TRIGGER_TYPE_ORDER = { "spellcast", "Aura Gained", "Aura Lost" }
 
+local CANCEL_METHODS = {
+  sameSpell = "Same Spell Cast",
+  auraLost = "Aura Lost (Buff Removed)",
+  auraGained = "Aura Gained (Buff Applied)",
+  overlayHide = "Spell Glow Hide",
+  differentSpell = "Different Spell Cast",
+}
+
+local CANCEL_METHOD_ORDER = { "sameSpell", "auraLost", "auraGained", "overlayHide", "differentSpell" }
+
 local AURA_TYPES = {
   normal = "Buff/Debuff",
   totem = "Totem/Pet/Ground",
@@ -167,7 +177,7 @@ local function CreateTimerEntry(timerID, orderBase)
             cfg.tracking.customDuration = math.min(math.max(num, 0.1), 86400)
           end
         end,
-        order = 3,
+        order = 6,
         width = 0.6,
         hidden = function()
           if not expandedTimers[timerKey] then return true end
@@ -191,9 +201,144 @@ local function CreateTimerEntry(timerID, orderBase)
           end
           LibStub("AceConfigRegistry-3.0"):NotifyChange("ArcUI")
         end,
-        order = 3.5,
+        order = 6.5,
         width = 0.6,
         hidden = function() return not expandedTimers[timerKey] end,
+      },
+      
+      cancelMethod = {
+        type = "select",
+        name = "Cancel When",
+        desc = "How this unlimited timer bar gets cancelled/hidden.\n\n" ..
+               "|cffffd700Same Spell Cast|r: Re-casting the trigger spell toggles the bar off (default).\n\n" ..
+               "|cffffd700Aura Lost|r: Bar cancels when a specific buff/debuff is removed from you. Best for toggle spells like Burning Rush where re-casting doesn't fire a spell event.\n\n" ..
+               "|cffffd700Aura Gained|r: Bar cancels when a specific buff/debuff is applied to you.\n\n" ..
+               "|cffffd700Spell Glow Hide|r: Bar cancels when the spell's action bar glow overlay disappears.\n\n" ..
+               "|cffffd700Different Spell Cast|r: Bar cancels when you cast a different specified spell.",
+        values = CANCEL_METHODS,
+        sorting = CANCEL_METHOD_ORDER,
+        get = function()
+          local cfg = ns.CooldownBars.GetTimerConfig(timerID)
+          return cfg and cfg.tracking.cancelMethod or "sameSpell"
+        end,
+        set = function(info, value)
+          local cfg = ns.CooldownBars.GetTimerConfig(timerID)
+          if cfg then cfg.tracking.cancelMethod = value end
+          LibStub("AceConfigRegistry-3.0"):NotifyChange("ArcUI")
+        end,
+        order = 7,
+        width = 1.0,
+        hidden = function()
+          if not expandedTimers[timerKey] then return true end
+          local cfg = ns.CooldownBars.GetTimerConfig(timerID)
+          return not cfg or not cfg.tracking.unlimitedDuration
+        end,
+      },
+      
+      cancelAura = {
+        type = "select",
+        name = "Cancel Aura",
+        desc = "Which aura to watch for cancel (from your tracked auras)",
+        values = GetAuraCatalogDropdown,
+        get = function()
+          local cfg = ns.CooldownBars.GetTimerConfig(timerID)
+          return cfg and cfg.tracking.cancelCooldownID or 0
+        end,
+        set = function(info, value)
+          local cfg = ns.CooldownBars.GetTimerConfig(timerID)
+          if cfg then
+            cfg.tracking.cancelCooldownID = value
+          end
+        end,
+        order = 7.5,
+        width = 1.0,
+        hidden = function()
+          if not expandedTimers[timerKey] then return true end
+          local cfg = ns.CooldownBars.GetTimerConfig(timerID)
+          if not cfg or not cfg.tracking.unlimitedDuration then return true end
+          local method = cfg.tracking.cancelMethod or "sameSpell"
+          return method ~= "auraLost" and method ~= "auraGained"
+        end,
+      },
+      
+      cancelAuraManual = {
+        type = "input",
+        name = "Cooldown ID",
+        desc = "Or enter CDM cooldown ID manually. Leave empty to use the trigger aura.",
+        dialogControl = "ArcUI_EditBox",
+        get = function()
+          local cfg = ns.CooldownBars.GetTimerConfig(timerID)
+          local id = cfg and cfg.tracking.cancelCooldownID
+          return id and id > 0 and tostring(id) or ""
+        end,
+        set = function(info, value)
+          local cfg = ns.CooldownBars.GetTimerConfig(timerID)
+          if cfg then
+            local num = tonumber(value)
+            if num and num > 0 then
+              cfg.tracking.cancelCooldownID = num
+            else
+              cfg.tracking.cancelCooldownID = nil
+            end
+          end
+        end,
+        order = 7.6,
+        width = 0.5,
+        hidden = function()
+          if not expandedTimers[timerKey] then return true end
+          local cfg = ns.CooldownBars.GetTimerConfig(timerID)
+          if not cfg or not cfg.tracking.unlimitedDuration then return true end
+          local method = cfg.tracking.cancelMethod or "sameSpell"
+          return method ~= "auraLost" and method ~= "auraGained"
+        end,
+      },
+      
+      cancelSpellID = {
+        type = "input",
+        name = function()
+          local cfg = ns.CooldownBars.GetTimerConfig(timerID)
+          local method = cfg and cfg.tracking.cancelMethod or "sameSpell"
+          if method == "overlayHide" then
+            return "Glow Spell ID"
+          else
+            return "Cancel Spell ID"
+          end
+        end,
+        desc = function()
+          local cfg = ns.CooldownBars.GetTimerConfig(timerID)
+          local method = cfg and cfg.tracking.cancelMethod or "sameSpell"
+          if method == "overlayHide" then
+            return "Spell ID whose glow overlay to watch. Leave empty to use the trigger spell ID."
+          else
+            return "Spell ID that cancels this timer. Required for Different Spell Cast."
+          end
+        end,
+        dialogControl = "ArcUI_EditBox",
+        get = function()
+          local cfg = ns.CooldownBars.GetTimerConfig(timerID)
+          local id = cfg and cfg.tracking.cancelSpellID
+          return id and id > 0 and tostring(id) or ""
+        end,
+        set = function(info, value)
+          local cfg = ns.CooldownBars.GetTimerConfig(timerID)
+          if cfg then
+            local num = tonumber(value)
+            if num and num > 0 then
+              cfg.tracking.cancelSpellID = num
+            else
+              cfg.tracking.cancelSpellID = nil
+            end
+          end
+        end,
+        order = 7.7,
+        width = 0.6,
+        hidden = function()
+          if not expandedTimers[timerKey] then return true end
+          local cfg = ns.CooldownBars.GetTimerConfig(timerID)
+          if not cfg or not cfg.tracking.unlimitedDuration then return true end
+          local method = cfg.tracking.cancelMethod or "sameSpell"
+          return method ~= "differentSpell" and method ~= "overlayHide"
+        end,
       },
       
       iconOverride = {
@@ -219,7 +364,7 @@ local function CreateTimerEntry(timerID, orderBase)
           end
           LibStub("AceConfigRegistry-3.0"):NotifyChange("ArcUI")
         end,
-        order = 3.7,
+        order = 2.5,
         width = 0.5,
         hidden = function() return not expandedTimers[timerKey] end,
       },
@@ -239,7 +384,7 @@ local function CreateTimerEntry(timerID, orderBase)
           if cfg then cfg.tracking.triggerType = value end
           LibStub("AceConfigRegistry-3.0"):NotifyChange("ArcUI")
         end,
-        order = 4,
+        order = 3,
         width = 0.8,
         hidden = function() return not expandedTimers[timerKey] end,
       },
@@ -247,7 +392,7 @@ local function CreateTimerEntry(timerID, orderBase)
       lineBreak1 = {
         type = "description",
         name = "",
-        order = 4.5,
+        order = 3.5,
         width = "full",
         hidden = function() return not expandedTimers[timerKey] end,
       },
@@ -272,7 +417,7 @@ local function CreateTimerEntry(timerID, orderBase)
             ns.CooldownBars.ApplyAppearance(timerID, "timer")
           end
         end,
-        order = 5,
+        order = 4,
         width = 1.5,
         hidden = function()
           if not expandedTimers[timerKey] then return true end
@@ -302,7 +447,7 @@ local function CreateTimerEntry(timerID, orderBase)
             ns.CooldownBars.ApplyAppearance(timerID, "timer")
           end
         end,
-        order = 6,
+        order = 4.5,
         width = 0.5,
         hidden = function()
           if not expandedTimers[timerKey] then return true end
@@ -335,7 +480,7 @@ local function CreateTimerEntry(timerID, orderBase)
             ns.CooldownBars.ApplyAppearance(timerID, "timer")
           end
         end,
-        order = 5,
+        order = 4,
         width = 1.5,
         hidden = function()
           if not expandedTimers[timerKey] then return true end
@@ -362,7 +507,7 @@ local function CreateTimerEntry(timerID, orderBase)
             ns.CooldownBars.ApplyAppearance(timerID, "timer")
           end
         end,
-        order = 6,
+        order = 4.5,
         width = 0.5,
         hidden = function()
           if not expandedTimers[timerKey] then return true end
@@ -384,7 +529,7 @@ local function CreateTimerEntry(timerID, orderBase)
           local cfg = ns.CooldownBars.GetTimerConfig(timerID)
           if cfg then cfg.tracking.auraType = value end
         end,
-        order = 7,
+        order = 5,
         width = 0.8,
         hidden = function()
           if not expandedTimers[timerKey] then return true end
@@ -394,6 +539,14 @@ local function CreateTimerEntry(timerID, orderBase)
       },
       
       lineBreak2 = {
+        type = "description",
+        name = "",
+        order = 5.5,
+        width = "full",
+        hidden = function() return not expandedTimers[timerKey] end,
+      },
+      
+      lineBreak3 = {
         type = "description",
         name = "",
         order = 8,

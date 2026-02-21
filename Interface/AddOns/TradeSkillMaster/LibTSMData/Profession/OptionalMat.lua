@@ -689,23 +689,4 @@ OptionalMat.Info = {
 	["i:173384"] = { absItemLevel = 230 }, -- Crafter's Mark of the Chained Isle
 	["i:187741"] = { absItemLevel = 233 }, -- Crafter's Mark IV
 	["i:187742"] = { absItemLevel = 262 }, -- Crafter's Mark of the First Ones
-	["i:185960"] = { relItemLevels = { [74] = true, [87] = true }, relCraftLevel = 2 }, -- Vestige of Origins
-	["i:187784"] = { relItemLevels = { [116] = true }, relCraftLevel = 3 }, -- Vestige of the Eternal
-	["i:191781"] = { relItemLevels = { [74] = true }, reqCraftLevels = { [1] = true }, relCraftLevel = 4, ignored = true }, -- Vestige of the Devourers
-}
-
-
-
--- ============================================================================
--- Item Level By Rank
--- ============================================================================
-
-OptionalMat.ItemLevelByRank = {
-	[1] = 15,
-	[2] = 35,
-	[3] = 50,
-	[4] = 60,
-	[5] = 74,
-	[6] = 87,
-	[7] = 116,
 }

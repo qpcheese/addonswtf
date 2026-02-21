@@ -1,6 +1,7 @@
 local _, addonTable = ...
 
-if addonTable.BuildInfo < 40000 then
+-- !FIX ME: LOADED ON RETAIL CURRENTLY
+if select(4, GetBuildInfo()) < 40000 or select(4, GetBuildInfo()) < 120000 then
   -- dont load on older clients than cata
   return
 end

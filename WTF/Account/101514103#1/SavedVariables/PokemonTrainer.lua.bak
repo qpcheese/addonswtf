@@ -1,10 +1,12 @@
 
 PokemonTrainerDB = {
 ["namespaces"] = {
-["FrameCombatDisplay"] = {
+["WildPetTooltip"] = {
 ["profiles"] = {
 ["Default"] = {
-["model3d"] = false,
+["enabled"] = false,
+["battlelevelonlydiff"] = false,
+["battlelevel"] = false,
 },
 },
 },
@@ -15,12 +17,10 @@ PokemonTrainerDB = {
 },
 },
 },
-["WildPetTooltip"] = {
+["FrameCombatDisplay"] = {
 ["profiles"] = {
 ["Default"] = {
-["enabled"] = false,
-["battlelevel"] = false,
-["battlelevelonlydiff"] = false,
+["model3d"] = false,
 },
 },
 },
@@ -34,15 +34,15 @@ PokemonTrainerDB = {
 ["Qudroformagi - Sylvanas"] = "Default",
 ["Helikåpter - Sylvanas"] = "Default",
 ["Xiaoyuu - Sylvanas"] = "Default",
-["Flurrq - Ragnaros"] = "Default",
+["Dogson - Ragnaros"] = "Default",
 ["Qpfromage - Ragnaros"] = "Default",
 ["Sikducker - Sylvanas"] = "Default",
-["Dogson - Ragnaros"] = "Default",
+["Flurrq - Ragnaros"] = "Default",
 },
 ["profiles"] = {
 ["Default"] = {
-["alpha"] = true,
 ["version"] = "12.0.1-20260211-1",
+["alpha"] = true,
 },
 },
 }

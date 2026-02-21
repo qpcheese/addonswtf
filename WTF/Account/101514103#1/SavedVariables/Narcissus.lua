@@ -612,11 +612,23 @@ NarciStatisticsDB = {
 ["QuestItems"] = {
 },
 ["AddOnActionForbidden"] = {
-["timeLastError"] = 1771196465,
+["timeLastError"] = 1771583980,
 ["addons"] = {
-["ProfessionShoppingList"] = {
-["count"] = 2,
-["timeLastError"] = 1683905536,
+["EnhancedCooldownManager"] = {
+["errorTime"] = {
+1771583968,
+1771583968,
+1771583975,
+1771583975,
+1771583980,
+1771583980,
+},
+["count"] = 6,
+["timeLastError"] = 1771583980,
+},
+["ShadowedUnitFrames"] = {
+["count"] = 3,
+["timeLastError"] = 1721746847,
 },
 ["ActionBarsEnhanced"] = {
 ["errorTime"] = {
@@ -625,9 +637,9 @@ NarciStatisticsDB = {
 ["count"] = 1,
 ["timeLastError"] = 1771196465,
 },
-["ShadowedUnitFrames"] = {
-["count"] = 3,
-["timeLastError"] = 1721746847,
+["ProfessionShoppingList"] = {
+["count"] = 2,
+["timeLastError"] = 1683905536,
 },
 ["Chatter"] = {
 ["count"] = 13,
@@ -674,7 +686,7 @@ NarciCharacterProfiles = {
 ["name"] = "Qpfromage",
 ["birth"] = 1734936338,
 ["serverID"] = 1597,
-["lastVisit"] = 1771543161,
+["lastVisit"] = 1771665410,
 ["outfits"] = {
 {
 ["s"] = "181605,186494,77345,182450,51871,83203,180664,182458,182474,186503,186481,73868:-1:5360,80665",

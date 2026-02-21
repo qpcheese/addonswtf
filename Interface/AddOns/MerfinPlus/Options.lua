@@ -26,7 +26,17 @@ MerfinPlus.GetDefaultFont = function(type)
   end
 end
 
+MerfinPlus.GetDefaultRaidFont = function(type)
+  local toc = select(4, GetBuildInfo())
+  if type == "bold" then
+    return (Locale == "zhTW" or Locale == "zhCN" or toc == 38000) and "CN Merged (SF-Yahee)" or "PT Sans Narrow"
+  else
+    return (Locale == "zhTW" or Locale == "zhCN" or toc == 38000) and "CN Merged (SF-Yahee)" or "PT Sans Narrow Bold"
+  end
+end
+
 Merfin.GetDefaultFont = MerfinPlus.GetDefaultFont
+Merfin.GetDefaultRaidFont = MerfinPlus.GetDefaultRaidFont
 
 local function IsWrath()
   local build = MerfinPlus.BuildInfo or select(4, GetBuildInfo())
@@ -36,6 +46,11 @@ end
 local function IsMoP()
   local build = MerfinPlus.BuildInfo or select(4, GetBuildInfo())
   return build > 50500 and build < 60000
+end
+
+local function IsTBC()
+  local build = MerfinPlus.BuildInfo or select(4, GetBuildInfo())
+  return build > 20504 and build < 30000
 end
 
 MerfinPlus.defaults = {
@@ -53,8 +68,8 @@ MerfinPlus.defaults = {
 
     font1 = MerfinPlus.GetDefaultFont(),
     font2 = MerfinPlus.GetDefaultFont("bold"),
-    font3 = MerfinPlus.GetDefaultFont(),
-    font4 = MerfinPlus.GetDefaultFont("bold"),
+    font3 = MerfinPlus.GetDefaultRaidFont,
+    font4 = MerfinPlus.GetDefaultRaidFont("bold"),
     bar1 = "MerfinMainDark",
     bar2 = "MerfinMain",
     bar3 = "MerfinMainDark",
@@ -65,9 +80,2326 @@ MerfinPlus.defaults = {
     wowSims = {
       profiles = {},
       assigned = {},
+      defaultsVersion = -1,
+      defaults = nil,
     },
   },
 }
+
+do
+  if IsTBC() then
+    function MerfinPlus:InitializeWoWSimDefaults()
+      if not MerfinPlus.db or not MerfinPlus.db.global then
+        return
+      end
+
+      local wowSims = MerfinPlus.db.global.wowSims
+      wowSims.profiles = wowSims.profiles or {}
+      wowSims.assigned = wowSims.assigned or {}
+
+      local profiles = wowSims.profiles
+
+      local function AddProfile(key, data)
+        data.key = key
+        profiles[key] = data
+      end
+
+      local installedVersion = wowSims.defaultsVersion or -1
+
+      if installedVersion < 0 then
+        -- WARRIOR
+        AddProfile("WarriorProtection-PreRaidBIS-2", {
+          class = "WARRIOR",
+          specKey = "WarriorProtection",
+          specID = 163,
+          icon = 134952,
+          importedAt = 0,
+          items = {
+            [1] = 28180,
+            [2] = 29386,
+            [3] = 27803,
+            [5] = 28205,
+            [6] = 28995,
+            [7] = 29184,
+            [8] = 29239,
+            [9] = 28996,
+            [10] = 27475,
+            [11] = 30834,
+            [12] = 28553,
+            [13] = 23836,
+            [14] = 28121,
+            [15] = 27804,
+            [16] = 28189,
+            [17] = 29266,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("WarriorArms-PreRaidBIS-2", {
+          class = "WARRIOR",
+          specKey = "WarriorArms",
+          specID = 161,
+          icon = 132292,
+          importedAt = 0,
+          items = {
+            [1] = 32087,
+            [2] = 29381,
+            [3] = 33173,
+            [5] = 23522,
+            [6] = 27985,
+            [7] = 30538,
+            [8] = 25686,
+            [9] = 23537,
+            [10] = 25685,
+            [11] = 23038,
+            [12] = 29379,
+            [13] = 29383,
+            [14] = 21670,
+            [15] = 24259,
+            [16] = 28438,
+            [17] = 23542,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("WarriorFury-PreRaidBIS-2", {
+          class = "WARRIOR",
+          specKey = "WarriorFury",
+          specID = 164,
+          icon = 132347,
+          importedAt = 0,
+          items = {
+            [1] = 32087,
+            [2] = 29381,
+            [3] = 33173,
+            [5] = 23522,
+            [6] = 27985,
+            [7] = 30538,
+            [8] = 25686,
+            [9] = 23537,
+            [10] = 25685,
+            [11] = 23038,
+            [12] = 29379,
+            [13] = 29383,
+            [14] = 21670,
+            [15] = 24259,
+            [16] = 28438,
+            [17] = 23542,
+          },
+          itemSuffixes = {},
+        })
+
+        -- PALADIN
+        AddProfile("PaladinProtection-PreRaidBIS-2", {
+          class = "PALADIN",
+          specKey = "PaladinProtection",
+          specID = 383,
+          icon = 135893,
+          importedAt = 0,
+          items = {
+            [1] = 32083,
+            [2] = 28245,
+            [3] = 27706,
+            [5] = 28203,
+            [6] = 29253,
+            [7] = 29184,
+            [8] = 29254,
+            [9] = 29252,
+            [10] = 30741,
+            [11] = 28407,
+            [12] = 29172,
+            [13] = 27529,
+            [14] = 29370,
+            [15] = 27804,
+            [16] = 32450,
+            [17] = 29176,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("PaladinHoly-PreRaidBIS-2", {
+          class = "PALADIN",
+          specKey = "PaladinHoly",
+          specID = 382,
+          icon = 135920,
+          importedAt = 0,
+          items = {
+            [1] = 32472,
+            [2] = 31691,
+            [3] = 21874,
+            [5] = 21875,
+            [6] = 21873,
+            [7] = 24261,
+            [8] = 27411,
+            [9] = 29523,
+            [10] = 29506,
+            [11] = 27780,
+            [12] = 29169,
+            [13] = 29168,
+            [14] = 29376,
+            [15] = 31329,
+            [16] = 23047,
+            [17] = 23556,
+            [18] = 29274,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("PaladinRetribution-PreRaidBIS-2", {
+          class = "PALADIN",
+          specKey = "PaladinRetribution",
+          specID = 381,
+          icon = 135873,
+          importedAt = 0,
+          items = {
+            [1] = 32087,
+            [2] = 29381,
+            [3] = 33173,
+            [5] = 23522,
+            [6] = 29247,
+            [7] = 30257,
+            [8] = 25686,
+            [9] = 23537,
+            [10] = 30341,
+            [11] = 30834,
+            [12] = 29177,
+            [13] = 29383,
+            [14] = 28034,
+            [15] = 33122,
+            [16] = 28429,
+          },
+          itemSuffixes = {},
+        })
+
+        -- HUNTER
+        AddProfile("HunterBeastMastery-PreRaidBIS-2", {
+          class = "HUNTER",
+          specKey = "HunterBeastMastery",
+          specID = 361,
+          icon = 132164,
+          importedAt = 0,
+          items = {
+            [1] = 28275,
+            [2] = 29381,
+            [3] = 27801,
+            [5] = 28228,
+            [6] = 29526,
+            [7] = 27874,
+            [8] = 25686,
+            [9] = 29527,
+            [10] = 27474,
+            [11] = 30860,
+            [12] = 31077,
+            [13] = 29383,
+            [14] = 28288,
+            [15] = 24259,
+            [16] = 27846,
+            [17] = 28435,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("HunterMarksmanship-PreRaidBIS-2", {
+          class = "HUNTER",
+          specKey = "HunterMarksmanship",
+          specID = 363,
+          icon = 132222,
+          importedAt = 0,
+          items = {
+            [1] = 28275,
+            [2] = 29381,
+            [3] = 27801,
+            [5] = 28228,
+            [6] = 29526,
+            [7] = 27874,
+            [8] = 25686,
+            [9] = 29527,
+            [10] = 27474,
+            [11] = 30860,
+            [12] = 31077,
+            [13] = 29383,
+            [14] = 28288,
+            [15] = 24259,
+            [16] = 27846,
+            [17] = 28315,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("HunterSurvival-PreRaidBIS-2", {
+          class = "HUNTER",
+          specKey = "HunterSurvival",
+          specID = 362,
+          icon = 132215,
+          importedAt = 0,
+          items = {
+            [1] = 28275,
+            [2] = 28343,
+            [3] = 27801,
+            [5] = 28228,
+            [6] = 27760,
+            [7] = 27837,
+            [8] = 29262,
+            [9] = 25697,
+            [10] = 27474,
+            [11] = 31326,
+            [12] = 22961,
+            [13] = 29383,
+            [14] = 28034,
+            [15] = 29382,
+            [16] = 27846,
+            [17] = 28263,
+          },
+          itemSuffixes = {},
+        })
+
+        -- ROGUE
+        AddProfile("RogueCombat-PreRaidBIS-2", {
+          class = "ROGUE",
+          specKey = "RogueCombat",
+          specID = 181,
+          icon = 132090,
+          importedAt = 0,
+          items = {
+            [1] = 28224,
+            [2] = 29381,
+            [3] = 27797,
+            [5] = 28264,
+            [6] = 29247,
+            [7] = 27837,
+            [8] = 25686,
+            [9] = 29246,
+            [10] = 25685,
+            [11] = 31920,
+            [12] = 30834,
+            [13] = 23206,
+            [14] = 29383,
+            [15] = 24259,
+            [16] = 28438,
+            [17] = 28189,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("RogueAssassination-PreRaidBIS-2", {
+          class = "ROGUE",
+          specKey = "RogueAssassination",
+          specID = 182,
+          icon = 132292,
+          importedAt = 0,
+          items = {
+            [1] = 28224,
+            [2] = 29381,
+            [3] = 27797,
+            [5] = 28264,
+            [6] = 29247,
+            [7] = 27837,
+            [8] = 25686,
+            [9] = 29246,
+            [10] = 25685,
+            [11] = 31920,
+            [12] = 30834,
+            [13] = 23206,
+            [14] = 29383,
+            [15] = 24259,
+            [16] = 28438,
+            [17] = 28189,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("RogueSubtlety-PreRaidBIS-2", {
+          class = "ROGUE",
+          specKey = "RogueSubtlety",
+          specID = 183,
+          icon = 132320,
+          importedAt = 0,
+          items = {
+            [1] = 28224,
+            [2] = 29381,
+            [3] = 27797,
+            [5] = 28264,
+            [6] = 29247,
+            [7] = 27837,
+            [8] = 25686,
+            [9] = 29246,
+            [10] = 25685,
+            [11] = 31920,
+            [12] = 30834,
+            [13] = 23206,
+            [14] = 29383,
+            [15] = 24259,
+            [16] = 28438,
+            [17] = 28189,
+          },
+          itemSuffixes = {},
+        })
+
+        -- PRIEST
+        AddProfile("PriestHoly-PreRaidBIS-2", {
+          class = "PRIEST",
+          specKey = "PriestHoly",
+          specID = 202,
+          icon = 237542,
+          importedAt = 0,
+          items = {
+            [1] = 32090,
+            [2] = 29374,
+            [3] = 21874,
+            [5] = 21875,
+            [6] = 21873,
+            [7] = 24261,
+            [8] = 29251,
+            [9] = 29183,
+            [10] = 27536,
+            [11] = 29373,
+            [12] = 32535,
+            [13] = 29376,
+            [14] = 21625,
+            [15] = 29354,
+            [16] = 23556,
+            [17] = 29170,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("PriestDiscipline-PreRaidBIS-2", {
+          class = "PRIEST",
+          specKey = "PriestDiscipline",
+          specID = 201,
+          icon = 135987,
+          importedAt = 0,
+          items = {
+            [1] = 32090,
+            [2] = 29374,
+            [3] = 21874,
+            [5] = 21875,
+            [6] = 21873,
+            [7] = 24261,
+            [8] = 29251,
+            [9] = 29183,
+            [10] = 27536,
+            [11] = 29373,
+            [12] = 32535,
+            [13] = 29376,
+            [14] = 21625,
+            [15] = 29354,
+            [16] = 23556,
+            [17] = 29170,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("PriestShadow-PreRaidBIS-2", {
+          class = "PRIEST",
+          specKey = "PriestShadow",
+          specID = 203,
+          icon = 136207,
+          importedAt = 0,
+          items = {
+            [1] = 24266,
+            [2] = 18814,
+            [3] = 21869,
+            [5] = 21871,
+            [6] = 31199,
+            [7] = 24262,
+            [8] = 21870,
+            [9] = 31225,
+            [10] = 31166,
+            [11] = 21709,
+            [12] = 23031,
+            [13] = 29370,
+            [14] = 27683,
+            [15] = 31201,
+            [16] = 30832,
+            [17] = 29272,
+          },
+          itemSuffixes = {},
+        })
+
+        -- SHAMAN
+        AddProfile("ShamanRestoration-PreRaidBIS-2", {
+          class = "SHAMAN",
+          specKey = "ShamanRestoration",
+          specID = 262,
+          icon = 136052,
+          importedAt = 0,
+          items = {
+            [1] = 32475,
+            [2] = 32531,
+            [3] = 27826,
+            [5] = 29522,
+            [6] = 29524,
+            [7] = 24261,
+            [8] = 27411,
+            [9] = 29523,
+            [10] = 27806,
+            [11] = 29169,
+            [12] = 32535,
+            [13] = 29376,
+            [14] = 38288,
+            [15] = 31329,
+            [16] = 32451,
+            [17] = 29267,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("ShamanElemental-PreRaidBIS-2", {
+          class = "SHAMAN",
+          specKey = "ShamanElemental",
+          specID = 261,
+          icon = 136048,
+          importedAt = 0,
+          items = {
+            [1] = 32086,
+            [2] = 28134,
+            [3] = 32078,
+            [5] = 29519,
+            [6] = 29520,
+            [7] = 24262,
+            [8] = 28406,
+            [9] = 29521,
+            [10] = 27465,
+            [11] = 29126,
+            [12] = 29367,
+            [13] = 29370,
+            [14] = 27683,
+            [15] = 29369,
+            [16] = 32450,
+            [17] = 29273,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("ShamanEnhancement-PreRaidBIS-2", {
+          class = "SHAMAN",
+          specKey = "ShamanEnhancement",
+          specID = 263,
+          icon = 136051,
+          importedAt = 0,
+          items = {
+            [1] = 28224,
+            [2] = 29381,
+            [3] = 27797,
+            [5] = 29525,
+            [6] = 29526,
+            [7] = 31544,
+            [8] = 25686,
+            [9] = 29527,
+            [10] = 25685,
+            [11] = 30834,
+            [12] = 31920,
+            [13] = 29383,
+            [14] = 23206,
+            [15] = 33122,
+            [16] = 28438,
+            [17] = 29348,
+          },
+          itemSuffixes = {},
+        })
+
+        -- MAGE
+        AddProfile("MageArcane-PreRaidBIS-2", {
+          class = "MAGE",
+          specKey = "MageArcane",
+          specID = 81,
+          icon = 135932,
+          importedAt = 0,
+          items = {
+            [1] = 24266,
+            [2] = 28134,
+            [3] = 27994,
+            [5] = 21848,
+            [6] = 21846,
+            [7] = 24262,
+            [8] = 27821,
+            [9] = 27462,
+            [10] = 21847,
+            [11] = 28227,
+            [12] = 31339,
+            [13] = 23207,
+            [14] = 29132,
+            [15] = 23050,
+            [16] = 23554,
+            [17] = 29271,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("MageFire-PreRaidBIS-2", {
+          class = "MAGE",
+          specKey = "MageFire",
+          specID = 41,
+          icon = 135810,
+          importedAt = 0,
+          items = {
+            [1] = 24266,
+            [2] = 28134,
+            [3] = 30925,
+            [5] = 21848,
+            [6] = 21846,
+            [7] = 24262,
+            [8] = 27821,
+            [9] = 24250,
+            [10] = 21847,
+            [11] = 29172,
+            [12] = 21709,
+            [13] = 23207,
+            [14] = 29132,
+            [15] = 23050,
+            [16] = 23554,
+            [17] = 29270,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("MageFrost-PreRaidBIS-2", {
+          class = "MAGE",
+          specKey = "MageFrost",
+          specID = 61,
+          icon = 135846,
+          importedAt = 0,
+          items = {
+            [1] = 24266,
+            [2] = 28134,
+            [3] = 21869,
+            [5] = 21871,
+            [6] = 24256,
+            [7] = 24262,
+            [8] = 21870,
+            [9] = 24250,
+            [10] = 27493,
+            [11] = 29172,
+            [12] = 21709,
+            [13] = 23207,
+            [14] = 29132,
+            [15] = 23050,
+            [16] = 23554,
+            [17] = 29269,
+          },
+          itemSuffixes = {},
+        })
+
+        -- WARLOCK
+        AddProfile("WarlockAffliction-PreRaidBIS-2", {
+          class = "WARLOCK",
+          specKey = "WarlockAffliction",
+          specID = 302,
+          icon = 136145,
+          importedAt = 0,
+          items = {
+            [1] = 24266,
+            [2] = 28134,
+            [3] = 21869,
+            [5] = 21871,
+            [6] = 24256,
+            [7] = 24262,
+            [8] = 21870,
+            [9] = 21186,
+            [10] = 21585,
+            [11] = 29172,
+            [12] = 29126,
+            [13] = 29370,
+            [14] = 27683,
+            [15] = 23050,
+            [16] = 31336,
+            [17] = 29273,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("WarlockDemonology-PreRaidBIS-2", {
+          class = "WARLOCK",
+          specKey = "WarlockDemonology",
+          specID = 303,
+          icon = 136172,
+          importedAt = 0,
+          items = {
+            [1] = 24266,
+            [2] = 28134,
+            [3] = 21869,
+            [5] = 21871,
+            [6] = 24256,
+            [7] = 24262,
+            [8] = 21870,
+            [9] = 21186,
+            [10] = 21585,
+            [11] = 29172,
+            [12] = 29126,
+            [13] = 29370,
+            [14] = 27683,
+            [15] = 23050,
+            [16] = 31336,
+            [17] = 29273,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("WarlockDestruction-PreRaidBIS-2", {
+          class = "WARLOCK",
+          specKey = "WarlockDestruction",
+          specID = 301,
+          icon = 136186,
+          importedAt = 0,
+          items = {
+            [1] = 24266,
+            [2] = 28134,
+            [3] = 21869,
+            [5] = 21871,
+            [6] = 24256,
+            [7] = 24262,
+            [8] = 21870,
+            [9] = 21186,
+            [10] = 21585,
+            [11] = 29172,
+            [12] = 29126,
+            [13] = 29370,
+            [14] = 27683,
+            [15] = 23050,
+            [16] = 31336,
+            [17] = 29273,
+          },
+          itemSuffixes = {},
+        })
+
+        -- DRUID
+        AddProfile("DruidRestoration-PreRaidBIS-2", {
+          class = "DRUID",
+          specKey = "DruidRestoration",
+          specID = 282,
+          icon = 136041,
+          importedAt = 0,
+          items = {
+            [1] = 24264,
+            [2] = 30377,
+            [3] = 21874,
+            [5] = 21875,
+            [6] = 21873,
+            [7] = 24261,
+            [8] = 27411,
+            [9] = 29183,
+            [10] = 29506,
+            [11] = 27780,
+            [12] = 31383,
+            [13] = 29376,
+            [14] = 19395,
+            [15] = 31329,
+            [16] = 32451,
+            [17] = 29274,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("DruidFeralDPS-PreRaidBIS-2", {
+          class = "DRUID",
+          specKey = "DruidFeralCombat",
+          specID = 281,
+          icon = 132276,
+          importedAt = 0,
+          items = {
+            [1] = 8345,
+            [2] = 24114,
+            [3] = 27797,
+            [5] = 29525,
+            [6] = 29247,
+            [7] = 31544,
+            [8] = 25686,
+            [9] = 29246,
+            [10] = 28396,
+            [11] = 30834,
+            [12] = 31920,
+            [13] = 29383,
+            [14] = 23206,
+            [15] = 31255,
+            [16] = 31334,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("DruidFeralTank-PreRaidBIS-2", {
+          class = "DRUID",
+          specKey = "DruidFeralCombat",
+          specID = 281,
+          icon = 132276,
+          importedAt = 0,
+          items = {
+            [1] = 29502,
+            [2] = 29815,
+            [3] = 27434,
+            [5] = 25689,
+            [6] = 30942,
+            [7] = 25690,
+            [8] = 28987,
+            [9] = 30944,
+            [10] = 30943,
+            [11] = 30834,
+            [12] = 29384,
+            [13] = 29383,
+            [14] = 23206,
+            [15] = 28256,
+            [16] = 29171,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("DruidBalance-PreRaidBIS-2", {
+          class = "DRUID",
+          specKey = "DruidBalance",
+          specID = 283,
+          icon = 136096,
+          importedAt = 0,
+          items = {
+            [1] = 24266,
+            [2] = 28134,
+            [3] = 27796,
+            [5] = 21848,
+            [6] = 21846,
+            [7] = 24262,
+            [8] = 27821,
+            [9] = 29523,
+            [10] = 21847,
+            [11] = 29172,
+            [12] = 28227,
+            [13] = 29370,
+            [14] = 29132,
+            [15] = 27981,
+            [16] = 23554,
+            [17] = 29271,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("RogueCombat-PreRaidBIS", {
+          class = "ROGUE",
+          specKey = "RogueCombat",
+          specID = 181,
+          icon = 132090,
+          importedAt = 0,
+          items = {
+            [1] = 28224,
+            [2] = 29381,
+            [3] = 27797,
+            [5] = 28264,
+            [6] = 29247,
+            [7] = 27837,
+            [8] = 25686,
+            [9] = 29246,
+            [10] = 25685,
+            [11] = 31077,
+            [12] = 30834,
+            [13] = 29383,
+            [14] = 28288,
+            [15] = 27878,
+            [16] = 28438,
+            [17] = 28189,
+            [18] = 29152,
+          },
+          itemSuffixes = {},
+        })
+
+        AddProfile("RogueSubtlety-PreRaidBIS", {
+          class = "ROGUE",
+          specKey = "RogueSubtlety",
+          specID = 183,
+          icon = 132320,
+          importedAt = 0,
+          items = {
+            [1] = 28224,
+            [2] = 29381,
+            [3] = 27797,
+            [5] = 28264,
+            [6] = 29247,
+            [7] = 27837,
+            [8] = 25686,
+            [9] = 29246,
+            [10] = 25685,
+            [11] = 31077,
+            [12] = 30834,
+            [13] = 29383,
+            [14] = 28288,
+            [15] = 27878,
+            [16] = 28438,
+            [17] = 28189,
+            [18] = 29152,
+          },
+          itemSuffixes = {},
+        })
+
+        AddProfile("PriestShadow-PreRaidBIS", {
+          class = "PRIEST",
+          specKey = "PriestShadow",
+          specID = 203,
+          icon = 136207,
+          importedAt = 0,
+          items = {
+            [1] = 24266,
+            [2] = 28245,
+            [3] = 21869,
+            [5] = 21871,
+            [6] = 24256,
+            [7] = 24262,
+            [8] = 21870,
+            [9] = 24250,
+            [10] = 29317,
+            [11] = 31075,
+            [12] = 29352,
+            [13] = 29370,
+            [14] = 27683,
+            [15] = 24252,
+            [16] = 30832,
+            [17] = 29272,
+            [18] = 29350,
+          },
+          itemSuffixes = {},
+        })
+
+        AddProfile("MageFrost-PreRaidBIS", {
+          class = "MAGE",
+          specKey = "MageFrost",
+          specID = 61,
+          icon = 135846,
+          importedAt = 0,
+          items = {
+            [1] = 28193,
+            [2] = 28134,
+            [3] = 21869,
+            [5] = 21871,
+            [6] = 24256,
+            [7] = 24262,
+            [8] = 21870,
+            [9] = 24250,
+            [10] = 27465,
+            [11] = 28227,
+            [12] = 32779,
+            [13] = 29370,
+            [14] = 27683,
+            [15] = 29369,
+            [16] = 29155,
+            [17] = 29269,
+            [18] = 29350,
+          },
+          itemSuffixes = {},
+        })
+
+        AddProfile("DruidRestoration-PreRaidBIS", {
+          class = "DRUID",
+          specKey = "DruidRestoration",
+          specID = 282,
+          icon = 136041,
+          importedAt = 0,
+          items = {
+            [1] = 32090,
+            [2] = 30377,
+            [3] = 21874,
+            [5] = 21875,
+            [6] = 21873,
+            [7] = 30543,
+            [8] = 27411,
+            [9] = 29183,
+            [10] = 29506,
+            [11] = 31383,
+            [12] = 27780,
+            [13] = 29376,
+            [14] = 30841,
+            [15] = 29354,
+            [16] = 29353,
+            [17] = 29274,
+            [18] = 27886,
+          },
+          itemSuffixes = {},
+        })
+
+        AddProfile("MageArcane-PreRaidBIS", {
+          class = "MAGE",
+          specKey = "MageArcane",
+          specID = 81,
+          icon = 135932,
+          importedAt = 0,
+          items = {
+            [1] = 28278,
+            [2] = 28134,
+            [3] = 27738,
+            [5] = 21848,
+            [6] = 21846,
+            [7] = 30532,
+            [8] = 29258,
+            [9] = 28411,
+            [10] = 21847,
+            [11] = 29367,
+            [12] = 29352,
+            [13] = 29370,
+            [14] = 27683,
+            [15] = 25777,
+            [16] = 29155,
+            [17] = 29271,
+            [18] = 28386,
+          },
+          itemSuffixes = {},
+        })
+
+        AddProfile("WarlockDestruction-PreRaidBIS", {
+          class = "WARLOCK",
+          specKey = "WarlockDestruction",
+          specID = 301,
+          icon = 136186,
+          importedAt = 0,
+          items = {
+            [1] = 28193,
+            [2] = 28134,
+            [3] = 21869,
+            [5] = 21871,
+            [6] = 24256,
+            [7] = 24262,
+            [8] = 21870,
+            [9] = 24250,
+            [10] = 27465,
+            [11] = 28227,
+            [12] = 29367,
+            [13] = 27683,
+            [14] = 29370,
+            [15] = 27981,
+            [16] = 29155,
+            [17] = 29273,
+            [18] = 29350,
+          },
+          itemSuffixes = {},
+        })
+
+        AddProfile("HunterMarksmanship-PreRaidBIS", {
+          class = "HUNTER",
+          specKey = "HunterMarksmanship",
+          specID = 363,
+          icon = 132222,
+          importedAt = 0,
+          items = {
+            [1] = 28275,
+            [2] = 29381,
+            [3] = 27801,
+            [5] = 28228,
+            [6] = 27760,
+            [7] = 30538,
+            [8] = 25686,
+            [9] = 29246,
+            [10] = 27474,
+            [11] = 30860,
+            [12] = 31077,
+            [13] = 29383,
+            [14] = 28288,
+            [15] = 24259,
+            [16] = 28435,
+            [18] = 29351,
+          },
+          itemSuffixes = {},
+        })
+
+        AddProfile("ShamanEnhancement-PreRaidBIS", {
+          class = "SHAMAN",
+          specKey = "ShamanEnhancement",
+          specID = 263,
+          icon = 136051,
+          importedAt = 0,
+          items = {
+            [1] = 28224,
+            [2] = 29381,
+            [3] = 27797,
+            [5] = 29515,
+            [6] = 29516,
+            [7] = 30538,
+            [8] = 25686,
+            [9] = 29517,
+            [10] = 25685,
+            [11] = 30834,
+            [12] = 30365,
+            [13] = 29383,
+            [14] = 28288,
+            [15] = 24259,
+            [16] = 29348,
+            [17] = 27872,
+            [18] = 27815,
+          },
+          itemSuffixes = {},
+        })
+
+        AddProfile("ShamanRestoration-PreRaidBIS", {
+          class = "SHAMAN",
+          specKey = "ShamanRestoration",
+          specID = 262,
+          icon = 136052,
+          importedAt = 0,
+          items = {
+            [1] = 32090,
+            [2] = 31691,
+            [3] = 21874,
+            [5] = 21875,
+            [6] = 21873,
+            [7] = 30543,
+            [8] = 27411,
+            [9] = 29183,
+            [10] = 28304,
+            [11] = 29168,
+            [12] = 29814,
+            [13] = 29376,
+            [14] = 28190,
+            [15] = 24254,
+            [16] = 23556,
+            [17] = 29274,
+            [18] = 27544,
+          },
+          itemSuffixes = {},
+        })
+
+        AddProfile("MageFire-PreRaidBIS", {
+          class = "MAGE",
+          specKey = "MageFire",
+          specID = 41,
+          icon = 135810,
+          importedAt = 0,
+          items = {
+            [1] = 28193,
+            [2] = 28134,
+            [3] = 27796,
+            [5] = 21848,
+            [6] = 21846,
+            [7] = 24262,
+            [8] = 28406,
+            [9] = 28411,
+            [10] = 21847,
+            [11] = 28227,
+            [12] = 29367,
+            [13] = 29370,
+            [14] = 27683,
+            [15] = 29369,
+            [16] = 29155,
+            [17] = 29270,
+            [18] = 29350,
+          },
+          itemSuffixes = {},
+        })
+
+        AddProfile("WarriorArms-PreRaidBIS", {
+          class = "WARRIOR",
+          specKey = "WarriorArms",
+          specID = 161,
+          icon = 132292,
+          importedAt = 0,
+          items = {
+            [1] = 32087,
+            [2] = 29349,
+            [3] = 33173,
+            [5] = 23522,
+            [6] = 27985,
+            [7] = 30257,
+            [8] = 25686,
+            [9] = 28381,
+            [10] = 25685,
+            [11] = 30834,
+            [12] = 29379,
+            [13] = 29383,
+            [14] = 28034,
+            [15] = 24259,
+            [16] = 28429,
+            [18] = 30279,
+          },
+          itemSuffixes = {},
+        })
+
+        AddProfile("WarlockAffliction-PreRaidBIS", {
+          class = "WARLOCK",
+          specKey = "WarlockAffliction",
+          specID = 302,
+          icon = 136145,
+          importedAt = 0,
+          items = {
+            [1] = 28193,
+            [2] = 28134,
+            [3] = 21869,
+            [5] = 21871,
+            [6] = 24256,
+            [7] = 24262,
+            [8] = 21870,
+            [9] = 24250,
+            [10] = 27465,
+            [11] = 28227,
+            [12] = 29367,
+            [13] = 27683,
+            [14] = 29370,
+            [15] = 27981,
+            [16] = 29155,
+            [17] = 29273,
+            [18] = 29350,
+          },
+          itemSuffixes = {},
+        })
+
+        AddProfile("PriestHoly-PreRaidBIS", {
+          class = "PRIEST",
+          specKey = "PriestHoly",
+          specID = 202,
+          icon = 237542,
+          importedAt = 0,
+          items = {
+            [1] = 32090,
+            [2] = 30377,
+            [3] = 21874,
+            [5] = 21875,
+            [6] = 21873,
+            [7] = 30543,
+            [8] = 27411,
+            [9] = 29183,
+            [10] = 24393,
+            [11] = 27780,
+            [12] = 29168,
+            [13] = 29376,
+            [14] = 28190,
+            [15] = 29354,
+            [16] = 29353,
+            [17] = 29170,
+            [18] = 27885,
+          },
+          itemSuffixes = {},
+        })
+
+        AddProfile("WarlockDemonology-PreRaidBIS", {
+          class = "WARLOCK",
+          specKey = "WarlockDemonology",
+          specID = 303,
+          icon = 136172,
+          importedAt = 0,
+          items = {
+            [1] = 28193,
+            [2] = 28134,
+            [3] = 21869,
+            [5] = 21871,
+            [6] = 24256,
+            [7] = 24262,
+            [8] = 21870,
+            [9] = 24250,
+            [10] = 27465,
+            [11] = 28227,
+            [12] = 29367,
+            [13] = 27683,
+            [14] = 29370,
+            [15] = 27981,
+            [16] = 29155,
+            [17] = 29273,
+            [18] = 29350,
+          },
+          itemSuffixes = {},
+        })
+
+        AddProfile("WarriorFury-PreRaidBIS", {
+          class = "WARRIOR",
+          specKey = "WarriorFury",
+          specID = 164,
+          icon = 132347,
+          importedAt = 0,
+          items = {
+            [1] = 32087,
+            [2] = 29381,
+            [3] = 33173,
+            [5] = 23522,
+            [6] = 27985,
+            [7] = 30538,
+            [8] = 25686,
+            [9] = 28381,
+            [10] = 25685,
+            [11] = 30834,
+            [12] = 29379,
+            [13] = 29383,
+            [14] = 28034,
+            [15] = 24259,
+            [16] = 28438,
+            [17] = 29124,
+            [18] = 30279,
+          },
+          itemSuffixes = {},
+        })
+
+        AddProfile("WarriorProtection-PreRaidBIS", {
+          class = "WARRIOR",
+          specKey = "WarriorProtection",
+          specID = 163,
+          icon = 134952,
+          importedAt = 0,
+          items = {
+            [1] = 32083,
+            [2] = 28244,
+            [3] = 32073,
+            [5] = 28205,
+            [6] = 28385,
+            [7] = 29184,
+            [8] = 28383,
+            [9] = 28381,
+            [10] = 30341,
+            [11] = 30834,
+            [12] = 28553,
+            [13] = 28121,
+            [14] = 29383,
+            [15] = 28377,
+            [16] = 28189,
+            [17] = 29266,
+            [18] = 29152,
+          },
+          itemSuffixes = {},
+        })
+
+        AddProfile("ShamanElemental-PreRaidBIS", {
+          class = "SHAMAN",
+          specKey = "ShamanElemental",
+          specID = 261,
+          icon = 136048,
+          importedAt = 0,
+          items = {
+            [1] = 32086,
+            [2] = 31692,
+            [3] = 27796,
+            [5] = 29519,
+            [6] = 29520,
+            [7] = 24262,
+            [8] = 28406,
+            [9] = 29521,
+            [10] = 27465,
+            [11] = 32779,
+            [12] = 29367,
+            [13] = 27683,
+            [14] = 29370,
+            [15] = 29369,
+            [16] = 30832,
+            [17] = 29268,
+            [18] = 28248,
+          },
+          itemSuffixes = {},
+        })
+
+        AddProfile("HunterSurvival-PreRaidBIS", {
+          class = "HUNTER",
+          specKey = "HunterSurvival",
+          specID = 362,
+          icon = 132215,
+          importedAt = 0,
+          items = {
+            [1] = 28275,
+            [2] = 28343,
+            [3] = 27801,
+            [5] = 28228,
+            [6] = 27760,
+            [7] = 27837,
+            [8] = 29248,
+            [9] = 25697,
+            [10] = 27474,
+            [11] = 31277,
+            [12] = 27453,
+            [13] = 29383,
+            [14] = 28288,
+            [15] = 29382,
+            [16] = 29329,
+            [18] = 29351,
+          },
+          itemSuffixes = {},
+        })
+
+        AddProfile("RogueAssassination-PreRaidBIS", {
+          class = "ROGUE",
+          specKey = "RogueAssassination",
+          specID = 182,
+          icon = 132292,
+          importedAt = 0,
+          items = {
+            [1] = 28224,
+            [2] = 29381,
+            [3] = 27797,
+            [5] = 28264,
+            [6] = 29247,
+            [7] = 27837,
+            [8] = 25686,
+            [9] = 29246,
+            [10] = 25685,
+            [11] = 31077,
+            [12] = 30834,
+            [13] = 29383,
+            [14] = 28288,
+            [15] = 27878,
+            [16] = 29360,
+            [17] = 29346,
+            [18] = 29152,
+          },
+          itemSuffixes = {},
+        })
+
+        AddProfile("PaladinHoly-PreRaidBIS", {
+          class = "PALADIN",
+          specKey = "PaladinHoly",
+          specID = 382,
+          icon = 135920,
+          importedAt = 0,
+          items = {
+            [1] = 32084,
+            [2] = 31691,
+            [3] = 27775,
+            [5] = 28230,
+            [6] = 29250,
+            [7] = 30543,
+            [8] = 27411,
+            [9] = 23539,
+            [10] = 27457,
+            [11] = 29168,
+            [12] = 27780,
+            [13] = 29376,
+            [14] = 28190,
+            [15] = 29354,
+            [16] = 29353,
+            [17] = 29274,
+            [18] = 25644,
+          },
+          itemSuffixes = {},
+        })
+
+        AddProfile("HunterBeastMastery-PreRaidBIS", {
+          class = "HUNTER",
+          specKey = "HunterBeastMastery",
+          specID = 361,
+          icon = 132164,
+          importedAt = 0,
+          items = {
+            [1] = 28275,
+            [2] = 29381,
+            [3] = 27801,
+            [5] = 28228,
+            [6] = 27760,
+            [7] = 30538,
+            [8] = 25686,
+            [9] = 29246,
+            [10] = 27474,
+            [11] = 30860,
+            [12] = 31077,
+            [13] = 29383,
+            [14] = 28288,
+            [15] = 24259,
+            [16] = 28435,
+            [18] = 29351,
+          },
+          itemSuffixes = {},
+        })
+
+        AddProfile("PaladinRetribution-PreRaidBIS", {
+          class = "PALADIN",
+          specKey = "PaladinRetribution",
+          specID = 381,
+          icon = 135873,
+          importedAt = 0,
+          items = {
+            [1] = 32087,
+            [2] = 29119,
+            [3] = 33173,
+            [5] = 23522,
+            [6] = 27985,
+            [7] = 30257,
+            [8] = 28176,
+            [9] = 23537,
+            [10] = 30341,
+            [11] = 30834,
+            [12] = 29177,
+            [13] = 29383,
+            [14] = 28288,
+            [15] = 24259,
+            [16] = 28429,
+            [18] = 27484,
+          },
+          itemSuffixes = {},
+        })
+
+        AddProfile("PaladinProtection-PreRaidBIS", {
+          class = "PALADIN",
+          specKey = "PaladinProtection",
+          specID = 383,
+          icon = 135893,
+          importedAt = 0,
+          items = {
+            [1] = 32083,
+            [2] = 29173,
+            [3] = 27739,
+            [5] = 28203,
+            [6] = 29253,
+            [7] = 29184,
+            [8] = 29254,
+            [9] = 29252,
+            [10] = 23517,
+            [11] = 28407,
+            [12] = 29323,
+            [13] = 29370,
+            [14] = 27529,
+            [15] = 27804,
+            [16] = 30832,
+            [17] = 29266,
+            [18] = 29388,
+          },
+          itemSuffixes = {},
+        })
+
+        AddProfile("DruidBalance-PreRaidBIS", {
+          class = "DRUID",
+          specKey = "DruidBalance",
+          specID = 283,
+          icon = 136096,
+          importedAt = 0,
+          items = {
+            [1] = 28278,
+            [2] = 28134,
+            [3] = 27796,
+            [5] = 21848,
+            [6] = 21846,
+            [7] = 24262,
+            [8] = 28406,
+            [9] = 24250,
+            [10] = 21847,
+            [11] = 28227,
+            [12] = 29367,
+            [13] = 29370,
+            [14] = 27683,
+            [15] = 27981,
+            [16] = 30832,
+            [17] = 29271,
+            [18] = 27518,
+          },
+          itemSuffixes = {},
+        })
+
+        wowSims.defaultsVersion = 0
+        installedVersion = 0
+      end
+      if installedVersion < 2 then
+        -- Phase 1
+        -- DRUID
+        AddProfile("DruidBalance-Phase1BIS", {
+          class = "DRUID",
+          specKey = "DruidBalance",
+          specID = 283,
+          icon = 136096,
+          importedAt = 0,
+          items = {
+            [1] = 29093,
+            [2] = 28762,
+            [3] = 29095,
+            [5] = 21848,
+            [6] = 21846,
+            [7] = 24262,
+            [8] = 28517,
+            [9] = 24250,
+            [10] = 21847,
+            [11] = 29287,
+            [12] = 28753,
+            [13] = 29370,
+            [14] = 27683,
+            [15] = 28766,
+            [16] = 28770,
+            [17] = 29271,
+            [18] = 27518,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("DruidFeralDps-Phase1BIS", {
+          class = "DRUID",
+          specKey = "DruidFeralCombat",
+          specID = 281,
+          icon = 132276,
+          importedAt = 0,
+          items = {
+            [1] = 8345,
+            [2] = 29381,
+            [3] = 29100,
+            [5] = 29096,
+            [6] = 28750,
+            [7] = 28741,
+            [8] = 28545,
+            [9] = 29246,
+            [10] = 28506,
+            [11] = 30834,
+            [12] = 28791,
+            [13] = 29383,
+            [14] = 28830,
+            [15] = 24259,
+            [16] = 28658,
+            [18] = 29390,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("DruidFeralTank-Phase1BIS", {
+          class = "DRUID",
+          specKey = "DruidFeralCombat",
+          specID = 281,
+          icon = 132276,
+          importedAt = 0,
+          items = {
+            [1] = 29098,
+            [2] = 28509,
+            [3] = 29100,
+            [5] = 29096,
+            [6] = 28423,
+            [7] = 29099,
+            [8] = 28422,
+            [9] = 28445,
+            [10] = 30644,
+            [11] = 29279,
+            [12] = 30834,
+            [13] = 28579,
+            [14] = 29383,
+            [15] = 28660,
+            [16] = 28658,
+            [18] = 23198,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("DruidRestoration-Phase1BIS", {
+          class = "DRUID",
+          specKey = "DruidRestoration",
+          specID = 282,
+          icon = 136041,
+          importedAt = 0,
+          items = {
+            [1] = 29086,
+            [2] = 28609,
+            [3] = 29089,
+            [5] = 21875,
+            [6] = 21873,
+            [7] = 28591,
+            [8] = 28752,
+            [9] = 29183,
+            [10] = 28521,
+            [11] = 28763,
+            [12] = 29290,
+            [13] = 29376,
+            [14] = 30841,
+            [15] = 28765,
+            [16] = 28771,
+            [17] = 29274,
+            [18] = 27886,
+          },
+          itemSuffixes = {},
+        })
+        -- HUNTER
+        AddProfile("HunterBeastMastery-Phase1BIS", {
+          class = "HUNTER",
+          specKey = "HunterBeastMastery",
+          specID = 361,
+          icon = 132164,
+          importedAt = 0,
+          items = {
+            [1] = 28275,
+            [2] = 29381,
+            [3] = 27801,
+            [5] = 28228,
+            [6] = 28828,
+            [7] = 28741,
+            [8] = 28545,
+            [9] = 29246,
+            [10] = 27474,
+            [11] = 28757,
+            [12] = 28791,
+            [13] = 28830,
+            [14] = 29383,
+            [15] = 24259,
+            [16] = 28435,
+            [18] = 28772,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("HunterMarksmanship-Phase1BIS", {
+          class = "HUNTER",
+          specKey = "HunterMarksmanship",
+          specID = 363,
+          icon = 132222,
+          importedAt = 0,
+          items = {
+            [1] = 28275,
+            [2] = 29381,
+            [3] = 27801,
+            [5] = 28228,
+            [6] = 28828,
+            [7] = 28741,
+            [8] = 28545,
+            [9] = 29246,
+            [10] = 27474,
+            [11] = 28757,
+            [12] = 28791,
+            [13] = 28830,
+            [14] = 29383,
+            [15] = 24259,
+            [16] = 28435,
+            [18] = 28772,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("HunterSurvival-Phase1BIS", {
+          class = "HUNTER",
+          specKey = "HunterSurvival",
+          specID = 362,
+          icon = 132215,
+          importedAt = 0,
+          items = {
+            [1] = 28275,
+            [2] = 28343,
+            [3] = 27801,
+            [5] = 28228,
+            [6] = 27760,
+            [7] = 28741,
+            [8] = 28545,
+            [9] = 25697,
+            [10] = 27474,
+            [11] = 31277,
+            [12] = 28791,
+            [13] = 28830,
+            [14] = 29383,
+            [15] = 28672,
+            [16] = 28587,
+            [18] = 28772,
+          },
+          itemSuffixes = {},
+        })
+        -- MAGE
+        AddProfile("MageArcane-Phase1BIS", {
+          class = "MAGE",
+          specKey = "MageArcane",
+          specID = 81,
+          icon = 135932,
+          importedAt = 0,
+          items = {
+            [1] = 29076,
+            [2] = 28762,
+            [3] = 29079,
+            [5] = 21848,
+            [6] = 21846,
+            [7] = 28594,
+            [8] = 28517,
+            [9] = 28411,
+            [10] = 21847,
+            [11] = 29287,
+            [12] = 28793,
+            [13] = 29370,
+            [14] = 28785,
+            [15] = 28797,
+            [16] = 28770,
+            [17] = 29271,
+            [18] = 28783,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("MageFire-Phase1BIS", {
+          class = "MAGE",
+          specKey = "MageFire",
+          specID = 41,
+          icon = 135810,
+          importedAt = 0,
+          items = {
+            [1] = 29076,
+            [2] = 28762,
+            [3] = 29079,
+            [5] = 21848,
+            [6] = 21846,
+            [7] = 24262,
+            [8] = 28517,
+            [9] = 28411,
+            [10] = 21847,
+            [11] = 28793,
+            [12] = 28753,
+            [13] = 29370,
+            [14] = 27683,
+            [15] = 28766,
+            [16] = 28770,
+            [17] = 29270,
+            [18] = 28673,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("MageFrost-Phase1BIS", {
+          class = "MAGE",
+          specKey = "MageFrost",
+          specID = 61,
+          icon = 135846,
+          importedAt = 0,
+          items = {
+            [1] = 29076,
+            [2] = 28762,
+            [3] = 21869,
+            [5] = 21871,
+            [6] = 24256,
+            [7] = 24262,
+            [8] = 21870,
+            [9] = 24250,
+            [10] = 28780,
+            [11] = 28793,
+            [12] = 28753,
+            [13] = 29370,
+            [14] = 27683,
+            [15] = 28766,
+            [16] = 28770,
+            [17] = 29269,
+            [18] = 28673,
+          },
+          itemSuffixes = {},
+        })
+        -- PALADIN
+        AddProfile("PaladinHoly-Phase1BIS", {
+          class = "PALADIN",
+          specKey = "PaladinHoly",
+          specID = 382,
+          icon = 135920,
+          importedAt = 0,
+          items = {
+            [1] = 29061,
+            [2] = 28609,
+            [3] = 29064,
+            [5] = 29062,
+            [6] = 28733,
+            [7] = 28748,
+            [8] = 28752,
+            [9] = 23539,
+            [10] = 28505,
+            [11] = 28763,
+            [12] = 28790,
+            [13] = 29376,
+            [14] = 28590,
+            [15] = 28765,
+            [16] = 28771,
+            [17] = 29458,
+            [18] = 25644,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("PaladinProtection-Phase1BIS", {
+          class = "PALADIN",
+          specKey = "PaladinProtection",
+          specID = 383,
+          icon = 135893,
+          importedAt = 0,
+          items = {
+            [1] = 29068,
+            [2] = 28516,
+            [3] = 29070,
+            [5] = 29066,
+            [6] = 28566,
+            [7] = 29069,
+            [8] = 30641,
+            [9] = 29252,
+            [10] = 28518,
+            [11] = 29279,
+            [12] = 29172,
+            [13] = 29370,
+            [14] = 28789,
+            [15] = 27804,
+            [16] = 28802,
+            [17] = 28825,
+            [18] = 29388,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("PaladinRetribution-Phase1BIS", {
+          class = "PALADIN",
+          specKey = "PaladinRetribution",
+          specID = 381,
+          icon = 135873,
+          importedAt = 0,
+          items = {
+            [1] = 29073,
+            [2] = 28745,
+            [3] = 29075,
+            [5] = 29071,
+            [6] = 28779,
+            [7] = 30257,
+            [8] = 28608,
+            [9] = 28795,
+            [10] = 30644,
+            [11] = 30834,
+            [12] = 28730,
+            [13] = 28830,
+            [14] = 29383,
+            [15] = 24259,
+            [16] = 28429,
+            [18] = 27484,
+          },
+          itemSuffixes = {},
+        })
+        -- PRIEST
+        AddProfile("PriestHoly-Phase1BIS", {
+          class = "PRIEST",
+          specKey = "PriestHoly",
+          specID = 202,
+          icon = 237542,
+          importedAt = 0,
+          items = {
+            [1] = 29049,
+            [2] = 28822,
+            [3] = 21874,
+            [5] = 21875,
+            [6] = 21873,
+            [7] = 28742,
+            [8] = 28663,
+            [9] = 29183,
+            [10] = 28508,
+            [11] = 28763,
+            [12] = 29290,
+            [13] = 29376,
+            [14] = 28823,
+            [15] = 28765,
+            [16] = 28771,
+            [17] = 29170,
+            [18] = 28588,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("PriestShadow-Phase1BIS", {
+          class = "PRIEST",
+          specKey = "PriestShadow",
+          specID = 203,
+          icon = 136207,
+          importedAt = 0,
+          items = {
+            [1] = 24266,
+            [2] = 30666,
+            [3] = 21869,
+            [5] = 21871,
+            [6] = 28799,
+            [7] = 24262,
+            [8] = 21870,
+            [9] = 24250,
+            [10] = 28780,
+            [11] = 28753,
+            [12] = 29352,
+            [13] = 29370,
+            [14] = 27683,
+            [15] = 28570,
+            [16] = 28770,
+            [17] = 29272,
+            [18] = 29350,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("PriestSmite-Phase1BIS", {
+          class = "PRIEST",
+          specKey = "PriestShadow",
+          specID = 203,
+          icon = 136207,
+          importedAt = 0,
+          items = {
+            [1] = 24266,
+            [2] = 28530,
+            [3] = 29060,
+            [5] = 29056,
+            [6] = 24256,
+            [7] = 30734,
+            [8] = 28517,
+            [9] = 24250,
+            [10] = 30725,
+            [11] = 28793,
+            [12] = 29172,
+            [13] = 27683,
+            [14] = 29370,
+            [15] = 28766,
+            [16] = 30723,
+            [17] = 28734,
+            [18] = 28673,
+          },
+          itemSuffixes = {},
+        })
+        -- ROGUE
+        AddProfile("RogueAssassination-Phase1BIS", {
+          class = "ROGUE",
+          specKey = "RogueAssassination",
+          specID = 182,
+          icon = 132292,
+          importedAt = 0,
+          items = {
+            [1] = 29044,
+            [2] = 29381,
+            [3] = 27797,
+            [5] = 29045,
+            [6] = 29247,
+            [7] = 28741,
+            [8] = 28545,
+            [9] = 29246,
+            [10] = 27531,
+            [11] = 28757,
+            [12] = 28649,
+            [13] = 28830,
+            [14] = 29383,
+            [15] = 28672,
+            [16] = 28768,
+            [17] = 28572,
+            [18] = 28772,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("RogueCombat-Phase1BIS", {
+          class = "ROGUE",
+          specKey = "RogueCombat",
+          specID = 181,
+          icon = 132090,
+          importedAt = 0,
+          items = {
+            [1] = 29044,
+            [2] = 29381,
+            [3] = 27797,
+            [5] = 29045,
+            [6] = 29247,
+            [7] = 28741,
+            [8] = 28545,
+            [9] = 29246,
+            [10] = 27531,
+            [11] = 28757,
+            [12] = 28649,
+            [13] = 28830,
+            [14] = 29383,
+            [15] = 28672,
+            [16] = 28438,
+            [17] = 28189,
+            [18] = 28772,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("RogueSubtlety-Phase1BIS", {
+          class = "ROGUE",
+          specKey = "RogueSubtlety",
+          specID = 183,
+          icon = 132320,
+          importedAt = 0,
+          items = {
+            [1] = 29044,
+            [2] = 29381,
+            [3] = 27797,
+            [5] = 29045,
+            [6] = 29247,
+            [7] = 28741,
+            [8] = 28545,
+            [9] = 29246,
+            [10] = 27531,
+            [11] = 28757,
+            [12] = 28649,
+            [13] = 28830,
+            [14] = 29383,
+            [15] = 28672,
+            [16] = 28438,
+            [17] = 28189,
+            [18] = 28772,
+          },
+          itemSuffixes = {},
+        })
+        -- SHAMAN
+        AddProfile("ShamanElemental-Phase1BIS", {
+          class = "SHAMAN",
+          specKey = "ShamanElemental",
+          specID = 261,
+          icon = 136048,
+          importedAt = 0,
+          items = {
+            [1] = 29035,
+            [2] = 28762,
+            [3] = 29037,
+            [5] = 29519,
+            [6] = 29520,
+            [7] = 24262,
+            [8] = 28517,
+            [9] = 29521,
+            [10] = 28780,
+            [11] = 30667,
+            [12] = 28753,
+            [13] = 28785,
+            [14] = 29370,
+            [15] = 28797,
+            [16] = 28770,
+            [17] = 29268,
+            [18] = 28248,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("ShamanEnhancement-Phase1BIS", {
+          class = "SHAMAN",
+          specKey = "ShamanEnhancement",
+          specID = 263,
+          icon = 136051,
+          importedAt = 0,
+          items = {
+            [1] = 29040,
+            [2] = 29381,
+            [3] = 29043,
+            [5] = 29515,
+            [6] = 29516,
+            [7] = 28741,
+            [8] = 28545,
+            [9] = 29517,
+            [10] = 28776,
+            [11] = 28757,
+            [12] = 28649,
+            [13] = 28830,
+            [14] = 29383,
+            [15] = 24259,
+            [16] = 28767,
+            [17] = 27872,
+            [18] = 27815,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("ShamanRestoration-Phase1BIS", {
+          class = "SHAMAN",
+          specKey = "ShamanRestoration",
+          specID = 262,
+          icon = 136052,
+          importedAt = 0,
+          items = {
+            [1] = 29028,
+            [2] = 28609,
+            [3] = 29031,
+            [5] = 21875,
+            [6] = 21873,
+            [7] = 28751,
+            [8] = 28752,
+            [9] = 29183,
+            [10] = 28520,
+            [11] = 28763,
+            [12] = 28790,
+            [13] = 29376,
+            [14] = 28190,
+            [15] = 28765,
+            [16] = 28771,
+            [17] = 29458,
+            [18] = 28523,
+          },
+          itemSuffixes = {},
+        })
+        -- WARLOCK
+        AddProfile("WarlockAffliction-Phase1BIS", {
+          class = "WARLOCK",
+          specKey = "WarlockAffliction",
+          specID = 302,
+          icon = 136145,
+          importedAt = 0,
+          items = {
+            [1] = 28963,
+            [2] = 28762,
+            [3] = 28967,
+            [5] = 28964,
+            [6] = 24256,
+            [7] = 24262,
+            [8] = 21870,
+            [9] = 24250,
+            [10] = 28968,
+            [11] = 28793,
+            [12] = 28753,
+            [13] = 27683,
+            [14] = 29370,
+            [15] = 28766,
+            [16] = 28802,
+            [17] = 29273,
+            [18] = 28673,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("WarlockDestructionFire-Phase1BIS", {
+          class = "WARLOCK",
+          specKey = "WarlockDestruction",
+          specID = 301,
+          icon = 136186,
+          importedAt = 0,
+          items = {
+            [1] = 28963,
+            [2] = 28530,
+            [3] = 28967,
+            [5] = 21848,
+            [6] = 21846,
+            [7] = 24262,
+            [8] = 28517,
+            [9] = 24250,
+            [10] = 21847,
+            [11] = 28793,
+            [12] = 28753,
+            [13] = 27683,
+            [14] = 29370,
+            [15] = 28766,
+            [16] = 28802,
+            [17] = 29270,
+            [18] = 28673,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("WarlockDemonology-Phase1BIS", {
+          class = "WARLOCK",
+          specKey = "WarlockDemonology",
+          specID = 303,
+          icon = 136172,
+          importedAt = 0,
+          items = {
+            [1] = 28963,
+            [2] = 28762,
+            [3] = 28967,
+            [5] = 28964,
+            [6] = 24256,
+            [7] = 24262,
+            [8] = 21870,
+            [9] = 24250,
+            [10] = 28968,
+            [11] = 28793,
+            [12] = 28753,
+            [13] = 27683,
+            [14] = 29370,
+            [15] = 28766,
+            [16] = 28802,
+            [17] = 29273,
+            [18] = 28673,
+          },
+          itemSuffixes = {},
+        })
+        -- WARRIOR
+        AddProfile("WarriorArms-Phase1BIS", {
+          class = "WARRIOR",
+          specKey = "WarriorArms",
+          specID = 161,
+          icon = 132292,
+          importedAt = 0,
+          items = {
+            [1] = 29021,
+            [2] = 28745,
+            [3] = 29023,
+            [5] = 29019,
+            [6] = 28779,
+            [7] = 28741,
+            [8] = 28608,
+            [9] = 28795,
+            [10] = 28824,
+            [11] = 28757,
+            [12] = 28730,
+            [13] = 28830,
+            [14] = 29383,
+            [15] = 24259,
+            [16] = 28429,
+            [18] = 28772,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("WarriorFury-Phase1BIS", {
+          class = "WARRIOR",
+          specKey = "WarriorFury",
+          specID = 164,
+          icon = 132347,
+          importedAt = 0,
+          items = {
+            [1] = 29021,
+            [2] = 28745,
+            [3] = 29023,
+            [5] = 29019,
+            [6] = 28779,
+            [7] = 28741,
+            [8] = 28608,
+            [9] = 28795,
+            [10] = 28824,
+            [11] = 28757,
+            [12] = 28730,
+            [13] = 28830,
+            [14] = 29383,
+            [15] = 24259,
+            [16] = 28438,
+            [17] = 28729,
+            [18] = 28772,
+          },
+          itemSuffixes = {},
+        })
+        AddProfile("WarriorProtection-Phase1BIS", {
+          class = "WARRIOR",
+          specKey = "WarriorProtection",
+          specID = 163,
+          icon = 134952,
+          importedAt = 0,
+          items = {
+            [1] = 29011,
+            [2] = 28244,
+            [3] = 29023,
+            [5] = 29012,
+            [6] = 28385,
+            [7] = 28621,
+            [8] = 28383,
+            [9] = 28381,
+            [10] = 30644,
+            [11] = 30834,
+            [12] = 29279,
+            [13] = 28121,
+            [14] = 29383,
+            [15] = 28377,
+            [16] = 28749,
+            [17] = 28825,
+            [18] = 28826,
+          },
+          itemSuffixes = {},
+        })
+        wowSims.defaultsVersion = 2
+        installedVersion = 2
+      end
+    end
+    local function AutoAssignWoWSimsProfileIfMissing()
+      if not MerfinPlus.db or not MerfinPlus.db.global then
+        return
+      end
+
+      local wowSims = MerfinPlus.db.global.wowSims
+
+      wowSims.profiles = wowSims.profiles or {}
+      wowSims.assigned = wowSims.assigned or {}
+
+      local profiles = wowSims.profiles
+      local assigned = wowSims.assigned
+
+      local name, realm = UnitName("player")
+      if not name then
+        return
+      end
+      realm = realm or GetNormalizedRealmName() or "UNKNOWN"
+      local charKey = name .. "-" .. realm
+
+      assigned[charKey] = assigned[charKey] or {}
+
+      local class = select(2, UnitClass("player"))
+      if not class then
+        return
+      end
+
+      local bestTab, bestPoints = nil, -1
+      for tab = 1, GetNumTalentTabs() do
+        local points = select(5, GetTalentTabInfo(tab))
+        if points and points > bestPoints then
+          bestPoints = points
+          bestTab = tab
+        end
+      end
+      if not bestTab then
+        return
+      end
+
+      local SPEC_ID_BY_CLASS_AND_TAB = {
+        WARRIOR = { [1] = 161, [2] = 164, [3] = 163 },
+        PALADIN = { [1] = 382, [2] = 383, [3] = 381 },
+        HUNTER = { [1] = 361, [2] = 363, [3] = 362 },
+        ROGUE = { [1] = 182, [2] = 181, [3] = 183 },
+        PRIEST = { [1] = 201, [2] = 202, [3] = 203 },
+        SHAMAN = { [1] = 261, [2] = 263, [3] = 262 },
+        MAGE = { [1] = 81, [2] = 41, [3] = 61 },
+        WARLOCK = { [1] = 302, [2] = 303, [3] = 301 },
+        DRUID = { [1] = 283, [2] = 281, [3] = 282 },
+      }
+
+      local specID = SPEC_ID_BY_CLASS_AND_TAB[class] and SPEC_ID_BY_CLASS_AND_TAB[class][bestTab]
+
+      if not specID then
+        return
+      end
+
+      if assigned[charKey][specID] then
+        return
+      end
+
+      for key, profile in pairs(profiles) do
+        if
+          profile
+          and profile.class == class
+          and profile.specID == specID
+          and key
+          and key:match("%-PreRaidBIS$")
+          and not key:match("FeralTank")
+        then
+          assigned[charKey][specID] = key
+          if WeakAuras and WeakAuras.ScanEvents then
+            WeakAuras.ScanEvents("MERFIN_WOWSIM_CHANGED")
+          end
+          return
+        end
+      end
+    end
+    local f = CreateFrame("Frame")
+    f:RegisterEvent("PLAYER_ENTERING_WORLD")
+    f:SetScript("OnEvent", function()
+      C_Timer.After(1, function()
+        f:UnregisterEvent("PLAYER_ENTERING_WORLD")
+        AutoAssignWoWSimsProfileIfMissing()
+      end)
+    end)
+  end
+end
 
 -- Helper to access the active profile table safely
 function MerfinPlus:GetDB()
@@ -75,7 +2407,7 @@ function MerfinPlus:GetDB()
 end
 
 local function GetEffectiveSpecID()
-  if IsWrath() then
+  if IsWrath() or IsTBC() then
     return select(2, Merfin.GetPlayerRole())
   end
 
@@ -277,7 +2609,7 @@ function MerfinPlus:SetupOptions()
     [14] = 14, -- Trinket 2
     [15] = 16, -- Mainhand
     [16] = 17, -- Offhand
-    [17] = IsWrath() and 18 or nil, -- Relic/Ranged
+    [17] = (IsWrath() or IsTBC() and 18) or nil, -- Relic/Ranged
   }
 
   local SLOT_NAMES = {
@@ -297,7 +2629,7 @@ function MerfinPlus:SetupOptions()
     [15] = _G.INVTYPE_CLOAK,
     [16] = _G.INVTYPE_WEAPONMAINHAND,
     [17] = _G.INVTYPE_WEAPONOFFHAND,
-    [18] = IsWrath() and _G.INVTYPE_RELIC or nil,
+    [18] = (IsWrath() or IsTBC()) and _G.INVTYPE_RELIC or nil,
   }
 
   -- -------------------------
@@ -307,6 +2639,7 @@ function MerfinPlus:SetupOptions()
     if type(simClass) ~= "string" then
       return nil
     end
+    --return "PALADIN"
     return strupper(simClass:gsub("^Class", "")) -- "ClassDruid" -> "DRUID"
   end
 
@@ -517,6 +2850,62 @@ function MerfinPlus:SetupOptions()
           { specID = 250, specKey = "DeathKnightBlood", icon = 135770 },
           { specID = 251, specKey = "DeathKnightFrost", icon = 135773 },
           { specID = 252, specKey = "DeathKnightUnholy", icon = 135775 },
+        },
+      }
+    or IsTBC()
+      and {
+        DRUID = {
+          { specID = 283, specKey = "DruidBalance", icon = 136096 }, -- Balance
+          { specID = 281, specKey = "DruidFeralCombat", icon = 132276 }, -- Feral
+          { specID = 282, specKey = "DruidRestoration", icon = 136041 }, -- Restoration
+        },
+
+        WARRIOR = {
+          { specID = 161, specKey = "WarriorArms", icon = 132292 },
+          { specID = 164, specKey = "WarriorFury", icon = 132347 },
+          { specID = 163, specKey = "WarriorProtection", icon = 134952 },
+        },
+
+        PALADIN = {
+          { specID = 381, specKey = "PaladinRetribution", icon = 135873 },
+          { specID = 382, specKey = "PaladinHoly", icon = 135920 },
+          { specID = 383, specKey = "PaladinProtection", icon = 135893 },
+        },
+
+        HUNTER = {
+          { specID = 361, specKey = "HunterBeastMastery", icon = 132164 },
+          { specID = 363, specKey = "HunterMarksmanship", icon = 132222 },
+          { specID = 362, specKey = "HunterSurvival", icon = 132215 },
+        },
+
+        ROGUE = {
+          { specID = 182, specKey = "RogueAssassination", icon = 132292 },
+          { specID = 181, specKey = "RogueCombat", icon = 132090 },
+          { specID = 183, specKey = "RogueSubtlety", icon = 132320 },
+        },
+
+        PRIEST = {
+          { specID = 201, specKey = "PriestDiscipline", icon = 135987 },
+          { specID = 202, specKey = "PriestHoly", icon = 237542 },
+          { specID = 203, specKey = "PriestShadow", icon = 136207 },
+        },
+
+        SHAMAN = {
+          { specID = 261, specKey = "ShamanElemental", icon = 136048 },
+          { specID = 263, specKey = "ShamanEnhancement", icon = 136051 },
+          { specID = 262, specKey = "ShamanRestoration", icon = 136052 },
+        },
+
+        MAGE = {
+          { specID = 81, specKey = "MageArcane", icon = 135932 },
+          { specID = 41, specKey = "MageFire", icon = 135810 },
+          { specID = 61, specKey = "MageFrost", icon = 135846 },
+        },
+
+        WARLOCK = {
+          { specID = 302, specKey = "WarlockAffliction", icon = 136145 },
+          { specID = 303, specKey = "WarlockDemonology", icon = 136172 },
+          { specID = 301, specKey = "WarlockDestruction", icon = 136186 },
         },
       }
     or IsMoP() and (function()
@@ -952,7 +3341,7 @@ function MerfinPlus:SetupOptions()
     name = "WoW Sim",
     childGroups = "tab",
     hidden = function()
-      return not IsWrath() and not IsMoP()
+      return not IsWrath() and not IsTBC() and not IsMoP()
     end,
     args = {
 
@@ -1247,7 +3636,7 @@ function MerfinPlus:SetupOptions()
   AceConfigRegistry:RegisterOptionsTable("MerfinPlus_Media", mediaOptions)
   AceConfigDialog:AddToBlizOptions("MerfinPlus_Media", "Media", "MerfinPlus v" .. version)
 
-  if IsWrath() or IsMoP() then
+  if IsWrath() or IsTBC() or IsMoP() then
     AceConfigRegistry:RegisterOptionsTable("MerfinPlus_WoWSim", wowSimOptions)
     AceConfigDialog:AddToBlizOptions("MerfinPlus_WoWSim", "WoW Sim", "MerfinPlus v" .. version)
   end
@@ -1273,7 +3662,7 @@ function MerfinPlus:SetupOptions()
       end)(),
     },
   }
-  if IsWrath() or IsMoP() then
+  if IsWrath() or IsTBC() or IsMoP() then
     standaloneOptions.args.wowSim = (function()
       wowSimOptions.order = 30
       return wowSimOptions

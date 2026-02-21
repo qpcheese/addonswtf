@@ -1,6 +1,9 @@
 local _, MerfinPlus = ...
 local LSM = LibStub("LibSharedMedia-3.0")
 
+_G.Merfin = _G.Merfin or {}
+local Merfin = _G.Merfin
+
 local stformat = string.format
 local SpeakText = C_VoiceChat.SpeakText
 
@@ -138,18 +141,19 @@ end
 ----------------
 -- WeakAuras API
 ----------------
-
-Merfin.PlaySound = function(replica, speed, volume, voiceId)
-  if Merfin.L == "ruRU" then
-    local soundPath = soundPaths[replica]
-    if soundPath then
-      PlaySoundFile(soundPath, "Master")
-    end
-  else
-    local soundPath = soundPaths[replica]
-    if soundPath and PlaySoundFile(soundPath, "Master") then
-    elseif Merfin.L == "enUS" then
-      SpeakText(voiceId or 1, replica, Enum.VoiceTtsDestination.LocalPlayback, speed or 1, volume or 100)
+if select(4, GetBuildInfo()) < 120000 then -- not on retail
+  Merfin.PlaySound = function(replica, speed, volume, voiceId)
+    if Merfin.L == "ruRU" then
+      local soundPath = soundPaths[replica]
+      if soundPath then
+        PlaySoundFile(soundPath, "Master")
+      end
+    else
+      local soundPath = soundPaths[replica]
+      if soundPath and PlaySoundFile(soundPath, "Master") then
+      elseif Merfin.L == "enUS" then
+        SpeakText(voiceId or 1, replica, Enum.VoiceTtsDestination.LocalPlayback, speed or 1, volume or 100)
+      end
     end
   end
 end

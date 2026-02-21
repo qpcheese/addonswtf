@@ -27,6 +27,15 @@ local function ColorizeTag(tag)
   if tag == "CRF" then
     return "|cffffd100Craft|r"
   end
+  if tag == "SSC" then
+    return "|cff4fbf6aSSC|r"
+  end
+  if tag == "NAXX" then
+    return "|cff2f6cffNAXX|r"
+  end
+  if tag == "TK" then
+    return "|cff9b5cffTK|r"
+  end
   return tag
 end
 
@@ -39,7 +48,16 @@ local function NormalizeInstanceName(name)
   if name == "Molten Core" or name:match("^MoltenCore%d*$") then
     return "MC"
   end
-  if name == "World bosses of Vanilla" or name:match("^WorldBosses%d*$") then
+  if name == "Serpentshrine Cavern" or name:match("^SerpentshrineCavern%d*$") then
+    return "SSC"
+  end
+  if name == "Tempest Keep" or name:match("^TempestKeep%d*$") then
+    return "TK"
+  end
+  if name == "NaxxramasWrath" or name:match("^NaxxramasWrath%d*$") then
+    return "NAXX"
+  end
+  if name == "World bosses of Vanilla" or name:match("^WorldBosses%d*$") or name:match("^WorldBossesBC%d*$") then
     return "WB"
   end
   return name
@@ -142,7 +160,7 @@ local function FormatSourcesGrouped(sources, maxEntries)
       end
 
       local instOut = inst
-      if instOut == "MC" or instOut == "WB" then
+      if instOut == "MC" or instOut == "WB" or instOut == "SSC" or instOut == "TK" or instOut == "NAXX" then
         instOut = ColorizeTag(instOut)
       end
 

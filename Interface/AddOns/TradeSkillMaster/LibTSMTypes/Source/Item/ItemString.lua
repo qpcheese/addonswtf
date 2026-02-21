@@ -161,42 +161,23 @@ function ItemString.ToLevel(itemString)
 		local petLevel = strmatch(itemString, "^p:%d+:(%d+):.+$")
 		return petLevel and baseItemString..":i"..petLevel or baseItemString
 	end
-	local level, isAbs = BonusIds.GetItemLevel(itemString)
+	local level = BonusIds.GetItemLevel(itemString)
 	if not level then
 		return baseItemString
 	end
-	if isAbs then
-		return baseItemString.."::".."i"..level
-	else
-		if level >= 0 then
-			level = "+"..level
-		end
-		return baseItemString.."::"..level
-	end
+	return baseItemString.."::i"..level
 end
 
 ---Parse the level modifier from a (potential) level itemString
 ---@param itemString string An itemString to parse
----@return number @The level modifier
----@return boolean @Whether or not it is an absolute level
+---@return number? @The item level
 function ItemString.ParseLevel(itemString)
 	local petLevel = strmatch(itemString, "^p:[0-9]+:i([0-9]+)$")
 	if petLevel then
-		return tonumber(petLevel), true
+		return tonumber(petLevel)
 	end
-	local prefix, level = strmatch(itemString, "^i:[0-9]+:[0-9%-]*:([i%+%-])([0-9]+)")
-	level = level and tonumber(level) or nil
-	if not prefix or not level then
-		return nil, nil
-	elseif prefix == "i" then
-		return level, true
-	elseif prefix == "+" then
-		return level, false
-	elseif prefix == "-" then
-		return level * -1, false
-	else
-		error("Invalid prefix: "..tostring(prefix))
-	end
+	local level = strmatch(itemString, "^i:[0-9]+:[0-9%-]*:i([0-9]+)")
+	return level and tonumber(level) or nil
 end
 
 ---Attempts to determine the itemLevel by parsing the itemString
@@ -204,17 +185,16 @@ end
 ---@return number|nil
 function ItemString.GetItemLevel(itemString)
 	-- Check if this is a level itemString first
-	local itemLevel, isAbs = ItemString.ParseLevel(itemString)
+	local itemLevel = ItemString.ParseLevel(itemString)
 	if itemLevel then
-		return isAbs and itemLevel or nil
+		return itemLevel
 	end
 	if ItemString.IsPet(itemString) then
 		local petLevel = strmatch(itemString, "^p:%d+:(%d+):.+$")
 		return petLevel and tonumber(petLevel) or nil
 	else
 		-- Try to get the level from the bonusIds
-		itemLevel, isAbs = BonusIds.GetItemLevel(itemString)
-		return isAbs and itemLevel or nil
+		return BonusIds.GetItemLevel(itemString)
 	end
 end
 

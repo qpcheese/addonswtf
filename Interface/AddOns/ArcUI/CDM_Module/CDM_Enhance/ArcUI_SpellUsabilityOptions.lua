@@ -456,39 +456,9 @@ end
 -- ═══════════════════════════════════════════════════════════════════════════
 
 function ns.SpellUsabilityOptions.GetAuraArgs()
-  local args = {}
-  local mode = "aura"
-
-  -- Header
-  args.spellUsabilityHeader = {
-    type = "toggle",
-    name = function() return H().GetAuraHeaderName("spellUsability", "Spell Usability") end,
-    desc = "Click to expand/collapse. Controls icon tinting, opacity, and glow based on whether the spell can be cast. Purple dot indicates per-icon customizations.",
-    dialogControl = "CollapsibleHeader",
-    get = function() return not H().collapsedSections.spellUsability end,
-    set = function(_, v) H().collapsedSections.spellUsability = not v end,
-    order = 109.65, width = "full",
-    hidden = function() return H().HideIfNoAuraSelection() end,
-  }
-
-  -- All entries
-  for k, v in pairs(BuildUsabilityEntries(109.65, mode, HideAuraUsability)) do
-    args[k] = v
-  end
-
-  -- Reset (after all entries)
-  args.resetSpellUsability = {
-    type = "execute", name = "Reset Section",
-    desc = "Reset Spell Usability settings to defaults for selected icon(s)",
-    order = 109.699, width = 0.7,
-    hidden = HideAuraUsability,
-    func = function()
-      H().ResetAuraSectionSettings("spellUsability")
-      Refresh()
-    end,
-  }
-
-  return args
+  -- Spell Usability is COOLDOWN FRAMES ONLY - aura frames don't have usability state
+  -- This function is kept for backward compatibility but returns empty
+  return {}
 end
 
 -- ═══════════════════════════════════════════════════════════════════════════

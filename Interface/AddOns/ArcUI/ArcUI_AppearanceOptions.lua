@@ -2306,7 +2306,7 @@ function ns.AppearanceOptions.GetOptionsTable()
       enableSmoothing = {
         type = "toggle",
         name = "Smooth Fill",
-        desc = "Smoothly animate bar fill changes",
+        desc = "Smoothly animate bar fill changes.\n\n|cff00ff00Duration bars:|r Applies to Manual Max mode. Auto mode always uses smooth interpolation via SetTimerDuration.",
         get = function()
           local cfg = GetSelectedConfig()
           return cfg and cfg.display.enableSmoothing
@@ -2322,7 +2322,6 @@ function ns.AppearanceOptions.GetOptionsTable()
         width = 0.7,
         hidden = function()
           if IsIconMode() or collapsedSections.fill then return true end
-          if IsDurationBar() then return true end  -- Hide for duration bars
           if IsCooldownBar() then return true end  -- Hide for cooldown charge bars
           return GetSelectedConfig() == nil
         end
@@ -3050,6 +3049,11 @@ function ns.AppearanceOptions.GetOptionsTable()
           local cfg = GetSelectedConfig()
           if cfg then
             cfg.display.enableMaxColor = value
+            -- Clear curve cache so max color step gets rebuilt
+            local _, barNum = GetSelectedBarType()
+            if barNum and ns.Resources and ns.Resources.ClearResourceColorCurve then
+              ns.Resources.ClearResourceColorCurve(barNum)
+            end
             RefreshBar()
           end
         end,
@@ -3077,6 +3081,11 @@ function ns.AppearanceOptions.GetOptionsTable()
           local cfg = GetSelectedConfig()
           if cfg then
             cfg.display.maxColor = {r=r, g=g, b=b, a=a}
+            -- Clear curve cache so max color step gets rebuilt
+            local _, barNum = GetSelectedBarType()
+            if barNum and ns.Resources and ns.Resources.ClearResourceColorCurve then
+              ns.Resources.ClearResourceColorCurve(barNum)
+            end
             RefreshBar()
           end
         end,

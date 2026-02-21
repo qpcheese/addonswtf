@@ -25,8 +25,8 @@ local function CreateBarInstance(config, parent, frameLevel)
     end)
 
     bar:ApplyVisibilitySettings()
-    bar:ApplyLayout(true)
-    bar:UpdateDisplay(true)
+    bar:ApplyLayout(nil, true)
+    bar:UpdateDisplay(nil, true)
 
     return bar
 end
@@ -59,7 +59,7 @@ SCRB:SetScript("OnEvent", function(_, event, arg1)
 
         addonTable.barInstances = addonTable.barInstances or {}
 
-        for _, config in pairs(addonTable.RegistereredBar or {}) do
+        for _, config in pairs(addonTable.RegisteredBar or {}) do
             if config.loadPredicate == nil or (type(config.loadPredicate) == "function" and config.loadPredicate(config) == true) then
                 local frame = InitializeBar(config, config.frameLevel or 1)
                 addonTable.barInstances[config.frameName] = frame

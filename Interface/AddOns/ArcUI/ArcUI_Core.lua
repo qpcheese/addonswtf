@@ -699,6 +699,50 @@ ns.API.InvalidateSpellToCooldownIDCache = InvalidateSpellToCooldownIDCache
 local hiddenCDMFrames = {}  -- [frame] = expectedCooldownID
 local hiddenByBarOverlays = {}  -- [frame] = overlayFrame
 
+-- ═══════════════════════════════════════════════════════════════════════════
+-- CDM HIDE REQUEST REGISTRY
+-- Tracks which bars are actively requesting each cooldownID to be hidden.
+-- Prevents flickering when multiple bars track the same CDM icon with
+-- different hideBuffIcon settings: "hide" wins if ANY bar requests it.
+-- ═══════════════════════════════════════════════════════════════════════════
+local cdmHideRequestsByCD = {}  -- [cooldownID] = { [barNumber] = true, ... }
+
+-- Register a bar's request to hide a specific cooldownID
+local function RegisterCDMHideRequest(barNumber, cooldownID)
+  if not cooldownID then return end
+  if not cdmHideRequestsByCD[cooldownID] then
+    cdmHideRequestsByCD[cooldownID] = {}
+  end
+  cdmHideRequestsByCD[cooldownID][barNumber] = true
+end
+
+-- Unregister a bar's hide request (bar disabled, spec filtered, cleared, etc.)
+-- Returns the cooldownID that was unregistered (or nil if none)
+local function UnregisterCDMHideRequest(barNumber)
+  for cooldownID, bars in pairs(cdmHideRequestsByCD) do
+    if bars[barNumber] then
+      bars[barNumber] = nil
+      -- Clean up empty tables
+      if not next(bars) then
+        cdmHideRequestsByCD[cooldownID] = nil
+      end
+      return cooldownID
+    end
+  end
+  return nil
+end
+
+-- Check if ANY bar (other than excludeBar) is still requesting a cooldownID be hidden
+local function AnyCDMHideRequestForCD(cooldownID, excludeBar)
+  if not cooldownID then return false end
+  local bars = cdmHideRequestsByCD[cooldownID]
+  if not bars then return false end
+  for barNum, _ in pairs(bars) do
+    if barNum ~= excludeBar then return true end
+  end
+  return false
+end
+
 -- Helper to get frame's current cooldownID
 local function GetFrameCooldownID(frame)
   if not frame then return nil end
@@ -969,12 +1013,21 @@ ns.API._FindCDMFrameForCooldownID = FindCDMFrameForCooldownID
 ClearBarState = function(barNumber)
   local state = barStates[barNumber]
   if state then
-    -- Restore visibility of any CDM frames that were hidden by this bar
+    -- Unregister this bar's CDM hide request
+    local wasHidingCD = UnregisterCDMHideRequest(barNumber)
+    
+    -- Only restore CDM frame visibility if no other bar is still hiding that cooldownID
     if state.cachedFrame then
-      AllowCDMFrameVisible(state.cachedFrame)
+      local cdID = wasHidingCD or GetFrameCooldownID(state.cachedFrame)
+      if not AnyCDMHideRequestForCD(cdID, barNumber) then
+        AllowCDMFrameVisible(state.cachedFrame)
+      end
     end
     if state.cachedBarFrame then
-      AllowCDMFrameVisible(state.cachedBarFrame)
+      local cdID = wasHidingCD or GetFrameCooldownID(state.cachedBarFrame)
+      if not AnyCDMHideRequestForCD(cdID, barNumber) then
+        AllowCDMFrameVisible(state.cachedBarFrame)
+      end
     end
   end
   barStates[barNumber] = nil
@@ -2158,7 +2211,15 @@ end
 -- ===================================================================
 UpdateBarBuffInfo = function(barNumber)
   local barConfig = ns.API.GetBarConfig(barNumber)
-  if not barConfig or not barConfig.tracking.enabled then return end
+  if not barConfig or not barConfig.tracking.enabled then
+    -- Clean up CDM hide request: disabled bar shouldn't control CDM visibility
+    local wasHidingCD = UnregisterCDMHideRequest(barNumber)
+    if wasHidingCD and not AnyCDMHideRequestForCD(wasHidingCD, barNumber) then
+      local cdmFrame = FindCDMFrameForCooldownID(wasHidingCD)
+      if cdmFrame then AllowCDMFrameVisible(cdmFrame) end
+    end
+    return
+  end
   
   local currentSpec = GetSpecialization() or 0
   local showOnSpecs = barConfig.behavior.showOnSpecs
@@ -2175,6 +2236,13 @@ UpdateBarBuffInfo = function(barNumber)
   
   if not specAllowed then
     if ns.Display and ns.Display.HideBar then ns.Display.HideBar(barNumber) end
+    -- Clean up CDM hide request: bar is not shown, shouldn't control CDM visibility
+    local wasHidingCD = UnregisterCDMHideRequest(barNumber)
+    if wasHidingCD and not AnyCDMHideRequestForCD(wasHidingCD, barNumber) then
+      -- No other bar wants this cdID hidden - restore CDM frame
+      local cdmFrame = FindCDMFrameForCooldownID(wasHidingCD)
+      if cdmFrame then AllowCDMFrameVisible(cdmFrame) end
+    end
     return
   end
   
@@ -2606,41 +2674,16 @@ UpdateBarBuffInfo = function(barNumber)
   elseif trackType == "pet" or trackType == "totem" or trackType == "ground" then
     local cdmFrame = sourceType == "bar" and barFrame or frame or barFrame
     
-    -- PRIMARY: Use preferredTotemUpdateSlot (non-secret on Beta)
-    -- FALLBACK: pcall totemData.slot (may be secret table when tainted)
-    local slot = cdmFrame and cdmFrame.preferredTotemUpdateSlot
-    if not slot and cdmFrame and cdmFrame.totemData then
-      local ok, val = pcall(function() return cdmFrame.totemData.slot end)
-      if ok then slot = val end
-    end
-    if slot and type(slot) == "number" and slot > 0 then
-      -- Verify totem is active using game API
-      -- WoW 12.0: GetTotemInfo returns SECRET values when totem exists
-      local haveTotem, name, startTime, duration = GetTotemInfo(slot)
-      
-      -- Check if totem exists: secret return = data protected = totem active
-      local totemExists = false
-      if issecretvalue(haveTotem) then
-        -- Secret boolean means totem data exists
-        totemExists = true
-      elseif haveTotem then
-        -- Non-secret truthy value
-        totemExists = true
-      end
-      
-      if totemExists then
-        active = true
-        stacks = 0  -- Totems don't have stacks
-        -- Store cdmFrame reference - query slot fresh each time!
-        -- This handles frame recycling where preferredTotemUpdateSlot changes
-        state.totemCdmFrame = cdmFrame
-      else
-        active = false
-        stacks = 0
-        state.totemCdmFrame = nil
-      end
+    -- WoW 12.0: totemData ONLY EXISTS when totem/pet is currently active
+    -- When it expires, totemData becomes nil but preferredTotemUpdateSlot persists
+    -- This matches CDMEnhance.GetTotemState() and CooldownState detection
+    if cdmFrame and cdmFrame.totemData ~= nil then
+      active = true
+      stacks = 0  -- Totems/pets don't have stacks
+      -- Store cdmFrame reference - query slot fresh each time!
+      -- This handles frame recycling where preferredTotemUpdateSlot changes
+      state.totemCdmFrame = cdmFrame
     else
-      -- No preferredTotemUpdateSlot - mark as inactive
       active = false
       stacks = 0
       state.totemCdmFrame = nil
@@ -3322,23 +3365,19 @@ UpdateBarBuffInfo = function(barNumber)
             -- Check if frame is still tracking OUR cooldown (non-secret check)
             if totemCdmFrame.cooldownID ~= originalCooldownID then return 0 end
             
-            -- Check if frame is still active
-            local isActive = totemCdmFrame.isActive
-            local frameActive = false
-            if issecretvalue(isActive) then
-              frameActive = true  -- Secret = combat state = still tracking
-            elseif isActive then
-              frameActive = true
-            end
-            if not frameActive then return 0 end
+            -- WoW 12.0: totemData ONLY EXISTS when totem/pet is active
+            if totemCdmFrame.totemData == nil then return 0 end
             
-            -- Query slot FRESH from frame each time (preferredTotemUpdateSlot, pcall fallback for totemData.slot)
+            -- Query slot FRESH from frame each time
+            -- WoW 12.0: preferredTotemUpdateSlot may be secret - pass directly to APIs
             local currentSlot = totemCdmFrame.preferredTotemUpdateSlot
             if not currentSlot and totemCdmFrame.totemData then
               local ok, val = pcall(function() return totemCdmFrame.totemData.slot end)
               if ok then currentSlot = val end
             end
-            if not currentSlot or currentSlot <= 0 then return 0 end
+            if not currentSlot then return 0 end
+            -- Skip numeric check - slot may be secret; GetTotemTimeLeft accepts secrets
+            if not issecretvalue(currentSlot) and currentSlot <= 0 then return 0 end
             
             -- Use GetTotemTimeLeft - returns secret in combat but SetValue accepts it
             if GetTotemTimeLeft then
@@ -3351,15 +3390,22 @@ UpdateBarBuffInfo = function(barNumber)
           end,
           GetMinMaxValues = function()
             -- WoW 12.0: Get duration from GetTotemInfo - it's SECRET but SetMinMaxValues accepts secrets!
+            if totemCdmFrame.totemData == nil then
+              local maxDur = barConfig.tracking.maxDuration or 30
+              return 0, maxDur
+            end
             local currentSlot = totemCdmFrame.preferredTotemUpdateSlot
             if not currentSlot and totemCdmFrame.totemData then
               local ok, val = pcall(function() return totemCdmFrame.totemData.slot end)
               if ok then currentSlot = val end
             end
-            if currentSlot and currentSlot > 0 then
-              local haveTotem, name, startTime, duration = GetTotemInfo(currentSlot)
-              if duration then
-                return 0, duration  -- Pass secret duration directly - SetMinMaxValues is AllowedWhenTainted!
+            if currentSlot then
+              -- Skip numeric check - slot may be secret; GetTotemInfo accepts secrets
+              if issecretvalue(currentSlot) or currentSlot > 0 then
+                local haveTotem, name, startTime, duration = GetTotemInfo(currentSlot)
+                if duration then
+                  return 0, duration  -- Pass secret duration directly - SetMinMaxValues is AllowedWhenTainted!
+                end
               end
             end
             -- Fallback to config if no totem data available
@@ -3370,14 +3416,8 @@ UpdateBarBuffInfo = function(barNumber)
             -- Check if frame is still tracking OUR cooldown
             if totemCdmFrame.cooldownID ~= originalCooldownID then return nil, nil end
             
-            local isActive = totemCdmFrame.isActive
-            local frameActive = false
-            if issecretvalue(isActive) then
-              frameActive = true
-            elseif isActive then
-              frameActive = true
-            end
-            if not frameActive then return nil, nil end
+            -- WoW 12.0: totemData ONLY EXISTS when totem/pet is active
+            if totemCdmFrame.totemData == nil then return nil, nil end
             
             local currentSlot = totemCdmFrame.preferredTotemUpdateSlot
             if not currentSlot and totemCdmFrame.totemData then
@@ -3448,6 +3488,9 @@ UpdateBarBuffInfo = function(barNumber)
   -- Hide CDM icon if enabled (ForceHideCDMFrame verifies cooldownID matches before hiding)
   if barConfig.behavior.hideBuffIcon then
     local expectedCdID = state.cooldownID or barConfig.tracking.cooldownID
+    -- Register this bar's hide request for the cooldownID
+    RegisterCDMHideRequest(barNumber, expectedCdID)
+    
     if frame then ForceHideCDMFrame(frame, expectedCdID) end
     if barFrame then ForceHideCDMFrame(barFrame, expectedCdID) end
     
@@ -3490,8 +3533,17 @@ UpdateBarBuffInfo = function(barNumber)
       end
     end
   else
-    if frame then AllowCDMFrameVisible(frame) end
-    if barFrame then AllowCDMFrameVisible(barFrame) end
+    -- This bar does NOT want to hide the CDM icon.
+    -- Unregister any previous hide request from this bar.
+    local wasHidingCD = UnregisterCDMHideRequest(barNumber)
+    
+    -- Only allow CDM frame visible if NO other bar is still requesting it hidden.
+    -- This prevents Bar B (hideBuffIcon=false) from undoing Bar A's (hideBuffIcon=true) hide.
+    local checkCdID = wasHidingCD or (state and state.cooldownID) or (barConfig.tracking and barConfig.tracking.cooldownID)
+    if not AnyCDMHideRequestForCD(checkCdID, barNumber) then
+      if frame then AllowCDMFrameVisible(frame) end
+      if barFrame then AllowCDMFrameVisible(barFrame) end
+    end
   end
 end
 

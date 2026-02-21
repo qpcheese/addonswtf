@@ -178,6 +178,17 @@ MissingClassBuffDB = {
 },
 ["profiles"] = {
 ["Default"] = {
+["ignoreBuffsWhileMounted"] = false,
+["debounceCheckThrottle"] = 0.1,
+["zoneSettings"] = {
+["arena"] = {
+["ignoreAlliesGlobally"] = false,
+},
+["pvp"] = {
+["ignoreAlliesGlobally"] = false,
+},
+},
+["advancedSettingsAcknowledgement"] = true,
 },
 },
 }

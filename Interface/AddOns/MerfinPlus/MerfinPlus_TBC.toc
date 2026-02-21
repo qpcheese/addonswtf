@@ -1,7 +1,7 @@
 ## Interface: 20505
 ## Title: MerfinPlus
 ## Author: Merfin
-## Version: 2.19
+## Version: 2.30
 ## X-Website: discord.gg/merfin
 ## X-Flavor: TBC
 ## Notes: Inserts Merfin media into LibSharedMedia's storage.
@@ -30,7 +30,15 @@ Options.lua
 Media\Media.xml
 WeakAuras_API\WeakAuras_API_TBC.xml
 Localizations\localizations.xml
-
 Data\FoodAndDrinkData\TBC_FoodAndDrinkData.lua
-
 Data\EquippedItemsData\TBC_EquippedItemsData.lua
+
+Localizations\TBC_BossLocales.lua
+Data\ItemDropData\TBC_ItemDrop_Data_LootSets.lua
+Data\ItemDropData\TBC_ItemDrop_Data_Faction.lua
+Data\ItemDropData\TBC_ItemDrop_Data_Collections.lua
+Data\ItemDropData\TBC_ItemDrop_Data_Vendor.lua
+Data\ItemDropData\TBC_ItemDrop_Data_Profession.lua
+Data\ItemDropData\TBC_ItemDrop_Data_TierTokens.lua
+Data\ItemDropData\TBC_ItemDrop_Data_InstanceTags.lua
+Data\ItemDropData\TBC_ItemDrop_Core.lua

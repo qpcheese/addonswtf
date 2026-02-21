@@ -55,7 +55,7 @@ BigWigs:AddColors("The Big Bad Wolf", {
 })
 
 BigWigs:AddSounds("The Big Bad Wolf", {
-	[30753] = "long",
+	[30753] = {"long","warning"},
 })
 
 BigWigs:AddColors("The Crone", {

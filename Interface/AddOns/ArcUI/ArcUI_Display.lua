@@ -378,10 +378,20 @@ end
 -- ===================================================================
 -- HELPER: APPLY SMOOTHING TO STATUSBAR
 -- ===================================================================
+-- WoW 12.0+: Use Enum.StatusBarInterpolation.ExponentialEaseOut on SetValue/SetMinMaxValues
+-- instead of the legacy SetSmoothing API for much smoother ease-out animation curves
+-- ===================================================================
+local SMOOTH_INTERPOLATION = Enum and Enum.StatusBarInterpolation and Enum.StatusBarInterpolation.ExponentialEaseOut or nil
+
+local function GetBarInterpolation(enableSmooth)
+  return enableSmooth and SMOOTH_INTERPOLATION or nil
+end
+
 local function ApplyBarSmoothing(bar, enableSmooth)
   if not bar then return end
+  -- Disable legacy smoothing - we use interpolation enum on SetValue/SetMinMaxValues instead
   if bar.SetSmoothing then
-    bar:SetSmoothing(enableSmooth)
+    bar:SetSmoothing(false)
   end
 end
 
@@ -850,12 +860,15 @@ local function CreateBarFrame(barNumber)
   frame.barBorderFrame:Hide()  -- Hidden by default
   
   -- Tick marks (on tick overlay frame with OVERLAY layer)
+  -- Uses Textures instead of Lines for reliable rendering at all UI scales
+  -- (Lines have known thickness/visibility quirks; WA uses the same texture approach)
   frame.tickMarks = {}
   for i = 1, 100 do
-    local tick = frame.tickOverlay:CreateLine(nil, "OVERLAY")
+    local tick = frame.tickOverlay:CreateTexture(nil, "OVERLAY")
     tick:SetDrawLayer("OVERLAY", 7)  -- High sublevel
+    tick:SetSnapToPixelGrid(false)
+    tick:SetTexelSnappingBias(0)
     tick:SetColorTexture(0, 0, 0, 1)
-    tick:SetThickness(1)
     tick:Hide()
     frame.tickMarks[i] = tick
   end
@@ -1804,8 +1817,9 @@ smoothUpdateFrame:SetScript("OnUpdate", function(self, elapsed)
               local maxDuration = state.maxDuration or barConfig.tracking.maxDuration or 10
               
               if barFrame.bar then
-                barFrame.bar:SetMinMaxValues(0, maxDuration)
-                barFrame.bar:SetValue(duration)
+                local interp = GetBarInterpolation(barConfig.display.enableSmoothing)
+                barFrame.bar:SetMinMaxValues(0, maxDuration, interp)
+                barFrame.bar:SetValue(duration, interp)
               end
               
               -- Update duration text
@@ -1844,8 +1858,9 @@ smoothUpdateFrame:SetScript("OnUpdate", function(self, elapsed)
               end
               
               if barFrame.bar then
-                barFrame.bar:SetMinMaxValues(0, maxStacks)
-                barFrame.bar:SetValue(stacks)
+                local interp = GetBarInterpolation(barConfig.display.enableSmoothing)
+                barFrame.bar:SetMinMaxValues(0, maxStacks, interp)
+                barFrame.bar:SetValue(stacks, interp)
               end
               
               -- Update stacks text
@@ -1950,10 +1965,16 @@ local function UpdateTickMarks(barFrame, barConfig, maxValue, displayMode)
     local tickIndex = 1
     for _, tickValue in ipairs(tickPositions) do
       if barFrame.tickMarks and barFrame.tickMarks[tickIndex] then
+        local tick = barFrame.tickMarks[tickIndex]
+        -- Use PixelUtil for crisp, uniform tick width
+        local pixelThickness = PixelUtil.GetNearestPixelSize(thickness, barFrame:GetEffectiveScale(), thickness)
+        
+        tick:ClearAllPoints()
+        tick:SetColorTexture(tc.r, tc.g, tc.b, tc.a or 1)
+        
         if isVertical then
           -- VERTICAL BAR - Horizontal tick marks
           -- Vertical bars fill from BOTTOM to TOP by default
-          -- So tick at 25% should be 25% up from bottom, not 25% down from top
           local yPos
           if isReverseFill then
             -- Reverse fill: fills top-to-bottom, so measure from top
@@ -1962,8 +1983,9 @@ local function UpdateTickMarks(barFrame, barConfig, maxValue, displayMode)
             -- Normal fill: fills bottom-to-top, so measure from bottom
             yPos = -height + (height * tickValue / tickMaxValue)
           end
-          barFrame.tickMarks[tickIndex]:SetStartPoint("TOPLEFT", barFrame.tickOverlay, 0, yPos)
-          barFrame.tickMarks[tickIndex]:SetEndPoint("TOPRIGHT", barFrame.tickOverlay, 0, yPos)
+          tick:SetPoint("TOPLEFT", barFrame.tickOverlay, "TOPLEFT", 0, yPos - pixelThickness / 2)
+          tick:SetPoint("TOPRIGHT", barFrame.tickOverlay, "TOPRIGHT", 0, yPos - pixelThickness / 2)
+          tick:SetHeight(pixelThickness)
         else
           -- HORIZONTAL BAR - Vertical tick marks
           local xPos
@@ -1974,14 +1996,12 @@ local function UpdateTickMarks(barFrame, barConfig, maxValue, displayMode)
             -- Normal fill: fills left-to-right, so measure from left
             xPos = width * tickValue / tickMaxValue
           end
-          barFrame.tickMarks[tickIndex]:SetStartPoint("TOPLEFT", barFrame.tickOverlay, xPos, 0)
-          barFrame.tickMarks[tickIndex]:SetEndPoint("BOTTOMLEFT", barFrame.tickOverlay, xPos, 0)
+          tick:SetPoint("TOPLEFT", barFrame.tickOverlay, "TOPLEFT", xPos - pixelThickness / 2, 0)
+          tick:SetPoint("BOTTOMLEFT", barFrame.tickOverlay, "BOTTOMLEFT", xPos - pixelThickness / 2, 0)
+          tick:SetWidth(pixelThickness)
         end
-        -- Use PixelUtil for crisp, uniform tick width
-        local pixelThickness = PixelUtil.GetNearestPixelSize(thickness, barFrame:GetEffectiveScale(), thickness)
-        barFrame.tickMarks[tickIndex]:SetThickness(pixelThickness)
-        barFrame.tickMarks[tickIndex]:SetColorTexture(tc.r, tc.g, tc.b, tc.a or 1)
-        barFrame.tickMarks[tickIndex]:Show()
+        
+        tick:Show()
         tickIndex = tickIndex + 1
       end
     end
@@ -2423,19 +2443,20 @@ function ns.Display.UpdateBar(barNumber, stacks, maxStacks, active, durationFont
           
           -- Set min/max values for this stack position (i-1, i)
           -- Stack 1: (0,1), Stack 2: (1,2), etc.
-          mFrame.iconBar:SetMinMaxValues(i - 1, i)
+          local iconInterp = GetBarInterpolation(cfg.enableSmoothing)
+          mFrame.iconBar:SetMinMaxValues(i - 1, i, iconInterp)
           
           -- Pass the stacks value through to SetValue
           -- SetValue accepts secret values - it will show filled when stacks >= i
           if usePreviewValue and previewStackCount then
             -- Preview mode: use calculated preview count
-            mFrame.iconBar:SetValue(previewStackCount)
+            mFrame.iconBar:SetValue(previewStackCount, iconInterp)
           elseif stacks then
             -- Live mode: pass secret value directly through
-            mFrame.iconBar:SetValue(stacks)
+            mFrame.iconBar:SetValue(stacks, iconInterp)
           else
             -- No stacks data: show empty
-            mFrame.iconBar:SetValue(0)
+            mFrame.iconBar:SetValue(0, iconInterp)
           end
           
           -- Background visibility (desaturated icon background)
@@ -2972,6 +2993,22 @@ function ns.Display.UpdateBar(barNumber, stacks, maxStacks, active, durationFont
     -- Get smoothing setting
     local enableSmooth = barConfig.display.enableSmoothing
     
+    -- Build threshold boundary set: which bar indices are the FIRST of a new color?
+    -- Granular bars overlap (bar N is wider than bar N-1), so when a bar at a
+    -- color boundary animates its fill, the previous color leaks through underneath.
+    -- Fix: the first bar of each new color snaps instant, rest interpolate smooth.
+    local thresholdBoundary = {}
+    if enableSmooth then
+      local prevColor = nil
+      for val = 1, numBars do
+        local c = GetColorForValue(val)
+        if prevColor ~= nil and c ~= prevColor then
+          thresholdBoundary[val] = true
+        end
+        prevColor = c
+      end
+    end
+    
     if not barFrame.granularBars then
       barFrame.granularBars = {}
     end
@@ -3032,10 +3069,12 @@ function ns.Display.UpdateBar(barNumber, stacks, maxStacks, active, durationFont
         bar:SetWidth(math.max(2, barWidth))
       end
       
+      -- Skip interpolation at threshold boundary bars to prevent old color leaking through
+      local interp = thresholdBoundary[barValue] and nil or GetBarInterpolation(enableSmooth)
       bar:SetMinMaxValues(barValue - 1, barValue)
       bar:SetStatusBarColor(color.r, color.g, color.b, color.a or 1)
       ApplyBarGradient(bar, barConfig, color)  -- Pass current color to avoid secrets
-      bar:SetValue(effectiveStacks)
+      bar:SetValue(effectiveStacks, interp)
       bar:Show()
     end
     
@@ -3131,10 +3170,11 @@ function ns.Display.UpdateBar(barNumber, stacks, maxStacks, active, durationFont
         end
         bar:SetWidth(math.max(2, segmentSize - 1))
       end
-      bar:SetMinMaxValues(i - 1, i)
+      local interp = GetBarInterpolation(enableSmooth)
+      bar:SetMinMaxValues(i - 1, i, interp)
       bar:SetStatusBarColor(color.r, color.g, color.b, color.a or 1)
       ApplyBarGradient(bar, barConfig, color)  -- Pass current color to avoid secrets
-      bar:SetValue(effectiveStacks)
+      bar:SetValue(effectiveStacks, interp)
       SafeShow(bar)
     end
     
@@ -3191,12 +3231,14 @@ function ns.Display.UpdateBar(barNumber, stacks, maxStacks, active, durationFont
       bar1._setupDone = true
     end
     
+    local interp = GetBarInterpolation(enableSmooth)
+    
     bar1:ClearAllPoints()
     bar1:SetAllPoints(barFrame)  -- Fill entire frame like MWRB
-    bar1:SetMinMaxValues(0, midpoint)
+    bar1:SetMinMaxValues(0, midpoint, interp)
     bar1:SetStatusBarColor(color1.r, color1.g, color1.b, color1.a or 1)
     ApplyBarGradient(bar1, barConfig, color1)  -- Pass current color to avoid secrets
-    bar1:SetValue(effectiveStacks)  -- Will cap at midpoint naturally
+    bar1:SetValue(effectiveStacks, interp)  -- Will cap at midpoint naturally
     bar1:Show()
     
     -- Bar 2: Second half color (midpoint to max) - overlays bar1 directly
@@ -3216,10 +3258,10 @@ function ns.Display.UpdateBar(barNumber, stacks, maxStacks, active, durationFont
     
     bar2:ClearAllPoints()
     bar2:SetAllPoints(barFrame)  -- Fill entire frame like MWRB
-    bar2:SetMinMaxValues(midpoint, maxStacks)
+    bar2:SetMinMaxValues(midpoint, maxStacks, interp)
     bar2:SetStatusBarColor(color2.r, color2.g, color2.b, color2.a or 1)
     ApplyBarGradient(bar2, barConfig, color2)  -- Pass current color to avoid secrets
-    bar2:SetValue(effectiveStacks)  -- Only fills when stacks > midpoint
+    bar2:SetValue(effectiveStacks, interp)  -- Only fills when stacks > midpoint
     bar2:Show()
     
     -- MAX COLOR OVERLAY for folded mode
@@ -3246,10 +3288,10 @@ function ns.Display.UpdateBar(barNumber, stacks, maxStacks, active, durationFont
       
       maxBar:ClearAllPoints()
       maxBar:SetAllPoints(barFrame)
-      maxBar:SetMinMaxValues(maxStacks - 1, maxStacks)
+      maxBar:SetMinMaxValues(maxStacks - 1, maxStacks, interp)
       maxBar:SetStatusBarColor(maxColor.r, maxColor.g, maxColor.b, maxColor.a or 1)
       ApplyBarGradient(maxBar, barConfig, maxColor)  -- Pass current color to avoid secrets
-      maxBar:SetValue(effectiveStacks)
+      maxBar:SetValue(effectiveStacks, interp)
       maxBar:Show()
     elseif barFrame.maxColorBar then
       barFrame.maxColorBar:Hide()
@@ -3283,6 +3325,7 @@ function ns.Display.UpdateBar(barNumber, stacks, maxStacks, active, durationFont
     
     if enableMaxColor and maxStacks > 1 then
       -- TWO BARS: base (full width) + max color overlay (full width, on top)
+      local interp = GetBarInterpolation(enableSmooth)
       
       -- Bar 1: Base color (0 to max) - full width
       local bar1 = barFrame.stackedBars[1]
@@ -3300,10 +3343,10 @@ function ns.Display.UpdateBar(barNumber, stacks, maxStacks, active, durationFont
       
       bar1:ClearAllPoints()
       bar1:SetAllPoints(barFrame)  -- Fill entire frame like MWRB
-      bar1:SetMinMaxValues(0, maxStacks)
+      bar1:SetMinMaxValues(0, maxStacks, interp)
       bar1:SetStatusBarColor(baseColor.r, baseColor.g, baseColor.b, baseColor.a or 1)
       ApplyBarGradient(bar1, barConfig, baseColor)  -- Pass current color to avoid secrets
-      bar1:SetValue(effectiveStacks)
+      bar1:SetValue(effectiveStacks, interp)
       bar1:Show()
       
       -- Bar 2: Max color overlay (max-1 to max) - full width, on top
@@ -3323,14 +3366,15 @@ function ns.Display.UpdateBar(barNumber, stacks, maxStacks, active, durationFont
       
       bar2:ClearAllPoints()
       bar2:SetAllPoints(barFrame)  -- Fill entire frame like MWRB
-      bar2:SetMinMaxValues(maxStacks - 1, maxStacks)
+      bar2:SetMinMaxValues(maxStacks - 1, maxStacks, interp)
       bar2:SetStatusBarColor(maxColor.r, maxColor.g, maxColor.b, maxColor.a or 1)
       ApplyBarGradient(bar2, barConfig, maxColor)  -- Pass current color to avoid secrets
-      bar2:SetValue(effectiveStacks)
+      bar2:SetValue(effectiveStacks, interp)
       bar2:Show()
     else
       -- SINGLE BAR: just base color
       local bar1 = barFrame.stackedBars[1]
+      local interp = GetBarInterpolation(enableSmooth)
       
       -- PERFORMANCE: Only apply expensive setup when appearance changes
       if needsSetup or not bar1._setupDone then
@@ -3345,10 +3389,10 @@ function ns.Display.UpdateBar(barNumber, stacks, maxStacks, active, durationFont
       
       bar1:ClearAllPoints()
       bar1:SetAllPoints(barFrame)  -- Fill entire frame like MWRB
-      bar1:SetMinMaxValues(0, maxStacks)
+      bar1:SetMinMaxValues(0, maxStacks, interp)
       bar1:SetStatusBarColor(baseColor.r, baseColor.g, baseColor.b, baseColor.a or 1)
       ApplyBarGradient(bar1, barConfig, baseColor)  -- Pass current color to avoid secrets
-      bar1:SetValue(effectiveStacks)
+      bar1:SetValue(effectiveStacks, interp)
       bar1:Show()
       
       barFrame.stackedBars[2]:Hide()
@@ -4605,6 +4649,9 @@ function ns.Display.UpdateDurationBar(barNumber, stacks, maxStacks, active, sour
   
   if PM then PM("BarValueHandling") end
   
+  -- Get duration bar interpolation (used by multiple branches below)
+  local durationInterp = GetBarInterpolation(barConfig.display.enableSmoothing)
+  
   -- ═══════════════════════════════════════════════════════════════════
   -- BAR VALUE AND COLOR HANDLING
   -- SetStatusBarColor accepts secret values - pass colorResult:GetRGBA() directly
@@ -4680,6 +4727,7 @@ function ns.Display.UpdateDurationBar(barNumber, stacks, maxStacks, active, sour
         decimals = decimals,
         baseColor = baseColor,
         elapsed = 0,
+        barNumber = barNumber,  -- For hiding all frames on expiry
       }
       
       -- Fast polling OnUpdate
@@ -4691,13 +4739,20 @@ function ns.Display.UpdateDurationBar(barNumber, stacks, maxStacks, active, sour
         -- Check totem every frame for instant response
         local currentSlot = data.sourceBar:GetTotemInfo()
         if not currentSlot then
-          -- Totem is gone - hide bar immediately and stop
-          self:SetAlpha(0)  -- Hide entire StatusBar
-          if data.durationFrame and data.showDuration then
-            data.durationFrame.text:SetText("")
-          end
+          -- Totem/pet is gone - hide ALL frames immediately (not just bar alpha)
+          -- This prevents ghost text/icons lingering until Core's 0.5s ticker catches up
           self:SetScript("OnUpdate", nil)
           self.totemPollingData = nil
+          
+          local frames = barFrames[data.barNumber]
+          if frames then
+            frames.barFrame:Hide()
+            frames.textFrame:Hide()
+            if frames.durationFrame then frames.durationFrame:Hide() end
+            if frames.iconFrame then frames.iconFrame:Hide() end
+            if frames.nameFrame then frames.nameFrame:Hide() end
+            if frames.barIconFrame then frames.barIconFrame:Hide() end
+          end
           return
         end
         
@@ -4758,10 +4813,11 @@ function ns.Display.UpdateDurationBar(barNumber, stacks, maxStacks, active, sour
     -- AURA DURATION BAR
     local auraID, unit = sourceBar:GetAuraInfo()
     
-    -- Enable smooth bar fill by default for aura bars (buffs/debuffs with DurationObject)
-    -- AUTO mode uses SetTimerDuration (inherently smooth), MANUAL MAX uses SetValue (needs this)
+    -- Disable legacy SetSmoothing - we use interpolation enum on SetValue instead
+    -- AUTO mode: SetTimerDuration has its own interpolation param (inherently smooth)
+    -- MANUAL MAX mode: SetValue gets durationInterp from enableSmoothing toggle
     if barFrame.bar.SetSmoothing then
-      barFrame.bar:SetSmoothing(true)
+      barFrame.bar:SetSmoothing(false)
     end
     
     if auraID and unit then
@@ -4786,7 +4842,7 @@ function ns.Display.UpdateDurationBar(barNumber, stacks, maxStacks, active, sour
         
         if not timerOK then
           barFrame.bar:SetMinMaxValues(0, maxValue)
-          barFrame.bar:SetValue(sourceBar:GetValue())
+          barFrame.bar:SetValue(sourceBar:GetValue(), durationInterp)
         end
         
         -- Apply color (with curve if enabled)
@@ -4931,6 +4987,7 @@ function ns.Display.UpdateDurationBar(barNumber, stacks, maxStacks, active, sour
           auraID = auraID,
           baseColor = baseColor,
           elapsed = 0,
+          interp = durationInterp,
         }
         
         -- OnUpdate polls GetRemainingDuration (secret) → SetValue (accepts secrets, auto-clamps)
@@ -4961,7 +5018,7 @@ function ns.Display.UpdateDurationBar(barNumber, stacks, maxStacks, active, sour
           -- Aura exists - update value
           pcall(function()
             local remaining = durObj:GetRemainingDuration()  -- Secret value
-            self:SetValue(remaining)  -- Auto-clamps to maxValue
+            self:SetValue(remaining, data.interp)  -- Auto-clamps to maxValue
           end)
         end)
         
@@ -4972,7 +5029,7 @@ function ns.Display.UpdateDurationBar(barNumber, stacks, maxStacks, active, sour
         pcall(function()
           local durObj = C_UnitAuras.GetAuraDuration(unit, auraID)
           if durObj then
-            barFrame.bar:SetValue(durObj:GetRemainingDuration())
+            barFrame.bar:SetValue(durObj:GetRemainingDuration(), durationInterp)
           end
         end)
         
@@ -5023,7 +5080,7 @@ function ns.Display.UpdateDurationBar(barNumber, stacks, maxStacks, active, sour
       barFrame.bar:SetMinMaxValues(0, maxValue)
     end
     
-    barFrame.bar:SetValue(sourceBar:GetValue())
+    barFrame.bar:SetValue(sourceBar:GetValue(), durationInterp)
     barFrame.bar:SetStatusBarColor(baseColor.r, baseColor.g, baseColor.b, baseColor.a or 1)
     ApplyBarGradient(barFrame.bar, barConfig, baseColor)  -- Pass baseColor to avoid secrets
     -- Restore visibility after color is applied (prevents flicker)
